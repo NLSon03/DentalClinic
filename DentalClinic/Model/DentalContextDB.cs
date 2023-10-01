@@ -16,7 +16,11 @@ namespace DentalClinic.Model
         public virtual DbSet<DentalMaterial> DentalMaterials { get; set; }
         public virtual DbSet<Diagnosis_Treatment> Diagnosis_Treatment { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Medicine> Medicines { get; set; }
+        public virtual DbSet<MedicineInvoice> MedicineInvoices { get; set; }
         public virtual DbSet<PatientInformation> PatientInformations { get; set; }
+        public virtual DbSet<Prescription> Prescriptions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<WarrantyInformation> WarrantyInformations { get; set; }
         public virtual DbSet<SubclinicalInformation> SubclinicalInformations { get; set; }
 
@@ -54,6 +58,19 @@ namespace DentalClinic.Model
                 .Property(e => e.TotalPayment)
                 .HasPrecision(10, 2);
 
+            modelBuilder.Entity<Medicine>()
+                .Property(e => e.UnitPrice)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Medicine>()
+                .HasMany(e => e.Prescriptions)
+                .WithRequired(e => e.Medicine)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<MedicineInvoice>()
+                .Property(e => e.TotalAmount)
+                .HasPrecision(10, 2);
+
             modelBuilder.Entity<PatientInformation>()
                 .Property(e => e.PhoneNumber)
                 .IsFixedLength()
@@ -70,8 +87,22 @@ namespace DentalClinic.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PatientInformation>()
+                .HasMany(e => e.Prescriptions)
+                .WithRequired(e => e.PatientInformation)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PatientInformation>()
                 .HasMany(e => e.SubclinicalInformations)
                 .WithRequired(e => e.PatientInformation)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Prescription>()
+                .Property(e => e.TotalAmount)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Prescription>()
+                .HasMany(e => e.MedicineInvoices)
+                .WithRequired(e => e.Prescription)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WarrantyInformation>()

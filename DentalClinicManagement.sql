@@ -88,3 +88,31 @@ CREATE TABLE DentalMaterials
     TotalAmount AS (Quantity * UnitPrice)
 );
 GO
+
+CREATE TABLE Medicine
+(
+    MedicineID INT PRIMARY KEY,
+    MedicineName NVARCHAR(100) NOT NULL,
+    Unit NVARCHAR(50) NOT NULL,
+    UnitPrice DECIMAL(10, 2) NOT NULL
+);
+GO
+
+CREATE TABLE Prescription
+(
+    PrescriptionID INT PRIMARY KEY,
+    PatientID INT NOT NULL REFERENCES PatientInformation(PatientID),
+    MedicineID INT NOT NULL REFERENCES Medicine(MedicineID),
+    Quantity INT NOT NULL ,
+    TotalAmount DECIMAL(10, 2) NOT NULL
+);
+GO
+
+CREATE TABLE MedicineInvoice
+(
+    InvoiceID INT PRIMARY KEY,
+    PrescriptionID INT NOT NULL REFERENCES Prescription(PrescriptionID),
+    TotalAmount DECIMAL(10, 2),
+    InvoiceDate DATE
+);
+GO

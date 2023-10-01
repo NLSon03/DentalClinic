@@ -66,8 +66,12 @@
     <Compile Include="Model\DentalMaterial.cs" />
     <Compile Include="Model\Diagnosis_Treatment.cs" />
     <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\Medicine.cs" />
+    <Compile Include="Model\MedicineInvoice.cs" />
     <Compile Include="Model\PatientInformation.cs" />
+    <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\SubclinicalInformation.cs" />
+    <Compile Include="Model\sysdiagram.cs" />
     <Compile Include="Model\WarrantyInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

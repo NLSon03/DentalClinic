@@ -14,6 +14,7 @@ namespace DentalClinic.Model
         {
             ClinicalInformations = new HashSet<ClinicalInformation>();
             Invoices = new HashSet<Invoice>();
+            Prescriptions = new HashSet<Prescription>();
             SubclinicalInformations = new HashSet<SubclinicalInformation>();
         }
 
@@ -50,6 +51,9 @@ namespace DentalClinic.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prescription> Prescriptions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubclinicalInformation> SubclinicalInformations { get; set; }
