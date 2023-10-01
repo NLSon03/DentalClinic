@@ -12,6 +12,7 @@ namespace DentalClinic.Model
         {
         }
 
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ClinicalInformation> ClinicalInformations { get; set; }
         public virtual DbSet<DentalMaterial> DentalMaterials { get; set; }
         public virtual DbSet<Diagnosis_Treatment> Diagnosis_Treatment { get; set; }
@@ -20,7 +21,6 @@ namespace DentalClinic.Model
         public virtual DbSet<MedicineInvoice> MedicineInvoices { get; set; }
         public virtual DbSet<PatientInformation> PatientInformations { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<WarrantyInformation> WarrantyInformations { get; set; }
         public virtual DbSet<SubclinicalInformation> SubclinicalInformations { get; set; }
 

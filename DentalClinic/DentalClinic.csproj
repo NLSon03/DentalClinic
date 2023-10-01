@@ -61,6 +61,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Account.cs" />
     <Compile Include="Model\ClinicalInformation.cs" />
     <Compile Include="Model\DentalContextDB.cs" />
     <Compile Include="Model\DentalMaterial.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Model\PatientInformation.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\SubclinicalInformation.cs" />
-    <Compile Include="Model\sysdiagram.cs" />
     <Compile Include="Model\WarrantyInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
