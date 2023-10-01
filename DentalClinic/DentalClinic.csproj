@@ -120,5 +120,13 @@
   <ItemGroup>
     <None Include="Resources\Tool1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Form\DentalMaterialForm\" />
+    <Folder Include="Form\LoginForm\" />
+    <Folder Include="Form\MedicExamInforForm\" />
+    <Folder Include="Form\PatientForm\" />
+    <Folder Include="Form\PrescriptionForm\" />
+    <Folder Include="Form\StatisticForm\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
