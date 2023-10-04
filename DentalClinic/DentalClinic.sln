@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentalClinic", "DentalClinic.csproj", "{8906756E-396D-499E-82A6-44BCB256D173}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gui", "gui.csproj", "{8906756E-396D-499E-82A6-44BCB256D173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bus", "..\bus\bus.csproj", "{C4BBA70E-8BC1-46E3-9286-98650AA0FCC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dal", "..\dal\dal.csproj", "{4DACA8BD-2F83-48CB-98A1-CCEEEF310B05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{8906756E-396D-499E-82A6-44BCB256D173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8906756E-396D-499E-82A6-44BCB256D173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8906756E-396D-499E-82A6-44BCB256D173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BBA70E-8BC1-46E3-9286-98650AA0FCC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BBA70E-8BC1-46E3-9286-98650AA0FCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BBA70E-8BC1-46E3-9286-98650AA0FCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BBA70E-8BC1-46E3-9286-98650AA0FCC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DACA8BD-2F83-48CB-98A1-CCEEEF310B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DACA8BD-2F83-48CB-98A1-CCEEEF310B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DACA8BD-2F83-48CB-98A1-CCEEEF310B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DACA8BD-2F83-48CB-98A1-CCEEEF310B05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

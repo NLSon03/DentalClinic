@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace DentalClinic.Model
+namespace dal.Entities
 {
-    public partial class DentalContextDB : DbContext
+    public partial class DentalModel : DbContext
     {
-        public DentalContextDB()
-            : base("name=DentalContextDB")
+        public DentalModel()
+            : base("name=DentalModel")
         {
         }
 

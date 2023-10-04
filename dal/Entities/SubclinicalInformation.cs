@@ -1,4 +1,4 @@
-namespace DentalClinic.Model
+namespace dal.Entities
 {
     using System;
     using System.Collections.Generic;
