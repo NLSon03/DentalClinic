@@ -55,7 +55,7 @@ namespace DentalClinic
             // 
             this.btnDentalMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDentalMaterial.Font = new System.Drawing.Font("Arial", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDentalMaterial.Image = global::gui.Properties.Resources.Tool1;
+            this.btnDentalMaterial.Image = ((System.Drawing.Image)(resources.GetObject("btnDentalMaterial.Image")));
             this.btnDentalMaterial.Location = new System.Drawing.Point(633, 30);
             this.btnDentalMaterial.Name = "btnDentalMaterial";
             this.btnDentalMaterial.Size = new System.Drawing.Size(587, 257);
@@ -88,6 +88,7 @@ namespace DentalClinic
             this.btnPatientManager.Text = "QUẢN LÝ BỆNH NHÂN";
             this.btnPatientManager.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnPatientManager.UseVisualStyleBackColor = true;
+            this.btnPatientManager.Click += new System.EventHandler(this.btnPatientManager_Click);
             // 
             // MainForm
             // 
