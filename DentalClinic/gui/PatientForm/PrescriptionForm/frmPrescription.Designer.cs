@@ -36,21 +36,21 @@
             this.btnPrintMedicinePrescription = new System.Windows.Forms.Button();
             this.btnAddMedicine = new System.Windows.Forms.Button();
             this.dgvMedicine = new System.Windows.Forms.DataGridView();
+            this.cmbUnit = new System.Windows.Forms.ComboBox();
+            this.cmbMedicine = new System.Windows.Forms.ComboBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPricePer = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.colOrdinaNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNameOfMedicine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalPerSe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbUnit = new System.Windows.Forms.ComboBox();
-            this.cmbMedicine = new System.Windows.Forms.ComboBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPricePer = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -136,48 +136,6 @@
             this.dgvMedicine.Size = new System.Drawing.Size(841, 758);
             this.dgvMedicine.TabIndex = 10;
             // 
-            // colOrdinaNumber
-            // 
-            this.colOrdinaNumber.HeaderText = "STT";
-            this.colOrdinaNumber.MinimumWidth = 6;
-            this.colOrdinaNumber.Name = "colOrdinaNumber";
-            this.colOrdinaNumber.Width = 125;
-            // 
-            // colNameOfMedicine
-            // 
-            this.colNameOfMedicine.HeaderText = "Tên thuốc";
-            this.colNameOfMedicine.MinimumWidth = 6;
-            this.colNameOfMedicine.Name = "colNameOfMedicine";
-            this.colNameOfMedicine.Width = 125;
-            // 
-            // colUnit
-            // 
-            this.colUnit.HeaderText = "ĐVT";
-            this.colUnit.MinimumWidth = 6;
-            this.colUnit.Name = "colUnit";
-            this.colUnit.Width = 125;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.HeaderText = "Số lượng";
-            this.colQuantity.MinimumWidth = 6;
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.Width = 125;
-            // 
-            // colPrice
-            // 
-            this.colPrice.HeaderText = "Đơn giá";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
-            this.colPrice.Width = 125;
-            // 
-            // colTotalPerSe
-            // 
-            this.colTotalPerSe.HeaderText = "Thành tiền";
-            this.colTotalPerSe.MinimumWidth = 6;
-            this.colTotalPerSe.Name = "colTotalPerSe";
-            this.colTotalPerSe.Width = 125;
-            // 
             // cmbUnit
             // 
             this.cmbUnit.FormattingEnabled = true;
@@ -185,7 +143,6 @@
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(135, 24);
             this.cmbUnit.TabIndex = 8;
-            this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.cmbUnit_SelectedIndexChanged);
             // 
             // cmbMedicine
             // 
@@ -232,22 +189,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm thuốc";
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(119, 578);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 27);
-            this.textBox1.TabIndex = 20;
-            // 
-            // label5
-            // 
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(169, 319);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1, 159);
-            this.label5.TabIndex = 21;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -264,6 +205,63 @@
             this.txtPricePer.Name = "txtPricePer";
             this.txtPricePer.Size = new System.Drawing.Size(188, 27);
             this.txtPricePer.TabIndex = 20;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(119, 578);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(188, 27);
+            this.textBox1.TabIndex = 20;
+            // 
+            // label5
+            // 
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.Location = new System.Drawing.Point(169, 319);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(1, 159);
+            this.label5.TabIndex = 21;
+            // 
+            // colOrdinaNumber
+            // 
+            this.colOrdinaNumber.HeaderText = "STT";
+            this.colOrdinaNumber.MinimumWidth = 6;
+            this.colOrdinaNumber.Name = "colOrdinaNumber";
+            this.colOrdinaNumber.Width = 50;
+            // 
+            // colNameOfMedicine
+            // 
+            this.colNameOfMedicine.HeaderText = "Tên thuốc";
+            this.colNameOfMedicine.MinimumWidth = 6;
+            this.colNameOfMedicine.Name = "colNameOfMedicine";
+            this.colNameOfMedicine.Width = 150;
+            // 
+            // colUnit
+            // 
+            this.colUnit.HeaderText = "ĐVT";
+            this.colUnit.MinimumWidth = 6;
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Width = 75;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "Số lượng";
+            this.colQuantity.MinimumWidth = 6;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Width = 50;
+            // 
+            // colPrice
+            // 
+            this.colPrice.HeaderText = "Đơn giá";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            // 
+            // colTotalPerSe
+            // 
+            this.colTotalPerSe.HeaderText = "Thành tiền";
+            this.colTotalPerSe.MinimumWidth = 6;
+            this.colTotalPerSe.Name = "colTotalPerSe";
+            this.colTotalPerSe.Width = 150;
             // 
             // frmPrescription
             // 
@@ -305,16 +303,16 @@
         private System.Windows.Forms.ComboBox cmbMedicine;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtPricePer;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrdinaNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNameOfMedicine;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPerSe;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtPricePer;
     }
 }

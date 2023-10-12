@@ -71,15 +71,13 @@ namespace gui.PatientForm.PrescriptionForm
 
         private void cmbMedicine_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        }
-
-        private void cmbUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbUnit.SelectedIndex > -1)
+            if (cmbMedicine.SelectedIndex > -1)
             {
-                string s = cmbUnit.GetItemText(this.cmbUnit.SelectedItem);
-                txtPricePer.Text = s;
+                foreach(var item in medicineService.GetAllMedicine())
+                {
+                    if(int.Parse(cmbMedicine.SelectedValue.ToString()) == item.MedicineID)
+                        txtPricePer.Text = item.UnitPrice.ToString();
+                }
             }
         }
     }
