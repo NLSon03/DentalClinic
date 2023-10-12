@@ -116,3 +116,12 @@ CREATE TABLE MedicineInvoice
     InvoiceDate DATE
 );
 GO
+
+CREATE TABLE Account
+(
+    AccountID INT PRIMARY KEY,
+    AccountName NVARCHAR(100) NOT NULL,
+    [Password] NVARCHAR(100) NOT NULL,
+    AccountType BIT
+);
+GO
