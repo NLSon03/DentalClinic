@@ -1,4 +1,4 @@
-namespace dal
+namespace dal.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,14 +6,17 @@ namespace dal
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class DentalMaterial
+    public partial class DentalToolTransactionsDetail
     {
+        [Key]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        public int TransactionID { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string Content { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ToolID { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -23,10 +26,11 @@ namespace dal
 
         public decimal UnitPrice { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
-
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalAmount { get; set; }
+
+        public virtual DentalTool DentalTool { get; set; }
+
+        public virtual DentalToolTransaction DentalToolTransaction { get; set; }
     }
 }

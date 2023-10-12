@@ -51,19 +51,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountService.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="ClinicalInformationDetailsService.cs" />
     <Compile Include="ClinicalInformationService.cs" />
-    <Compile Include="DentalMaterialService.cs" />
-    <Compile Include="DentalModelService.cs" />
-    <Compile Include="Diagnosis_TreatmentService.cs" />
+    <Compile Include="DentalToolService.cs" />
+    <Compile Include="DentalToolTransactionDetails.cs" />
+    <Compile Include="DentalToolTransactionService.cs" />
+    <Compile Include="DiagnosisTreatmentService.cs" />
+    <Compile Include="InvoiceDetailsService.cs" />
     <Compile Include="InvoiceService.cs" />
-    <Compile Include="MedicineInvoiceService.cs" />
     <Compile Include="MedicineService.cs" />
     <Compile Include="PatientInformationService.cs" />
+    <Compile Include="PrescriptionDetailsService.cs" />
     <Compile Include="PrescriptionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubclinicalInformationService.cs" />
+    <Compile Include="SubClinicalInformationService.cs" />
     <Compile Include="WarrantyInformationService.cs" />
   </ItemGroup>
   <ItemGroup>

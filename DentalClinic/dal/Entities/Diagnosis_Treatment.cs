@@ -1,4 +1,4 @@
-namespace dal
+namespace dal.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -11,27 +11,25 @@ namespace dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Diagnosis_Treatment()
         {
-            ClinicalInformations = new HashSet<ClinicalInformation>();
+            ClinicalInformationDetails = new HashSet<ClinicalInformationDetail>();
         }
 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        public int Diagnosis_Treatment_ID { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [StringLength(255)]
         public string DiagnosisName { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [StringLength(255)]
         public string TreatmentName { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string Unit { get; set; }
 
-        public decimal UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClinicalInformation> ClinicalInformations { get; set; }
+        public virtual ICollection<ClinicalInformationDetail> ClinicalInformationDetails { get; set; }
     }
 }

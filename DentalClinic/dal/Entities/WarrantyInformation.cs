@@ -1,4 +1,4 @@
-namespace dal
+namespace dal.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -9,21 +9,11 @@ namespace dal
     [Table("WarrantyInformation")]
     public partial class WarrantyInformation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WarrantyInformation()
-        {
-            SubclinicalInformations = new HashSet<SubclinicalInformation>();
-        }
-
         [Key]
         [StringLength(50)]
         public string WarrantyID { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [StringLength(255)]
         public string LaboName { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubclinicalInformation> SubclinicalInformations { get; set; }
     }
 }

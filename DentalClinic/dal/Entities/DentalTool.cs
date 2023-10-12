@@ -6,27 +6,29 @@ namespace dal.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Invoice")]
-    public partial class Invoice
+    public partial class DentalTool
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Invoice()
+        public DentalTool()
         {
-            InvoiceDetails = new HashSet<InvoiceDetail>();
+            DentalToolTransactionsDetails = new HashSet<DentalToolTransactionsDetail>();
         }
 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int InvoiceID { get; set; }
+        public int ToolID { get; set; }
 
-        public int ClinicalInfoID { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string ToolName { get; set; }
 
-        public DateTime? Date { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Unit { get; set; }
 
-        public decimal? TotalPayment { get; set; }
-
-        public virtual ClinicalInformation ClinicalInformation { get; set; }
+        public int Quantity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
+        public virtual ICollection<DentalToolTransactionsDetail> DentalToolTransactionsDetails { get; set; }
     }
 }

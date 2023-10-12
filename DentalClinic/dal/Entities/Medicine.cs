@@ -1,4 +1,4 @@
-namespace dal
+namespace dal.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Medicine()
         {
-            Prescriptions = new HashSet<Prescription>();
+            PrescriptionDetails = new HashSet<PrescriptionDetail>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -22,13 +22,15 @@ namespace dal
         [StringLength(100)]
         public string MedicineName { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string Unit { get; set; }
 
-        public decimal UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
+
+        [StringLength(255)]
+        public string Dosage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription> Prescriptions { get; set; }
+        public virtual ICollection<PrescriptionDetail> PrescriptionDetails { get; set; }
     }
 }

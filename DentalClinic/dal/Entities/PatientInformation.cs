@@ -1,4 +1,4 @@
-namespace dal
+namespace dal.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -13,13 +13,9 @@ namespace dal
         public PatientInformation()
         {
             ClinicalInformations = new HashSet<ClinicalInformation>();
-            Invoices = new HashSet<Invoice>();
-            Prescriptions = new HashSet<Prescription>();
-            SubclinicalInformations = new HashSet<SubclinicalInformation>();
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PatientID { get; set; }
 
         [Required]
@@ -39,8 +35,7 @@ namespace dal
         [StringLength(255)]
         public string Address { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime FirstExaminationDate { get; set; }
+        public DateTime? FirstExaminationDate { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -49,13 +44,6 @@ namespace dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClinicalInformation> ClinicalInformations { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription> Prescriptions { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubclinicalInformation> SubclinicalInformations { get; set; }
+        public virtual SubClinicalInformation SubClinicalInformation { get; set; }
     }
 }

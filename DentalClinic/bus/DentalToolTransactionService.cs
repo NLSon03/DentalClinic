@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bus
 {
-    public class Class1
+    public class DentalToolTransactionService
     {
     }
 }
