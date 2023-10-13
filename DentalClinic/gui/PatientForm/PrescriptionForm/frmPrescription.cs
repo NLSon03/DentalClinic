@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using dal;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using dal.Entities;
 
 namespace gui.PatientForm.PrescriptionForm
 {

@@ -1,11 +1,11 @@
 USE master;
 GO
-/*USE master;
-GO
-ALTER DATABASE DentalClinicManagement SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-GO
-DROP DATABASE DentalClinicManagement;
-GO*/
+USE master;
+/*GO
+//ALTER DATABASE Students SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+//GO
+//DROP DATABASE Students;
+//GO*/
 CREATE DATABASE DentalClinicManagement;
 GO
 

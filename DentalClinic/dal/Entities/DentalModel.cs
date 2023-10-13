@@ -26,9 +26,7 @@ namespace dal.Entities
         public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<PrescriptionDetail> PrescriptionDetails { get; set; }
         public virtual DbSet<SubClinicalInformation> SubClinicalInformations { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<WarrantyInformation> WarrantyInformations { get; set; }
-
+       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClinicalInformationDetail>()
@@ -95,15 +93,10 @@ namespace dal.Entities
                 .Property(e => e.TotalAmount)
                 .HasPrecision(21, 2);
 
-            modelBuilder.Entity<SubClinicalInformation>()
+            /*modelBuilder.Entity<SubClinicalInformation>()
                 .Property(e => e.WarrantyID)
                 .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<WarrantyInformation>()
-                .Property(e => e.WarrantyID)
-                .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false);*/
         }
     }
 }

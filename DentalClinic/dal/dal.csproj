@@ -69,8 +69,6 @@
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="Entities\PrescriptionDetail.cs" />
     <Compile Include="Entities\SubClinicalInformation.cs" />
-    <Compile Include="Entities\sysdiagram.cs" />
-    <Compile Include="Entities\WarrantyInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

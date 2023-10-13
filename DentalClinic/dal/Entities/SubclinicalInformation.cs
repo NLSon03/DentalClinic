@@ -22,7 +22,8 @@ namespace dal.Entities
         [StringLength(50)]
         public string BloodSugarLevel { get; set; }
 
-        public bool? BloodCoagulation { get; set; }
+        [StringLength(2)]
+        public string BloodCoagulation { get; set; }
 
         public bool? CongenitalHeartDisease { get; set; }
 
@@ -37,6 +38,9 @@ namespace dal.Entities
         [StringLength(255)]
         public string Other { get; set; }
 
+        [StringLength(100)]
+
+        public string LaboName { get; set; }
         public virtual PatientInformation PatientInformation { get; set; }
     }
 }

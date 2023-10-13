@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dal.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace bus
 {
     public class MedicineService
     {
+        public List<Medicine> GetAllMedicine()
+        {
+            DentalModel context = new DentalModel();
+            return context.Medicines.ToList();
+        }
     }
 }
