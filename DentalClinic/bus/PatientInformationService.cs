@@ -14,5 +14,12 @@ namespace bus
             DentalModel context = new DentalModel();
             return context.PatientInformations.ToList();
         }
+
+        public PatientInformation GetByID(string id)
+        {
+            DentalModel context = new DentalModel();
+            return context.PatientInformations.FirstOrDefault(p=>p.PatientID.ToString() == id);
+        }
+
     }
 }

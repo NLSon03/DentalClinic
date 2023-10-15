@@ -9,37 +9,23 @@ namespace dal.Entities
     [Table("ClinicalInformation")]
     public partial class ClinicalInformation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ClinicalInformation()
-        {
-            ClinicalInformationDetails = new HashSet<ClinicalInformationDetail>();
-            Invoices = new HashSet<Invoice>();
-            Prescriptions = new HashSet<Prescription>();
-        }
+        public int ID { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ClinicalInfoID { get; set; }
+        public int? Patient_ID { get; set; }
 
-        public int PatientID { get; set; }
+        public int? Diagnosis_ID { get; set; }
 
-        public DateTime? ExaminationDate { get; set; }
+        public int? Treatment_ID { get; set; }
 
-        [StringLength(255)]
-        public string Diagnosis { get; set; }
+        public int Quantity { get; set; }
 
-        [StringLength(255)]
-        public string Treatment { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TotalAmount { get; set; }
+
+        public virtual Diagnosi Diagnosi { get; set; }
 
         public virtual PatientInformation PatientInformation { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClinicalInformationDetail> ClinicalInformationDetails { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription> Prescriptions { get; set; }
+        public virtual Treatment Treatment { get; set; }
     }
 }

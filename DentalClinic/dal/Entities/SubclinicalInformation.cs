@@ -39,8 +39,8 @@ namespace dal.Entities
         public string Other { get; set; }
 
         [StringLength(100)]
-
         public string LaboName { get; set; }
+
         public virtual PatientInformation PatientInformation { get; set; }
     }
 }

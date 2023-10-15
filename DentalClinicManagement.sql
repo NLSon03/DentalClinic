@@ -1,6 +1,6 @@
-USE master;
+﻿USE master;
 GO
-USE master;
+
 /*GO
 //ALTER DATABASE Students SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 //GO
@@ -9,7 +9,7 @@ USE master;
 CREATE DATABASE DentalClinicManagement;
 GO
 
-USE DentalClinicManagement;
+USE Dental_Clinic_Management;
 GO
 
 CREATE TABLE [dbo].[PatientInformation]
@@ -125,3 +125,100 @@ CREATE TABLE Account
     AccountType BIT
 );
 GO
+
+CREATE  TABLE [dbo].[Diagnosis](
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	[Name] NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE [dbo].[Treatment](
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	[Name] NVARCHAR(100) NOT NULL
+)
+
+INSERT INTO Diagnosis (Name)
+SELECT DISTINCT DiagnosisName FROM Diagnosis_Treatment
+WHERE DiagnosisName NOT IN (SELECT Name FROM Diagnosis)
+GO
+
+INSERT INTO Treatment (Name)
+SELECT DISTINCT TreatmentName FROM Diagnosis_Treatment
+WHERE TreatmentName NOT IN (SELECT Name FROM Treatment)
+GO
+
+
+CREATE TABLE [dbo].[ClinicalInfor](
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	Patient_ID INT FOREIGN KEY REFERENCES [dbo].[PatientInformation],
+	Diagnosis_ID INT FOREIGN KEY REFERENCES [dbo].[Diagnosis] (ID),
+	Treatment_ID INT FOREIGN KEY REFERENCES [dbo].[Treatment] (ID),
+	Quantity INT NOT NULL,
+	TotalAmount MONEY
+)
+
+CREATE TABLE [dbo].[Diagnosis](
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	PatientID INT FOREIGN KEY REFERENCES [dbo].[PatientInformation](PatientID),
+	Diagnosis NVARCHAR(100),
+	ExaminationTime DATETIME
+)
+
+
+INSERT INTO Diagnosis (PatientID, ExaminationTime, Diagnosis)
+SELECT PatientID, ExaminationDate, Diagnosis FROM Clinical_Information;
+
+SELECT f.name AS ForeignKey,
+       OBJECT_NAME(f.parent_object_id) AS TableName,
+       COL_NAME(fc.parent_object_id, fc.parent_column_id) AS ColumnName,
+       OBJECT_NAME (f.referenced_object_id) AS ReferenceTableName,
+       COL_NAME(fc.referenced_object_id, fc.referenced_column_id) AS ReferenceColumnName
+FROM sys.foreign_keys AS f
+INNER JOIN sys.foreign_key_columns AS fc ON f.OBJECT_ID = fc.constraint_object_id
+WHERE OBJECT_NAME(f.referenced_object_id) = 'Clinical_Information';
+
+ALTER TABLE Invoice DROP CONSTRAINT I_ClinicalInfoID
+GO
+
+DROP TABLE Clinical_Information;
+
+-- Bắt đầu giao dịch
+BEGIN TRANSACTION;
+
+-- Sao chép dữ liệu vào bảng ClinicalInfor
+INSERT INTO [dbo].[ClinicalInfor] (Patient_ID, Diagnosis_ID, Treatment_ID, Quantity, TotalAmount)
+SELECT D.PatientID, D.ID, T.ID, CID.Quantity, CID.Quantity * T.UnitPrice
+FROM Diagnosis D
+INNER JOIN Treatment T ON D.ID = T.ID
+INNER JOIN ClinicalInformationDetails CID ON D.ID = CID.ID;
+
+-- Kết thúc giao dịch
+COMMIT TRANSACTION;
+
+
+CREATE TABLE [dbo].[ClinicalInformation](
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	Patient_ID INT FOREIGN KEY REFERENCES [dbo].[PatientInformation],
+	Diagnosis_ID INT FOREIGN KEY REFERENCES [dbo].[Diagnosis] (ID),
+	Treatment_ID INT FOREIGN KEY REFERENCES [dbo].[Treatment] (ID),
+	Quantity INT NOT NULL,
+	TotalAmount MONEY
+)
+
+INSERT INTO [dbo].[ClinicalInformation](Patient_ID, Diagnosis_ID,Treatment_ID,Quantity,TotalAmount)
+SELECT Patient_ID, Diagnosis_ID,Treatment_ID,Quantity,TotalAmount FROM ClinicalInfor
+GO
+
+SELECT f.name AS ForeignKey,
+       OBJECT_NAME(f.parent_object_id) AS TableName,
+       COL_NAME(fc.parent_object_id, fc.parent_column_id) AS ColumnName,
+       OBJECT_NAME (f.referenced_object_id) AS ReferenceTableName,
+       COL_NAME(fc.referenced_object_id, fc.referenced_column_id) AS ReferenceColumnName
+FROM sys.foreign_keys AS f
+INNER JOIN sys.foreign_key_columns AS fc ON f.OBJECT_ID = fc.constraint_object_id
+WHERE OBJECT_NAME(f.referenced_object_id) = 'ClinicalInformationDetails'
+GO
+
+ALTER TABLE InvoiceDetails DROP CONSTRAINT ID_ClinicalInfoDetailsID
+GO
+
+DROP TABLE ClinicalInformationDetails

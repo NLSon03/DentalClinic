@@ -6,20 +6,20 @@ namespace dal.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class InvoiceDetail
+    [Table("MedicineInvoice")]
+    public partial class MedicineInvoice
     {
         [Key]
-        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InvoiceID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ClinicalInfoDetailsID { get; set; }
+        public int PrescriptionID { get; set; }
 
         public decimal? TotalAmount { get; set; }
 
-        public virtual Invoice Invoice { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? InvoiceDate { get; set; }
+
+        public virtual Prescription Prescription { get; set; }
     }
 }

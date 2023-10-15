@@ -12,6 +12,7 @@ namespace dal.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Prescription()
         {
+            MedicineInvoices = new HashSet<MedicineInvoice>();
             PrescriptionDetails = new HashSet<PrescriptionDetail>();
         }
 
@@ -22,7 +23,8 @@ namespace dal.Entities
 
         public decimal? TotalAmount { get; set; }
 
-        public virtual ClinicalInformation ClinicalInformation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicineInvoice> MedicineInvoices { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrescriptionDetail> PrescriptionDetails { get; set; }

@@ -11,47 +11,14 @@ namespace gui.PatientForm.MedicExamInforForm
         public string _PatientID;
 
         private SubClinicalInformationService subClinicalInformationService = new SubClinicalInformationService();
+        private PatientInformationService patientInformationService = new PatientInformationService();
 
         public frmMedicExamInfor()
         {
             InitializeComponent();
         }
 
-        //Điền thông tin bệnh nhân vào form
-        private void FillSubClinicalInformation(SubClinicalInformation SubCliInf)
-        {
-            //textbox Huyết áp
-            txtBloodPressure.Text = SubCliInf.BloodPressure;
-            //textbox Mạch
-            txtPulseRate.Text = SubCliInf.PulseRate;
-            //textbox đường huyết
-            txtBloodSugarLevel.Text = SubCliInf.BloodSugarLevel;
-
-            //radio button máu khó đông
-            if (SubCliInf.BloodCoagulation == "TS")
-                radBloodCoagulation_TS.Checked = true;
-            else if (SubCliInf.BloodCoagulation == "TC")
-                radBloodCoagulation_TS.Checked = true;
-            else
-                radBloodCoagulationNo.Checked = true;
-
-            //radio button bệnh tim bẩm sinh
-            if (SubCliInf.CongenitalHeartDisease == true)
-                radCongenitalHeartDisease_Yes.Checked = true;
-
-            //radio button thiểu năng trí tuệ
-            if (SubCliInf.IntellectualDisability == true)
-                radIntellectualDisability_Yes.Checked = true;
-
-            //thông tin bảo hành
-            txtWarrantyID.Text = SubCliInf.WarrantyID;
-            txtWarrantyName.Text = SubCliInf.LaboName;
-
-            //Thông tin khác
-            txtOtherInfor.Text = SubCliInf.Other;
-        }
-
-        //Event Load Form
+        //Load Form
         private void frmMedicExamInfor_Load(object sender, EventArgs e)
         {
             try
@@ -68,7 +35,22 @@ namespace gui.PatientForm.MedicExamInforForm
             }
         }
 
-        private void EnableUnitSubExInf()
+        //Điền thông tin bệnh nhân vào form
+        private void FillSubClinicalInformation(SubClinicalInformation SubCliInf)
+        {
+            grbSubExamInfor.Text = SubCliInf.PatientID + "|"+ patientInformationService.GetByID(_PatientID).FullName;
+            lblBloodPressure.Text = SubCliInf.BloodPressure;
+            lblPulseRate.Text = SubCliInf.PulseRate;
+            lblBloodSugarLevel.Text = SubCliInf.BloodSugarLevel;
+            lblBloodCoagulation.Text = SubCliInf.BloodCoagulation;
+            lblCongenitalHeartDisease.Text = (bool)(SubCliInf.CongenitalHeartDisease) ? "Có" : "Không";
+            lblIntellectualDisability.Text = (bool)SubCliInf.IntellectualDisability ? "Có" : "Không";
+            lblWarrantyID.Text = SubCliInf.WarrantyID;
+            lblLaboName.Text = SubCliInf.LaboName;
+            lblOther.Text = SubCliInf.Other;
+        }
+
+        /*private void EnableUnitSubExInf()
         {
             //enable textbox
             txtBloodPressure.Enabled = true;
@@ -89,11 +71,11 @@ namespace gui.PatientForm.MedicExamInforForm
             //rad butt Intellectual Disability 
             radIntellectualDisability_No.Enabled = true;
             radIntellectualDisability_Yes.Enabled = true;
-        }
+        }*/
 
-        private void btnEditSubExamInfor_Click(object sender, EventArgs e)
+        /*private void btnEditSubExamInfor_Click(object sender, EventArgs e)
         {
             EnableUnitSubExInf();
-        }
+        }*/
     }
 }
