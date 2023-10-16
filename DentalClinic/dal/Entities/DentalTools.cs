@@ -6,12 +6,12 @@ namespace dal.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class DentalTool
+    public partial class DentalTools
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DentalTool()
+        public DentalTools()
         {
-            DentalToolTransactionsDetails = new HashSet<DentalToolTransactionsDetail>();
+            DentalToolTransactionsDetails = new HashSet<DentalToolTransactionsDetails>();
         }
 
         [Key]
@@ -29,6 +29,6 @@ namespace dal.Entities
         public int Quantity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DentalToolTransactionsDetail> DentalToolTransactionsDetails { get; set; }
+        public virtual ICollection<DentalToolTransactionsDetails> DentalToolTransactionsDetails { get; set; }
     }
 }

@@ -59,7 +59,6 @@ namespace gui.PatientForm
                 setGridViewStyle(this.dgvPatient);
                 var ListPatient =  patientInformationService.GetAll();
                 BindGrid(ListPatient);
-
             }
             catch(Exception ex)
             {
@@ -82,7 +81,7 @@ namespace gui.PatientForm
         }
         private void OpenPrescriptionForm()
         {
-            frmPrescription f = new frmPrescription();
+            frmPrescription f = new frmPrescription(); 
             f.ShowDialog();
         }
         private void btnCreatingPrescription_Click(object sender, EventArgs e)
@@ -93,7 +92,7 @@ namespace gui.PatientForm
                 //  {
                 //    if (dgvPatient.Rows[r.Index].Cells[8].Value == null)
                 //   {
-                OpenPrescriptionForm();
+                        OpenPrescriptionForm();
                 // }
                 // else
                 //  {

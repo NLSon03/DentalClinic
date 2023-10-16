@@ -10,15 +10,14 @@ namespace dal.Entities
     public partial class MedicineInvoice
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InvoiceID { get; set; }
 
         public int PrescriptionID { get; set; }
 
-        public decimal? TotalAmount { get; set; }
-
         [Column(TypeName = "date")]
         public DateTime? InvoiceDate { get; set; }
+
+        public decimal? TotalAmount { get; set; }
 
         public virtual Prescription Prescription { get; set; }
     }

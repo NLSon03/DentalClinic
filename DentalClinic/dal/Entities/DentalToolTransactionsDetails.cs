@@ -6,7 +6,7 @@ namespace dal.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class DentalToolTransactionsDetail
+    public partial class DentalToolTransactionsDetails
     {
         [Key]
         [Column(Order = 0)]
@@ -29,8 +29,8 @@ namespace dal.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalAmount { get; set; }
 
-        public virtual DentalTool DentalTool { get; set; }
+        public virtual DentalTools DentalTools { get; set; }
 
-        public virtual DentalToolTransaction DentalToolTransaction { get; set; }
+        public virtual DentalToolTransactions DentalToolTransactions { get; set; }
     }
 }

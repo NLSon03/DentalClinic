@@ -12,8 +12,7 @@ namespace dal.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PatientInformation()
         {
-            ClinicalInformations = new HashSet<ClinicalInformation>();
-            Diagnosis = new HashSet<Diagnosi>();
+            Diagnosis = new HashSet<Diagnosis>();
         }
 
         [Key]
@@ -43,10 +42,7 @@ namespace dal.Entities
         public string ReasonForExamination { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClinicalInformation> ClinicalInformations { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnosi> Diagnosis { get; set; }
+        public virtual ICollection<Diagnosis> Diagnosis { get; set; }
 
         public virtual SubClinicalInformation SubClinicalInformation { get; set; }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using dal.Entities;
 namespace bus
 {
     public class SubClinicalInformationService
@@ -12,7 +12,7 @@ namespace bus
         public SubClinicalInformation GetById(string id)
         {
             DentalModel context = new DentalModel();
-            return context.SubClinicalInformations.FirstOrDefault(p => p.PatientID.ToString() == id);
+            return context.SubClinicalInformation.FirstOrDefault(p => p.PatientID.ToString() == id);
         }
     }
 }

@@ -12,10 +12,9 @@ namespace dal.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Medicine()
         {
-            PrescriptionDetails = new HashSet<PrescriptionDetail>();
+            PrescriptionDetails = new HashSet<PrescriptionDetails>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MedicineID { get; set; }
 
         [Required]
@@ -31,6 +30,6 @@ namespace dal.Entities
         public string Dosage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrescriptionDetail> PrescriptionDetails { get; set; }
+        public virtual ICollection<PrescriptionDetails> PrescriptionDetails { get; set; }
     }
 }

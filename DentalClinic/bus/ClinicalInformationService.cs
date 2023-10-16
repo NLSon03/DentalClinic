@@ -12,13 +12,13 @@ namespace bus
         public List<ClinicalInformation> GetAll()
         {
             DentalModel model = new DentalModel();
-            return model.ClinicalInformations.ToList();
+            return model.ClinicalInformation.ToList();
         }
 
         public List<ClinicalInformation> GetByID(string ID)
         {
             DentalModel model = new DentalModel();
-            return model.ClinicalInformations.Where(p => p.Patient_ID.ToString() == ID).ToList();
+            return model.ClinicalInformation.Where(p => p.ID.ToString() == ID).ToList();
         }
     }
 }

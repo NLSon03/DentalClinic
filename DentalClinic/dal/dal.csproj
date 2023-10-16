@@ -56,30 +56,29 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\ClinicalInformation.cs" />
-    <Compile Include="Entities\DentalMaterial.cs" />
-    <Compile Include="Entities\DentalModel.cs" />
-    <Compile Include="Entities\DentalTool.cs" />
-    <Compile Include="Entities\DentalToolTransaction.cs" />
-    <Compile Include="Entities\DentalToolTransactionsDetail.cs" />
-    <Compile Include="Entities\Diagnosi.cs" />
+    <Compile Include="Entities\DentalTools.cs" />
+    <Compile Include="Entities\DentalToolTransactions.cs" />
+    <Compile Include="Entities\DentalToolTransactionsDetails.cs" />
+    <Compile Include="Entities\Diagnosis.cs" />
     <Compile Include="Entities\Invoice.cs" />
-    <Compile Include="Entities\InvoiceDetail.cs" />
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineInvoice.cs" />
+    <Compile Include="Entities\DentalModel.cs" />
     <Compile Include="Entities\PatientInformation.cs" />
     <Compile Include="Entities\Prescription.cs" />
-    <Compile Include="Entities\PrescriptionDetail.cs" />
+    <Compile Include="Entities\PrescriptionDetails.cs" />
     <Compile Include="Entities\SubClinicalInformation.cs" />
+    <Compile Include="Entities\sysdiagrams.cs" />
     <Compile Include="Entities\Treatment.cs" />
     <Compile Include="Entities\TreatmentMethodName.cs" />
     <Compile Include="Entities\TreatmentName.cs" />
-    <Compile Include="Entities\WarrantyInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

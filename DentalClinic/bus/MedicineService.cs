@@ -12,7 +12,7 @@ namespace bus
         public List<Medicine> GetAllMedicine()
         {
             DentalModel context = new DentalModel();
-            return context.Medicines.ToList();
+            return context.Medicine.ToList();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace dal.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TreatmentName()
         {
-            Treatments = new HashSet<Treatment>();
+            Treatment = new HashSet<Treatment>();
         }
 
         public int ID { get; set; }
@@ -22,6 +22,6 @@ namespace dal.Entities
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Treatment> Treatments { get; set; }
+        public virtual ICollection<Treatment> Treatment { get; set; }
     }
 }
