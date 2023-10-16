@@ -9,17 +9,20 @@ namespace dal.Entities
     [Table("MedicineInvoice")]
     public partial class MedicineInvoice
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int InvoiceID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MedicineInvoice()
+        {
+            MedicineInvoiceDetails = new HashSet<MedicineInvoiceDetail>();
+        }
 
-        public int PrescriptionID { get; set; }
+        public int ID { get; set; }
 
+        public DateTime? Date { get; set; }
+
+        [Column(TypeName = "money")]
         public decimal? TotalAmount { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? InvoiceDate { get; set; }
-
-        public virtual Prescription Prescription { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicineInvoiceDetail> MedicineInvoiceDetails { get; set; }
     }
 }

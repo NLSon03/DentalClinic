@@ -30,39 +30,55 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMedicExamInfor));
             this.grbSubExamInfor = new System.Windows.Forms.GroupBox();
+            this.lblOther = new System.Windows.Forms.Label();
+            this.picXray = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblLaboName = new System.Windows.Forms.Label();
+            this.lblWarrantyID = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.lblBloodCoagulation = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblIntellectualDisability = new System.Windows.Forms.Label();
+            this.lblCongenitalHeartDisease = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblBloodSugarLevel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblPulseRate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblBloodPressure = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chứcNăngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblBloodPressure = new System.Windows.Forms.Label();
-            this.lblPulseRate = new System.Windows.Forms.Label();
-            this.lblBloodSugarLevel = new System.Windows.Forms.Label();
-            this.lblBloodCoagulation = new System.Windows.Forms.Label();
-            this.lblCongenitalHeartDisease = new System.Windows.Forms.Label();
-            this.lblIntellectualDisability = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblWarrantyID = new System.Windows.Forms.Label();
-            this.lblLaboName = new System.Windows.Forms.Label();
-            this.picXray = new System.Windows.Forms.PictureBox();
-            this.lblOther = new System.Windows.Forms.Label();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.dgvClinicalInfor = new System.Windows.Forms.DataGridView();
+            this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDiagnosis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTreatment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTreatmentMethod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbSubExamInfor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picXray)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picXray)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClinicalInfor)).BeginInit();
             this.SuspendLayout();
             // 
             // grbSubExamInfor
@@ -92,6 +108,79 @@
             this.grbSubExamInfor.TabStop = false;
             this.grbSubExamInfor.Text = "-:-";
             // 
+            // lblOther
+            // 
+            this.lblOther.AutoSize = true;
+            this.lblOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOther.Location = new System.Drawing.Point(260, 92);
+            this.lblOther.MaximumSize = new System.Drawing.Size(259, 86);
+            this.lblOther.Name = "lblOther";
+            this.lblOther.Size = new System.Drawing.Size(11, 16);
+            this.lblOther.TabIndex = 3;
+            this.lblOther.Text = "-";
+            // 
+            // picXray
+            // 
+            this.picXray.Location = new System.Drawing.Point(105, 92);
+            this.picXray.Name = "picXray";
+            this.picXray.Size = new System.Drawing.Size(93, 86);
+            this.picXray.TabIndex = 2;
+            this.picXray.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblLaboName);
+            this.groupBox1.Controls.Add(this.lblWarrantyID);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(603, 18);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(588, 62);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thông tin bảo hành";
+            // 
+            // lblLaboName
+            // 
+            this.lblLaboName.AutoSize = true;
+            this.lblLaboName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaboName.Location = new System.Drawing.Point(475, 27);
+            this.lblLaboName.Name = "lblLaboName";
+            this.lblLaboName.Size = new System.Drawing.Size(11, 16);
+            this.lblLaboName.TabIndex = 1;
+            this.lblLaboName.Text = "-";
+            // 
+            // lblWarrantyID
+            // 
+            this.lblWarrantyID.AutoSize = true;
+            this.lblWarrantyID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarrantyID.Location = new System.Drawing.Point(143, 27);
+            this.lblWarrantyID.Name = "lblWarrantyID";
+            this.lblWarrantyID.Size = new System.Drawing.Size(11, 16);
+            this.lblWarrantyID.TabIndex = 1;
+            this.lblWarrantyID.Text = "-";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(31, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(106, 16);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Mã số bảo hành:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(318, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(127, 16);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Tên Labo bảo hành:";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -112,26 +201,6 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Thiểu năng trí tuệ:";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(318, 27);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(127, 16);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Tên Labo bảo hành:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(31, 27);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 16);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Mã số bảo hành:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -141,6 +210,16 @@
             this.label5.Size = new System.Drawing.Size(40, 16);
             this.label5.TabIndex = 0;
             this.label5.Text = "Khác:";
+            // 
+            // lblBloodCoagulation
+            // 
+            this.lblBloodCoagulation.AutoSize = true;
+            this.lblBloodCoagulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloodCoagulation.Location = new System.Drawing.Point(120, 64);
+            this.lblBloodCoagulation.Name = "lblBloodCoagulation";
+            this.lblBloodCoagulation.Size = new System.Drawing.Size(11, 16);
+            this.lblBloodCoagulation.TabIndex = 0;
+            this.lblBloodCoagulation.Text = "-";
             // 
             // label4
             // 
@@ -152,6 +231,26 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Máu khó đông:";
             // 
+            // lblIntellectualDisability
+            // 
+            this.lblIntellectualDisability.AutoSize = true;
+            this.lblIntellectualDisability.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIntellectualDisability.Location = new System.Drawing.Point(522, 64);
+            this.lblIntellectualDisability.Name = "lblIntellectualDisability";
+            this.lblIntellectualDisability.Size = new System.Drawing.Size(11, 16);
+            this.lblIntellectualDisability.TabIndex = 0;
+            this.lblIntellectualDisability.Text = "-";
+            // 
+            // lblCongenitalHeartDisease
+            // 
+            this.lblCongenitalHeartDisease.AutoSize = true;
+            this.lblCongenitalHeartDisease.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCongenitalHeartDisease.Location = new System.Drawing.Point(316, 64);
+            this.lblCongenitalHeartDisease.Name = "lblCongenitalHeartDisease";
+            this.lblCongenitalHeartDisease.Size = new System.Drawing.Size(11, 16);
+            this.lblCongenitalHeartDisease.TabIndex = 0;
+            this.lblCongenitalHeartDisease.Text = "-";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -161,6 +260,16 @@
             this.label3.Size = new System.Drawing.Size(118, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Bệnh tim bẩm sinh:";
+            // 
+            // lblBloodSugarLevel
+            // 
+            this.lblBloodSugarLevel.AutoSize = true;
+            this.lblBloodSugarLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloodSugarLevel.Location = new System.Drawing.Point(492, 36);
+            this.lblBloodSugarLevel.Name = "lblBloodSugarLevel";
+            this.lblBloodSugarLevel.Size = new System.Drawing.Size(11, 16);
+            this.lblBloodSugarLevel.TabIndex = 0;
+            this.lblBloodSugarLevel.Text = "-";
             // 
             // label2
             // 
@@ -172,6 +281,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Đường huyết:";
             // 
+            // lblPulseRate
+            // 
+            this.lblPulseRate.AutoSize = true;
+            this.lblPulseRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPulseRate.Location = new System.Drawing.Point(241, 36);
+            this.lblPulseRate.Name = "lblPulseRate";
+            this.lblPulseRate.Size = new System.Drawing.Size(11, 16);
+            this.lblPulseRate.TabIndex = 0;
+            this.lblPulseRate.Text = "-";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -181,6 +300,16 @@
             this.label11.Size = new System.Drawing.Size(43, 16);
             this.label11.TabIndex = 0;
             this.label11.Text = "Mạch:";
+            // 
+            // lblBloodPressure
+            // 
+            this.lblBloodPressure.AutoSize = true;
+            this.lblBloodPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloodPressure.Location = new System.Drawing.Point(89, 36);
+            this.lblBloodPressure.Name = "lblBloodPressure";
+            this.lblBloodPressure.Size = new System.Drawing.Size(11, 16);
+            this.lblBloodPressure.TabIndex = 0;
+            this.lblBloodPressure.Text = "-";
             // 
             // label1
             // 
@@ -229,6 +358,11 @@
             this.toolStripButton1.Size = new System.Drawing.Size(151, 22);
             this.toolStripButton1.Text = "Thông tin cận lâm sàng";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
@@ -237,126 +371,10 @@
             this.toolStripButton2.Size = new System.Drawing.Size(129, 22);
             this.toolStripButton2.Text = "Thông tin lâm sàng";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // lblBloodPressure
-            // 
-            this.lblBloodPressure.AutoSize = true;
-            this.lblBloodPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloodPressure.Location = new System.Drawing.Point(89, 36);
-            this.lblBloodPressure.Name = "lblBloodPressure";
-            this.lblBloodPressure.Size = new System.Drawing.Size(11, 16);
-            this.lblBloodPressure.TabIndex = 0;
-            this.lblBloodPressure.Text = "-";
-            // 
-            // lblPulseRate
-            // 
-            this.lblPulseRate.AutoSize = true;
-            this.lblPulseRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPulseRate.Location = new System.Drawing.Point(241, 36);
-            this.lblPulseRate.Name = "lblPulseRate";
-            this.lblPulseRate.Size = new System.Drawing.Size(11, 16);
-            this.lblPulseRate.TabIndex = 0;
-            this.lblPulseRate.Text = "-";
-            // 
-            // lblBloodSugarLevel
-            // 
-            this.lblBloodSugarLevel.AutoSize = true;
-            this.lblBloodSugarLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloodSugarLevel.Location = new System.Drawing.Point(492, 36);
-            this.lblBloodSugarLevel.Name = "lblBloodSugarLevel";
-            this.lblBloodSugarLevel.Size = new System.Drawing.Size(11, 16);
-            this.lblBloodSugarLevel.TabIndex = 0;
-            this.lblBloodSugarLevel.Text = "-";
-            // 
-            // lblBloodCoagulation
-            // 
-            this.lblBloodCoagulation.AutoSize = true;
-            this.lblBloodCoagulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloodCoagulation.Location = new System.Drawing.Point(120, 64);
-            this.lblBloodCoagulation.Name = "lblBloodCoagulation";
-            this.lblBloodCoagulation.Size = new System.Drawing.Size(11, 16);
-            this.lblBloodCoagulation.TabIndex = 0;
-            this.lblBloodCoagulation.Text = "-";
-            // 
-            // lblCongenitalHeartDisease
-            // 
-            this.lblCongenitalHeartDisease.AutoSize = true;
-            this.lblCongenitalHeartDisease.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCongenitalHeartDisease.Location = new System.Drawing.Point(316, 64);
-            this.lblCongenitalHeartDisease.Name = "lblCongenitalHeartDisease";
-            this.lblCongenitalHeartDisease.Size = new System.Drawing.Size(11, 16);
-            this.lblCongenitalHeartDisease.TabIndex = 0;
-            this.lblCongenitalHeartDisease.Text = "-";
-            // 
-            // lblIntellectualDisability
-            // 
-            this.lblIntellectualDisability.AutoSize = true;
-            this.lblIntellectualDisability.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIntellectualDisability.Location = new System.Drawing.Point(522, 64);
-            this.lblIntellectualDisability.Name = "lblIntellectualDisability";
-            this.lblIntellectualDisability.Size = new System.Drawing.Size(11, 16);
-            this.lblIntellectualDisability.TabIndex = 0;
-            this.lblIntellectualDisability.Text = "-";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblLaboName);
-            this.groupBox1.Controls.Add(this.lblWarrantyID);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(603, 18);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(588, 62);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin bảo hành";
-            // 
-            // lblWarrantyID
-            // 
-            this.lblWarrantyID.AutoSize = true;
-            this.lblWarrantyID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarrantyID.Location = new System.Drawing.Point(143, 27);
-            this.lblWarrantyID.Name = "lblWarrantyID";
-            this.lblWarrantyID.Size = new System.Drawing.Size(11, 16);
-            this.lblWarrantyID.TabIndex = 1;
-            this.lblWarrantyID.Text = "-";
-            // 
-            // lblLaboName
-            // 
-            this.lblLaboName.AutoSize = true;
-            this.lblLaboName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaboName.Location = new System.Drawing.Point(475, 27);
-            this.lblLaboName.Name = "lblLaboName";
-            this.lblLaboName.Size = new System.Drawing.Size(11, 16);
-            this.lblLaboName.TabIndex = 1;
-            this.lblLaboName.Text = "-";
-            // 
-            // picXray
-            // 
-            this.picXray.Location = new System.Drawing.Point(105, 92);
-            this.picXray.Name = "picXray";
-            this.picXray.Size = new System.Drawing.Size(93, 86);
-            this.picXray.TabIndex = 2;
-            this.picXray.TabStop = false;
-            // 
-            // lblOther
-            // 
-            this.lblOther.AutoSize = true;
-            this.lblOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOther.Location = new System.Drawing.Point(260, 92);
-            this.lblOther.MaximumSize = new System.Drawing.Size(259, 86);
-            this.lblOther.Name = "lblOther";
-            this.lblOther.Size = new System.Drawing.Size(11, 16);
-            this.lblOther.TabIndex = 3;
-            this.lblOther.Text = "-";
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.toolStrip2);
+            this.groupBox2.Controls.Add(this.dgvClinicalInfor);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(19, 244);
             this.groupBox2.Name = "groupBox2";
@@ -364,6 +382,117 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Lâm Sàng";
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3,
+            this.toolStripButton4});
+            this.toolStrip2.Location = new System.Drawing.Point(3, 22);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1219, 25);
+            this.toolStrip2.TabIndex = 1;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "toolStripButton4";
+            // 
+            // dgvClinicalInfor
+            // 
+            this.dgvClinicalInfor.AllowUserToAddRows = false;
+            this.dgvClinicalInfor.AllowUserToDeleteRows = false;
+            this.dgvClinicalInfor.ColumnHeadersHeight = 30;
+            this.dgvClinicalInfor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnID,
+            this.ColumnDiagnosis,
+            this.ColumnTreatment,
+            this.ColumnTreatmentMethod,
+            this.ColumnUnit,
+            this.ColumnQuantity,
+            this.ColumnUnitPrice,
+            this.ColumnTotalAmount,
+            this.ColumnDate});
+            this.dgvClinicalInfor.Location = new System.Drawing.Point(22, 50);
+            this.dgvClinicalInfor.Name = "dgvClinicalInfor";
+            this.dgvClinicalInfor.ReadOnly = true;
+            this.dgvClinicalInfor.Size = new System.Drawing.Size(1179, 356);
+            this.dgvClinicalInfor.TabIndex = 0;
+            // 
+            // ColumnID
+            // 
+            this.ColumnID.HeaderText = "STT";
+            this.ColumnID.Name = "ColumnID";
+            this.ColumnID.ReadOnly = true;
+            this.ColumnID.Width = 45;
+            // 
+            // ColumnDiagnosis
+            // 
+            this.ColumnDiagnosis.HeaderText = "Chẩn đoán";
+            this.ColumnDiagnosis.Name = "ColumnDiagnosis";
+            this.ColumnDiagnosis.ReadOnly = true;
+            this.ColumnDiagnosis.Width = 250;
+            // 
+            // ColumnTreatment
+            // 
+            this.ColumnTreatment.HeaderText = "Điều Trị";
+            this.ColumnTreatment.Name = "ColumnTreatment";
+            this.ColumnTreatment.ReadOnly = true;
+            this.ColumnTreatment.Width = 150;
+            // 
+            // ColumnTreatmentMethod
+            // 
+            this.ColumnTreatmentMethod.HeaderText = "Phương pháp điều trị";
+            this.ColumnTreatmentMethod.Name = "ColumnTreatmentMethod";
+            this.ColumnTreatmentMethod.ReadOnly = true;
+            this.ColumnTreatmentMethod.Width = 200;
+            // 
+            // ColumnUnit
+            // 
+            this.ColumnUnit.HeaderText = "Đơn vị tính";
+            this.ColumnUnit.Name = "ColumnUnit";
+            this.ColumnUnit.ReadOnly = true;
+            this.ColumnUnit.Width = 90;
+            // 
+            // ColumnQuantity
+            // 
+            this.ColumnQuantity.HeaderText = "Số lượng";
+            this.ColumnQuantity.Name = "ColumnQuantity";
+            this.ColumnQuantity.ReadOnly = true;
+            this.ColumnQuantity.Width = 90;
+            // 
+            // ColumnUnitPrice
+            // 
+            this.ColumnUnitPrice.HeaderText = "Đơn giá";
+            this.ColumnUnitPrice.Name = "ColumnUnitPrice";
+            this.ColumnUnitPrice.ReadOnly = true;
+            // 
+            // ColumnTotalAmount
+            // 
+            this.ColumnTotalAmount.HeaderText = "Thành tiền";
+            this.ColumnTotalAmount.Name = "ColumnTotalAmount";
+            this.ColumnTotalAmount.ReadOnly = true;
+            // 
+            // ColumnDate
+            // 
+            this.ColumnDate.HeaderText = "Ngày Khám";
+            this.ColumnDate.Name = "ColumnDate";
+            this.ColumnDate.ReadOnly = true;
+            this.ColumnDate.Width = 110;
             // 
             // frmMedicExamInfor
             // 
@@ -382,13 +511,18 @@
             this.Load += new System.EventHandler(this.frmMedicExamInfor_Load);
             this.grbSubExamInfor.ResumeLayout(false);
             this.grbSubExamInfor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picXray)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picXray)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClinicalInfor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,5 +559,18 @@
         private System.Windows.Forms.PictureBox picXray;
         private System.Windows.Forms.Label lblOther;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dgvClinicalInfor;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDiagnosis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTreatment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTreatmentMethod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTotalAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
     }
 }

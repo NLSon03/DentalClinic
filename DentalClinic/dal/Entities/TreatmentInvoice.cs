@@ -6,25 +6,23 @@ namespace dal.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Invoice")]
-    public partial class Invoice
+    [Table("TreatmentInvoice")]
+    public partial class TreatmentInvoice
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Invoice()
+        public TreatmentInvoice()
         {
-            InvoiceDetails = new HashSet<InvoiceDetail>();
+            TreatmentInvoiceDetails = new HashSet<TreatmentInvoiceDetail>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int InvoiceID { get; set; }
-
-        public int ClinicalInfoID { get; set; }
+        public int ID { get; set; }
 
         public DateTime? Date { get; set; }
 
-        public decimal? TotalPayment { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TotalAmount { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
+        public virtual ICollection<TreatmentInvoiceDetail> TreatmentInvoiceDetails { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace dal.Entities
         public PatientInformation()
         {
             ClinicalInformations = new HashSet<ClinicalInformation>();
-            Diagnosis = new HashSet<Diagnosi>();
+            Prescriptions = new HashSet<Prescription>();
         }
 
         [Key]
@@ -46,7 +46,7 @@ namespace dal.Entities
         public virtual ICollection<ClinicalInformation> ClinicalInformations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnosi> Diagnosis { get; set; }
+        public virtual ICollection<Prescription> Prescriptions { get; set; }
 
         public virtual SubClinicalInformation SubClinicalInformation { get; set; }
     }

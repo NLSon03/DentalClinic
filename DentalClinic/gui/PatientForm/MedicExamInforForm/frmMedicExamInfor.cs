@@ -1,6 +1,8 @@
 ﻿using bus;
 using dal.Entities;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace gui.PatientForm.MedicExamInforForm
@@ -12,6 +14,19 @@ namespace gui.PatientForm.MedicExamInforForm
 
         private SubClinicalInformationService subClinicalInformationService = new SubClinicalInformationService();
         private PatientInformationService patientInformationService = new PatientInformationService();
+        private TreatmentService treatmentService = new TreatmentService();
+        private TreatmentNameService treatmentNameService = new  TreatmentNameService();
+        private DiagnosisService diagnosisService = new DiagnosisService();
+        private ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
+
+        public void setGridViewStyle(DataGridView dataGridView)
+        {
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView.BackgroundColor = Color.White;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
 
         public frmMedicExamInfor()
         {
@@ -23,15 +38,42 @@ namespace gui.PatientForm.MedicExamInforForm
         {
             try
             {
+                setGridViewStyle(this.dgvClinicalInfor);
+                //Điền thông tin cận lâm sàng
                 var SubCliInf = subClinicalInformationService.GetById(_PatientID);
                 if (SubCliInf != null)
                 {
                     FillSubClinicalInformation(SubCliInf);
                 }
+                //Điền thông tin lâm sàng
+                var ClinInf = clinicalInformationService.GetByID(_PatientID);
+                if(ClinInf != null)
+                {
+                    BindGrid(ClinInf);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        //Điền thông tin lâm sàng vào bảng
+        private void BindGrid(List<ClinicalInformation> ClinInf)
+        {
+            dgvClinicalInfor.Rows.Clear();
+            int index = 1;
+            foreach (var item in ClinInf)
+            {
+                string diag = item.Diagnosi.Diagnosis;
+                string treatment = item.Treatment.TreatmentName.Name;
+                string treatmentMethod = item.Treatment.TreatmentMethodName.Name;
+                string unit = item.Treatment.Unit;
+                string quantity = item.Quantity.ToString();
+                string unitPrice = item.Treatment.UnitPrice.ToString();
+                string totalAmount = item.TotalAmount.ToString();
+                string date = item.Diagnosi.ExaminationTime.ToString();
+                dgvClinicalInfor.Rows.Add(index,diag,treatment,treatmentMethod,unit,quantity,unitPrice,totalAmount,date);
+                index++;
             }
         }
 

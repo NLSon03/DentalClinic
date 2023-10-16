@@ -9,6 +9,12 @@ namespace dal.Entities
     [Table("ClinicalInformation")]
     public partial class ClinicalInformation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ClinicalInformation()
+        {
+            TreatmentInvoiceDetails = new HashSet<TreatmentInvoiceDetail>();
+        }
+
         public int ID { get; set; }
 
         public int? Patient_ID { get; set; }
@@ -27,5 +33,8 @@ namespace dal.Entities
         public virtual PatientInformation PatientInformation { get; set; }
 
         public virtual Treatment Treatment { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TreatmentInvoiceDetail> TreatmentInvoiceDetails { get; set; }
     }
 }

@@ -62,18 +62,17 @@
     <Compile Include="Entities\DentalToolTransaction.cs" />
     <Compile Include="Entities\DentalToolTransactionsDetail.cs" />
     <Compile Include="Entities\Diagnosi.cs" />
-    <Compile Include="Entities\Invoice.cs" />
-    <Compile Include="Entities\InvoiceDetail.cs" />
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineInvoice.cs" />
+    <Compile Include="Entities\MedicineInvoiceDetail.cs" />
     <Compile Include="Entities\PatientInformation.cs" />
     <Compile Include="Entities\Prescription.cs" />
-    <Compile Include="Entities\PrescriptionDetail.cs" />
     <Compile Include="Entities\SubClinicalInformation.cs" />
     <Compile Include="Entities\Treatment.cs" />
+    <Compile Include="Entities\TreatmentInvoice.cs" />
+    <Compile Include="Entities\TreatmentInvoiceDetail.cs" />
     <Compile Include="Entities\TreatmentMethodName.cs" />
     <Compile Include="Entities\TreatmentName.cs" />
-    <Compile Include="Entities\WarrantyInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

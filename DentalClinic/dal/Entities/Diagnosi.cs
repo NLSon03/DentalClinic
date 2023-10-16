@@ -16,8 +16,6 @@ namespace dal.Entities
 
         public int ID { get; set; }
 
-        public int? PatientID { get; set; }
-
         [StringLength(100)]
         public string Diagnosis { get; set; }
 
@@ -25,7 +23,5 @@ namespace dal.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClinicalInformation> ClinicalInformations { get; set; }
-
-        public virtual PatientInformation PatientInformation { get; set; }
     }
 }

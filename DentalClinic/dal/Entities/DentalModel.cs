@@ -19,24 +19,28 @@ namespace dal.Entities
         public virtual DbSet<DentalToolTransaction> DentalToolTransactions { get; set; }
         public virtual DbSet<DentalToolTransactionsDetail> DentalToolTransactionsDetails { get; set; }
         public virtual DbSet<Diagnosi> Diagnosis { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Medicine> Medicines { get; set; }
         public virtual DbSet<MedicineInvoice> MedicineInvoices { get; set; }
+        public virtual DbSet<MedicineInvoiceDetail> MedicineInvoiceDetails { get; set; }
         public virtual DbSet<PatientInformation> PatientInformations { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
-        public virtual DbSet<PrescriptionDetail> PrescriptionDetails { get; set; }
         public virtual DbSet<SubClinicalInformation> SubClinicalInformations { get; set; }
         public virtual DbSet<Treatment> Treatments { get; set; }
+        public virtual DbSet<TreatmentInvoice> TreatmentInvoices { get; set; }
+        public virtual DbSet<TreatmentInvoiceDetail> TreatmentInvoiceDetails { get; set; }
         public virtual DbSet<TreatmentMethodName> TreatmentMethodNames { get; set; }
         public virtual DbSet<TreatmentName> TreatmentNames { get; set; }
-        public virtual DbSet<WarrantyInformation> WarrantyInformations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClinicalInformation>()
                 .Property(e => e.TotalAmount)
                 .HasPrecision(19, 4);
+
+            modelBuilder.Entity<ClinicalInformation>()
+                .HasMany(e => e.TreatmentInvoiceDetails)
+                .WithOptional(e => e.ClinicalInformation)
+                .HasForeignKey(e => e.ClinicInfor_ID);
 
             modelBuilder.Entity<DentalMaterial>()
                 .Property(e => e.UnitPrice)
@@ -63,21 +67,18 @@ namespace dal.Entities
                 .WithOptional(e => e.Diagnosi)
                 .HasForeignKey(e => e.Diagnosis_ID);
 
-            modelBuilder.Entity<Invoice>()
-                .Property(e => e.TotalPayment)
-                .HasPrecision(10, 2);
-
-            modelBuilder.Entity<InvoiceDetail>()
-                .Property(e => e.TotalAmount)
-                .HasPrecision(10, 2);
-
             modelBuilder.Entity<Medicine>()
                 .Property(e => e.UnitPrice)
                 .HasPrecision(10, 2);
 
             modelBuilder.Entity<MedicineInvoice>()
                 .Property(e => e.TotalAmount)
-                .HasPrecision(10, 2);
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<MedicineInvoice>()
+                .HasMany(e => e.MedicineInvoiceDetails)
+                .WithOptional(e => e.MedicineInvoice)
+                .HasForeignKey(e => e.InvoiceID);
 
             modelBuilder.Entity<PatientInformation>()
                 .Property(e => e.PhoneNumber)
@@ -90,26 +91,23 @@ namespace dal.Entities
                 .HasForeignKey(e => e.Patient_ID);
 
             modelBuilder.Entity<PatientInformation>()
+                .HasMany(e => e.Prescriptions)
+                .WithOptional(e => e.PatientInformation)
+                .HasForeignKey(e => e.Patient_ID);
+
+            modelBuilder.Entity<PatientInformation>()
                 .HasOptional(e => e.SubClinicalInformation)
                 .WithRequired(e => e.PatientInformation)
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Prescription>()
                 .Property(e => e.TotalAmount)
-                .HasPrecision(10, 2);
+                .HasPrecision(19, 4);
 
             modelBuilder.Entity<Prescription>()
-                .HasMany(e => e.MedicineInvoices)
-                .WithRequired(e => e.Prescription)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<PrescriptionDetail>()
-                .Property(e => e.UnitPrice)
-                .HasPrecision(10, 2);
-
-            modelBuilder.Entity<PrescriptionDetail>()
-                .Property(e => e.TotalAmount)
-                .HasPrecision(21, 2);
+                .HasMany(e => e.MedicineInvoiceDetails)
+                .WithOptional(e => e.Prescription)
+                .HasForeignKey(e => e.Prescription_ID);
 
             modelBuilder.Entity<SubClinicalInformation>()
                 .Property(e => e.BloodCoagulation)
@@ -130,6 +128,15 @@ namespace dal.Entities
                 .WithOptional(e => e.Treatment)
                 .HasForeignKey(e => e.Treatment_ID);
 
+            modelBuilder.Entity<TreatmentInvoice>()
+                .Property(e => e.TotalAmount)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<TreatmentInvoice>()
+                .HasMany(e => e.TreatmentInvoiceDetails)
+                .WithOptional(e => e.TreatmentInvoice)
+                .HasForeignKey(e => e.InvoiceID);
+
             modelBuilder.Entity<TreatmentMethodName>()
                 .HasMany(e => e.Treatments)
                 .WithOptional(e => e.TreatmentMethodName)
@@ -139,11 +146,6 @@ namespace dal.Entities
                 .HasMany(e => e.Treatments)
                 .WithOptional(e => e.TreatmentName)
                 .HasForeignKey(e => e.Treatment1);
-
-            modelBuilder.Entity<WarrantyInformation>()
-                .Property(e => e.WarrantyID)
-                .IsFixedLength()
-                .IsUnicode(false);
         }
     }
 }

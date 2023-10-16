@@ -222,3 +222,28 @@ ALTER TABLE InvoiceDetails DROP CONSTRAINT ID_ClinicalInfoDetailsID
 GO
 
 DROP TABLE ClinicalInformationDetails
+
+
+DROP TABLE WarrantyInformation
+
+CREATE TABLE TreatmentInvoiceDetail (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    ClinicInfor_ID INT,
+    Date DATETIME,
+    FOREIGN KEY (ClinicInfor_ID) REFERENCES ClinicalInformation(ID)
+)
+
+DROP TABLE TreatmentInvoiceDetail
+
+CREATE TABLE TreatmentInvoiceDetail (
+    InvoiceID INT,
+    ClinicInfor_ID INT,
+    FOREIGN KEY (InvoiceID) REFERENCES TreatmentInvoice(ID),
+    FOREIGN KEY (ClinicInfor_ID) REFERENCES ClinicalInformation(ID)
+)
+
+CREATE TABLE TreatmentInvoice (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Date DATETIME,
+    TotalAmount MONEY
+)
