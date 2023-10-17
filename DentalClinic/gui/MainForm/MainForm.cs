@@ -1,4 +1,5 @@
 ﻿using gui.PatientForm;
+using gui.StatisticForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,17 @@ namespace DentalClinic
             Thread thread = new Thread(new ThreadStart(OpenPatientForm));
             thread.Start();
             this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            frmStatistic frmStatistic = new frmStatistic();
+            frmStatistic.ShowDialog();
         }
     }
 }
