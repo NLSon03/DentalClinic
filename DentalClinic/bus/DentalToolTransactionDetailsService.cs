@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace bus
 {
-    public class TreatmentService
+    public class DentalToolTransactionDetailsService
     {
-        public List<Treatment> GetAll()
+        public List<DentalToolTransactionsDetail> GetAll()
         {
             DentalModel model = new DentalModel();
-            return model.Treatments.ToList();
+            return model.DentalToolTransactionsDetails.ToList();
         }
-
-
     }
 }
