@@ -53,9 +53,10 @@
   <ItemGroup>
     <Compile Include="ClinicalInformationService.cs" />
     <Compile Include="DentalToolService.cs" />
-    <Compile Include="DentalToolTransactionDetails.cs" />
+    <Compile Include="DentalToolTransactionDetailsService.cs" />
     <Compile Include="DentalToolTransactionService.cs" />
     <Compile Include="DiagnosisService.cs" />
+    <Compile Include="MedicineInvoiceDetailService.cs" />
     <Compile Include="TreatmentInvoiceDetailsService.cs" />
     <Compile Include="TreatmentInvoiceService.cs" />
     <Compile Include="MedicineService.cs" />

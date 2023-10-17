@@ -84,6 +84,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticForm\frmStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm\frmStatistic.Designer.cs">
+      <DependentUpon>frmStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticForm\InventoryStatisticForm\frmInventoryStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm\InventoryStatisticForm\frmInventoryStatistic.Designer.cs">
+      <DependentUpon>frmInventoryStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticForm\RevenueStatisticForm\frmRevenueStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm\RevenueStatisticForm\frmRevenueStatistic.Designer.cs">
+      <DependentUpon>frmRevenueStatistic.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +124,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StatisticForm\frmStatistic.resx">
+      <DependentUpon>frmStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticForm\InventoryStatisticForm\frmInventoryStatistic.resx">
+      <DependentUpon>frmInventoryStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticForm\RevenueStatisticForm\frmRevenueStatistic.resx">
+      <DependentUpon>frmRevenueStatistic.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
