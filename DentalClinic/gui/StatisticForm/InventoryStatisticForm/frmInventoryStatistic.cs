@@ -17,5 +17,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
         }
+
+
     }
 }

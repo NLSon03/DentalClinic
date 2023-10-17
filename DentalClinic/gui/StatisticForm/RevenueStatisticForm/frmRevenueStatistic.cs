@@ -17,5 +17,15 @@ namespace gui.StatisticForm.RevenueStatisticForm
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvDieutri_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

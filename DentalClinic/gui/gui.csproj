@@ -130,6 +130,9 @@
     <EmbeddedResource Include="StatisticForm\InventoryStatisticForm\frmInventoryStatistic.resx">
       <DependentUpon>frmInventoryStatistic.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StatisticForm\RevenueStatisticForm\frmRevenueStatistic.resx">
+      <DependentUpon>frmRevenueStatistic.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
