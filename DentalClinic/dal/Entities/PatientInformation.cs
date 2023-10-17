@@ -45,9 +45,9 @@ namespace dal.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClinicalInformation> ClinicalInformations { get; set; }
 
+        public virtual SubClinicalInformation SubClinicalInformation { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription> Prescriptions { get; set; }
-
-        public virtual SubClinicalInformation SubClinicalInformation { get; set; }
     }
 }

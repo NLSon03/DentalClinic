@@ -14,7 +14,6 @@ namespace dal.Entities
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ClinicalInformation> ClinicalInformations { get; set; }
-        public virtual DbSet<DentalMaterial> DentalMaterials { get; set; }
         public virtual DbSet<DentalTool> DentalTools { get; set; }
         public virtual DbSet<DentalToolTransaction> DentalToolTransactions { get; set; }
         public virtual DbSet<DentalToolTransactionsDetail> DentalToolTransactionsDetails { get; set; }
@@ -40,15 +39,8 @@ namespace dal.Entities
             modelBuilder.Entity<ClinicalInformation>()
                 .HasMany(e => e.TreatmentInvoiceDetails)
                 .WithOptional(e => e.ClinicalInformation)
-                .HasForeignKey(e => e.ClinicInfor_ID);
-
-            modelBuilder.Entity<DentalMaterial>()
-                .Property(e => e.UnitPrice)
-                .HasPrecision(10, 2);
-
-            modelBuilder.Entity<DentalMaterial>()
-                .Property(e => e.TotalAmount)
-                .HasPrecision(21, 2);
+                .HasForeignKey(e => e.ClinicInfor_ID)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<DentalToolTransaction>()
                 .Property(e => e.TotalAmount)
@@ -71,6 +63,11 @@ namespace dal.Entities
                 .Property(e => e.UnitPrice)
                 .HasPrecision(10, 2);
 
+            modelBuilder.Entity<Medicine>()
+                .HasMany(e => e.Prescriptions)
+                .WithOptional(e => e.Medicine)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<MedicineInvoice>()
                 .Property(e => e.TotalAmount)
                 .HasPrecision(19, 4);
@@ -78,7 +75,8 @@ namespace dal.Entities
             modelBuilder.Entity<MedicineInvoice>()
                 .HasMany(e => e.MedicineInvoiceDetails)
                 .WithOptional(e => e.MedicineInvoice)
-                .HasForeignKey(e => e.InvoiceID);
+                .HasForeignKey(e => e.InvoiceID)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<PatientInformation>()
                 .Property(e => e.PhoneNumber)
@@ -88,16 +86,18 @@ namespace dal.Entities
             modelBuilder.Entity<PatientInformation>()
                 .HasMany(e => e.ClinicalInformations)
                 .WithOptional(e => e.PatientInformation)
-                .HasForeignKey(e => e.Patient_ID);
-
-            modelBuilder.Entity<PatientInformation>()
-                .HasMany(e => e.Prescriptions)
-                .WithOptional(e => e.PatientInformation)
-                .HasForeignKey(e => e.Patient_ID);
+                .HasForeignKey(e => e.Patient_ID)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<PatientInformation>()
                 .HasOptional(e => e.SubClinicalInformation)
                 .WithRequired(e => e.PatientInformation)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<PatientInformation>()
+                .HasMany(e => e.Prescriptions)
+                .WithOptional(e => e.PatientInformation)
+                .HasForeignKey(e => e.Patient_ID)
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Prescription>()
@@ -107,7 +107,8 @@ namespace dal.Entities
             modelBuilder.Entity<Prescription>()
                 .HasMany(e => e.MedicineInvoiceDetails)
                 .WithOptional(e => e.Prescription)
-                .HasForeignKey(e => e.Prescription_ID);
+                .HasForeignKey(e => e.Prescription_ID)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<SubClinicalInformation>()
                 .Property(e => e.BloodCoagulation)
@@ -140,12 +141,14 @@ namespace dal.Entities
             modelBuilder.Entity<TreatmentMethodName>()
                 .HasMany(e => e.Treatments)
                 .WithOptional(e => e.TreatmentMethodName)
-                .HasForeignKey(e => e.TreatmentMethod);
+                .HasForeignKey(e => e.TreatmentMethod)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<TreatmentName>()
                 .HasMany(e => e.Treatments)
                 .WithOptional(e => e.TreatmentName)
-                .HasForeignKey(e => e.Treatment1);
+                .HasForeignKey(e => e.Treatment1)
+                .WillCascadeOnDelete();
         }
     }
 }

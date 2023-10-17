@@ -29,8 +29,8 @@ namespace dal.Entities
 
         public bool? IntellectualDisability { get; set; }
 
-        [StringLength(50)]
-        public string XRayFilm { get; set; }
+        [Column(TypeName = "image")]
+        public byte[] XRayFilm { get; set; }
 
         [StringLength(50)]
         public string WarrantyID { get; set; }

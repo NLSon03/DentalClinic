@@ -56,7 +56,6 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\ClinicalInformation.cs" />
-    <Compile Include="Entities\DentalMaterial.cs" />
     <Compile Include="Entities\DentalModel.cs" />
     <Compile Include="Entities\DentalTool.cs" />
     <Compile Include="Entities\DentalToolTransaction.cs" />
