@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bus
 {
-    public class InvoiceDetailsService
+    public class MedicineInvoiceService
     {
     }
 }
