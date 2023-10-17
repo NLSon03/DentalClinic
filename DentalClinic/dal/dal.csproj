@@ -67,6 +67,7 @@
     <Compile Include="Entities\MedicineInvoiceDetail.cs" />
     <Compile Include="Entities\PatientInformation.cs" />
     <Compile Include="Entities\Prescription.cs" />
+    <Compile Include="Entities\Revenue.cs" />
     <Compile Include="Entities\SubClinicalInformation.cs" />
     <Compile Include="Entities\Treatment.cs" />
     <Compile Include="Entities\TreatmentInvoice.cs" />

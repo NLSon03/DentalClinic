@@ -15,6 +15,5 @@ namespace bus
             return model.Treatments.ToList();
         }
 
-
     }
 }

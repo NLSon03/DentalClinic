@@ -41,7 +41,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabTongnhap = new System.Windows.Forms.TabPage();
             this.dgvTienNhap = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,9 +50,10 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnLamMoifrm5 = new System.Windows.Forms.Button();
             this.btnLocfrm5 = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
             this.btnXuatfrm5 = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
             this.optNamfrm5 = new System.Windows.Forms.RadioButton();
             this.optQuyfrm5 = new System.Windows.Forms.RadioButton();
             this.optThangfrm5 = new System.Windows.Forms.RadioButton();
@@ -63,7 +64,7 @@
             this.lbTienNhap = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabTongxuat = new System.Windows.Forms.TabPage();
             this.dgvTienXuat = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +73,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnLammoifrm4 = new System.Windows.Forms.Button();
             this.btnLocfrm4 = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.btnXuatfrm4 = new System.Windows.Forms.Button();
@@ -85,7 +87,7 @@
             this.lbTienXuat = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabTongDonthuoc = new System.Windows.Forms.TabPage();
             this.dgvTienThuoc = new System.Windows.Forms.DataGridView();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,9 +96,10 @@
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnLamMoifrm3 = new System.Windows.Forms.Button();
             this.btnLocfrm3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnXuatfrm3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.optNamfrm3 = new System.Windows.Forms.RadioButton();
             this.optQuyfrm3 = new System.Windows.Forms.RadioButton();
             this.optThangfrm3 = new System.Windows.Forms.RadioButton();
@@ -107,7 +110,7 @@
             this.lbTongtienthuoc = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabTongDoanhThu = new System.Windows.Forms.TabPage();
             this.dgvTongDoanhThu = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,12 +119,13 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLamMoifrmTong = new System.Windows.Forms.Button();
+            this.btnLocfrmTong = new System.Windows.Forms.Button();
+            this.btnXuatfrmTong = new System.Windows.Forms.Button();
             this.lbTongChi = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnLocfrmTong = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnXuatfrmTong = new System.Windows.Forms.Button();
             this.optNamfrmTong = new System.Windows.Forms.RadioButton();
             this.optQuyfrmTong = new System.Windows.Forms.RadioButton();
             this.optThangfrmTong = new System.Windows.Forms.RadioButton();
@@ -133,7 +137,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabTongDieutri = new System.Windows.Forms.TabPage();
             this.dgvDieutri = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -143,9 +147,10 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnLamMoifrm2 = new System.Windows.Forms.Button();
             this.btnLocfrm2 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnXuatfrm2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.optNamfrm2 = new System.Windows.Forms.RadioButton();
             this.optQuyfrm2 = new System.Windows.Forms.RadioButton();
             this.optThangfrm2 = new System.Windows.Forms.RadioButton();
@@ -156,21 +161,21 @@
             this.lbTiendieutri = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.tabPage5.SuspendLayout();
+            this.tabTongnhap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienNhap)).BeginInit();
             this.panel6.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabTongxuat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienXuat)).BeginInit();
             this.panel5.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabTongDonthuoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienThuoc)).BeginInit();
             this.panel4.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabTongDoanhThu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTongDoanhThu)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabTongDieutri.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDieutri)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -283,19 +288,20 @@
             this.label17.Size = new System.Drawing.Size(3, 80);
             this.label17.TabIndex = 13;
             // 
-            // tabPage5
+            // tabTongnhap
             // 
-            this.tabPage5.Controls.Add(this.dgvTienNhap);
-            this.tabPage5.Controls.Add(this.panel6);
-            this.tabPage5.Location = new System.Drawing.Point(4, 27);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1194, 642);
-            this.tabPage5.TabIndex = 6;
-            this.tabPage5.Text = "Tổng chi nhập vật liệu";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabTongnhap.Controls.Add(this.dgvTienNhap);
+            this.tabTongnhap.Controls.Add(this.panel6);
+            this.tabTongnhap.Location = new System.Drawing.Point(4, 27);
+            this.tabTongnhap.Name = "tabTongnhap";
+            this.tabTongnhap.Size = new System.Drawing.Size(1194, 642);
+            this.tabTongnhap.TabIndex = 6;
+            this.tabTongnhap.Text = "Tổng chi nhập vật liệu";
+            this.tabTongnhap.UseVisualStyleBackColor = true;
             // 
             // dgvTienNhap
             // 
+            this.dgvTienNhap.AllowUserToAddRows = false;
             this.dgvTienNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTienNhap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7,
@@ -357,9 +363,10 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.btnLamMoifrm5);
             this.panel6.Controls.Add(this.btnLocfrm5);
-            this.panel6.Controls.Add(this.label31);
             this.panel6.Controls.Add(this.btnXuatfrm5);
+            this.panel6.Controls.Add(this.label31);
             this.panel6.Controls.Add(this.optNamfrm5);
             this.panel6.Controls.Add(this.optQuyfrm5);
             this.panel6.Controls.Add(this.optThangfrm5);
@@ -376,15 +383,40 @@
             this.panel6.Size = new System.Drawing.Size(1194, 166);
             this.panel6.TabIndex = 6;
             // 
+            // btnLamMoifrm5
+            // 
+            this.btnLamMoifrm5.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm5.Image")));
+            this.btnLamMoifrm5.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrm5.Name = "btnLamMoifrm5";
+            this.btnLamMoifrm5.Size = new System.Drawing.Size(109, 50);
+            this.btnLamMoifrm5.TabIndex = 17;
+            this.btnLamMoifrm5.Text = "Làm mới";
+            this.btnLamMoifrm5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLamMoifrm5.UseVisualStyleBackColor = true;
+            // 
             // btnLocfrm5
             // 
+            this.btnLocfrm5.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm5.Image")));
             this.btnLocfrm5.Location = new System.Drawing.Point(526, 5);
             this.btnLocfrm5.Name = "btnLocfrm5";
-            this.btnLocfrm5.Size = new System.Drawing.Size(75, 45);
-            this.btnLocfrm5.TabIndex = 12;
+            this.btnLocfrm5.Size = new System.Drawing.Size(109, 50);
+            this.btnLocfrm5.TabIndex = 16;
             this.btnLocfrm5.Text = "Lọc";
+            this.btnLocfrm5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLocfrm5.UseVisualStyleBackColor = true;
             this.btnLocfrm5.Click += new System.EventHandler(this.btnLocfrm5_Click);
+            // 
+            // btnXuatfrm5
+            // 
+            this.btnXuatfrm5.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatfrm5.Image")));
+            this.btnXuatfrm5.Location = new System.Drawing.Point(1034, 12);
+            this.btnXuatfrm5.Name = "btnXuatfrm5";
+            this.btnXuatfrm5.Size = new System.Drawing.Size(121, 50);
+            this.btnXuatfrm5.TabIndex = 15;
+            this.btnXuatfrm5.Text = "Xuất Excel";
+            this.btnXuatfrm5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnXuatfrm5.UseVisualStyleBackColor = true;
+            this.btnXuatfrm5.Click += new System.EventHandler(this.btnXuatfrm5_Click);
             // 
             // label31
             // 
@@ -394,16 +426,6 @@
             this.label31.Size = new System.Drawing.Size(13, 18);
             this.label31.TabIndex = 10;
             this.label31.Text = "-";
-            // 
-            // btnXuatfrm5
-            // 
-            this.btnXuatfrm5.Location = new System.Drawing.Point(1053, 13);
-            this.btnXuatfrm5.Name = "btnXuatfrm5";
-            this.btnXuatfrm5.Size = new System.Drawing.Size(99, 28);
-            this.btnXuatfrm5.TabIndex = 9;
-            this.btnXuatfrm5.Text = "Xuất Excel";
-            this.btnXuatfrm5.UseVisualStyleBackColor = true;
-            this.btnXuatfrm5.Click += new System.EventHandler(this.btnXuatfrm5_Click);
             // 
             // optNamfrm5
             // 
@@ -469,22 +491,22 @@
             // lbTongnhap
             // 
             this.lbTongnhap.AutoSize = true;
-            this.lbTongnhap.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongnhap.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongnhap.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongnhap.Location = new System.Drawing.Point(522, 128);
             this.lbTongnhap.Name = "lbTongnhap";
-            this.lbTongnhap.Size = new System.Drawing.Size(16, 22);
+            this.lbTongnhap.Size = new System.Drawing.Size(19, 28);
             this.lbTongnhap.TabIndex = 2;
             this.lbTongnhap.Text = "-";
             // 
             // lbTienNhap
             // 
             this.lbTienNhap.AutoSize = true;
-            this.lbTienNhap.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTienNhap.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTienNhap.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTienNhap.Location = new System.Drawing.Point(8, 128);
             this.lbTienNhap.Name = "lbTienNhap";
-            this.lbTienNhap.Size = new System.Drawing.Size(16, 22);
+            this.lbTienNhap.Size = new System.Drawing.Size(19, 28);
             this.lbTienNhap.TabIndex = 1;
             this.lbTienNhap.Text = "-";
             // 
@@ -493,9 +515,9 @@
             this.label35.AutoSize = true;
             this.label35.Location = new System.Drawing.Point(522, 90);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(159, 18);
+            this.label35.Size = new System.Drawing.Size(135, 18);
             this.label35.TabIndex = 0;
-            this.label35.Text = "Tổng số lượng đã nhập";
+            this.label35.Text = "Số lần nhập vật liệu";
             // 
             // label36
             // 
@@ -506,19 +528,20 @@
             this.label36.TabIndex = 0;
             this.label36.Text = "Tổng tiền chi nhập vật liệu";
             // 
-            // tabPage2
+            // tabTongxuat
             // 
-            this.tabPage2.Controls.Add(this.dgvTienXuat);
-            this.tabPage2.Controls.Add(this.panel5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1194, 642);
-            this.tabPage2.TabIndex = 5;
-            this.tabPage2.Text = "Tổng thu xuất vật liệu";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabTongxuat.Controls.Add(this.dgvTienXuat);
+            this.tabTongxuat.Controls.Add(this.panel5);
+            this.tabTongxuat.Location = new System.Drawing.Point(4, 27);
+            this.tabTongxuat.Name = "tabTongxuat";
+            this.tabTongxuat.Size = new System.Drawing.Size(1194, 642);
+            this.tabTongxuat.TabIndex = 5;
+            this.tabTongxuat.Text = "Tổng thu xuất vật liệu";
+            this.tabTongxuat.UseVisualStyleBackColor = true;
             // 
             // dgvTienXuat
             // 
+            this.dgvTienXuat.AllowUserToAddRows = false;
             this.dgvTienXuat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTienXuat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -580,6 +603,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnLammoifrm4);
             this.panel5.Controls.Add(this.btnLocfrm4);
             this.panel5.Controls.Add(this.label25);
             this.panel5.Controls.Add(this.btnXuatfrm4);
@@ -599,13 +623,26 @@
             this.panel5.Size = new System.Drawing.Size(1194, 166);
             this.panel5.TabIndex = 4;
             // 
+            // btnLammoifrm4
+            // 
+            this.btnLammoifrm4.Image = ((System.Drawing.Image)(resources.GetObject("btnLammoifrm4.Image")));
+            this.btnLammoifrm4.Location = new System.Drawing.Point(641, 5);
+            this.btnLammoifrm4.Name = "btnLammoifrm4";
+            this.btnLammoifrm4.Size = new System.Drawing.Size(109, 50);
+            this.btnLammoifrm4.TabIndex = 14;
+            this.btnLammoifrm4.Text = "Làm mới";
+            this.btnLammoifrm4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLammoifrm4.UseVisualStyleBackColor = true;
+            // 
             // btnLocfrm4
             // 
+            this.btnLocfrm4.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm4.Image")));
             this.btnLocfrm4.Location = new System.Drawing.Point(526, 5);
             this.btnLocfrm4.Name = "btnLocfrm4";
-            this.btnLocfrm4.Size = new System.Drawing.Size(75, 45);
+            this.btnLocfrm4.Size = new System.Drawing.Size(109, 50);
             this.btnLocfrm4.TabIndex = 12;
             this.btnLocfrm4.Text = "Lọc";
+            this.btnLocfrm4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLocfrm4.UseVisualStyleBackColor = true;
             this.btnLocfrm4.Click += new System.EventHandler(this.btnLocfrm4_Click);
             // 
@@ -620,11 +657,13 @@
             // 
             // btnXuatfrm4
             // 
-            this.btnXuatfrm4.Location = new System.Drawing.Point(1053, 13);
+            this.btnXuatfrm4.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatfrm4.Image")));
+            this.btnXuatfrm4.Location = new System.Drawing.Point(1033, 12);
             this.btnXuatfrm4.Name = "btnXuatfrm4";
-            this.btnXuatfrm4.Size = new System.Drawing.Size(99, 28);
+            this.btnXuatfrm4.Size = new System.Drawing.Size(121, 50);
             this.btnXuatfrm4.TabIndex = 9;
             this.btnXuatfrm4.Text = "Xuất Excel";
+            this.btnXuatfrm4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnXuatfrm4.UseVisualStyleBackColor = true;
             this.btnXuatfrm4.Click += new System.EventHandler(this.btnXuatfrm4_Click);
             // 
@@ -692,22 +731,22 @@
             // lbTongXuat
             // 
             this.lbTongXuat.AutoSize = true;
-            this.lbTongXuat.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongXuat.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongXuat.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongXuat.Location = new System.Drawing.Point(522, 128);
             this.lbTongXuat.Name = "lbTongXuat";
-            this.lbTongXuat.Size = new System.Drawing.Size(16, 22);
+            this.lbTongXuat.Size = new System.Drawing.Size(19, 28);
             this.lbTongXuat.TabIndex = 2;
             this.lbTongXuat.Text = "-";
             // 
             // lbTienXuat
             // 
             this.lbTienXuat.AutoSize = true;
-            this.lbTienXuat.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTienXuat.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTienXuat.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTienXuat.Location = new System.Drawing.Point(8, 128);
             this.lbTienXuat.Name = "lbTienXuat";
-            this.lbTienXuat.Size = new System.Drawing.Size(16, 22);
+            this.lbTienXuat.Size = new System.Drawing.Size(19, 28);
             this.lbTienXuat.TabIndex = 1;
             this.lbTienXuat.Text = "-";
             // 
@@ -716,9 +755,9 @@
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(522, 90);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(154, 18);
+            this.label29.Size = new System.Drawing.Size(130, 18);
             this.label29.TabIndex = 0;
-            this.label29.Text = "Tổng số lượng đã xuất";
+            this.label29.Text = "Số lần xuất vật liệu";
             // 
             // label30
             // 
@@ -729,19 +768,20 @@
             this.label30.TabIndex = 0;
             this.label30.Text = "Tổng doanh thu xuất vật liệu";
             // 
-            // tabPage1
+            // tabTongDonthuoc
             // 
-            this.tabPage1.Controls.Add(this.dgvTienThuoc);
-            this.tabPage1.Controls.Add(this.panel4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1194, 642);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Tổng thu thuốc";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabTongDonthuoc.Controls.Add(this.dgvTienThuoc);
+            this.tabTongDonthuoc.Controls.Add(this.panel4);
+            this.tabTongDonthuoc.Location = new System.Drawing.Point(4, 27);
+            this.tabTongDonthuoc.Name = "tabTongDonthuoc";
+            this.tabTongDonthuoc.Size = new System.Drawing.Size(1194, 642);
+            this.tabTongDonthuoc.TabIndex = 4;
+            this.tabTongDonthuoc.Text = "Tổng thu thuốc";
+            this.tabTongDonthuoc.UseVisualStyleBackColor = true;
             // 
             // dgvTienThuoc
             // 
+            this.dgvTienThuoc.AllowUserToAddRows = false;
             this.dgvTienThuoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTienThuoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column13,
@@ -803,9 +843,10 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnLamMoifrm3);
             this.panel4.Controls.Add(this.btnLocfrm3);
-            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.btnXuatfrm3);
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.optNamfrm3);
             this.panel4.Controls.Add(this.optQuyfrm3);
             this.panel4.Controls.Add(this.optThangfrm3);
@@ -822,15 +863,40 @@
             this.panel4.Size = new System.Drawing.Size(1194, 166);
             this.panel4.TabIndex = 2;
             // 
+            // btnLamMoifrm3
+            // 
+            this.btnLamMoifrm3.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm3.Image")));
+            this.btnLamMoifrm3.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrm3.Name = "btnLamMoifrm3";
+            this.btnLamMoifrm3.Size = new System.Drawing.Size(109, 50);
+            this.btnLamMoifrm3.TabIndex = 17;
+            this.btnLamMoifrm3.Text = "Làm mới";
+            this.btnLamMoifrm3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLamMoifrm3.UseVisualStyleBackColor = true;
+            // 
             // btnLocfrm3
             // 
+            this.btnLocfrm3.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm3.Image")));
             this.btnLocfrm3.Location = new System.Drawing.Point(526, 5);
             this.btnLocfrm3.Name = "btnLocfrm3";
-            this.btnLocfrm3.Size = new System.Drawing.Size(75, 45);
-            this.btnLocfrm3.TabIndex = 12;
+            this.btnLocfrm3.Size = new System.Drawing.Size(109, 50);
+            this.btnLocfrm3.TabIndex = 16;
             this.btnLocfrm3.Text = "Lọc";
+            this.btnLocfrm3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLocfrm3.UseVisualStyleBackColor = true;
             this.btnLocfrm3.Click += new System.EventHandler(this.btnLocfrm3_Click);
+            // 
+            // btnXuatfrm3
+            // 
+            this.btnXuatfrm3.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatfrm3.Image")));
+            this.btnXuatfrm3.Location = new System.Drawing.Point(1033, 12);
+            this.btnXuatfrm3.Name = "btnXuatfrm3";
+            this.btnXuatfrm3.Size = new System.Drawing.Size(121, 50);
+            this.btnXuatfrm3.TabIndex = 15;
+            this.btnXuatfrm3.Text = "Xuất Excel";
+            this.btnXuatfrm3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnXuatfrm3.UseVisualStyleBackColor = true;
+            this.btnXuatfrm3.Click += new System.EventHandler(this.btnXuatfrm3_Click);
             // 
             // label3
             // 
@@ -840,16 +906,6 @@
             this.label3.Size = new System.Drawing.Size(13, 18);
             this.label3.TabIndex = 10;
             this.label3.Text = "-";
-            // 
-            // btnXuatfrm3
-            // 
-            this.btnXuatfrm3.Location = new System.Drawing.Point(1053, 13);
-            this.btnXuatfrm3.Name = "btnXuatfrm3";
-            this.btnXuatfrm3.Size = new System.Drawing.Size(99, 28);
-            this.btnXuatfrm3.TabIndex = 9;
-            this.btnXuatfrm3.Text = "Xuất Excel";
-            this.btnXuatfrm3.UseVisualStyleBackColor = true;
-            this.btnXuatfrm3.Click += new System.EventHandler(this.btnXuatfrm3_Click);
             // 
             // optNamfrm3
             // 
@@ -915,22 +971,22 @@
             // lbTongthuoc
             // 
             this.lbTongthuoc.AutoSize = true;
-            this.lbTongthuoc.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongthuoc.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongthuoc.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongthuoc.Location = new System.Drawing.Point(522, 128);
             this.lbTongthuoc.Name = "lbTongthuoc";
-            this.lbTongthuoc.Size = new System.Drawing.Size(16, 22);
+            this.lbTongthuoc.Size = new System.Drawing.Size(19, 28);
             this.lbTongthuoc.TabIndex = 2;
             this.lbTongthuoc.Text = "-";
             // 
             // lbTongtienthuoc
             // 
             this.lbTongtienthuoc.AutoSize = true;
-            this.lbTongtienthuoc.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongtienthuoc.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongtienthuoc.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongtienthuoc.Location = new System.Drawing.Point(8, 128);
             this.lbTongtienthuoc.Name = "lbTongtienthuoc";
-            this.lbTongtienthuoc.Size = new System.Drawing.Size(16, 22);
+            this.lbTongtienthuoc.Size = new System.Drawing.Size(19, 28);
             this.lbTongtienthuoc.TabIndex = 1;
             this.lbTongtienthuoc.Text = "-";
             // 
@@ -939,9 +995,9 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(522, 90);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(131, 18);
+            this.label20.Size = new System.Drawing.Size(181, 18);
             this.label20.TabIndex = 0;
-            this.label20.Text = "Tổng thuốc đã bán";
+            this.label20.Text = "Tổng số đơn thuốc đã bán";
             // 
             // label23
             // 
@@ -952,19 +1008,20 @@
             this.label23.TabIndex = 0;
             this.label23.Text = "Tổng doanh thu tiền thuốc";
             // 
-            // tabPage4
+            // tabTongDoanhThu
             // 
-            this.tabPage4.Controls.Add(this.dgvTongDoanhThu);
-            this.tabPage4.Controls.Add(this.panel3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 27);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1194, 642);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Tổng doanh thu";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabTongDoanhThu.Controls.Add(this.dgvTongDoanhThu);
+            this.tabTongDoanhThu.Controls.Add(this.panel3);
+            this.tabTongDoanhThu.Location = new System.Drawing.Point(4, 27);
+            this.tabTongDoanhThu.Name = "tabTongDoanhThu";
+            this.tabTongDoanhThu.Size = new System.Drawing.Size(1194, 642);
+            this.tabTongDoanhThu.TabIndex = 3;
+            this.tabTongDoanhThu.Text = "Tổng doanh thu";
+            this.tabTongDoanhThu.UseVisualStyleBackColor = true;
             // 
             // dgvTongDoanhThu
             // 
+            this.dgvTongDoanhThu.AllowUserToAddRows = false;
             this.dgvTongDoanhThu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTongDoanhThu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1027,12 +1084,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnLamMoifrmTong);
+            this.panel1.Controls.Add(this.btnLocfrmTong);
+            this.panel1.Controls.Add(this.btnXuatfrmTong);
             this.panel1.Controls.Add(this.lbTongChi);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.btnLocfrmTong);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnXuatfrmTong);
             this.panel1.Controls.Add(this.optNamfrmTong);
             this.panel1.Controls.Add(this.optQuyfrmTong);
             this.panel1.Controls.Add(this.optThangfrmTong);
@@ -1049,14 +1107,50 @@
             this.panel1.Size = new System.Drawing.Size(1194, 166);
             this.panel1.TabIndex = 2;
             // 
+            // btnLamMoifrmTong
+            // 
+            this.btnLamMoifrmTong.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrmTong.Image")));
+            this.btnLamMoifrmTong.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrmTong.Name = "btnLamMoifrmTong";
+            this.btnLamMoifrmTong.Size = new System.Drawing.Size(109, 50);
+            this.btnLamMoifrmTong.TabIndex = 18;
+            this.btnLamMoifrmTong.Text = "Làm mới";
+            this.btnLamMoifrmTong.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLamMoifrmTong.UseVisualStyleBackColor = true;
+            this.btnLamMoifrmTong.Click += new System.EventHandler(this.btnLamMoifrmTong_Click);
+            // 
+            // btnLocfrmTong
+            // 
+            this.btnLocfrmTong.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrmTong.Image")));
+            this.btnLocfrmTong.Location = new System.Drawing.Point(526, 5);
+            this.btnLocfrmTong.Name = "btnLocfrmTong";
+            this.btnLocfrmTong.Size = new System.Drawing.Size(109, 50);
+            this.btnLocfrmTong.TabIndex = 17;
+            this.btnLocfrmTong.Text = "Lọc";
+            this.btnLocfrmTong.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLocfrmTong.UseVisualStyleBackColor = true;
+            this.btnLocfrmTong.Click += new System.EventHandler(this.btnLocfrmTong_Click);
+            // 
+            // btnXuatfrmTong
+            // 
+            this.btnXuatfrmTong.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatfrmTong.Image")));
+            this.btnXuatfrmTong.Location = new System.Drawing.Point(1033, 12);
+            this.btnXuatfrmTong.Name = "btnXuatfrmTong";
+            this.btnXuatfrmTong.Size = new System.Drawing.Size(121, 50);
+            this.btnXuatfrmTong.TabIndex = 16;
+            this.btnXuatfrmTong.Text = "Xuất Excel";
+            this.btnXuatfrmTong.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnXuatfrmTong.UseVisualStyleBackColor = true;
+            this.btnXuatfrmTong.Click += new System.EventHandler(this.btnXuatfrmTong_Click);
+            // 
             // lbTongChi
             // 
             this.lbTongChi.AutoSize = true;
-            this.lbTongChi.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongChi.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongChi.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongChi.Location = new System.Drawing.Point(858, 128);
             this.lbTongChi.Name = "lbTongChi";
-            this.lbTongChi.Size = new System.Drawing.Size(16, 22);
+            this.lbTongChi.Size = new System.Drawing.Size(19, 28);
             this.lbTongChi.TabIndex = 15;
             this.lbTongChi.Text = "-";
             // 
@@ -1078,16 +1172,6 @@
             this.label9.Size = new System.Drawing.Size(3, 80);
             this.label9.TabIndex = 13;
             // 
-            // btnLocfrmTong
-            // 
-            this.btnLocfrmTong.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrmTong.Name = "btnLocfrmTong";
-            this.btnLocfrmTong.Size = new System.Drawing.Size(75, 45);
-            this.btnLocfrmTong.TabIndex = 12;
-            this.btnLocfrmTong.Text = "Lọc";
-            this.btnLocfrmTong.UseVisualStyleBackColor = true;
-            this.btnLocfrmTong.Click += new System.EventHandler(this.btnLocfrmTong_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1096,16 +1180,6 @@
             this.label1.Size = new System.Drawing.Size(13, 18);
             this.label1.TabIndex = 10;
             this.label1.Text = "-";
-            // 
-            // btnXuatfrmTong
-            // 
-            this.btnXuatfrmTong.Location = new System.Drawing.Point(1053, 13);
-            this.btnXuatfrmTong.Name = "btnXuatfrmTong";
-            this.btnXuatfrmTong.Size = new System.Drawing.Size(99, 28);
-            this.btnXuatfrmTong.TabIndex = 9;
-            this.btnXuatfrmTong.Text = "Xuất Excel";
-            this.btnXuatfrmTong.UseVisualStyleBackColor = true;
-            this.btnXuatfrmTong.Click += new System.EventHandler(this.btnXuatfrmTong_Click);
             // 
             // optNamfrmTong
             // 
@@ -1171,22 +1245,22 @@
             // lbTongThu
             // 
             this.lbTongThu.AutoSize = true;
-            this.lbTongThu.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongThu.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongThu.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongThu.Location = new System.Drawing.Point(430, 128);
             this.lbTongThu.Name = "lbTongThu";
-            this.lbTongThu.Size = new System.Drawing.Size(16, 22);
+            this.lbTongThu.Size = new System.Drawing.Size(19, 28);
             this.lbTongThu.TabIndex = 2;
             this.lbTongThu.Text = "-";
             // 
             // lbTongDT
             // 
             this.lbTongDT.AutoSize = true;
-            this.lbTongDT.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongDT.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongDT.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongDT.Location = new System.Drawing.Point(8, 128);
             this.lbTongDT.Name = "lbTongDT";
-            this.lbTongDT.Size = new System.Drawing.Size(16, 22);
+            this.lbTongDT.Size = new System.Drawing.Size(19, 28);
             this.lbTongDT.TabIndex = 1;
             this.lbTongDT.Text = "-";
             // 
@@ -1210,11 +1284,11 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabTongDoanhThu);
+            this.tabControl1.Controls.Add(this.tabTongDieutri);
+            this.tabControl1.Controls.Add(this.tabTongDonthuoc);
+            this.tabControl1.Controls.Add(this.tabTongxuat);
+            this.tabControl1.Controls.Add(this.tabTongnhap);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1222,21 +1296,23 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1202, 673);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage3
+            // tabTongDieutri
             // 
-            this.tabPage3.Controls.Add(this.dgvDieutri);
-            this.tabPage3.Controls.Add(this.panel2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 27);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1194, 642);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Tổng thu điều trị";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabTongDieutri.Controls.Add(this.dgvDieutri);
+            this.tabTongDieutri.Controls.Add(this.panel2);
+            this.tabTongDieutri.Location = new System.Drawing.Point(4, 27);
+            this.tabTongDieutri.Name = "tabTongDieutri";
+            this.tabTongDieutri.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTongDieutri.Size = new System.Drawing.Size(1194, 642);
+            this.tabTongDieutri.TabIndex = 2;
+            this.tabTongDieutri.Text = "Tổng thu điều trị";
+            this.tabTongDieutri.UseVisualStyleBackColor = true;
             // 
             // dgvDieutri
             // 
+            this.dgvDieutri.AllowUserToAddRows = false;
             this.dgvDieutri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDieutri.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
@@ -1306,9 +1382,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnLamMoifrm2);
             this.panel2.Controls.Add(this.btnLocfrm2);
-            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btnXuatfrm2);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.optNamfrm2);
             this.panel2.Controls.Add(this.optQuyfrm2);
             this.panel2.Controls.Add(this.optThangfrm2);
@@ -1325,15 +1402,41 @@
             this.panel2.Size = new System.Drawing.Size(1188, 166);
             this.panel2.TabIndex = 3;
             // 
+            // btnLamMoifrm2
+            // 
+            this.btnLamMoifrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm2.Image")));
+            this.btnLamMoifrm2.Location = new System.Drawing.Point(638, 5);
+            this.btnLamMoifrm2.Name = "btnLamMoifrm2";
+            this.btnLamMoifrm2.Size = new System.Drawing.Size(109, 50);
+            this.btnLamMoifrm2.TabIndex = 17;
+            this.btnLamMoifrm2.Text = "Làm mới";
+            this.btnLamMoifrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLamMoifrm2.UseVisualStyleBackColor = true;
+            this.btnLamMoifrm2.Click += new System.EventHandler(this.btnLamMoifrm2_Click);
+            // 
             // btnLocfrm2
             // 
-            this.btnLocfrm2.Location = new System.Drawing.Point(526, 5);
+            this.btnLocfrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm2.Image")));
+            this.btnLocfrm2.Location = new System.Drawing.Point(523, 5);
             this.btnLocfrm2.Name = "btnLocfrm2";
-            this.btnLocfrm2.Size = new System.Drawing.Size(75, 45);
-            this.btnLocfrm2.TabIndex = 12;
+            this.btnLocfrm2.Size = new System.Drawing.Size(109, 50);
+            this.btnLocfrm2.TabIndex = 16;
             this.btnLocfrm2.Text = "Lọc";
+            this.btnLocfrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLocfrm2.UseVisualStyleBackColor = true;
             this.btnLocfrm2.Click += new System.EventHandler(this.btnLocfrm2_Click);
+            // 
+            // btnXuatfrm2
+            // 
+            this.btnXuatfrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatfrm2.Image")));
+            this.btnXuatfrm2.Location = new System.Drawing.Point(1030, 12);
+            this.btnXuatfrm2.Name = "btnXuatfrm2";
+            this.btnXuatfrm2.Size = new System.Drawing.Size(121, 50);
+            this.btnXuatfrm2.TabIndex = 15;
+            this.btnXuatfrm2.Text = "Xuất Excel";
+            this.btnXuatfrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnXuatfrm2.UseVisualStyleBackColor = true;
+            this.btnXuatfrm2.Click += new System.EventHandler(this.btnXuatfrm2_Click);
             // 
             // label4
             // 
@@ -1343,16 +1446,6 @@
             this.label4.Size = new System.Drawing.Size(13, 18);
             this.label4.TabIndex = 10;
             this.label4.Text = "-";
-            // 
-            // btnXuatfrm2
-            // 
-            this.btnXuatfrm2.Location = new System.Drawing.Point(1053, 13);
-            this.btnXuatfrm2.Name = "btnXuatfrm2";
-            this.btnXuatfrm2.Size = new System.Drawing.Size(99, 28);
-            this.btnXuatfrm2.TabIndex = 9;
-            this.btnXuatfrm2.Text = "Xuất Excel";
-            this.btnXuatfrm2.UseVisualStyleBackColor = true;
-            this.btnXuatfrm2.Click += new System.EventHandler(this.btnXuatfrm2_Click);
             // 
             // optNamfrm2
             // 
@@ -1418,22 +1511,22 @@
             // lbTongcadieutri
             // 
             this.lbTongcadieutri.AutoSize = true;
-            this.lbTongcadieutri.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongcadieutri.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongcadieutri.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbTongcadieutri.Location = new System.Drawing.Point(522, 128);
             this.lbTongcadieutri.Name = "lbTongcadieutri";
-            this.lbTongcadieutri.Size = new System.Drawing.Size(16, 22);
+            this.lbTongcadieutri.Size = new System.Drawing.Size(19, 28);
             this.lbTongcadieutri.TabIndex = 2;
             this.lbTongcadieutri.Text = "-";
             // 
             // lbTiendieutri
             // 
             this.lbTiendieutri.AutoSize = true;
-            this.lbTiendieutri.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTiendieutri.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTiendieutri.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbTiendieutri.Location = new System.Drawing.Point(8, 128);
+            this.lbTiendieutri.Location = new System.Drawing.Point(6, 128);
             this.lbTiendieutri.Name = "lbTiendieutri";
-            this.lbTiendieutri.Size = new System.Drawing.Size(16, 22);
+            this.lbTiendieutri.Size = new System.Drawing.Size(19, 28);
             this.lbTiendieutri.TabIndex = 1;
             this.lbTiendieutri.Text = "-";
             // 
@@ -1465,25 +1558,25 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRevenueStatistic";
             this.Load += new System.EventHandler(this.frmRevenueStatistic_Load);
-            this.tabPage5.ResumeLayout(false);
+            this.tabTongnhap.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienNhap)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tabTongxuat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienXuat)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
+            this.tabTongDonthuoc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienThuoc)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
+            this.tabTongDoanhThu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTongDoanhThu)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
+            this.tabTongDieutri.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDieutri)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1505,7 +1598,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabTongnhap;
         private System.Windows.Forms.DataGridView dgvTienNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
@@ -1514,9 +1607,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btnLocfrm5;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Button btnXuatfrm5;
         private System.Windows.Forms.RadioButton optNamfrm5;
         private System.Windows.Forms.RadioButton optQuyfrm5;
         private System.Windows.Forms.RadioButton optThangfrm5;
@@ -1527,7 +1618,7 @@
         private System.Windows.Forms.Label lbTienNhap;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabTongxuat;
         private System.Windows.Forms.DataGridView dgvTienXuat;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -1549,7 +1640,7 @@
         private System.Windows.Forms.Label lbTienXuat;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabTongDonthuoc;
         private System.Windows.Forms.DataGridView dgvTienThuoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
@@ -1558,9 +1649,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnLocfrm3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnXuatfrm3;
         private System.Windows.Forms.RadioButton optNamfrm3;
         private System.Windows.Forms.RadioButton optQuyfrm3;
         private System.Windows.Forms.RadioButton optThangfrm3;
@@ -1571,7 +1660,7 @@
         private System.Windows.Forms.Label lbTongtienthuoc;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabTongDoanhThu;
         private System.Windows.Forms.DataGridView dgvTongDoanhThu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1583,9 +1672,7 @@
         private System.Windows.Forms.Label lbTongChi;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnLocfrmTong;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnXuatfrmTong;
         private System.Windows.Forms.RadioButton optNamfrmTong;
         private System.Windows.Forms.RadioButton optQuyfrmTong;
         private System.Windows.Forms.RadioButton optThangfrmTong;
@@ -1597,12 +1684,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabTongDieutri;
         private System.Windows.Forms.DataGridView dgvDieutri;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnLocfrm2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnXuatfrm2;
         private System.Windows.Forms.RadioButton optNamfrm2;
         private System.Windows.Forms.RadioButton optQuyfrm2;
         private System.Windows.Forms.RadioButton optThangfrm2;
@@ -1620,5 +1705,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.Button btnLammoifrm4;
+        private System.Windows.Forms.Button btnLamMoifrm2;
+        private System.Windows.Forms.Button btnLocfrm2;
+        private System.Windows.Forms.Button btnXuatfrm2;
+        private System.Windows.Forms.Button btnLamMoifrm5;
+        private System.Windows.Forms.Button btnLocfrm5;
+        private System.Windows.Forms.Button btnXuatfrm5;
+        private System.Windows.Forms.Button btnLamMoifrm3;
+        private System.Windows.Forms.Button btnLocfrm3;
+        private System.Windows.Forms.Button btnXuatfrm3;
+        private System.Windows.Forms.Button btnLamMoifrmTong;
+        private System.Windows.Forms.Button btnLocfrmTong;
+        private System.Windows.Forms.Button btnXuatfrmTong;
     }
 }
