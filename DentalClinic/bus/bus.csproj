@@ -56,7 +56,9 @@
     <Compile Include="DentalToolTransactionDetailsService.cs" />
     <Compile Include="DentalToolTransactionService.cs" />
     <Compile Include="DiagnosisService.cs" />
+    <Compile Include="InventoryService.cs" />
     <Compile Include="MedicineInvoiceDetailService.cs" />
+    <Compile Include="RevenueService.cs" />
     <Compile Include="TreatmentInvoiceDetailsService.cs" />
     <Compile Include="TreatmentInvoiceService.cs" />
     <Compile Include="MedicineService.cs" />
