@@ -70,6 +70,19 @@
     <Compile Include="PatientForm\frmPatient.Designer.cs">
       <DependentUpon>frmPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\CheckValidData.cs" />
+    <Compile Include="PatientForm\MedicExamInforForm\FormAddDiagnosisTreatment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormAddDiagnosisTreatment.Designer.cs">
+      <DependentUpon>FormAddDiagnosisTreatment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormEditSubClinicInf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormEditSubClinicInf.Designer.cs">
+      <DependentUpon>FormEditSubClinicInf.cs</DependentUpon>
+    </Compile>
     <Compile Include="PatientForm\MedicExamInforForm\frmMedicExamInfor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +102,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\frmPatient.resx">
       <DependentUpon>frmPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\MedicExamInforForm\FormAddDiagnosisTreatment.resx">
+      <DependentUpon>FormAddDiagnosisTreatment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\MedicExamInforForm\FormEditSubClinicInf.resx">
+      <DependentUpon>FormEditSubClinicInf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\MedicExamInforForm\frmMedicExamInfor.resx">
       <DependentUpon>frmMedicExamInfor.cs</DependentUpon>
@@ -133,11 +152,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\128x128.png" />
+    <None Include="Resources\add.png" />
     <Content Include="Resources\clipboard.png" />
     <Content Include="Resources\dentist.ico" />
     <Content Include="Resources\dentist.png" />
     <None Include="Resources\examination.png" />
     <None Include="Resources\edit.png" />
+    <None Include="Resources\edit1.png" />
     <Content Include="Resources\exit.png" />
     <Content Include="Resources\patientManager.png" />
     <Content Include="Resources\Tool.png" />

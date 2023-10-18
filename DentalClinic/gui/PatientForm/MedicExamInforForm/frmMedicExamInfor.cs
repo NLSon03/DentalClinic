@@ -3,6 +3,7 @@ using dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace gui.PatientForm.MedicExamInforForm
@@ -15,10 +16,15 @@ namespace gui.PatientForm.MedicExamInforForm
         private SubClinicalInformationService subClinicalInformationService = new SubClinicalInformationService();
         private PatientInformationService patientInformationService = new PatientInformationService();
         private TreatmentService treatmentService = new TreatmentService();
-        private TreatmentNameService treatmentNameService = new  TreatmentNameService();
+        private TreatmentNameService treatmentNameService = new TreatmentNameService();
         private DiagnosisService diagnosisService = new DiagnosisService();
         private ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
+        private TreatmentInvoiceDetailsService treatmentInvoiceDetailService = new TreatmentInvoiceDetailsService();
 
+        private static string ChangeNull(object param)
+        {
+            return (param == null || param.ToString() == "null" || param.ToString() == "") ? "" : param.ToString();
+        }
         public void setGridViewStyle(DataGridView dataGridView)
         {
             dataGridView.BorderStyle = BorderStyle.None;
@@ -34,20 +40,25 @@ namespace gui.PatientForm.MedicExamInforForm
         }
 
         //Load Form
-        private void frmMedicExamInfor_Load(object sender, EventArgs e)
+        public void frmMedicExamInfor_Load(object sender, EventArgs e)
         {
             try
             {
                 setGridViewStyle(this.dgvClinicalInfor);
                 //Điền thông tin cận lâm sàng
                 var SubCliInf = subClinicalInformationService.GetById(_PatientID);
+                if (SubCliInf == null)
+                {
+                    subClinicalInformationService.Insert(_PatientID);
+                    frmMedicExamInfor_Load(sender, e);
+                }
                 if (SubCliInf != null)
                 {
                     FillSubClinicalInformation(SubCliInf);
                 }
                 //Điền thông tin lâm sàng
                 var ClinInf = clinicalInformationService.GetByID(_PatientID);
-                if(ClinInf != null)
+                if (ClinInf != null)
                 {
                     BindGrid(ClinInf);
                 }
@@ -57,6 +68,7 @@ namespace gui.PatientForm.MedicExamInforForm
                 MessageBox.Show(ex.Message);
             }
         }
+
         //Điền thông tin lâm sàng vào bảng
         private void BindGrid(List<ClinicalInformation> ClinInf)
         {
@@ -64,15 +76,25 @@ namespace gui.PatientForm.MedicExamInforForm
             int index = 1;
             foreach (var item in ClinInf)
             {
-                string diag = item.Diagnosi.Diagnosis;
-                string treatment = item.Treatment.TreatmentName.Name;
-                string treatmentMethod = item.Treatment.TreatmentMethodName.Name;
-                string unit = item.Treatment.Unit;
-                string quantity = item.Quantity.ToString();
-                string unitPrice = item.Treatment.UnitPrice.ToString();
-                string totalAmount = item.TotalAmount.ToString();
-                string date = item.Diagnosi.ExaminationTime.ToString();
-                dgvClinicalInfor.Rows.Add(index,diag,treatment,treatmentMethod,unit,quantity,unitPrice,totalAmount,date);
+                string id = item.ID.ToString();
+                string diag = ChangeNull(item.Diagnosi.Diagnosis);
+                string treatment = "";
+                string treatmentMethod = "";
+                string unitPrice = "";
+                string unit = "";
+                if (item.Treatment != null)
+                {
+                    treatment = ChangeNull(item.Treatment.TreatmentName.Name);
+                    treatmentMethod = ChangeNull(item.Treatment.TreatmentMethodName.Name);
+                    unit = ChangeNull(item.Treatment.Unit);
+                    unitPrice = ChangeNull(item.Treatment.UnitPrice.ToString());
+                }
+                string quantity = ChangeNull(item.Quantity.ToString());
+
+                string totalAmount = ChangeNull(item.TotalAmount.ToString());
+                string date = ChangeNull(item.Diagnosi.ExaminationTime.ToString());
+                bool hasInvoice = treatmentInvoiceDetailService.GetByClinicInforID(item.ID.ToString()) == null ? false : true;
+                dgvClinicalInfor.Rows.Add(index,id, diag, treatment, treatmentMethod, unit, quantity, unitPrice, totalAmount, date, hasInvoice);
                 index++;
             }
         }
@@ -80,44 +102,85 @@ namespace gui.PatientForm.MedicExamInforForm
         //Điền thông tin bệnh nhân vào form
         private void FillSubClinicalInformation(SubClinicalInformation SubCliInf)
         {
-            grbSubExamInfor.Text = SubCliInf.PatientID + "|"+ patientInformationService.GetByID(_PatientID).FullName;
-            lblBloodPressure.Text = SubCliInf.BloodPressure;
-            lblPulseRate.Text = SubCliInf.PulseRate;
-            lblBloodSugarLevel.Text = SubCliInf.BloodSugarLevel;
-            lblBloodCoagulation.Text = SubCliInf.BloodCoagulation;
-            lblCongenitalHeartDisease.Text = (bool)(SubCliInf.CongenitalHeartDisease) ? "Có" : "Không";
-            lblIntellectualDisability.Text = (bool)SubCliInf.IntellectualDisability ? "Có" : "Không";
-            lblWarrantyID.Text = SubCliInf.WarrantyID;
-            lblLaboName.Text = SubCliInf.LaboName;
-            lblOther.Text = SubCliInf.Other;
+            grbSubExamInfor.Text = _PatientID + "|" + patientInformationService.GetByID(_PatientID).FullName;
+            lblBloodPressure.Text = ChangeNull(SubCliInf.BloodPressure);
+            lblPulseRate.Text = ChangeNull(SubCliInf.PulseRate);
+            lblBloodSugarLevel.Text = ChangeNull(SubCliInf.BloodSugarLevel);
+
+            if (ChangeNull(SubCliInf.BloodCoagulation) != "TS" || ChangeNull(SubCliInf.BloodCoagulation) != "TC")
+                lblBloodCoagulation.Text = "Không";
+            else
+                lblBloodCoagulation.Text = ChangeNull(SubCliInf.BloodCoagulation);
+            if (SubCliInf.CongenitalHeartDisease == null)
+                lblCongenitalHeartDisease.Text = "Không";
+            else
+                lblCongenitalHeartDisease.Text = ChangeNull((bool)(SubCliInf.CongenitalHeartDisease) ? "Có" : "Không");
+            if (SubCliInf.IntellectualDisability == null)
+                lblIntellectualDisability.Text = "Không";
+            else
+                lblIntellectualDisability.Text = ChangeNull((bool)SubCliInf.IntellectualDisability ? "Có" : "Không");
+            lblWarrantyID.Text = ChangeNull(SubCliInf.WarrantyID);
+            lblLaboName.Text = ChangeNull(SubCliInf.LaboName);
+            lblOther.Text = ChangeNull(SubCliInf.Other);
+
+            if (SubCliInf.XRayFilm == null)
+                picXray.Image = null;
+            else
+            {
+                using (var ms = new MemoryStream(SubCliInf.XRayFilm))
+                {
+                    picXray.Image = Image.FromStream(ms);
+                }
+            }
         }
 
-        /*private void EnableUnitSubExInf()
+        private void btnUpdateSubClinicInf_Click(object sender, EventArgs e)
         {
-            //enable textbox
-            txtBloodPressure.Enabled = true;
-            txtBloodSugarLevel.Enabled = true;
-            txtOtherInfor.Enabled = true;
-            txtPulseRate.Enabled = true;
-            txtWarrantyID.Enabled = true;
-            txtWarrantyName.Enabled = true;
-            //button add image
-            btnAddImage.Enabled = true;
-            //rad butt blood coagulation
-            radBloodCoagulationNo.Enabled = true;
-            radBloodCoagulation_TC.Enabled = true;
-            radBloodCoagulation_TS.Enabled = true;
-            //rad butt congenital heart disease
-            radCongenitalHeartDisease_No.Enabled = true;
-            radCongenitalHeartDisease_Yes.Enabled = true;
-            //rad butt Intellectual Disability 
-            radIntellectualDisability_No.Enabled = true;
-            radIntellectualDisability_Yes.Enabled = true;
-        }*/
+            FormEditSubClinicInf formEditSubClinicInf = new FormEditSubClinicInf();
+            formEditSubClinicInf._PatientID = this._PatientID;
+            formEditSubClinicInf.PreForm = this;
+            formEditSubClinicInf.ShowDialog();
+        }
 
-        /*private void btnEditSubExamInfor_Click(object sender, EventArgs e)
+        private void menuBtnEditSubClinicInf_Click(object sender, EventArgs e)
         {
-            EnableUnitSubExInf();
-        }*/
+            btnUpdateSubClinicInf_Click(sender, e);
+        }
+
+        private void menuBtnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void menu2BtnAdd_Click(object sender, EventArgs e)
+        {
+            FormAddDiagnosisTreatment form = new FormAddDiagnosisTreatment();
+            form._PatientID = this._PatientID;
+            form.MainForm = this;
+            form.isEdit = false;
+            form._ClinicInf = null;
+            form.ShowDialog();
+        }
+
+        private void dgvClinicalInfor_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvClinicalInfor.SelectedRows.Count > 0 && dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value == null)
+            {
+                menu2BtnEdit.Enabled = true;
+            }
+        }
+
+        private void menu2BtnEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvClinicalInfor.SelectedRows.Count > 0)
+            {
+                FormAddDiagnosisTreatment form = new FormAddDiagnosisTreatment();
+                form._PatientID = this._PatientID;
+                form.MainForm = this;
+                form.isEdit = true;
+                form._ClinicInf = Convert.ToInt32(dgvClinicalInfor.SelectedRows[0].Cells["ColumnIDClinicInf"].Value);
+                form.ShowDialog();
+            }
+        }
     }
 }

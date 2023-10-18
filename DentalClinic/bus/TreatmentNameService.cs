@@ -14,5 +14,11 @@ namespace bus
             DentalModel model = new DentalModel();
             return model.TreatmentNames.ToList();
         }
+
+        public TreatmentName GetByID(string id)
+        {
+            DentalModel model = new DentalModel();
+            return model.TreatmentNames.FirstOrDefault(p=>p.ID.ToString()==id);
+        }
     }
 }
