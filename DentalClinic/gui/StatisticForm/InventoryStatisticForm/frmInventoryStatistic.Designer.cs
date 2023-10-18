@@ -44,7 +44,6 @@
             this.optXuat = new System.Windows.Forms.RadioButton();
             this.optNhap = new System.Windows.Forms.RadioButton();
             this.btnLamMoifrm1 = new System.Windows.Forms.Button();
-            this.btnLocfrm1 = new System.Windows.Forms.Button();
             this.btnXuatfrm1 = new System.Windows.Forms.Button();
             this.lbTongXuat = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -61,7 +60,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabDungcu = new System.Windows.Forms.TabPage();
-            this.dgvDungcu = new System.Windows.Forms.DataGridView();
+            this.dgvVatlieu = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,14 +72,13 @@
             this.optXuatfrm2 = new System.Windows.Forms.RadioButton();
             this.optNhapfrm2 = new System.Windows.Forms.RadioButton();
             this.btnLamMoifrm2 = new System.Windows.Forms.Button();
-            this.btnLocfrm2 = new System.Windows.Forms.Button();
             this.btnXuatfrm2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.optNamfrm2 = new System.Windows.Forms.RadioButton();
             this.optQuyfrm2 = new System.Windows.Forms.RadioButton();
             this.optThangfrm2 = new System.Windows.Forms.RadioButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.datNgayKT2 = new System.Windows.Forms.DateTimePicker();
+            this.datNgayBD2 = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.lbVatlieuxuat = new System.Windows.Forms.Label();
             this.lbVatlieunhap = new System.Windows.Forms.Label();
@@ -92,7 +90,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabDungcu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDungcu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVatlieu)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -196,7 +194,6 @@
             // 
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnLamMoifrm1);
-            this.panel1.Controls.Add(this.btnLocfrm1);
             this.panel1.Controls.Add(this.btnXuatfrm1);
             this.panel1.Controls.Add(this.lbTongXuat);
             this.panel1.Controls.Add(this.label14);
@@ -254,7 +251,7 @@
             // btnLamMoifrm1
             // 
             this.btnLamMoifrm1.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm1.Image")));
-            this.btnLamMoifrm1.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrm1.Location = new System.Drawing.Point(556, 4);
             this.btnLamMoifrm1.Name = "btnLamMoifrm1";
             this.btnLamMoifrm1.Size = new System.Drawing.Size(109, 50);
             this.btnLamMoifrm1.TabIndex = 18;
@@ -262,18 +259,6 @@
             this.btnLamMoifrm1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm1.UseVisualStyleBackColor = true;
             this.btnLamMoifrm1.Click += new System.EventHandler(this.btnLamMoifrm1_Click);
-            // 
-            // btnLocfrm1
-            // 
-            this.btnLocfrm1.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm1.Image")));
-            this.btnLocfrm1.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrm1.Name = "btnLocfrm1";
-            this.btnLocfrm1.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrm1.TabIndex = 17;
-            this.btnLocfrm1.Text = "Lọc";
-            this.btnLocfrm1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrm1.UseVisualStyleBackColor = true;
-            this.btnLocfrm1.Click += new System.EventHandler(this.btnLocfrm1_Click);
             // 
             // btnXuatfrm1
             // 
@@ -422,13 +407,13 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(8, 90);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 18);
+            this.label8.Size = new System.Drawing.Size(88, 18);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Tổng tiền";
+            this.label8.Text = "Tổng tiền lời";
             // 
             // tabDungcu
             // 
-            this.tabDungcu.Controls.Add(this.dgvDungcu);
+            this.tabDungcu.Controls.Add(this.dgvVatlieu);
             this.tabDungcu.Controls.Add(this.panel3);
             this.tabDungcu.Location = new System.Drawing.Point(4, 27);
             this.tabDungcu.Name = "tabDungcu";
@@ -438,25 +423,25 @@
             this.tabDungcu.Text = "Thống kê theo dụng cụ";
             this.tabDungcu.UseVisualStyleBackColor = true;
             // 
-            // dgvDungcu
+            // dgvVatlieu
             // 
-            this.dgvDungcu.AllowUserToAddRows = false;
-            this.dgvDungcu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDungcu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvVatlieu.AllowUserToAddRows = false;
+            this.dgvVatlieu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVatlieu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.Column8});
-            this.dgvDungcu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDungcu.Location = new System.Drawing.Point(3, 169);
-            this.dgvDungcu.Name = "dgvDungcu";
-            this.dgvDungcu.RowHeadersWidth = 51;
-            this.dgvDungcu.RowTemplate.Height = 24;
-            this.dgvDungcu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDungcu.Size = new System.Drawing.Size(1188, 470);
-            this.dgvDungcu.TabIndex = 5;
+            this.dgvVatlieu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVatlieu.Location = new System.Drawing.Point(3, 169);
+            this.dgvVatlieu.Name = "dgvVatlieu";
+            this.dgvVatlieu.RowHeadersWidth = 51;
+            this.dgvVatlieu.RowTemplate.Height = 24;
+            this.dgvVatlieu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvVatlieu.Size = new System.Drawing.Size(1188, 470);
+            this.dgvVatlieu.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -504,14 +489,13 @@
             // 
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.btnLamMoifrm2);
-            this.panel3.Controls.Add(this.btnLocfrm2);
             this.panel3.Controls.Add(this.btnXuatfrm2);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.optNamfrm2);
             this.panel3.Controls.Add(this.optQuyfrm2);
             this.panel3.Controls.Add(this.optThangfrm2);
-            this.panel3.Controls.Add(this.dateTimePicker1);
-            this.panel3.Controls.Add(this.dateTimePicker2);
+            this.panel3.Controls.Add(this.datNgayKT2);
+            this.panel3.Controls.Add(this.datNgayBD2);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.lbVatlieuxuat);
             this.panel3.Controls.Add(this.lbVatlieunhap);
@@ -559,7 +543,7 @@
             // btnLamMoifrm2
             // 
             this.btnLamMoifrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm2.Image")));
-            this.btnLamMoifrm2.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrm2.Location = new System.Drawing.Point(556, 4);
             this.btnLamMoifrm2.Name = "btnLamMoifrm2";
             this.btnLamMoifrm2.Size = new System.Drawing.Size(109, 50);
             this.btnLamMoifrm2.TabIndex = 18;
@@ -567,18 +551,6 @@
             this.btnLamMoifrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm2.UseVisualStyleBackColor = true;
             this.btnLamMoifrm2.Click += new System.EventHandler(this.btnLamMoifrm2_Click);
-            // 
-            // btnLocfrm2
-            // 
-            this.btnLocfrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm2.Image")));
-            this.btnLocfrm2.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrm2.Name = "btnLocfrm2";
-            this.btnLocfrm2.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrm2.TabIndex = 17;
-            this.btnLocfrm2.Text = "Lọc";
-            this.btnLocfrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrm2.UseVisualStyleBackColor = true;
-            this.btnLocfrm2.Click += new System.EventHandler(this.btnLocfrm2_Click);
             // 
             // btnXuatfrm2
             // 
@@ -637,21 +609,21 @@
             this.optThangfrm2.UseVisualStyleBackColor = true;
             this.optThangfrm2.CheckedChanged += new System.EventHandler(this.optThangfrm2_CheckedChanged);
             // 
-            // dateTimePicker1
+            // datNgayKT2
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(283, 31);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePicker1.TabIndex = 5;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.datNgayKT2.Location = new System.Drawing.Point(283, 31);
+            this.datNgayKT2.Name = "datNgayKT2";
+            this.datNgayKT2.Size = new System.Drawing.Size(200, 24);
+            this.datNgayKT2.TabIndex = 5;
+            this.datNgayKT2.ValueChanged += new System.EventHandler(this.datNgayKT2_ValueChanged);
             // 
-            // dateTimePicker2
+            // datNgayBD2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(11, 31);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePicker2.TabIndex = 4;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.datNgayBD2.Location = new System.Drawing.Point(11, 31);
+            this.datNgayBD2.Name = "datNgayBD2";
+            this.datNgayBD2.Size = new System.Drawing.Size(200, 24);
+            this.datNgayBD2.TabIndex = 4;
+            this.datNgayBD2.ValueChanged += new System.EventHandler(this.datNgayBD2_ValueChanged);
             // 
             // label10
             // 
@@ -711,6 +683,7 @@
             this.Name = "frmInventoryStatistic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmInventoryStatistic";
+            this.Load += new System.EventHandler(this.frmInventoryStatistic_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabNhapxuat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhapXuat)).EndInit();
@@ -719,7 +692,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabDungcu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDungcu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVatlieu)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -735,7 +708,6 @@
         private System.Windows.Forms.TabPage tabDungcu;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnLamMoifrm1;
-        private System.Windows.Forms.Button btnLocfrm1;
         private System.Windows.Forms.Button btnXuatfrm1;
         private System.Windows.Forms.Label lbTongXuat;
         private System.Windows.Forms.Label label14;
@@ -755,20 +727,19 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton optXuat;
         private System.Windows.Forms.RadioButton optNhap;
-        private System.Windows.Forms.DataGridView dgvDungcu;
+        private System.Windows.Forms.DataGridView dgvVatlieu;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.RadioButton optXuatfrm2;
         private System.Windows.Forms.RadioButton optNhapfrm2;
         private System.Windows.Forms.Button btnLamMoifrm2;
-        private System.Windows.Forms.Button btnLocfrm2;
         private System.Windows.Forms.Button btnXuatfrm2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RadioButton optNamfrm2;
         private System.Windows.Forms.RadioButton optQuyfrm2;
         private System.Windows.Forms.RadioButton optThangfrm2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker datNgayKT2;
+        private System.Windows.Forms.DateTimePicker datNgayBD2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lbVatlieuxuat;
         private System.Windows.Forms.Label lbVatlieunhap;

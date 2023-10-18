@@ -26,5 +26,11 @@ namespace bus
             DentalModel model = new DentalModel();
             return model.DentalToolTransactionsDetails.Where(p => p.DentalToolTransaction.TransactionType == type && p.DentalToolTransaction.TransactionDate >= startDate && p.DentalToolTransaction.TransactionDate <= endDate).ToList();
         }
+
+        public List<DentalToolTransactionsDetail> GetAllBetweenDates(DateTime startDate, DateTime endDate) 
+        {
+            DentalModel model = new DentalModel();
+            return model.DentalToolTransactionsDetails.Where(p => p.DentalToolTransaction.TransactionDate <= endDate && p.DentalToolTransaction.TransactionDate >= startDate).ToList();
+        }
     }
 }

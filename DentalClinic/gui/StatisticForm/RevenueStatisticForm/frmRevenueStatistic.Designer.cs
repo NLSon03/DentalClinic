@@ -51,7 +51,6 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnLamMoifrm5 = new System.Windows.Forms.Button();
-            this.btnLocfrm5 = new System.Windows.Forms.Button();
             this.btnXuatfrm5 = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.optNamfrm5 = new System.Windows.Forms.RadioButton();
@@ -74,7 +73,6 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnLammoifrm4 = new System.Windows.Forms.Button();
-            this.btnLocfrm4 = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.btnXuatfrm4 = new System.Windows.Forms.Button();
             this.optNamfrm4 = new System.Windows.Forms.RadioButton();
@@ -97,7 +95,6 @@
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnLamMoifrm3 = new System.Windows.Forms.Button();
-            this.btnLocfrm3 = new System.Windows.Forms.Button();
             this.btnXuatfrm3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.optNamfrm3 = new System.Windows.Forms.RadioButton();
@@ -120,7 +117,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLamMoifrmTong = new System.Windows.Forms.Button();
-            this.btnLocfrmTong = new System.Windows.Forms.Button();
             this.btnXuatfrmTong = new System.Windows.Forms.Button();
             this.lbTongChi = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -148,7 +144,6 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnLamMoifrm2 = new System.Windows.Forms.Button();
-            this.btnLocfrm2 = new System.Windows.Forms.Button();
             this.btnXuatfrm2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.optNamfrm2 = new System.Windows.Forms.RadioButton();
@@ -364,7 +359,6 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.btnLamMoifrm5);
-            this.panel6.Controls.Add(this.btnLocfrm5);
             this.panel6.Controls.Add(this.btnXuatfrm5);
             this.panel6.Controls.Add(this.label31);
             this.panel6.Controls.Add(this.optNamfrm5);
@@ -386,25 +380,13 @@
             // btnLamMoifrm5
             // 
             this.btnLamMoifrm5.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm5.Image")));
-            this.btnLamMoifrm5.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrm5.Location = new System.Drawing.Point(557, 5);
             this.btnLamMoifrm5.Name = "btnLamMoifrm5";
             this.btnLamMoifrm5.Size = new System.Drawing.Size(109, 50);
             this.btnLamMoifrm5.TabIndex = 17;
             this.btnLamMoifrm5.Text = "Làm mới";
             this.btnLamMoifrm5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm5.UseVisualStyleBackColor = true;
-            // 
-            // btnLocfrm5
-            // 
-            this.btnLocfrm5.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm5.Image")));
-            this.btnLocfrm5.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrm5.Name = "btnLocfrm5";
-            this.btnLocfrm5.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrm5.TabIndex = 16;
-            this.btnLocfrm5.Text = "Lọc";
-            this.btnLocfrm5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrm5.UseVisualStyleBackColor = true;
-            this.btnLocfrm5.Click += new System.EventHandler(this.btnLocfrm5_Click);
             // 
             // btnXuatfrm5
             // 
@@ -604,7 +586,6 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.btnLammoifrm4);
-            this.panel5.Controls.Add(this.btnLocfrm4);
             this.panel5.Controls.Add(this.label25);
             this.panel5.Controls.Add(this.btnXuatfrm4);
             this.panel5.Controls.Add(this.optNamfrm4);
@@ -626,25 +607,13 @@
             // btnLammoifrm4
             // 
             this.btnLammoifrm4.Image = ((System.Drawing.Image)(resources.GetObject("btnLammoifrm4.Image")));
-            this.btnLammoifrm4.Location = new System.Drawing.Point(641, 5);
+            this.btnLammoifrm4.Location = new System.Drawing.Point(557, 5);
             this.btnLammoifrm4.Name = "btnLammoifrm4";
             this.btnLammoifrm4.Size = new System.Drawing.Size(109, 50);
             this.btnLammoifrm4.TabIndex = 14;
             this.btnLammoifrm4.Text = "Làm mới";
             this.btnLammoifrm4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLammoifrm4.UseVisualStyleBackColor = true;
-            // 
-            // btnLocfrm4
-            // 
-            this.btnLocfrm4.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm4.Image")));
-            this.btnLocfrm4.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrm4.Name = "btnLocfrm4";
-            this.btnLocfrm4.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrm4.TabIndex = 12;
-            this.btnLocfrm4.Text = "Lọc";
-            this.btnLocfrm4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrm4.UseVisualStyleBackColor = true;
-            this.btnLocfrm4.Click += new System.EventHandler(this.btnLocfrm4_Click);
             // 
             // label25
             // 
@@ -844,7 +813,6 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.btnLamMoifrm3);
-            this.panel4.Controls.Add(this.btnLocfrm3);
             this.panel4.Controls.Add(this.btnXuatfrm3);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.optNamfrm3);
@@ -866,25 +834,13 @@
             // btnLamMoifrm3
             // 
             this.btnLamMoifrm3.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm3.Image")));
-            this.btnLamMoifrm3.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrm3.Location = new System.Drawing.Point(557, 5);
             this.btnLamMoifrm3.Name = "btnLamMoifrm3";
             this.btnLamMoifrm3.Size = new System.Drawing.Size(109, 50);
             this.btnLamMoifrm3.TabIndex = 17;
             this.btnLamMoifrm3.Text = "Làm mới";
             this.btnLamMoifrm3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm3.UseVisualStyleBackColor = true;
-            // 
-            // btnLocfrm3
-            // 
-            this.btnLocfrm3.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm3.Image")));
-            this.btnLocfrm3.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrm3.Name = "btnLocfrm3";
-            this.btnLocfrm3.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrm3.TabIndex = 16;
-            this.btnLocfrm3.Text = "Lọc";
-            this.btnLocfrm3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrm3.UseVisualStyleBackColor = true;
-            this.btnLocfrm3.Click += new System.EventHandler(this.btnLocfrm3_Click);
             // 
             // btnXuatfrm3
             // 
@@ -1085,7 +1041,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnLamMoifrmTong);
-            this.panel1.Controls.Add(this.btnLocfrmTong);
             this.panel1.Controls.Add(this.btnXuatfrmTong);
             this.panel1.Controls.Add(this.lbTongChi);
             this.panel1.Controls.Add(this.label14);
@@ -1110,7 +1065,7 @@
             // btnLamMoifrmTong
             // 
             this.btnLamMoifrmTong.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrmTong.Image")));
-            this.btnLamMoifrmTong.Location = new System.Drawing.Point(641, 5);
+            this.btnLamMoifrmTong.Location = new System.Drawing.Point(557, 5);
             this.btnLamMoifrmTong.Name = "btnLamMoifrmTong";
             this.btnLamMoifrmTong.Size = new System.Drawing.Size(109, 50);
             this.btnLamMoifrmTong.TabIndex = 18;
@@ -1118,18 +1073,6 @@
             this.btnLamMoifrmTong.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrmTong.UseVisualStyleBackColor = true;
             this.btnLamMoifrmTong.Click += new System.EventHandler(this.btnLamMoifrmTong_Click);
-            // 
-            // btnLocfrmTong
-            // 
-            this.btnLocfrmTong.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrmTong.Image")));
-            this.btnLocfrmTong.Location = new System.Drawing.Point(526, 5);
-            this.btnLocfrmTong.Name = "btnLocfrmTong";
-            this.btnLocfrmTong.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrmTong.TabIndex = 17;
-            this.btnLocfrmTong.Text = "Lọc";
-            this.btnLocfrmTong.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrmTong.UseVisualStyleBackColor = true;
-            this.btnLocfrmTong.Click += new System.EventHandler(this.btnLocfrmTong_Click);
             // 
             // btnXuatfrmTong
             // 
@@ -1383,7 +1326,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.btnLamMoifrm2);
-            this.panel2.Controls.Add(this.btnLocfrm2);
             this.panel2.Controls.Add(this.btnXuatfrm2);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.optNamfrm2);
@@ -1405,7 +1347,7 @@
             // btnLamMoifrm2
             // 
             this.btnLamMoifrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm2.Image")));
-            this.btnLamMoifrm2.Location = new System.Drawing.Point(638, 5);
+            this.btnLamMoifrm2.Location = new System.Drawing.Point(560, 5);
             this.btnLamMoifrm2.Name = "btnLamMoifrm2";
             this.btnLamMoifrm2.Size = new System.Drawing.Size(109, 50);
             this.btnLamMoifrm2.TabIndex = 17;
@@ -1413,18 +1355,6 @@
             this.btnLamMoifrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm2.UseVisualStyleBackColor = true;
             this.btnLamMoifrm2.Click += new System.EventHandler(this.btnLamMoifrm2_Click);
-            // 
-            // btnLocfrm2
-            // 
-            this.btnLocfrm2.Image = ((System.Drawing.Image)(resources.GetObject("btnLocfrm2.Image")));
-            this.btnLocfrm2.Location = new System.Drawing.Point(523, 5);
-            this.btnLocfrm2.Name = "btnLocfrm2";
-            this.btnLocfrm2.Size = new System.Drawing.Size(109, 50);
-            this.btnLocfrm2.TabIndex = 16;
-            this.btnLocfrm2.Text = "Lọc";
-            this.btnLocfrm2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnLocfrm2.UseVisualStyleBackColor = true;
-            this.btnLocfrm2.Click += new System.EventHandler(this.btnLocfrm2_Click);
             // 
             // btnXuatfrm2
             // 
@@ -1627,7 +1557,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnLocfrm4;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btnXuatfrm4;
         private System.Windows.Forms.RadioButton optNamfrm4;
@@ -1707,16 +1636,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Button btnLammoifrm4;
         private System.Windows.Forms.Button btnLamMoifrm2;
-        private System.Windows.Forms.Button btnLocfrm2;
         private System.Windows.Forms.Button btnXuatfrm2;
         private System.Windows.Forms.Button btnLamMoifrm5;
-        private System.Windows.Forms.Button btnLocfrm5;
         private System.Windows.Forms.Button btnXuatfrm5;
         private System.Windows.Forms.Button btnLamMoifrm3;
-        private System.Windows.Forms.Button btnLocfrm3;
         private System.Windows.Forms.Button btnXuatfrm3;
         private System.Windows.Forms.Button btnLamMoifrmTong;
-        private System.Windows.Forms.Button btnLocfrmTong;
         private System.Windows.Forms.Button btnXuatfrmTong;
     }
 }

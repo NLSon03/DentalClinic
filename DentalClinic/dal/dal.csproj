@@ -62,6 +62,7 @@
     <Compile Include="Entities\DentalToolTransaction.cs" />
     <Compile Include="Entities\DentalToolTransactionsDetail.cs" />
     <Compile Include="Entities\Diagnosi.cs" />
+    <Compile Include="Entities\Inventory.cs" />
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineInvoice.cs" />
     <Compile Include="Entities\MedicineInvoiceDetail.cs" />

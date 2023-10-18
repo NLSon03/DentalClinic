@@ -1,4 +1,4 @@
-﻿using bus;
+﻿    using bus;
 using dal.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,13 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UnidecodeSharpFork;
+
 
 namespace gui.StatisticForm.InventoryStatisticForm
 {
     public partial class frmInventoryStatistic : Form
     {
-        private readonly DentalToolService dentalToolService = new DentalToolService();
+        private readonly InventoryService inventoryService = new InventoryService();
         private readonly DentalToolTransactionDetailsService dentalToolTransactionDetailsService = new DentalToolTransactionDetailsService();
+        List<DentalToolTransactionsDetail> dsnhapxuat;
+        List<Inventory> dsvatlieu;
 
         private void BindGridNhapXuat(List<DentalToolTransactionsDetail> dsnhapxuat)
         {
@@ -42,19 +46,24 @@ namespace gui.StatisticForm.InventoryStatisticForm
             lbTongTien.Text = (tongxuat - tongnhap).ToString();
         }
 
-        private void BindGridDungcu(List<DentalTool> dsdungcu)
+        private void BindGridVatLieu(List<Inventory> dsvatlieu)
         {
-            dgvDungcu.Rows.Clear();
-            foreach(var item in dsdungcu)
+            dgvVatlieu.Rows.Clear();
+            foreach(var item in dsvatlieu)
             {
-                int index = dgvDungcu.Rows.Add();
-                dgvDungcu.Rows[index].Cells[0].Value = index + 1;
-                dgvDungcu.Rows[index].Cells[1].Value = item.ToolName;
-                dgvDungcu.Rows[index].Cells[4].Value = item.Quantity;
+                int index = dgvVatlieu.Rows.Add();
+                dgvVatlieu.Rows[index].Cells[0].Value = index + 1;
+                dgvVatlieu.Rows[index].Cells[1].Value = item.ToolName;
+                dgvVatlieu.Rows[index].Cells[2].Value = item.QuantityPurchased;
+                dgvVatlieu.Rows[index].Cells[3].Value = item.QuantitySold;
+                dgvVatlieu.Rows[index].Cells[4].Value = item.RemainingQuantity;
+                dgvVatlieu.Rows[index].Cells[5].Value = item.LastUpdateDate;
             }
+            lbVatlieunhap.Text = dsvatlieu.Count(x => x.QuantityPurchased != 0).ToString();
+            lbVatlieuxuat.Text = dsvatlieu.Count(x=> x.QuantitySold != 0).ToString();
         }
 
-        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel)
+        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel,string tencotngay)
         {
             Microsoft.Office.Interop.Excel.Application excel;
             Microsoft.Office.Interop.Excel.Workbook workbook;
@@ -72,16 +81,26 @@ namespace gui.StatisticForm.InventoryStatisticForm
                 worksheet.Name = tenexcel;
 
                 // export header trong DataGridView
-                for (int i = 0; i < dgvDieutri.ColumnCount; i++)
+                for (int i = 0; i < dataGrid.ColumnCount; i++)
                 {
-                    worksheet.Cells[1, i + 1] = dgvDieutri.Columns[i].HeaderText;
+                    worksheet.Cells[1, i + 1] = dataGrid.Columns[i].HeaderText;
                 }
                 // export nội dung trong DataGridView
                 for (int i = 0; i < dataGrid.RowCount; i++)
                 {
                     for (int j = 0; j < dataGrid.ColumnCount; j++)
                     {
-                        worksheet.Cells[i + 2, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                        if (dataGrid.Columns[j].HeaderText.Unidecode().ToLower().Contains(tencotngay))
+                        {
+                            if (dataGrid.Rows[i].Cells[j].Value != null)
+                            // Định dạng ngày thành MM/dd/yyyy
+                            worksheet.Cells[i + 2, j + 1] = DateTime.Parse(dataGrid.Rows[i].Cells[j].Value.ToString()).ToString("MM/dd/yyyy");
+                        }
+                        else
+                        {
+                            // Giữ nguyên giá trị của các cột khác
+                            worksheet.Cells[i + 2, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                        }
                     }
                 }
                 // sử dụng phương thức SaveAs() để lưu workbook với filename
@@ -119,19 +138,14 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 case 1:
                     return new DateTime(year, 1, 1);
-                    break;
                 case 2:
                     return new DateTime(year, 4, 1);
-                    break;
                 case 3:
                     return new DateTime(year, 7, 1);
-                    break;
                 case 4:
                     return new DateTime(year, 10, 1);
-                    break;
                 default:
-                    return DateTime.Today;
-                    break;
+                    return inputDate;
             }
         }
 
@@ -144,19 +158,14 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 case 1:
                     return new DateTime(year, 3, 31);
-                    break;
                 case 2:
                     return new DateTime(year, 6, 30);
-                    break;
                 case 3:
                     return new DateTime(year, 9, 30);
-                    break;
                 case 4:
                     return new DateTime(year, 12, 31);
-                    break;
                 default:
-                    return DateTime.Today;
-                    break;
+                    return inputDate;
             }
         }
 
@@ -203,13 +212,13 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 if (selectedTab == tabNhapxuat)
                 {
-                    var ds = dentalToolTransactionDetailsService.GetAll();
-                    BindGridNhapXuat(ds);
+                    dsnhapxuat = dentalToolTransactionDetailsService.GetAll();
+                    BindGridNhapXuat(dsnhapxuat);
                 }
                 if (selectedTab == tabDungcu)
                 {
-                    var ds = dentalToolService.GetAll();
-                    BindGridDungcu(ds);
+                    dsvatlieu = inventoryService.GetAll();
+                    BindGridVatLieu(dsvatlieu);
                 }
             }
         }
@@ -219,6 +228,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 UpdateMonthFormat(datNgayBD1);
                 UpdateMonthFormat(datNgayKT1);
+                btnLocfrm1_Click(sender, e);
             }
         }
 
@@ -228,6 +238,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 UpdateQuaterFormat(datNgayBD1);
                 UpdateQuaterFormat(datNgayKT1);
+                btnLocfrm1_Click(sender, e);
             }
         }
 
@@ -237,9 +248,48 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 UpdateYearFormat(datNgayBD1);
                 UpdateYearFormat(datNgayKT1);
+                btnLocfrm1_Click(sender, e);
             }
         }
 
+        private DateTime GetStartDateForm1()
+        {
+            if (optNamfrm1.Checked)
+            {
+                return GetStartDateForYear(datNgayBD1.Value);
+            }
+            else if (optQuyfrm1.Checked)
+            {
+                return GetStartDateForQuarter(datNgayBD1.Value);
+            }
+            else if (optThangfrm1.Checked)
+            {
+                return GetStartDateForMonth(datNgayBD1.Value);
+            }
+            else
+            {
+                return datNgayBD1.Value;
+            }
+        }
+        private DateTime GetEndDateForm1()
+        {
+            if (optNamfrm1.Checked)
+            {
+                return GetEndDateForYear(datNgayKT1.Value);
+            }
+            else if (optQuyfrm1.Checked)
+            {
+                return GetEndDateForQuarter(datNgayKT1.Value);
+            }
+            else if (optThangfrm1.Checked)
+            {
+                return GetEndDateForMonth(datNgayKT1.Value);
+            }
+            else
+            {
+                return datNgayKT1.Value;
+            }
+        }
         private void datNgayBD1_ValueChanged(object sender, EventArgs e)
         {
             if (optQuyfrm1.Checked)
@@ -254,8 +304,8 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 UpdateYearFormat(datNgayBD1);
             }
+            FilterData();
         }
-
         private void datNgayKT1_ValueChanged(object sender, EventArgs e)
         {
             if (optQuyfrm1.Checked)
@@ -270,44 +320,53 @@ namespace gui.StatisticForm.InventoryStatisticForm
             {
                 UpdateYearFormat(datNgayKT1);
             }
+            FilterData();
         }
 
-        private void btnLocfrm1_Click(object sender, EventArgs e)
+        private void FilterData()
         {
-            DateTime date1 = DateTime.Today;
-            DateTime date2 = DateTime.Today;
+            DateTime startDate = GetStartDateForm1();
+            DateTime endDate = GetEndDateForm1();
 
-            if (optNamfrm1.Checked)
-            {
-                date1 = GetStartDateForYear(datNgayBD1.Value);
-                date2 = GetEndDateForYear(datNgayKT1.Value);
-            }
-            else if (optQuyfrm1.Checked)
-            {
-                date1 = GetStartDateForQuarter(datNgayBD1.Value);
-                date2 = GetEndDateForQuarter(datNgayKT1.Value);
-            }
-            else if (optThangfrm1.Checked)
-            {
-                date1 = GetStartDateForMonth(datNgayBD1.Value);
-                date2 = GetEndDateForMonth(datNgayKT1.Value);
-            }
-
-            if (date1 > date2)
+            if (startDate > endDate)
             {
                 MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (optXuat.Checked)
+            {
+                dsnhapxuat = dentalToolTransactionDetailsService.GetAllBetweenDates(startDate, endDate, true);
+            }
+            else if (optNhap.Checked)
+            {
+                dsnhapxuat = dentalToolTransactionDetailsService.GetAllBetweenDates(startDate, endDate, false);
+            }
             else
             {
-                var dsdoanhthu = revenueService.GetAllBetweenDates(date1, date2);
-                BindGridTongDoanhThu(dsdoanhthu);
+                dsnhapxuat = dentalToolTransactionDetailsService.GetAllBetweenDates(startDate, endDate);
             }
+
+            BindGridNhapXuat(dsnhapxuat);
+        }
+
+        private void btnLocfrm1_Click(object sender, EventArgs e)
+        {
+            FilterData();
         }
 
         private void btnLamMoifrm1_Click(object sender, EventArgs e)
         {
-
+            optNamfrm1.Checked = false;
+            optThangfrm1.Checked = false;
+            optQuyfrm1.Checked = false;
+            optXuat.Checked = false;
+            optNhap.Checked = false;
+            datNgayBD1.Format = DateTimePickerFormat.Long;
+            datNgayKT1.Format = DateTimePickerFormat.Long;
+            datNgayKT1.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD1.Value = GetStartDateForMonth(DateTime.Today);
+            dsnhapxuat = dentalToolTransactionDetailsService.GetAll();
+            BindGridNhapXuat(dsnhapxuat);
         }
 
         private void btnXuatfrm1_Click(object sender, EventArgs e)
@@ -318,68 +377,229 @@ namespace gui.StatisticForm.InventoryStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvNhapXuat, saveFileDialog.FileName, "Thống kê nhập xuất");
+                ToExcel(dgvNhapXuat, saveFileDialog.FileName, "Thống kê nhập xuất","ngay");
             }
         }
 
         private void optNhap_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (optThangfrm1.Checked || optQuyfrm1.Checked || optNamfrm1.Checked)
+                btnLocfrm1_Click(sender, e);
+            else
+            if (optNhap.Checked)
+            {
+                var ds = dsnhapxuat;
+                dsnhapxuat = dsnhapxuat.Where(p => p.DentalToolTransaction.TransactionType == false).ToList();
+                BindGridNhapXuat(dsnhapxuat);
+                dsnhapxuat = ds;
+            }
         }
 
         private void optXuat_CheckedChanged(object sender, EventArgs e)
         {
+            if (optThangfrm1.Checked || optQuyfrm1.Checked || optNamfrm1.Checked)
+                btnLocfrm1_Click(sender, e);
+            else
+            if (optXuat.Checked)
+            {
+                var ds = dsnhapxuat;
+                dsnhapxuat = dsnhapxuat.Where(p => p.DentalToolTransaction.TransactionType == true).ToList();
+                BindGridNhapXuat(dsnhapxuat);
+                dsnhapxuat = ds;
+            }
+        }
 
+        //FORM 2
+        private DateTime GetStartDateForm2()
+        {
+            if (optNamfrm2.Checked)
+            {
+                return GetStartDateForYear(datNgayBD2.Value);
+            }
+            else if (optQuyfrm2.Checked)
+            {
+                return GetStartDateForQuarter(datNgayBD2.Value);
+            }
+            else if (optThangfrm2.Checked)
+            {
+                return GetStartDateForMonth(datNgayBD2.Value);
+            }
+            else
+            {
+                return datNgayBD2.Value;
+            }
+        }
+        private DateTime GetEndDateForm2()
+        {
+            if (optNamfrm2.Checked)
+            {
+                return GetEndDateForYear(datNgayKT2.Value);
+            }
+            else if (optQuyfrm2.Checked)
+            {
+                return GetEndDateForQuarter(datNgayKT2.Value);
+            }
+            else if (optThangfrm2.Checked)
+            {
+                return GetEndDateForMonth(datNgayKT2.Value);
+            }
+            else
+            {
+                return datNgayKT2.Value;
+            }
+        }
+
+
+        private void FilterDatafrm2()
+        {
+            DateTime startDate = GetStartDateForm2();
+            DateTime endDate = GetEndDateForm2();
+
+            if (startDate > endDate)
+            {
+                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (optXuatfrm2.Checked)
+            {
+                dsvatlieu = inventoryService.GetAllBetweenDates(startDate, endDate);
+                dsvatlieu = dsvatlieu.Where(p => p.QuantityPurchased == 0 && p.QuantitySold != 0).ToList();
+                BindGridVatLieu(dsvatlieu);
+            }
+            else if (optNhapfrm2.Checked)
+            {
+                dsvatlieu = inventoryService.GetAllBetweenDates(startDate, endDate);
+                dsvatlieu = dsvatlieu.Where(p => p.QuantityPurchased != 0 && p.QuantitySold == 0).ToList();
+                BindGridVatLieu(dsvatlieu);
+            }
+            else
+            {
+                dsvatlieu = inventoryService.GetAllBetweenDates(startDate, endDate);
+                BindGridVatLieu(dsvatlieu);
+            }
         }
 
         private void optThangfrm2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (optThangfrm2.Checked)
+            {
+                UpdateMonthFormat(datNgayBD2);
+                UpdateMonthFormat(datNgayKT2);
+                FilterDatafrm2();
+            }
         }
 
         private void optQuyfrm2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (optQuyfrm2.Checked)
+            {
+                UpdateQuaterFormat(datNgayBD2);
+                UpdateQuaterFormat(datNgayKT2);
+                FilterDatafrm2();
+            }
         }
 
         private void optNamfrm2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (optNamfrm2.Checked)
+            {
+                UpdateYearFormat(datNgayBD2);
+                UpdateYearFormat(datNgayKT2);
+                FilterDatafrm2();
+            }
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        private void datNgayBD2_ValueChanged(object sender, EventArgs e)
         {
-
+            if (optQuyfrm2.Checked)
+            {
+                UpdateQuaterFormat(datNgayBD2);
+            }
+            else if (optThangfrm2.Checked)
+            {
+                UpdateMonthFormat(datNgayBD2);
+            }
+            else if (optNamfrm2.Checked)
+            {
+                UpdateYearFormat(datNgayBD2);
+            }
+            FilterDatafrm2();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void datNgayKT2_ValueChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnLocfrm2_Click(object sender, EventArgs e)
-        {
-
+            if (optQuyfrm2.Checked)
+            {
+                UpdateQuaterFormat(datNgayKT2);
+            }
+            else if (optThangfrm2.Checked)
+            {
+                UpdateMonthFormat(datNgayKT2);
+            }
+            else if (optNamfrm2.Checked)
+            {
+                UpdateYearFormat(datNgayKT2);
+            }
+            FilterDatafrm2();
         }
 
         private void btnLamMoifrm2_Click(object sender, EventArgs e)
         {
-
+            optNamfrm2.Checked = false;
+            optThangfrm2.Checked = false;
+            optQuyfrm2.Checked = false;
+            optNhapfrm2.Checked = false;
+            optXuatfrm2.Checked = false;
+            datNgayBD2.Format = DateTimePickerFormat.Long;
+            datNgayKT2.Format = DateTimePickerFormat.Long;
+            datNgayKT2.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD2.Value = GetStartDateForMonth(DateTime.Today);
+            dsvatlieu = inventoryService.GetAll();
+            BindGridVatLieu(dsvatlieu);
         }
 
         private void btnXuatfrm2_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
 
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ToExcel(dgvVatlieu, saveFileDialog.FileName, "Thống kê dụng cụ", "lan update cuoi");
+            }
         }
 
         private void optNhapfrm2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (optThangfrm2.Checked || optQuyfrm2.Checked || optNamfrm2.Checked)
+                FilterDatafrm2();
+            else if (optNhapfrm2.Checked)
+            {
+                var ds = dsvatlieu;
+                dsvatlieu = dsvatlieu.Where(p => p.QuantitySold == 0 && p.QuantityPurchased != 0).ToList();
+                BindGridVatLieu(dsvatlieu);
+                dsvatlieu = ds;
+            }
         }
 
         private void optXuatfrm2_CheckedChanged(object sender, EventArgs e)
         {
+            if (optThangfrm2.Checked || optQuyfrm2.Checked || optNamfrm2.Checked)
+                FilterDatafrm2();
+            else if (optXuatfrm2.Checked)
+            {
+                var ds = dsvatlieu;
+                dsvatlieu = dsvatlieu.Where(p => p.QuantityPurchased == 0 && p.QuantitySold != 0).ToList();
+                BindGridVatLieu(dsvatlieu);
+                dsvatlieu = ds;
+            }
+        }
 
+        private void frmInventoryStatistic_Load(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 0;
+            tabControl1_SelectedIndexChanged(sender, e);
         }
 
 

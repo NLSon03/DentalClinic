@@ -13,6 +13,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UnidecodeSharpFork;
 using static System.Net.WebRequestMethods;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -48,9 +49,9 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 tongthu += (decimal)item.TienThu;
                 tongchi += (decimal)item.TienChi;
             }
-            lbTongDT.Text = tongtien.ToString();
-            lbTongThu.Text = tongthu.ToString();
-            lbTongChi.Text = tongchi.ToString();
+            lbTongDT.Text = tongtien.ToString("0.00");
+            lbTongThu.Text = tongthu.ToString("0.00");
+            lbTongChi.Text = tongchi.ToString("0.00");
         }
         private void BindGridDieutri(List<ClinicalInformation> dsdieutri) 
         {
@@ -68,7 +69,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 dgvDieutri.Rows[index].Cells[6].Value = item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTiendieutri.Text = tongtien.ToString();
+            lbTiendieutri.Text = tongtien.ToString("0.00");
             lbTongcadieutri.Text = (dgvDieutri.Rows.Count).ToString();
 
         }
@@ -87,7 +88,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 dgvTienThuoc.Rows[index].Cells[5].Value = item.TotalAmount.ToString();
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTongtienthuoc.Text = tongtien.ToString();
+            lbTongtienthuoc.Text = tongtien.ToString("0.00");
             lbTongthuoc.Text = dgvTienThuoc.Rows.Count.ToString();
         }
         private void BindGridTienNhap(List<DentalToolTransactionsDetail> dsnhap) 
@@ -105,7 +106,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 dgvTienNhap.Rows[index].Cells[5].Value = item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTienNhap.Text = tongtien.ToString();
+            lbTienNhap.Text = tongtien.ToString("0.00");
             lbTongnhap.Text = dgvTienNhap.Rows.Count.ToString();
         }
         private void BindGridTienXuat(List<DentalToolTransactionsDetail> dsxuat) 
@@ -123,7 +124,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 dgvTienXuat.Rows[index].Cells[5].Value = item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTienXuat.Text = tongtien.ToString();
+            lbTienXuat.Text = tongtien.ToString("0.00");
             lbTongXuat.Text = dgvTienXuat.Rows.Count.ToString();
         }
 
@@ -145,16 +146,25 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 worksheet.Name = tenexcel;
 
                 // export header trong DataGridView
-                for (int i = 0; i < dgvDieutri.ColumnCount; i++)
+                for (int i = 0; i < dataGrid.ColumnCount; i++)
                 {
-                    worksheet.Cells[1, i + 1] = dgvDieutri.Columns[i].HeaderText;
+                    worksheet.Cells[1, i + 1] = dataGrid.Columns[i].HeaderText;
                 }
                 // export nội dung trong DataGridView
                 for (int i = 0; i < dataGrid.RowCount; i++)
                 {
                     for (int j = 0; j < dataGrid.ColumnCount; j++)
                     {
-                        worksheet.Cells[i + 2, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                        if (dataGrid.Columns[j].HeaderText.Unidecode().ToLower().Contains("ngay"))
+                        {
+                            // Định dạng ngày thành MM/dd/yyyy
+                            worksheet.Cells[i + 2, j + 1] = DateTime.Parse(dataGrid.Rows[i].Cells[j].Value.ToString()).ToString("MM/dd/yyyy");
+                        }
+                        else
+                        {
+                            // Giữ nguyên giá trị của các cột khác
+                            worksheet.Cells[i + 2, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                        }
                     }
                 }
                 // sử dụng phương thức SaveAs() để lưu workbook với filename
@@ -192,19 +202,14 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 case 1:
                     return new DateTime(year, 1, 1);
-                    break;
                 case 2:
                     return new DateTime(year, 4, 1);
-                    break;
                 case 3:
                     return new DateTime(year, 7, 1);
-                    break;
                 case 4:
                     return new DateTime(year, 10, 1);
-                    break;
                 default:
                     return DateTime.Today;
-                    break;
             }
         }
 
@@ -217,19 +222,14 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 case 1:
                     return new DateTime(year, 3, 31);
-                    break;
                 case 2:
                     return new DateTime(year, 6, 30);
-                    break;
                 case 3:
                     return new DateTime(year, 9, 30);
-                    break;
                 case 4:
                     return new DateTime(year, 12, 31);
-                    break;
                 default:
                     return DateTime.Today;
-                    break;
             }
         }
 
@@ -321,6 +321,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD1);
             }
+            FilterDatafrmTong();
         }
 
         private void datNgayKT1_ValueChanged(object sender, EventArgs e)
@@ -337,6 +338,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayKT1);
             }
+            FilterDatafrmTong();
         }
 
         private void optQuyfrmTong_CheckedChanged(object sender, EventArgs e)
@@ -345,6 +347,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateQuaterFormat(datNgayBD1);
                 UpdateQuaterFormat(datNgayKT1);
+                FilterDatafrmTong();
             }
         }
 
@@ -354,6 +357,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateMonthFormat(datNgayBD1);
                 UpdateMonthFormat(datNgayKT1);
+                FilterDatafrmTong();
             }
         }
 
@@ -363,13 +367,14 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD1);
                 UpdateYearFormat(datNgayKT1);
+                FilterDatafrmTong();
             }
         }
 
-        private void btnLocfrmTong_Click(object sender, EventArgs e)
+        private void FilterDatafrmTong()
         {
-            DateTime date1 = DateTime.Today;
-            DateTime date2 = DateTime.Today;
+            DateTime date1 = datNgayBD1.Value;
+            DateTime date2 = datNgayKT1.Value;
 
             if (optNamfrmTong.Checked)
             {
@@ -413,6 +418,13 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
         private void btnLamMoifrmTong_Click(object sender, EventArgs e)
         {
+            optNamfrmTong.Checked = false;
+            optThangfrmTong.Checked = false;
+            optQuyfrmTong.Checked = false;
+            datNgayBD1.Format = DateTimePickerFormat.Long;
+            datNgayKT1.Format = DateTimePickerFormat.Long;
+            datNgayBD1.Value = DateTime.Today;
+            datNgayKT1.Value = DateTime.Today;
             var ds = revenueService.GetAll();
             BindGridTongDoanhThu(ds);
         }
@@ -425,6 +437,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateMonthFormat(datNgayBD2);
                 UpdateMonthFormat(datNgayKT2);
+                FilterDatafrm2();
             }
         }
 
@@ -434,6 +447,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateQuaterFormat(datNgayBD2);
                 UpdateQuaterFormat(datNgayKT2);
+                FilterDatafrm2();
             }
         }
 
@@ -443,6 +457,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD2);
                 UpdateYearFormat(datNgayKT2);
+                FilterDatafrm2();
             }
         }
 
@@ -460,6 +475,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD2);
             }
+            FilterDatafrm2();
         }
 
         private void datNgayKT2_ValueChanged(object sender, EventArgs e)
@@ -470,12 +486,13 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 UpdateMonthFormat(datNgayKT2);
             else if (optNamfrm2.Checked)
                 UpdateYearFormat(datNgayKT2);
+            FilterDatafrm2();
         }
 
-        private void btnLocfrm2_Click(object sender, EventArgs e)
+        private void FilterDatafrm2() 
         {
-            DateTime date1 = DateTime.Today;
-            DateTime date2 = DateTime.Today;
+            DateTime date1 = datNgayBD2.Value;
+            DateTime date2 = datNgayKT2.Value;
 
             if (optNamfrm2.Checked)
             {
@@ -513,16 +530,23 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvDieutri, saveFileDialog.FileName,"Thống kê tiền điều trị");
+                ToExcel(dgvDieutri, saveFileDialog.FileName, "Thống kê tiền điều trị");
             }
         }
 
         private void btnLamMoifrm2_Click(object sender, EventArgs e)
         {
+            optNamfrm2.Checked = false;
+            optThangfrm2.Checked = false;
+            optQuyfrm2.Checked = false;
+            datNgayBD2.Format = DateTimePickerFormat.Long;
+            datNgayKT2.Format = DateTimePickerFormat.Long;
+            datNgayBD2.Value = DateTime.Today;
+            datNgayKT2.Value = DateTime.Today;
             var ds = clinicalInformationService.GetAll();
             BindGridDieutri(ds);
         }
-    
+
         //FORM TONG DON THUOC
         private void optThangfrm3_CheckedChanged(object sender, EventArgs e)
         {
@@ -530,6 +554,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateMonthFormat(datNgayBD3);
                 UpdateMonthFormat(datNgayKT3);
+                FilterDatafrm3();
             }
         }
 
@@ -539,8 +564,8 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateQuaterFormat(datNgayBD3);
                 UpdateQuaterFormat(datNgayKT3);
+                FilterDatafrm3();
             }
-
         }
 
         private void optNamfrm3_CheckedChanged(object sender, EventArgs e)
@@ -549,13 +574,42 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD3);
                 UpdateYearFormat(datNgayKT3);
+                FilterDatafrm3();
             }
         }
 
-        private void btnLocfrm3_Click(object sender, EventArgs e)
+        private void datNgayBD3_ValueChanged(object sender, EventArgs e)
         {
-            DateTime date1 = DateTime.Today;
-            DateTime date2 = DateTime.Today;
+            if (optQuyfrm3.Checked)
+            {
+                UpdateQuaterFormat(datNgayBD3);
+            }
+            else if (optNamfrm3.Checked)
+            {
+                UpdateYearFormat(datNgayBD3);
+            }
+            else if (optThangfrm3.Checked)
+            {
+                UpdateMonthFormat(datNgayBD3);
+            }
+            FilterDatafrm3();
+        }
+
+        private void datNgayKT3_ValueChanged(object sender, EventArgs e)
+        {
+            if (optQuyfrm3.Checked)
+                UpdateQuaterFormat(datNgayKT3);
+            else if (optNamfrm3.Checked)
+                UpdateYearFormat(datNgayKT3);
+            else if (optThangfrm3.Checked)
+                UpdateMonthFormat(datNgayKT3);
+            FilterDatafrm3();
+        }
+
+        private void FilterDatafrm3()
+        {
+            DateTime date1 = datNgayBD3.Value;
+            DateTime date2 = datNgayKT3.Value;
 
             if (optNamfrm3.Checked)
             {
@@ -585,32 +639,6 @@ namespace gui.StatisticForm.RevenueStatisticForm
             }
         }
 
-        private void datNgayBD3_ValueChanged(object sender, EventArgs e)
-        {
-            if (optQuyfrm3.Checked)
-            {
-                UpdateQuaterFormat(datNgayBD3);
-            }
-            else if (optNamfrm3.Checked)
-            {
-                UpdateYearFormat(datNgayBD3);
-            }
-            else if (optThangfrm3.Checked)
-            {
-                UpdateMonthFormat(datNgayBD3);
-            }
-        }
-
-        private void datNgayKT3_ValueChanged(object sender, EventArgs e)
-        {
-            if (optQuyfrm3.Checked)
-                UpdateQuaterFormat(datNgayKT3);
-            else if (optNamfrm3.Checked)
-                UpdateYearFormat(datNgayKT3);
-            else if (optThangfrm3.Checked)
-                UpdateMonthFormat(datNgayKT3);
-        }
-
         private void btnXuatfrm3_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -622,11 +650,20 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 ToExcel(dgvTienThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc");
             }
         }
+
         private void btnLamMoifrm3_Click(object sender, EventArgs e)
         {
+            optNamfrm3.Checked = false;
+            optThangfrm3.Checked = false;
+            optQuyfrm3.Checked = false;
+            datNgayBD3.Format = DateTimePickerFormat.Long;
+            datNgayKT3.Format = DateTimePickerFormat.Long;
+            datNgayBD3.Value = DateTime.Today;
+            datNgayKT3.Value = DateTime.Today;
             var ds = prescriptionService.GetAll();
             BindGridThuoc(ds);
         }
+
 
         //FORM TONG XUAT
         private void optThangfrm4_CheckedChanged(object sender, EventArgs e)
@@ -635,6 +672,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateMonthFormat(datNgayBD4);
                 UpdateMonthFormat(datNgayKT4);
+                FilterDatafrm4();
             }
         }
 
@@ -642,8 +680,9 @@ namespace gui.StatisticForm.RevenueStatisticForm
         {
             if (optQuyfrm4.Checked)
             {
-                UpdateQuaterFormat(datNgayKT4);
                 UpdateQuaterFormat(datNgayBD4);
+                UpdateQuaterFormat(datNgayKT4);
+                FilterDatafrm4();
             }
         }
 
@@ -653,6 +692,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD4);
                 UpdateYearFormat(datNgayKT4);
+                FilterDatafrm4();
             }
         }
 
@@ -664,6 +704,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 UpdateQuaterFormat(datNgayBD4);
             else if (optNamfrm4.Checked)
                 UpdateYearFormat(datNgayBD4);
+            FilterDatafrm4();
         }
 
         private void datNgayKT4_ValueChanged(object sender, EventArgs e)
@@ -674,12 +715,13 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 UpdateQuaterFormat(datNgayKT4);
             else if (optNamfrm4.Checked)
                 UpdateYearFormat(datNgayKT4);
+            FilterDatafrm4();
         }
 
-        private void btnLocfrm4_Click(object sender, EventArgs e)
+        private void FilterDatafrm4()
         {
-            DateTime date1 = DateTime.Today;
-            DateTime date2 = DateTime.Today;
+            DateTime date1 = datNgayBD4.Value;
+            DateTime date2 = datNgayKT4.Value;
 
             if (optNamfrm4.Checked)
             {
@@ -723,9 +765,17 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
         private void btnLammoifrm4_Click(object sender, EventArgs e)
         {
+            optNamfrm4.Checked = false;
+            optThangfrm4.Checked = false;
+            optQuyfrm4.Checked = false;
+            datNgayBD4.Format = DateTimePickerFormat.Long;
+            datNgayKT4.Format = DateTimePickerFormat.Long;
+            datNgayBD4.Value = DateTime.Today;
+            datNgayKT4.Value = DateTime.Today;
             var ds = dentalToolTransactionDetailsService.GetAllByType(true);
             BindGridTienXuat(ds);
         }
+
 
         //FORM TONG NHAP
         private void optThangfrm5_CheckedChanged(object sender, EventArgs e)
@@ -734,6 +784,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateMonthFormat(datNgayBD5);
                 UpdateMonthFormat(datNgayKT5);
+                FilterDatafrm5();
             }
         }
 
@@ -743,6 +794,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateQuaterFormat(datNgayBD5);
                 UpdateQuaterFormat(datNgayKT5);
+                FilterDatafrm5();
             }
         }
 
@@ -752,6 +804,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
             {
                 UpdateYearFormat(datNgayBD5);
                 UpdateYearFormat(datNgayKT5);
+                FilterDatafrm5();
             }
         }
 
@@ -763,6 +816,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 UpdateMonthFormat(datNgayBD5);
             else if (optQuyfrm5.Checked)
                 UpdateQuaterFormat(datNgayBD5);
+            FilterDatafrm5();
         }
 
         private void datNgayKT5_ValueChanged(object sender, EventArgs e)
@@ -773,12 +827,13 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 UpdateMonthFormat(datNgayKT5);
             else if (optQuyfrm5.Checked)
                 UpdateQuaterFormat(datNgayKT5);
+            FilterDatafrm5();
         }
 
-        private void btnLocfrm5_Click(object sender, EventArgs e)
+        private void FilterDatafrm5()
         {
-            DateTime date1 = DateTime.Today;
-            DateTime date2 = DateTime.Today;
+            DateTime date1 = datNgayBD5.Value;
+            DateTime date2 = datNgayKT5.Value;
 
             if (optNamfrm5.Checked)
             {
@@ -822,8 +877,16 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
         private void btnLamMoifrm5_Click(object sender, EventArgs e)
         {
+            optNamfrm5.Checked = false;
+            optThangfrm5.Checked = false;
+            optQuyfrm5.Checked = false;
+            datNgayBD5.Format = DateTimePickerFormat.Long;
+            datNgayKT5.Format = DateTimePickerFormat.Long;
+            datNgayBD5.Value = DateTime.Today;
+            datNgayKT5.Value = DateTime.Today;
             var ds = dentalToolTransactionDetailsService.GetAllByType(false);
             BindGridTienNhap(ds);
         }
+
     }
 }
