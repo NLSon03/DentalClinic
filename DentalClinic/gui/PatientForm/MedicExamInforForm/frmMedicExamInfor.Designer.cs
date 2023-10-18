@@ -54,6 +54,12 @@
             this.chứcNăngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chỉnhSửaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBtnEditSubClinicInf = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thôngTinLâmSàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hóaĐơnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuBtnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnUpdateSubClinicInf = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +69,8 @@
             this.menu2BtnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menu2BtnEdit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.menu2Invoice = new System.Windows.Forms.ToolStripButton();
             this.dgvClinicalInfor = new System.Windows.Forms.DataGridView();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIDClinicInf = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -362,6 +370,10 @@
             // 
             this.chứcNăngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chỉnhSửaToolStripMenuItem,
+            this.thêmToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.xuấtToolStripMenuItem,
+            this.toolStripSeparator4,
             this.menuBtnExit});
             this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
             this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(96, 25);
@@ -381,6 +393,44 @@
             this.menuBtnEditSubClinicInf.Size = new System.Drawing.Size(241, 26);
             this.menuBtnEditSubClinicInf.Text = "Thông tin cận lâm sàng";
             this.menuBtnEditSubClinicInf.Click += new System.EventHandler(this.menuBtnEditSubClinicInf_Click);
+            // 
+            // thêmToolStripMenuItem
+            // 
+            this.thêmToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thôngTinLâmSàngToolStripMenuItem});
+            this.thêmToolStripMenuItem.Name = "thêmToolStripMenuItem";
+            this.thêmToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.thêmToolStripMenuItem.Text = "Thêm";
+            // 
+            // thôngTinLâmSàngToolStripMenuItem
+            // 
+            this.thôngTinLâmSàngToolStripMenuItem.Name = "thôngTinLâmSàngToolStripMenuItem";
+            this.thôngTinLâmSàngToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            this.thôngTinLâmSàngToolStripMenuItem.Text = "Thông tin lâm sàng";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(146, 6);
+            // 
+            // xuấtToolStripMenuItem
+            // 
+            this.xuấtToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hóaĐơnToolStripMenuItem});
+            this.xuấtToolStripMenuItem.Name = "xuấtToolStripMenuItem";
+            this.xuấtToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.xuấtToolStripMenuItem.Text = "Xuất";
+            // 
+            // hóaĐơnToolStripMenuItem
+            // 
+            this.hóaĐơnToolStripMenuItem.Name = "hóaĐơnToolStripMenuItem";
+            this.hóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
+            this.hóaĐơnToolStripMenuItem.Text = "Hóa đơn";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(146, 6);
             // 
             // menuBtnExit
             // 
@@ -431,7 +481,9 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu2BtnAdd,
             this.toolStripSeparator2,
-            this.menu2BtnEdit});
+            this.menu2BtnEdit,
+            this.toolStripSeparator5,
+            this.menu2Invoice});
             this.toolStrip2.Location = new System.Drawing.Point(3, 22);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(1219, 25);
@@ -461,6 +513,20 @@
             this.menu2BtnEdit.Size = new System.Drawing.Size(46, 22);
             this.menu2BtnEdit.Text = "Sửa";
             this.menu2BtnEdit.Click += new System.EventHandler(this.menu2BtnEdit_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // menu2Invoice
+            // 
+            this.menu2Invoice.Image = global::gui.Properties.Resources.invoice;
+            this.menu2Invoice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menu2Invoice.Name = "menu2Invoice";
+            this.menu2Invoice.Size = new System.Drawing.Size(98, 22);
+            this.menu2Invoice.Text = "Xuất hóa đơn";
+            this.menu2Invoice.Click += new System.EventHandler(this.menu2Invoice_Click);
             // 
             // dgvClinicalInfor
             // 
@@ -645,5 +711,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTotalAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnInvoice;
+        private System.Windows.Forms.ToolStripMenuItem thêmToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thôngTinLâmSàngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem xuấtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hóaĐơnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton menu2Invoice;
     }
 }

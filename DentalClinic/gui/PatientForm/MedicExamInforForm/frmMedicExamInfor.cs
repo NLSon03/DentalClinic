@@ -13,13 +13,13 @@ namespace gui.PatientForm.MedicExamInforForm
         //Mã bệnh nhân được truyền từ frm bệnh nhân
         public string _PatientID;
 
-        private SubClinicalInformationService subClinicalInformationService = new SubClinicalInformationService();
-        private PatientInformationService patientInformationService = new PatientInformationService();
-        private TreatmentService treatmentService = new TreatmentService();
-        private TreatmentNameService treatmentNameService = new TreatmentNameService();
-        private DiagnosisService diagnosisService = new DiagnosisService();
-        private ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
-        private TreatmentInvoiceDetailsService treatmentInvoiceDetailService = new TreatmentInvoiceDetailsService();
+        private readonly SubClinicalInformationService subClinicalInformationService = new SubClinicalInformationService();
+        private readonly PatientInformationService patientInformationService = new PatientInformationService();
+        private readonly TreatmentService treatmentService = new TreatmentService();
+        private readonly TreatmentNameService treatmentNameService = new TreatmentNameService();
+        private readonly DiagnosisService diagnosisService = new DiagnosisService();
+        private readonly ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
+        private readonly TreatmentInvoiceDetailsService treatmentInvoiceDetailService = new TreatmentInvoiceDetailsService();
 
         private static string ChangeNull(object param)
         {
@@ -181,6 +181,13 @@ namespace gui.PatientForm.MedicExamInforForm
                 form._ClinicInf = Convert.ToInt32(dgvClinicalInfor.SelectedRows[0].Cells["ColumnIDClinicInf"].Value);
                 form.ShowDialog();
             }
+        }
+
+        private void menu2Invoice_Click(object sender, EventArgs e)
+        {
+            FormPrintInvoice form = new FormPrintInvoice();
+            form._PatientID = this._PatientID;
+            form.ShowDialog();
         }
     }
 }
