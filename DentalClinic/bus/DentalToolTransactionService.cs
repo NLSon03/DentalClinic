@@ -44,5 +44,10 @@ namespace bus
             DentalModel context = new DentalModel();
             return context.DentalToolTransactions.Where(p => p.TransactionDate.Value.Year == nam).ToList();
         }
+        public List<DentalToolTransaction> GetAll()
+        {
+            DentalModel model = new DentalModel();
+            return model.DentalToolTransactions.ToList();
+        }
     }
 }

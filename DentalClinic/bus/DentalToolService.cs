@@ -10,6 +10,11 @@ namespace bus
 {
     public class DentalToolService
     {
+        public List<DentalTool> GetAll()
+        {
+            DentalModel model = new DentalModel();
+            return model.DentalTools.ToList();
+        }
         public List<DentalTool> getAll()
         {
             DentalModel context = new DentalModel();
