@@ -164,7 +164,7 @@ namespace gui.PatientForm.MedicExamInforForm
 
         private void dgvClinicalInfor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvClinicalInfor.SelectedRows.Count > 0 && dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value == null)
+            if (dgvClinicalInfor.SelectedRows.Count > 0 && Convert.ToBoolean(dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value))
             {
                 menu2BtnEdit.Enabled = true;
             }
