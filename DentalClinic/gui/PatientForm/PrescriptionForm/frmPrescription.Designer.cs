@@ -36,18 +36,6 @@
             this.btnPrintMedicinePrescription = new System.Windows.Forms.Button();
             this.btnAddMedicine = new System.Windows.Forms.Button();
             this.dgvMedicine = new System.Windows.Forms.DataGridView();
-            this.cmbUnit = new System.Windows.Forms.ComboBox();
-            this.cmbMedicine = new System.Windows.Forms.ComboBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtPricePer = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtDosage = new System.Windows.Forms.TextBox();
             this.colOrdinaNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNameOfMedicine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +43,18 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalPerSe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbUnit = new System.Windows.Forms.ComboBox();
+            this.cmbMedicine = new System.Windows.Forms.ComboBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDosage = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPricePer = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnSearchingPrescription = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).BeginInit();
@@ -116,6 +116,7 @@
             this.btnPrintMedicinePrescription.TabIndex = 13;
             this.btnPrintMedicinePrescription.Text = "In hóa đơn";
             this.btnPrintMedicinePrescription.UseVisualStyleBackColor = true;
+            this.btnPrintMedicinePrescription.Click += new System.EventHandler(this.btnPrintMedicinePrescription_Click);
             // 
             // btnAddMedicine
             // 
@@ -151,6 +152,55 @@
             this.dgvMedicine.TabIndex = 10;
             this.dgvMedicine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMedicine_CellClick);
             this.dgvMedicine.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvMedicine_RowPostPaint);
+            // 
+            // colOrdinaNumber
+            // 
+            this.colOrdinaNumber.HeaderText = "STT";
+            this.colOrdinaNumber.MinimumWidth = 6;
+            this.colOrdinaNumber.Name = "colOrdinaNumber";
+            this.colOrdinaNumber.Width = 50;
+            // 
+            // colNameOfMedicine
+            // 
+            this.colNameOfMedicine.HeaderText = "Tên thuốc";
+            this.colNameOfMedicine.MinimumWidth = 6;
+            this.colNameOfMedicine.Name = "colNameOfMedicine";
+            this.colNameOfMedicine.Width = 150;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Liều lượng";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
+            // 
+            // colUnit
+            // 
+            this.colUnit.HeaderText = "ĐVT";
+            this.colUnit.MinimumWidth = 6;
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Width = 75;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "Số lượng";
+            this.colQuantity.MinimumWidth = 6;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Width = 50;
+            // 
+            // colPrice
+            // 
+            this.colPrice.HeaderText = "Đơn giá";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.Width = 125;
+            // 
+            // colTotalPerSe
+            // 
+            this.colTotalPerSe.HeaderText = "Thành tiền";
+            this.colTotalPerSe.MinimumWidth = 6;
+            this.colTotalPerSe.Name = "colTotalPerSe";
+            this.colTotalPerSe.Width = 150;
             // 
             // cmbUnit
             // 
@@ -214,6 +264,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm thuốc";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 227);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 16);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Liều lượng";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -222,6 +281,25 @@
             this.label6.Size = new System.Drawing.Size(53, 16);
             this.label6.TabIndex = 18;
             this.label6.Text = "Đơn giá";
+            // 
+            // txtDosage
+            // 
+            this.txtDosage.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDosage.Location = new System.Drawing.Point(99, 220);
+            this.txtDosage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDosage.Multiline = true;
+            this.txtDosage.Name = "txtDosage";
+            this.txtDosage.Size = new System.Drawing.Size(188, 85);
+            this.txtDosage.TabIndex = 20;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(99, 220);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(188, 27);
+            this.textBox2.TabIndex = 20;
             // 
             // txtPricePer
             // 
@@ -248,83 +326,6 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(1, 159);
             this.label5.TabIndex = 21;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 227);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 16);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Liều lượng";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(99, 220);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(188, 27);
-            this.textBox2.TabIndex = 20;
-            // 
-            // txtDosage
-            // 
-            this.txtDosage.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDosage.Location = new System.Drawing.Point(99, 220);
-            this.txtDosage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtDosage.Multiline = true;
-            this.txtDosage.Name = "txtDosage";
-            this.txtDosage.Size = new System.Drawing.Size(188, 85);
-            this.txtDosage.TabIndex = 20;
-            // 
-            // colOrdinaNumber
-            // 
-            this.colOrdinaNumber.HeaderText = "STT";
-            this.colOrdinaNumber.MinimumWidth = 6;
-            this.colOrdinaNumber.Name = "colOrdinaNumber";
-            this.colOrdinaNumber.Width = 50;
-            // 
-            // colNameOfMedicine
-            // 
-            this.colNameOfMedicine.HeaderText = "Tên thuốc";
-            this.colNameOfMedicine.MinimumWidth = 6;
-            this.colNameOfMedicine.Name = "colNameOfMedicine";
-            this.colNameOfMedicine.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Liều lượng";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 125;
-            // 
-            // colUnit
-            // 
-            this.colUnit.HeaderText = "ĐVT";
-            this.colUnit.MinimumWidth = 6;
-            this.colUnit.Name = "colUnit";
-            this.colUnit.Width = 75;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.HeaderText = "Số lượng";
-            this.colQuantity.MinimumWidth = 6;
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.Width = 50;
-            // 
-            // colPrice
-            // 
-            this.colPrice.HeaderText = "Đơn giá";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
-            this.colPrice.Width = 125;
-            // 
-            // colTotalPerSe
-            // 
-            this.colTotalPerSe.HeaderText = "Thành tiền";
-            this.colTotalPerSe.MinimumWidth = 6;
-            this.colTotalPerSe.Name = "colTotalPerSe";
-            this.colTotalPerSe.Width = 150;
             // 
             // btnSearchingPrescription
             // 

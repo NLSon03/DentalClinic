@@ -224,6 +224,57 @@ namespace gui.PatientForm.PrescriptionForm
                 }
             }
         }
+
+        private void btnPrintMedicinePrescription_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                frmMedInvoice medInvoice = new frmMedInvoice();
+                if (dgvMedicine.Rows.Count <= 0)
+                    throw new Exception("Danh sách trống");
+                foreach (DataGridViewRow r in dgvMedicine.Rows)
+                {
+
+                    ListViewItem lv = new ListViewItem(r.Cells[0].Value.ToString());
+                    lv.SubItems.Add(r.Cells[1].Value.ToString());
+                    lv.SubItems.Add(r.Cells[2].Value.ToString());
+                    lv.SubItems.Add(r.Cells[3].Value.ToString());
+                    lv.SubItems.Add(r.Cells[4].Value.ToString());
+                    lv.SubItems.Add(r.Cells[5].Value.ToString());
+                    lv.SubItems.Add(r.Cells[6].Value.ToString());
+                    medInvoice.AddItemsToList(lv);
+
+                }
+                medInvoice.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK);
+            }
+        }
+        private DataTable GetDataTableFromDGV(DataGridView dgv)
+        {
+            var dt = new DataTable();
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                if (column.Visible)
+                {
+                    dt.Columns.Add();
+                }
+            }
+
+            object[] cellValues = new object[dgv.Columns.Count];
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    cellValues[i] = row.Cells[i].Value;
+                }
+                dt.Rows.Add(cellValues);
+            }
+            return dt;
+        }
     }
     public class Unit
     {

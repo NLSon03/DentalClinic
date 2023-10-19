@@ -76,6 +76,12 @@
     <Compile Include="PatientForm\MedicExamInforForm\frmMedicExamInfor.Designer.cs">
       <DependentUpon>frmMedicExamInfor.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatientForm\PrescriptionForm\frmMedInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\PrescriptionForm\frmMedInvoice.Designer.cs">
+      <DependentUpon>frmMedInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="PatientForm\PrescriptionForm\frmPrescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\MedicExamInforForm\frmMedicExamInfor.resx">
       <DependentUpon>frmMedicExamInfor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\PrescriptionForm\frmMedInvoice.resx">
+      <DependentUpon>frmMedInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\PrescriptionForm\frmPrescription.resx">
       <DependentUpon>frmPrescription.cs</DependentUpon>
