@@ -20,5 +20,13 @@ namespace bus
             DentalModel model= new DentalModel();
             return model.MedicineInvoiceDetails.Where(p=>p.InvoiceID==ID).ToList();
         }
+        public void InsertNew(MedicineInvoiceDetail medInvoiceDetails)
+        {
+            using (DentalModel model = new DentalModel())
+            {
+                model.MedicineInvoiceDetails.Add(medInvoiceDetails);
+                model.SaveChanges();
+            }
+        }
     }
 }

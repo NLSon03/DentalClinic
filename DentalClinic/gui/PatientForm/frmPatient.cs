@@ -83,6 +83,11 @@ namespace gui.PatientForm
         private void OpenPrescriptionForm()
         {
             frmPrescription f = new frmPrescription();
+            foreach(DataGridViewRow r in dgvPatient.Rows )
+            {
+                if (r.Selected)
+                    f.p_id = int.Parse(r.Cells[0].Value.ToString());
+            }
             f.ShowDialog();
         }
         private void btnCreatingPrescription_Click(object sender, EventArgs e)
