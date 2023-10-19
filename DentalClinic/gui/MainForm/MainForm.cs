@@ -1,4 +1,5 @@
-﻿using gui.PatientForm;
+﻿using gui.DentalMaterials;
+using gui.PatientForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,14 @@ namespace DentalClinic
             Thread thread = new Thread(new ThreadStart(OpenPatientForm));
             thread.Start();
             this.Close();
+        }
+
+        private void btnDentalMaterial_Click(object sender, EventArgs e)
+        {
+            frmDentalMaterials fr = new frmDentalMaterials();
+            this.Hide();
+            fr.ShowDialog();
+            this.Show();
         }
     }
 }

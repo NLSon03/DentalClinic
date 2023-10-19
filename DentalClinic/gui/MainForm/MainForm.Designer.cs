@@ -63,6 +63,7 @@ namespace DentalClinic
             this.btnDentalMaterial.Text = "QUẢN LÝ VẬT LIỆU, DỤNG CỤ NHA KHOA";
             this.btnDentalMaterial.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnDentalMaterial.UseVisualStyleBackColor = true;
+            this.btnDentalMaterial.Click += new System.EventHandler(this.btnDentalMaterial_Click);
             // 
             // btnStatistics
             // 

@@ -58,6 +58,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DentalForm\frmDentalMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DentalForm\frmDentalMaterials.Designer.cs">
+      <DependentUpon>frmDentalMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DentalForm\frmDentalTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DentalForm\frmDentalTool.Designer.cs">
+      <DependentUpon>frmDentalTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +96,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DentalForm\frmDentalMaterials.resx">
+      <DependentUpon>frmDentalMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DentalForm\frmDentalTool.resx">
+      <DependentUpon>frmDentalTool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

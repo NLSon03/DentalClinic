@@ -24,6 +24,7 @@ namespace dal.Entities
         public virtual DbSet<PatientInformation> PatientInformations { get; set; }
         public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<SubClinicalInformation> SubClinicalInformations { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Treatment> Treatments { get; set; }
         public virtual DbSet<TreatmentInvoice> TreatmentInvoices { get; set; }
         public virtual DbSet<TreatmentInvoiceDetail> TreatmentInvoiceDetails { get; set; }
