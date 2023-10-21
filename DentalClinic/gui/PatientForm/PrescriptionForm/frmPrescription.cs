@@ -20,6 +20,7 @@ namespace gui.PatientForm.PrescriptionForm
     {
         DentalModel dentalModel;
         public int p_id;
+        public bool remainChecked;
         private readonly MedicineService medicineService = new MedicineService();
         List<Unit> units;
         public frmPrescription()
@@ -57,7 +58,7 @@ namespace gui.PatientForm.PrescriptionForm
         {
             numQuantity.Value = 1;
             numQuantity.Maximum = 2500;
-            numQuantity.Minimum =1;
+            numQuantity.Minimum = 1;
         }
         private void frmPrescription_Load(object sender, EventArgs e)
         {
@@ -82,11 +83,11 @@ namespace gui.PatientForm.PrescriptionForm
             if (cmbMedicine.SelectedIndex > -1)
             {
                 var item = cmbMedicine.SelectedItem as Medicine;
-                if(item!=null)
+                if (item != null)
                 {
-                        txtPricePer.Text = item.UnitPrice.ToString();
-                        cmbUnit.Text = item.Unit.ToString();
-                        txtDosage.Text = item.Dosage.ToString();
+                    txtPricePer.Text = item.UnitPrice.ToString();
+                    cmbUnit.Text = item.Unit.ToString();
+                    txtDosage.Text = item.Dosage.ToString();
                 }
             }
         }
@@ -250,6 +251,11 @@ namespace gui.PatientForm.PrescriptionForm
             {
                 MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK);
             }
+        }
+
+        private void lblID_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public class Unit

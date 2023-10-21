@@ -38,13 +38,11 @@
             this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.cmbMedicine = new System.Windows.Forms.ComboBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDosage = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPricePer = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvMedicine = new System.Windows.Forms.DataGridView();
             this.colOrdinaNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -158,16 +156,6 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(43, 583);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 22);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Tổng tiền";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label7);
@@ -223,15 +211,6 @@
             this.txtPricePer.Name = "txtPricePer";
             this.txtPricePer.Size = new System.Drawing.Size(188, 27);
             this.txtPricePer.TabIndex = 20;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(119, 578);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 27);
-            this.textBox1.TabIndex = 20;
             // 
             // label5
             // 
@@ -316,6 +295,7 @@
             this.lblID.Size = new System.Drawing.Size(25, 16);
             this.lblID.TabIndex = 23;
             this.lblID.Text = "      ";
+            this.lblID.Click += new System.EventHandler(this.lblID_Click);
             // 
             // frmPrescription
             // 
@@ -325,9 +305,7 @@
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.dgvMedicine);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnDeleteMedicine);
             this.Controls.Add(this.btnPrintMedicinePrescription);
             this.Controls.Add(this.btnUpdate);
@@ -357,9 +335,7 @@
         private System.Windows.Forms.ComboBox cmbUnit;
         private System.Windows.Forms.ComboBox cmbMedicine;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPricePer;
