@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClinicalInformationService.cs" />
+    <Compile Include="ConsumableToolService.cs" />
     <Compile Include="DentalToolService.cs" />
     <Compile Include="DentalToolTransactionDetailsService.cs" />
     <Compile Include="DentalToolTransactionService.cs" />
