@@ -14,6 +14,5 @@ namespace bus
             DentalModel model = new DentalModel();
             return model.Treatments.ToList();
         }
-
     }
 }

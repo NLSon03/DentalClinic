@@ -25,6 +25,8 @@ namespace gui.StatisticForm.RevenueStatisticForm
         private readonly ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
         private readonly PrescriptionService prescriptionService = new PrescriptionService();
         private readonly DentalToolTransactionDetailsService dentalToolTransactionDetailsService = new DentalToolTransactionDetailsService();
+        private readonly TreatmentService treatmentService = new TreatmentService();
+        private readonly MedicineService medicineService = new MedicineService();
         public frmRevenueStatistic()
         {
             InitializeComponent();
@@ -423,8 +425,8 @@ namespace gui.StatisticForm.RevenueStatisticForm
             optQuyfrmTong.Checked = false;
             datNgayBD1.Format = DateTimePickerFormat.Long;
             datNgayKT1.Format = DateTimePickerFormat.Long;
-            datNgayBD1.Value = DateTime.Today;
-            datNgayKT1.Value = DateTime.Today;
+            datNgayKT1.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD1.Value = GetStartDateForMonth(DateTime.Today);
             var ds = revenueService.GetAll();
             BindGridTongDoanhThu(ds);
         }
@@ -515,6 +517,11 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (cbThongkeDieutri.Checked)
+            {
+                var ds = treatmentService.GetAll();
+                BindGridTreatment(ds, date1, date2);
+            }
             else
             {
                 var dsdieutri = clinicalInformationService.GetAllBetweenDates(date1, date2);
@@ -541,10 +548,58 @@ namespace gui.StatisticForm.RevenueStatisticForm
             optQuyfrm2.Checked = false;
             datNgayBD2.Format = DateTimePickerFormat.Long;
             datNgayKT2.Format = DateTimePickerFormat.Long;
-            datNgayBD2.Value = DateTime.Today;
-            datNgayKT2.Value = DateTime.Today;
+            datNgayKT2.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD2.Value = GetStartDateForMonth(DateTime.Today);
+            cbThongkeDieutri.Checked = false;
             var ds = clinicalInformationService.GetAll();
             BindGridDieutri(ds);
+        }
+        private void cbThongke_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbThongkeDieutri.Checked)
+            {
+                optNamfrm2.Checked = false;
+                optThangfrm2.Checked = false;
+                optQuyfrm2.Checked = false;
+                dgvDieutri.Columns["clmNgayDieutri"].Visible = false;
+                var ds = treatmentService.GetAll();
+                BindGridTreatment(ds, DateTime.MinValue, DateTime.MaxValue);
+            }
+            else
+            {
+                optNamfrm3.Checked = false;
+                optThangfrm3.Checked = false;
+                optQuyfrm3.Checked = false;
+                dgvDieutri.Columns["clmNgayDieutri"].Visible = true;
+                var ds = clinicalInformationService.GetAll();
+                BindGridDieutri(ds);
+            }
+        }
+
+        private void BindGridTreatment(List<Treatment> ds, DateTime startDate, DateTime endDate)
+        {
+            dgvDieutri.Rows.Clear();
+            decimal tongtien = 0;
+            int tongsl = 0;
+
+            foreach (var item in ds)
+            {
+                int i = dgvDieutri.Rows.Add();
+                dgvDieutri.Rows[i].Cells[0].Value = i + 1;
+                dgvDieutri.Rows[i].Cells[2].Value = item.TreatmentName.Name;
+                dgvDieutri.Rows[i].Cells[3].Value = item.TreatmentMethodName.Name;
+
+                int quantity = clinicalInformationService.GetTreatmentQuantity(item.ID, startDate, endDate);
+                dgvDieutri.Rows[i].Cells[4].Value = quantity;
+
+                dgvDieutri.Rows[i].Cells[5].Value = item.UnitPrice;
+                dgvDieutri.Rows[i].Cells[6].Value = item.UnitPrice * quantity;
+
+                tongtien += (decimal)item.UnitPrice * quantity;
+                tongsl += quantity;
+            }
+            lbTiendieutri.Text = tongtien.ToString("0.00");
+            lbTongcadieutri.Text = tongsl.ToString();
         }
 
         //FORM TONG DON THUOC
@@ -626,17 +681,42 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 date1 = GetStartDateForMonth(datNgayBD3.Value);
                 date2 = GetEndDateForMonth(datNgayKT3.Value);
             }
-
             if (date1 > date2)
             {
                 MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            if (cbThongkeThuoc.Checked)
+            {
+                var ds = medicineService.GetAllMedicine();
+                BindGridMedicine(ds, date1, date2);
             }
             else
             {
                 var dsdonthuoc = prescriptionService.GetAllBetweenDates(date1, date2);
                 BindGridThuoc(dsdonthuoc);
             }
+        }
+
+        private void BindGridMedicine(List<Medicine> ds, DateTime date1, DateTime date2)
+        {
+            dgvTienThuoc.Rows.Clear();
+            decimal tongtien = 0;
+            int slban = 0;
+            foreach (var item in ds)
+            {
+                int index = dgvTienThuoc.Rows.Add();
+                dgvTienThuoc.Rows[index].Cells[0].Value = index + 1;
+                dgvTienThuoc.Rows[index].Cells[2].Value = item.MedicineName;
+                int sl = prescriptionService.GetMedicineQuantity(item.MedicineID, date1, date2);
+                dgvTienThuoc.Rows[index].Cells[3].Value = sl;
+                dgvTienThuoc.Rows[index].Cells[4].Value = item.UnitPrice.ToString();
+                dgvTienThuoc.Rows[index].Cells[5].Value = item.UnitPrice * sl ;
+                tongtien += (decimal)item.UnitPrice * sl;
+                slban += sl;
+            }
+            lbTongtienthuoc.Text = tongtien.ToString("0.00");
+            lbTongthuoc.Text = slban.ToString();
         }
 
         private void btnXuatfrm3_Click(object sender, EventArgs e)
@@ -658,10 +738,36 @@ namespace gui.StatisticForm.RevenueStatisticForm
             optQuyfrm3.Checked = false;
             datNgayBD3.Format = DateTimePickerFormat.Long;
             datNgayKT3.Format = DateTimePickerFormat.Long;
-            datNgayBD3.Value = DateTime.Today;
-            datNgayKT3.Value = DateTime.Today;
+            datNgayKT3.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD3.Value = GetStartDateForMonth(DateTime.Today);
+
+            cbThongkeThuoc.Checked = false;
             var ds = prescriptionService.GetAll();
             BindGridThuoc(ds);
+        }
+
+        private void cbThongkeThuoc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbThongkeThuoc.Checked)
+            {
+                optNamfrm3.Checked = false;
+                optThangfrm3.Checked = false;
+                optQuyfrm3.Checked = false;
+                dgvTienThuoc.Columns["clmNgayThuoc"].Visible = false;
+                label20.Text = "Số lượng thuốc đã bán";
+                var ds = medicineService.GetAllMedicine();
+                BindGridMedicine(ds, DateTime.MinValue, DateTime.MaxValue);
+            }
+            else
+            {
+                optNamfrm3.Checked = false;
+                optThangfrm3.Checked = false;
+                optQuyfrm3.Checked = false;
+                label20.Text = "Số đơn thuốc đã bán";
+                dgvTienThuoc.Columns["clmNgayThuoc"].Visible = true;
+                var ds = prescriptionService.GetAll();
+                BindGridThuoc(ds);
+            }
         }
 
 
@@ -770,8 +876,9 @@ namespace gui.StatisticForm.RevenueStatisticForm
             optQuyfrm4.Checked = false;
             datNgayBD4.Format = DateTimePickerFormat.Long;
             datNgayKT4.Format = DateTimePickerFormat.Long;
-            datNgayBD4.Value = DateTime.Today;
-            datNgayKT4.Value = DateTime.Today;
+            datNgayKT4.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD4.Value = GetStartDateForMonth(DateTime.Today);
+
             var ds = dentalToolTransactionDetailsService.GetAllByType(true);
             BindGridTienXuat(ds);
         }
@@ -882,11 +989,13 @@ namespace gui.StatisticForm.RevenueStatisticForm
             optQuyfrm5.Checked = false;
             datNgayBD5.Format = DateTimePickerFormat.Long;
             datNgayKT5.Format = DateTimePickerFormat.Long;
-            datNgayBD5.Value = DateTime.Today;
-            datNgayKT5.Value = DateTime.Today;
+            datNgayKT5.Value = GetEndDateForMonth(DateTime.Today);
+            datNgayBD5.Value = GetStartDateForMonth(DateTime.Today);
+
             var ds = dentalToolTransactionDetailsService.GetAllByType(false);
             BindGridTienNhap(ds);
         }
+
 
     }
 }

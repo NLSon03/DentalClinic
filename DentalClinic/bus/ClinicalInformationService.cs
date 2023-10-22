@@ -60,5 +60,12 @@ namespace bus
                                 .Where(t => GetTreatmentInvoiceDate(t.ID) >= date1 && GetTreatmentInvoiceDate(t.ID) <= date2)
                                 .ToList();
         }
+        public int GetTreatmentQuantity(int treatmentID, DateTime startDate, DateTime endDate)
+        {
+            DentalModel model = new DentalModel();
+            var totalQuantity = model.ClinicalInformations.AsEnumerable().Where(x => x.Treatment_ID == treatmentID && GetTreatmentInvoiceDate(x.ID) >= startDate && GetTreatmentInvoiceDate(x.ID) <= endDate)
+                                                          .Sum(x => x.Quantity);
+            return totalQuantity;
+        }
     }
 }
