@@ -1,5 +1,6 @@
 ﻿using bus;
 using dal.Entities;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Rectangle = iTextSharp.text.Rectangle;
 
 namespace gui.PatientForm.MedicExamInforForm
 {
@@ -18,7 +21,6 @@ namespace gui.PatientForm.MedicExamInforForm
 
         public frmMedicExamInfor mainForm;
         public string _PatientID;
-
 
         private readonly ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
         private readonly PatientInformationService patientInformationService = new PatientInformationService();
@@ -108,64 +110,6 @@ namespace gui.PatientForm.MedicExamInforForm
             return dgvClinicalInfor.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToBoolean(row.Cells["ColumnInvoice"].Value));
         }
 
-        private void CreateInvoicePdf(string invoiceId)
-        {
-            // Đường dẫn đến file PDF template
-            string templatePath = @"F:\AllProject\CSharpProject\DoAn\DentalClinic\gui\Resources\Templates\Template.pdf";
-            string invoicesPath = @"F:\AllProject\CSharpProject\DoAn\DentalClinic\gui\Invoices";
-
-            string newPdfPath = Path.Combine(invoicesPath, $"{invoiceId}.pdf");
-            Thread newThread = new Thread(() =>
-            {
-                File.Copy(templatePath, newPdfPath);
-            });
-
-            newThread.Start();
-
-            // Đợi cho đến khi thread hoàn thành
-            newThread.Join();
-            // Mở file PDF mới để chỉnh sửa
-            Thread editThread = new Thread(() =>
-            {
-                PdfReader reader = new PdfReader(templatePath);
-                PdfStamper stamper = new PdfStamper(reader, new FileStream(newPdfPath, FileMode.Create, FileAccess.Write));
-
-
-
-                // Lấy các trường form từ file PDF
-                AcroFields fields = stamper.AcroFields;
-
-                //Lấy các thông tin cần thiết
-                var listClinicIds = clinicalInformationService.GetClinicInfoIdsByInvoiceId(Convert.ToInt32(invoiceId));
-                listClinicIds.Sort();
-                var treatments = clinicalInformationService.GetTreatmentNamesByIds(listClinicIds);
-                var quantities = clinicalInformationService.GetQuantitiesByIds(listClinicIds);
-                var amounts = clinicalInformationService.GetTotalAmountsByIds(listClinicIds);
-                // Điền các trường với dữ liệu đơn
-                fields.SetField("InvoiceId", invoiceId);
-                fields.SetField("Name", patientInformationService.JustGetName(_PatientID));
-                fields.SetField("Date", treatmentInvoiceService.JustGetDate(Convert.ToInt32(invoiceId)));
-                fields.SetField("Address", patientInformationService.JustGetAddress(_PatientID));
-
-                // Điền các trường với dữ liệu từ danh sách
-                for (int i = 0; i < treatments.Count; i++)
-                {
-                    fields.SetField($"Treatment{i + 1}", treatments[i]);
-                    fields.SetField($"Quan{i + 1}", quantities[i].ToString());
-                    fields.SetField($"Amount{i + 1}", amounts[i].ToString());
-                }
-
-                // Đóng PdfStamper và PdfReader
-                stamper.Close();
-                reader.Close();
-            });
-            if (!newThread.IsAlive)
-            {
-                editThread.Start();
-                editThread.Join();
-            }
-        }
-
         // Hàm này trả về danh sách các thông tin lâm sàng đã được check từ DataGridView
         private List<ClinicalInformation> GetCheckedItem(DataGridView data)
         {
@@ -189,28 +133,57 @@ namespace gui.PatientForm.MedicExamInforForm
         {
             try
             {
-                if (!IsInvoiceCheckboxChecked())
-                    throw new Exception("Không có dịch vụ nào được chọn");
-                var list = GetCheckedItem(dgvClinicalInfor);
-                if (list.Count > 7)
-                    throw new Exception("Một hóa đơn thông thể có nhiều hơn 7 dịch vụ.");
-
-                string invoiceId = SaveInvoice(list).ToString();
-
-                CreateInvoicePdf(invoiceId);
-
-                string pdfPath = $"F:\\AllProject\\CSharpProject\\DoAn\\DentalClinic\\gui\\Invoices\\{invoiceId}.pdf";
-
-                //Process process = Process.Start(pdfPath);
-                //process.Kill();
-
-                btnExit_Click(sender, e);
-                mainForm.frmMedicExamInfor_Load(sender, e);
+                ValidateInvoice();
+                string invoiceId = SaveInvoice();
+                CreateAndPrintInvoicePdf(invoiceId);
+                RefreshForm(sender, e);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void ValidateInvoice()
+        {
+            if (!IsInvoiceCheckboxChecked())
+                throw new Exception("Không có dịch vụ nào được chọn");
+            var list = GetCheckedItem(dgvClinicalInfor);
+            if (list.Count > 7)
+                throw new Exception("Một hóa đơn thông thể có nhiều hơn 7 dịch vụ.");
+        }
+
+        private string SaveInvoice()
+        {
+            var list = GetCheckedItem(dgvClinicalInfor);
+            return SaveInvoice(list).ToString();
+        }
+
+        private void CreateAndPrintInvoicePdf(string invoiceId)
+        {
+            CreateInvoicePdf(invoiceId);
+
+            string pdfPath = Path.GetFullPath($"Invoices\\{invoiceId}.pdf");
+            if (!File.Exists(pdfPath))
+                throw new FileNotFoundException($"Không tìm thấy tệp {pdfPath}");
+
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = pdfPath,
+                UseShellExecute = true
+            };
+
+            using (Process process = new Process { StartInfo = startInfo })
+            {
+                process.Start();
+                process.WaitForExit();
+            }
+        }
+
+        private void RefreshForm(object sender, EventArgs e)
+        {
+            btnExit_Click(sender, e);
+            mainForm.frmMedicExamInfor_Load(sender, e);
         }
 
         private void dgvClinicalInfor_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -219,6 +192,95 @@ namespace gui.PatientForm.MedicExamInforForm
             {
                 txtTotalAmount.Text = CalculateTotalAmount().ToString();
             }
+        }
+
+        private void CreateInvoicePdf(string invoiceId)
+        {
+            string templatePath = GetTemplatePath();
+            string invoicesPath = GetInvoicesPath();
+
+            string newPdfPath = Path.Combine(invoicesPath, $"{invoiceId}.pdf");
+
+            CopyFile(templatePath, newPdfPath);
+
+            byte[] pdfContent = File.ReadAllBytes(templatePath);
+
+            using (MemoryStream ms = new MemoryStream(pdfContent))
+            {
+                PdfReader reader = null;
+                PdfStamper stamper = null;
+                try
+                {
+                    reader = new PdfReader(ms.ToArray());
+                    stamper = new PdfStamper(reader, new FileStream(newPdfPath, FileMode.Create, FileAccess.Write));
+
+                    AcroFields fields = stamper.AcroFields;
+
+                    string fontPath = @"Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf"; 
+                    BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    iTextSharp.text.Font times = new iTextSharp.text.Font(bf);
+
+                    // Sử dụng font mới cho tất cả các trường trong PDF
+                    foreach (string key in fields.Fields.Keys)
+                    {
+                        fields.SetFieldProperty(key, "textfont", times.BaseFont, null);
+                    }
+
+                    FillInvoiceFields(fields, invoiceId);
+                }
+                finally
+                {
+                    if (stamper != null)
+                    {
+                        stamper.Close();
+                    }
+                    if (reader != null)
+                    {
+                        reader.Close();
+                    }
+                }
+            }
+        }
+
+        private void FillInvoiceFields(AcroFields fields, string invoiceId)
+        {
+            var listClinicIds = clinicalInformationService.GetClinicInfoIdsByInvoiceId(Convert.ToInt32(invoiceId));
+            listClinicIds.Sort();
+            var treatments = clinicalInformationService.GetTreatmentNamesByIds(listClinicIds);
+            var quantities = clinicalInformationService.GetQuantitiesByIds(listClinicIds);
+            var amounts = clinicalInformationService.GetTotalAmountsByIds(listClinicIds);
+            var total = treatmentInvoiceService.JustGetTotalAmount(Convert.ToInt32(invoiceId));
+
+            fields.SetField("InvoiceId", invoiceId);
+            fields.SetField("Name", patientInformationService.JustGetName(_PatientID));
+            fields.SetField("Date", treatmentInvoiceService.JustGetDate(Convert.ToInt32(invoiceId)));
+            fields.SetField("Address", patientInformationService.JustGetAddress(_PatientID));
+
+            for (int i = 0; i < treatments.Count; i++)
+            {
+                fields.SetField($"Treatment{i + 1}", treatments[i]);
+                fields.SetField($"Quan{i + 1}", quantities[i].ToString());
+                fields.SetField($"Amount{i + 1}", ((decimal)amounts[i]).ToString("N0")); // Chuyển đổi số thành chuỗi với dấu phân cách hàng nghìn và không có số thập phân
+            }
+
+            fields.SetField("Total", total);
+        }
+
+        private string GetTemplatePath()
+        {
+            return @"Resources\Templates\Template.pdf";
+        }
+
+        private string GetInvoicesPath()
+        {
+            string invoicesPath = @"Invoices";
+            Directory.CreateDirectory(invoicesPath);
+            return Path.GetFullPath(invoicesPath);
+        }
+
+        private void CopyFile(string sourcePath, string destinationPath)
+        {
+            File.Copy(sourcePath, destinationPath);
         }
 
         private decimal CalculateTotalAmount()
@@ -240,7 +302,6 @@ namespace gui.PatientForm.MedicExamInforForm
                 dgvClinicalInfor.EndEdit();
             }
         }
-
         private void SetDataForLabelName()
         {
             var patient = patientInformationService.GetByID(_PatientID);

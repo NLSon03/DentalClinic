@@ -160,7 +160,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\cach_at_ten_cac_thanh_phan_trong_winform.docx" />
-    <None Include="Resources\Templates\Template.pdf" />
+    <None Include="Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Templates\Template.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -60,9 +60,18 @@ namespace bus
 
         public string JustGetDate(int id)
         {
-            using(var context = new DentalModel())
+            using (var context = new DentalModel())
             {
                 return context.TreatmentInvoices.FirstOrDefault(p => p.ID == id).Date.Value.ToString("dd/MM/yyyy");
+            }
+        }
+
+        public string JustGetTotalAmount(int id)
+        {
+            using (var context = new DentalModel())
+            {
+                decimal totalAmount = context.TreatmentInvoices.FirstOrDefault(p => p.ID == id).TotalAmount.Value;
+                return totalAmount.ToString("N0");
             }
         }
     }
