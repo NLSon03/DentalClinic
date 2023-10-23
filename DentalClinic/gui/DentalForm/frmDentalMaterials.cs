@@ -1,4 +1,5 @@
-﻿using dal.Entities;
+﻿using bus;
+using dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,91 +9,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using bus;
-using gui.DentalForm;
 
-namespace gui.DentalMaterials
+namespace gui.DentalForm
 {
     public partial class frmDentalMaterials : Form
     {
 
         private readonly DentalToolService dentalToolService = new DentalToolService();
         private readonly DentalToolTransactionService dentalToolTransactionService = new DentalToolTransactionService();
-        private readonly DentalToolTransactionDetails dentalToolTransactionDetailService = new DentalToolTransactionDetails();
-        
-        
+        private readonly DentalToolTransactionDetailsService dentalToolTransactionDetailService = new DentalToolTransactionDetailsService();
         public frmDentalMaterials()
         {
             InitializeComponent();
         }
 
-
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            DialogResult rs = MessageBox.Show("Bạn có muốn quay lại trang chủ", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (rs == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-
-
-        private void btnThoatThongKe_Click(object sender, EventArgs e)
-        {
-            DialogResult rs = MessageBox.Show("Bạn có muốn quay lại trang chủ", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (rs == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-
-       // form nhap xuat dung cu vat lieu
-        /*Them dung cu vat lieu*/
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                checkValid();
-                DentalToolTransactionsDetail sv = dentalToolTransactionDetailService.findByID(int.Parse(txtMaGiaoDich.Text));
-                if (sv != null) throw new Exception("Mã sinh viên đã tồn tại.");
-                DentalToolTransactionsDetail sinhvien = new DentalToolTransactionsDetail() {
-                    TransactionID = int.Parse(txtMaGiaoDich.Text),
-                    ToolID = int.Parse(cmbDungCu.SelectedValue.ToString()),
-                    Unit = cmbDonViTinh.SelectedValue.ToString(),
-                    UnitPrice = decimal.Parse(txtDonGia.Text),
-                    Quantity = int.Parse(txtSoLuong.Text),
-                    TotalAmount = decimal.Parse(txtThanhTien.Text),
-                };
-
-                dentalToolTransactionDetailService.InsertUpdate(sinhvien);
-                MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frmDentalMaterials_Load(sender,e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void checkValid()
-        {
-            if (txtMaGiaoDich.Text == "" || txtSoLuong.Text == "" || txtDonGia.Text == "")
-                throw new Exception("Vui lòng nhập đầy đủ thông tin");
-        }
-
-
         private void frmDentalMaterials_Load(object sender, EventArgs e)
         {
             try
             {
-               
+                setGridViewStyle(dgvDungCu);
                 var listDentalTool = dentalToolService.getAll();
-                var listDentalToolTransactionDetail = dentalToolTransactionDetailService.getAll();
+                var listDentalToolTransactionDetail = dentalToolTransactionDetailService.GetAll();
                 FillFaculty(listDentalTool);
-               
             }
             catch (Exception ex)
             {
@@ -102,80 +40,53 @@ namespace gui.DentalMaterials
             txtDonGia.Text = "";
             txtSoLuong.Text = "";
             txtThanhTien.Text = "";
-            cmbDonViTinh.Text = "";
+            txtDonViTinh.Text = "";
         }
 
-        private void FillFaculty(List<DentalTool> listDentalTool)
+        
+
+        private void checkValid()
         {
-            cmbDungCu.Items.Clear();
-            cmbDungCu.DataSource = listDentalTool;
-            cmbDungCu.ValueMember = "ToolID";
-            cmbDungCu.DisplayMember = "ToolName";
+            if ( txtSoLuong.Text == "" || txtDonGia.Text == "" )
+                throw new Exception("Vui lòng nhập đầy đủ thông tin");
         }
-
 
         private void BindGrid(List<DentalToolTransactionsDetail> listDentalToolTranscationDetail)
         {
             dgvDungCu.Rows.Clear();
             foreach (var item in listDentalToolTranscationDetail)
             {
-                if(item != null)
+                if (item != null)
                 {
-                    
-                    int index = dgvDungCu.Rows.Add();                    
+                    int index = dgvDungCu.Rows.Add();
                     dgvDungCu.Rows[index].Cells[0].Value = item.TransactionID;
                     dgvDungCu.Rows[index].Cells[1].Value = item.DentalTool.ToolName;
                     dgvDungCu.Rows[index].Cells[2].Value = item.DentalTool.Unit;
-                    dgvDungCu.Rows[index].Cells[3].Value = item.DentalTool.Quantity;
+                    dgvDungCu.Rows[index].Cells[3].Value = item.Quantity;
                     dgvDungCu.Rows[index].Cells[4].Value = item.UnitPrice;
                     dgvDungCu.Rows[index].Cells[5].Value = item.TotalAmount;
-                   
-                }               
-            }
-        }
-
-
-        /*Xoa dung cu vat lieu*/
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            DentalModel context = new DentalModel();
-            int ms = Int32.Parse(txtMaGiaoDich.Text);
-            DentalToolTransactionsDetail dbDelete = dentalToolTransactionDetailService.findByID(ms);
-
-            if (dbDelete != null)
-            {
-                context.DentalToolTransactionsDetails.Remove(dbDelete);
-                context.SaveChanges();
-            }
-
-            frmDentalMaterials_Load(sender, e);
-        }
-
-
-        /*Chinh sua*/
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DentalToolTransactionsDetail sinhvien = dentalToolTransactionDetailService.findByID(int.Parse(txtMaGiaoDich.Text));
-                if (sinhvien == null)
-                    throw new Exception("Không tìm thấy mã sinh viên cần xóa.");
-
-                DialogResult result = MessageBox.Show("Bạn có chắn chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
-                {
-                    dentalToolTransactionDetailService.DeleteById(int.Parse(txtMaGiaoDich.Text));
-                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    frmDentalMaterials_Load(sender, e);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-            frmDentalMaterials_Load(sender, e);
         }
+
+        private void FillFaculty(List<DentalTool> listDentalTool)
+        {
+            cmbDungCu.DataSource = listDentalTool;
+            cmbDungCu.ValueMember = "ToolID";
+            cmbDungCu.DisplayMember = "ToolName";
+        }
+
+        public void setGridViewStyle(DataGridView dataGridView)
+        {
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView.BackgroundColor = Color.White;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+
+        
 
         private void dgvDungCu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -184,33 +95,62 @@ namespace gui.DentalMaterials
             DataGridViewRow row = dgvDungCu.Rows[e.RowIndex];
             txtMaGiaoDich.Text = row.Cells[0].Value.ToString();
             cmbDungCu.Text = row.Cells[1].Value.ToString();
-            cmbDonViTinh.Text = row.Cells[2].Value.ToString();
+            txtDonViTinh.Text = row.Cells[2].Value.ToString();
             txtSoLuong.Text = row.Cells[3].Value.ToString();
             txtDonGia.Text = row.Cells[4].Value.ToString();
             txtThanhTien.Text = row.Cells[5].Value.ToString();
-        }
-
+        }   
 
        
-        // ket thuc form quan li dung cu vat lieu.
 
-        /*Ham tinh tong tien*/
-        private decimal SumMoney(decimal money, decimal sl)
+        private void cmbDungCu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            return money*sl;
+            if (cmbDungCu.SelectedIndex != -1)
+            {
+                DentalTool a = cmbDungCu.SelectedItem as DentalTool;
+                txtDonViTinh.Text = a.Unit;
+            }
         }
 
-        /*code form thống kê*/
-        // tao form load de tai lai du lieu
-        private void loadFormThongKe(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = MessageBox.Show("Bạn có muốn quay lại trang chủ", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (rs == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void thêmHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtFindYear.Text.Length == 0)
-                    throw new Exception("Vui long nhap nam thong ke");
-                
-               
-              /*  BindGridThongKe();*/
+                checkValid();
+                DentalToolTransaction hoadon = dentalToolTransactionService.GetAllDentalToolTransaction(int.Parse(txtMaGiaoDich.Text));
+                if (hoadon == null)
+                {
+                    hoadon = new DentalToolTransaction()
+                    {
+                        TransactionID = int.Parse(txtMaGiaoDich.Text),
+                        TransactionType = false,
+                        TransactionDate = DateTime.Now,
+                        TotalAmount = 0,
+                    };
+                    dentalToolTransactionService.InsertUpdate(hoadon);
+                }
+                DentalToolTransactionsDetail phieuHoaDon = new DentalToolTransactionsDetail();
+                phieuHoaDon.TransactionID = int.Parse(txtMaGiaoDich.Text);
+                phieuHoaDon.ToolID = int.Parse(cmbDungCu.SelectedValue.ToString());
+                phieuHoaDon.Unit = txtDonViTinh.Text;
+                phieuHoaDon.UnitPrice = decimal.Parse(txtDonGia.Text);
+                phieuHoaDon.Quantity = int.Parse(txtSoLuong.Text);
+                phieuHoaDon.TotalAmount = 0;
+                dentalToolTransactionDetailService.InsertUpdate(phieuHoaDon);
+                MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
+                frmDentalMaterials_Load(sender, e);
+                BindGrid(ds);
+
             }
             catch (Exception ex)
             {
@@ -218,39 +158,146 @@ namespace gui.DentalMaterials
             }
         }
 
-        private void btnTimThongKe_Click(object sender, EventArgs e)
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            loadFormThongKe(sender,e);  
-        }
-
-        private void BindGridThongKe(List<DentalToolTransactionsDetail> listDentalToolTranscationDetail)
-        {
-
-            dgvThongKe.Rows.Clear();
-            foreach (var item in listDentalToolTranscationDetail)
+            try
             {
-                if (item != null)
+                checkValid();
+                DentalToolTransaction hoadon = dentalToolTransactionService.GetAllDentalToolTransaction(int.Parse(txtMaGiaoDich.Text));
+                if (hoadon == null)
                 {
-
-                    int index = dgvThongKe.Rows.Add();
-                    dgvThongKe.Rows[index].Cells[0].Value = item.TransactionID;
-                    dgvThongKe.Rows[index].Cells[1].Value = item.DentalTool.ToolName;
-                    dgvThongKe.Rows[index].Cells[2].Value = item.DentalTool.Unit;
-                    dgvThongKe.Rows[index].Cells[3].Value = item.DentalTool.Quantity;
-                    dgvThongKe.Rows[index].Cells[4].Value = item.UnitPrice;
-                    dgvThongKe.Rows[index].Cells[5].Value = item.TotalAmount;
+                    hoadon = new DentalToolTransaction()
+                    {
+                        TransactionID = int.Parse(txtMaGiaoDich.Text),
+                        TransactionType = false,
+                        TransactionDate = DateTime.Now,
+                        TotalAmount = 0,
+                    };
+                    dentalToolTransactionService.InsertUpdate(hoadon);
                 }
+                DentalToolTransactionsDetail phieuHoaDon = new DentalToolTransactionsDetail();
+                phieuHoaDon.TransactionID = int.Parse(txtMaGiaoDich.Text);
+                phieuHoaDon.ToolID = int.Parse(cmbDungCu.SelectedValue.ToString());
+                phieuHoaDon.Unit = txtDonViTinh.Text;
+                phieuHoaDon.UnitPrice = decimal.Parse(txtDonGia.Text);
+                phieuHoaDon.Quantity = int.Parse(txtSoLuong.Text);
+                phieuHoaDon.TotalAmount = 0;
+                dentalToolTransactionDetailService.InsertUpdate(phieuHoaDon);
+                MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
+                frmDentalMaterials_Load(sender, e);
+                BindGrid(ds);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
-        
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DentalToolTransactionsDetail sinhvien = dentalToolTransactionDetailService.findDentalToolTransactionDetails(int.Parse(txtMaGiaoDich.Text), int.Parse(cmbDungCu.SelectedValue.ToString()));
 
-        private void btnDentalTool_Click(object sender, EventArgs e)
+                if (sinhvien == null)
+                    throw new Exception("Không tìm thấy mã sinh viên cần xóa.");
+
+
+                DialogResult result = MessageBox.Show("Bạn có chắn chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    dentalToolTransactionDetailService.DeleteById(int.Parse(txtMaGiaoDich.Text), int.Parse(cmbDungCu.SelectedValue.ToString()));
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
+                    frmDentalMaterials_Load(sender, e);
+                    BindGrid(ds);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+       
+
+        private void khoHàngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDentalTool fr = new frmDentalTool();
             this.Hide();
             fr.ShowDialog();
             this.Show();
+        }
+
+        private void btnXuatHoaDon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cmbDungCu_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cmbDungCu.SelectedIndex != -1)
+            {
+                DentalTool a = cmbDungCu.SelectedItem as DentalTool;
+                txtDonViTinh.Text = a.Unit;
+            }
+        }
+
+        private void txtDonGia_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDonGia.Text) && (!string.IsNullOrEmpty(txtDonGia.Text)))
+                txtThanhTien.Text = decimal.Parse(txtDonGia.Text) * int.Parse(txtSoLuong.Text) + "";
+        }
+
+        private void txtSoLuong_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDonGia.Text) && (!string.IsNullOrEmpty(txtDonGia.Text)))
+                txtThanhTien.Text = decimal.Parse(txtDonGia.Text) * int.Parse(txtSoLuong.Text) + "";
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                checkValid();
+                DentalToolTransaction hoadon = dentalToolTransactionService.GetAllDentalToolTransaction(int.Parse(txtMaGiaoDich.Text));
+                if (hoadon == null)
+                {
+                    hoadon = new DentalToolTransaction()
+                    {
+                        TransactionID = int.Parse(txtMaGiaoDich.Text),
+                        TransactionType = false,
+                        TransactionDate = DateTime.Now,
+                        TotalAmount = 0,
+                    };
+                    dentalToolTransactionService.InsertUpdate(hoadon);
+                }
+                DentalToolTransactionsDetail phieuHoaDon = new DentalToolTransactionsDetail();
+                phieuHoaDon.TransactionID = int.Parse(txtMaGiaoDich.Text);
+                phieuHoaDon.ToolID = int.Parse(cmbDungCu.SelectedValue.ToString());
+                phieuHoaDon.Unit = txtDonViTinh.Text;
+                phieuHoaDon.UnitPrice = decimal.Parse(txtDonGia.Text);
+                phieuHoaDon.Quantity = int.Parse(txtSoLuong.Text);
+                phieuHoaDon.TotalAmount = 0;
+                dentalToolTransactionDetailService.InsertUpdate(phieuHoaDon);
+                MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
+                frmDentalMaterials_Load(sender, e);
+                BindGrid(ds);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

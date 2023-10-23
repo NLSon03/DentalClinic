@@ -1,15 +1,7 @@
-﻿using gui.DentalMaterials;
+﻿using gui.DentalForm;
 using gui.PatientForm;
-using gui.StatisticForm;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DentalClinic
@@ -39,15 +31,15 @@ namespace DentalClinic
 
         }
 
-        private void btnStatistics_Click(object sender, EventArgs e)
+        /*private void btnStatistics_Click(object sender, EventArgs e)
         {
             frmStatistic frmStatistic = new frmStatistic();
             frmStatistic.ShowDialog();
-        }
+        }*/
 
         private void btnDentalMaterial_Click(object sender, EventArgs e)
         {
-            frmDentalMaterials fr = new frmDentalMaterials();
+            frmDentalToolMain fr = new frmDentalToolMain();
             this.Hide();
             fr.ShowDialog();
             this.Show();

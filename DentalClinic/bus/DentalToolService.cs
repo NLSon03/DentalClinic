@@ -42,5 +42,12 @@ namespace bus
                 e.SaveChanges();
             }
         }
+
+        public string GetUnit(int id)
+        {
+            DentalModel context = new DentalModel();
+            DentalTool a = context.DentalTools.First(p => p.ToolID == id);
+            return a.Unit;
+        }
     }
 }

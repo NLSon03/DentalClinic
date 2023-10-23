@@ -78,7 +78,7 @@ namespace DentalClinic
             this.btnStatistics.Text = "THỐNG KÊ";
             this.btnStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnStatistics.UseVisualStyleBackColor = true;
-            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            /*this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);*/
             // 
             // btnPatientManager
             // 
