@@ -33,7 +33,11 @@ namespace gui.PatientForm.MedicExamInforForm
             dataGridView.BackgroundColor = Color.White;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
+        private void ShowMessage(string message)
+        {
+            MessageBox.Show(message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        }
         public frmMedicExamInfor()
         {
             InitializeComponent();
@@ -94,7 +98,7 @@ namespace gui.PatientForm.MedicExamInforForm
                 string totalAmount = ChangeNull(item.TotalAmount.ToString());
                 string date = ChangeNull(item.Diagnosi.ExaminationTime.ToString());
                 bool hasInvoice = treatmentInvoiceDetailService.GetByClinicInforID(item.ID.ToString()) == null ? false : true;
-                dgvClinicalInfor.Rows.Add(index,id, diag, treatment, treatmentMethod, unit, quantity, unitPrice, totalAmount, date, hasInvoice);
+                dgvClinicalInfor.Rows.Add(index, id, diag, treatment, treatmentMethod, unit, quantity, unitPrice, totalAmount, date, hasInvoice);
                 index++;
             }
         }
@@ -152,6 +156,7 @@ namespace gui.PatientForm.MedicExamInforForm
             this.Close();
         }
 
+        //Thêm thông tin điều trị
         private void menu2BtnAdd_Click(object sender, EventArgs e)
         {
             FormAddDiagnosisTreatment form = new FormAddDiagnosisTreatment();
@@ -164,12 +169,19 @@ namespace gui.PatientForm.MedicExamInforForm
 
         private void dgvClinicalInfor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvClinicalInfor.SelectedRows.Count > 0 && Convert.ToBoolean(dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value))
+            if (dgvClinicalInfor.SelectedRows.Count > 0 && !Convert.ToBoolean(dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value))
             {
                 menu2BtnEdit.Enabled = true;
+                menu2BtnDelete.Enabled = true;
+            }
+            else if (dgvClinicalInfor.SelectedRows.Count > 0 && Convert.ToBoolean(dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value))
+            {
+                menu2BtnEdit.Enabled = false;
+                menu2BtnDelete.Enabled = false;
             }
         }
 
+        //Chỉnh sửa thông tin điều trị
         private void menu2BtnEdit_Click(object sender, EventArgs e)
         {
             if (dgvClinicalInfor.SelectedRows.Count > 0)
@@ -182,11 +194,53 @@ namespace gui.PatientForm.MedicExamInforForm
                 form.ShowDialog();
             }
         }
-
+        //Form xuất hóa đơn
         private void menu2Invoice_Click(object sender, EventArgs e)
         {
             FormPrintInvoice form = new FormPrintInvoice();
             form._PatientID = this._PatientID;
+            form.mainForm = this;
+            form.ShowDialog();
+        }
+
+        private bool isHasInvoice(DataGridViewRow row)
+        {
+            if (Convert.ToBoolean(row.Cells["ColumnInvoice"].Value))
+                return true;
+            return false;
+        }
+        //Bấm vào nút xóa thông tin điều trị.
+        private void menu2BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvClinicalInfor.SelectedRows.Count > 0)
+                {
+                    var row = dgvClinicalInfor.SelectedRows[0];
+                    if (!isHasInvoice(row))
+                    {
+                        string id = row.Cells["ColumnIDClinicInf"].Value.ToString();
+                        DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa thông tin này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            clinicalInformationService.Delete(id);
+                            ShowMessage("Xóa thành công.");
+                            frmMedicExamInfor_Load(sender, e);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message);
+            }
+        }
+        //Bấm nút hủy hóa đơn
+        private void menu2BtnDeleteInvoice_Click(object sender, EventArgs e)
+        {
+            FormDeleteInvoice form = new FormDeleteInvoice();
+            form._PatientID = this._PatientID;
+            form.PreForm = this;
             form.ShowDialog();
         }
     }

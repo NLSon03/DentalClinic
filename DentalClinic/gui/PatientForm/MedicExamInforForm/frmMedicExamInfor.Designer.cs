@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMedicExamInfor));
             this.grbSubExamInfor = new System.Windows.Forms.GroupBox();
             this.lblOther = new System.Windows.Forms.Label();
             this.picXray = new System.Windows.Forms.PictureBox();
@@ -70,7 +71,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menu2BtnEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.menu2BtnDelete = new System.Windows.Forms.ToolStripButton();
             this.menu2Invoice = new System.Windows.Forms.ToolStripButton();
+            this.menu2BtnDeleteInvoice = new System.Windows.Forms.ToolStripButton();
             this.dgvClinicalInfor = new System.Windows.Forms.DataGridView();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIDClinicInf = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,6 +86,7 @@
             this.ColumnTotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.grbSubExamInfor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picXray)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -483,6 +487,9 @@
             this.toolStripSeparator2,
             this.menu2BtnEdit,
             this.toolStripSeparator5,
+            this.menu2BtnDelete,
+            this.menu2BtnDeleteInvoice,
+            this.toolStripSeparator7,
             this.menu2Invoice});
             this.toolStrip2.Location = new System.Drawing.Point(3, 22);
             this.toolStrip2.Name = "toolStrip2";
@@ -519,14 +526,35 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // menu2BtnDelete
+            // 
+            this.menu2BtnDelete.Enabled = false;
+            this.menu2BtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("menu2BtnDelete.Image")));
+            this.menu2BtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menu2BtnDelete.Name = "menu2BtnDelete";
+            this.menu2BtnDelete.Size = new System.Drawing.Size(47, 22);
+            this.menu2BtnDelete.Text = "Xóa";
+            this.menu2BtnDelete.Click += new System.EventHandler(this.menu2BtnDelete_Click);
+            // 
             // menu2Invoice
             // 
+            this.menu2Invoice.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.menu2Invoice.Image = global::gui.Properties.Resources.invoice;
             this.menu2Invoice.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.menu2Invoice.Name = "menu2Invoice";
             this.menu2Invoice.Size = new System.Drawing.Size(98, 22);
             this.menu2Invoice.Text = "Xuất hóa đơn";
             this.menu2Invoice.Click += new System.EventHandler(this.menu2Invoice_Click);
+            // 
+            // menu2BtnDeleteInvoice
+            // 
+            this.menu2BtnDeleteInvoice.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.menu2BtnDeleteInvoice.Image = ((System.Drawing.Image)(resources.GetObject("menu2BtnDeleteInvoice.Image")));
+            this.menu2BtnDeleteInvoice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menu2BtnDeleteInvoice.Name = "menu2BtnDeleteInvoice";
+            this.menu2BtnDeleteInvoice.Size = new System.Drawing.Size(96, 22);
+            this.menu2BtnDeleteInvoice.Text = "Hủy hóa đơn";
+            this.menu2BtnDeleteInvoice.Click += new System.EventHandler(this.menu2BtnDeleteInvoice_Click);
             // 
             // dgvClinicalInfor
             // 
@@ -628,6 +656,11 @@
             this.ColumnInvoice.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnInvoice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
             // frmMedicExamInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -719,5 +752,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton menu2Invoice;
+        private System.Windows.Forms.ToolStripButton menu2BtnDelete;
+        private System.Windows.Forms.ToolStripButton menu2BtnDeleteInvoice;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }

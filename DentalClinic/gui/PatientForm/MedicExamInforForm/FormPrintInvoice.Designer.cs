@@ -45,6 +45,8 @@
             this.ColumnInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClinicalInfor)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +65,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTotalAmount);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblRedLine);
             this.groupBox1.Controls.Add(this.dgvClinicalInfor);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,8 +107,10 @@
             this.ColumnInvoice});
             this.dgvClinicalInfor.Location = new System.Drawing.Point(23, 37);
             this.dgvClinicalInfor.Name = "dgvClinicalInfor";
-            this.dgvClinicalInfor.Size = new System.Drawing.Size(1179, 226);
+            this.dgvClinicalInfor.Size = new System.Drawing.Size(1179, 204);
             this.dgvClinicalInfor.TabIndex = 1;
+            this.dgvClinicalInfor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClinicalInfor_CellContentClick);
+            this.dgvClinicalInfor.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClinicalInfor_CellValueChanged);
             // 
             // ColumnID
             // 
@@ -202,6 +208,24 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(915, 252);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Tổng hóa đơn:";
+            // 
+            // txtTotalAmount
+            // 
+            this.txtTotalAmount.Enabled = false;
+            this.txtTotalAmount.Location = new System.Drawing.Point(1032, 249);
+            this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.Size = new System.Drawing.Size(170, 26);
+            this.txtTotalAmount.TabIndex = 4;
+            this.txtTotalAmount.Text = "0.00";
+            // 
             // FormPrintInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,5 +267,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnInvoice;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.TextBox txtTotalAmount;
+        private System.Windows.Forms.Label label1;
     }
 }

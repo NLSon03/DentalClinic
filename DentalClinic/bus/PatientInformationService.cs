@@ -21,5 +21,20 @@ namespace bus
             return context.PatientInformations.FirstOrDefault(p=>p.PatientID.ToString() == id);
         }
 
+
+        public string JustGetName(string id)
+        {
+            using(var model = new DentalModel())
+            {
+                return model.PatientInformations.FirstOrDefault(p=>p.PatientID.ToString() == id).FullName;
+            }
+        }
+        public string JustGetAddress(string id)
+        {
+            using (var model = new DentalModel())
+            {
+                return model.PatientInformations.FirstOrDefault(p => p.PatientID.ToString() == id).Address;
+            }
+        }
     }
 }

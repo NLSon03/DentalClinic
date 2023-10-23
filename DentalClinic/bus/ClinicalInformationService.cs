@@ -59,5 +59,65 @@ namespace bus
                 model.SaveChanges();
             }
         }
+
+        public void Delete(string id)
+        {
+            var model = new DentalModel();
+            var deleteItem = model.ClinicalInformations.FirstOrDefault(p => p.ID.ToString() == id);
+            if (deleteItem != null)
+            {
+                var diagnosis = model.Diagnosis.FirstOrDefault(p => p.ID == deleteItem.Diagnosis_ID);
+                model.Diagnosis.Remove(diagnosis);
+                model.ClinicalInformations.Remove(deleteItem);
+            }
+            model.SaveChanges();
+        }
+
+        public List<string> GetTreatmentNamesByIds(List<int?> ids)
+        {
+            using (var model = new DentalModel())
+            {
+                return ids.Select(id =>
+                {
+                    var info = model.ClinicalInformations.FirstOrDefault(i => i.ID == id);
+                    return $"{info?.Treatment.TreatmentName.Name} - {info?.Treatment.TreatmentMethodName.Name}";
+                }).ToList();
+            }
+        }
+
+        public List<int?> GetQuantitiesByIds(List<int?> ids)
+        {
+            using (var model = new DentalModel())
+            {
+                return ids.Select(id =>
+                {
+                    var info = model.ClinicalInformations.FirstOrDefault(i => i.ID == id);
+                    return info?.Quantity;
+                }).ToList();
+            }
+        }
+
+        public List<decimal?> GetTotalAmountsByIds(List<int?> ids)
+        {
+            using (var model = new DentalModel())
+            {
+                return ids.Select(id =>
+                {
+                    var info = model.ClinicalInformations.FirstOrDefault(i => i.ID == id);
+                    return info?.TotalAmount;
+                }).ToList();
+            }
+        }
+
+        public List<int?> GetClinicInfoIdsByInvoiceId(int invoiceId)
+        {
+            using (var model = new DentalModel())
+            {
+                return model.TreatmentInvoiceDetails
+                    .Where(detail => detail.InvoiceID == invoiceId)
+                    .Select(detail => detail.ClinicInfor_ID)
+                    .ToList();
+            }
+        }
     }
 }
