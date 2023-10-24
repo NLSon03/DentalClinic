@@ -4,7 +4,7 @@ using gui.PatientForm;
 using System;
 using System.Threading;
 using System.Windows.Forms;
-
+using gui.StatisticForm;
 namespace DentalClinic
 {
     public partial class MainForm : Form
@@ -38,11 +38,11 @@ namespace DentalClinic
             }
         }
 
-        /*private void btnStatistics_Click(object sender, EventArgs e)
+        private void btnStatistics_Click(object sender, EventArgs e)
         {
             frmStatistic frmStatistic = new frmStatistic();
             frmStatistic.ShowDialog();
-        }*/
+        }
 
         private void btnDentalMaterial_Click(object sender, EventArgs e)
         {
