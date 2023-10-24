@@ -1,5 +1,6 @@
 ﻿using DentalClinic;
 using gui.PatientForm;
+using gui.PatientForm.CompletingMedInvoiceForm;
 using gui.PatientForm.PrescriptionForm;
 using System;
 using System.Collections.Generic;

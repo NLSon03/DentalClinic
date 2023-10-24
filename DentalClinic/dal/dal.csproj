@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\ClinicalInformation.cs" />
+    <Compile Include="Entities\ConsumableTool.cs" />
     <Compile Include="Entities\DentalModel.cs" />
     <Compile Include="Entities\DentalTool.cs" />
     <Compile Include="Entities\DentalToolTransaction.cs" />

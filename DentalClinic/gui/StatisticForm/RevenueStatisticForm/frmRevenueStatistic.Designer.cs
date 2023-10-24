@@ -87,13 +87,8 @@
             this.label30 = new System.Windows.Forms.Label();
             this.tabTongDonthuoc = new System.Windows.Forms.TabPage();
             this.dgvTienThuoc = new System.Windows.Forms.DataGridView();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cbThongkeThuoc = new System.Windows.Forms.CheckBox();
             this.btnLamMoifrm3 = new System.Windows.Forms.Button();
             this.btnXuatfrm3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -136,13 +131,14 @@
             this.tabTongDieutri = new System.Windows.Forms.TabPage();
             this.dgvDieutri = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNgayDieutri = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbThongkeDieutri = new System.Windows.Forms.CheckBox();
             this.btnLamMoifrm2 = new System.Windows.Forms.Button();
             this.btnXuatfrm2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -156,6 +152,12 @@
             this.lbTiendieutri = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNgayThuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabTongnhap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienNhap)).BeginInit();
             this.panel6.SuspendLayout();
@@ -291,7 +293,7 @@
             this.tabTongnhap.Name = "tabTongnhap";
             this.tabTongnhap.Size = new System.Drawing.Size(1194, 642);
             this.tabTongnhap.TabIndex = 6;
-            this.tabTongnhap.Text = "Tổng chi nhập vật liệu";
+            this.tabTongnhap.Text = "Tổng tiền nhập vật liệu";
             this.tabTongnhap.UseVisualStyleBackColor = true;
             // 
             // dgvTienNhap
@@ -387,6 +389,7 @@
             this.btnLamMoifrm5.Text = "Làm mới";
             this.btnLamMoifrm5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm5.UseVisualStyleBackColor = true;
+            this.btnLamMoifrm5.Click += new System.EventHandler(this.btnLamMoifrm5_Click);
             // 
             // btnXuatfrm5
             // 
@@ -518,7 +521,7 @@
             this.tabTongxuat.Name = "tabTongxuat";
             this.tabTongxuat.Size = new System.Drawing.Size(1194, 642);
             this.tabTongxuat.TabIndex = 5;
-            this.tabTongxuat.Text = "Tổng thu xuất vật liệu";
+            this.tabTongxuat.Text = "Tổng tiền xuất vật liệu";
             this.tabTongxuat.UseVisualStyleBackColor = true;
             // 
             // dgvTienXuat
@@ -614,6 +617,7 @@
             this.btnLammoifrm4.Text = "Làm mới";
             this.btnLammoifrm4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLammoifrm4.UseVisualStyleBackColor = true;
+            this.btnLammoifrm4.Click += new System.EventHandler(this.btnLammoifrm4_Click);
             // 
             // label25
             // 
@@ -745,7 +749,7 @@
             this.tabTongDonthuoc.Name = "tabTongDonthuoc";
             this.tabTongDonthuoc.Size = new System.Drawing.Size(1194, 642);
             this.tabTongDonthuoc.TabIndex = 4;
-            this.tabTongDonthuoc.Text = "Tổng thu thuốc";
+            this.tabTongDonthuoc.Text = "Tổng tiền đơn thuốc";
             this.tabTongDonthuoc.UseVisualStyleBackColor = true;
             // 
             // dgvTienThuoc
@@ -754,7 +758,7 @@
             this.dgvTienThuoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTienThuoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column13,
-            this.Column14,
+            this.clmNgayThuoc,
             this.Column15,
             this.Column16,
             this.Column17,
@@ -768,50 +772,9 @@
             this.dgvTienThuoc.Size = new System.Drawing.Size(1194, 476);
             this.dgvTienThuoc.TabIndex = 3;
             // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "STT";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
-            this.Column13.Width = 125;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "Ngày";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.Width = 150;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "Tên thuốc";
-            this.Column15.MinimumWidth = 6;
-            this.Column15.Name = "Column15";
-            this.Column15.Width = 250;
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "Số lượng";
-            this.Column16.MinimumWidth = 6;
-            this.Column16.Name = "Column16";
-            this.Column16.Width = 125;
-            // 
-            // Column17
-            // 
-            this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column17.HeaderText = "Đơn giá";
-            this.Column17.MinimumWidth = 6;
-            this.Column17.Name = "Column17";
-            // 
-            // Column18
-            // 
-            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column18.HeaderText = "Doanh thu";
-            this.Column18.MinimumWidth = 6;
-            this.Column18.Name = "Column18";
-            // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.cbThongkeThuoc);
             this.panel4.Controls.Add(this.btnLamMoifrm3);
             this.panel4.Controls.Add(this.btnXuatfrm3);
             this.panel4.Controls.Add(this.label3);
@@ -831,6 +794,16 @@
             this.panel4.Size = new System.Drawing.Size(1194, 166);
             this.panel4.TabIndex = 2;
             // 
+            // cbThongkeThuoc
+            // 
+            this.cbThongkeThuoc.Location = new System.Drawing.Point(990, 90);
+            this.cbThongkeThuoc.Name = "cbThongkeThuoc";
+            this.cbThongkeThuoc.Size = new System.Drawing.Size(174, 54);
+            this.cbThongkeThuoc.TabIndex = 18;
+            this.cbThongkeThuoc.Text = "Thống kê theo thuốc";
+            this.cbThongkeThuoc.UseVisualStyleBackColor = true;
+            this.cbThongkeThuoc.CheckedChanged += new System.EventHandler(this.cbThongkeThuoc_CheckedChanged);
+            // 
             // btnLamMoifrm3
             // 
             this.btnLamMoifrm3.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoifrm3.Image")));
@@ -841,6 +814,7 @@
             this.btnLamMoifrm3.Text = "Làm mới";
             this.btnLamMoifrm3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLamMoifrm3.UseVisualStyleBackColor = true;
+            this.btnLamMoifrm3.Click += new System.EventHandler(this.btnLamMoifrm3_Click);
             // 
             // btnXuatfrm3
             // 
@@ -951,9 +925,9 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(522, 90);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(181, 18);
+            this.label20.Size = new System.Drawing.Size(145, 18);
             this.label20.TabIndex = 0;
-            this.label20.Text = "Tổng số đơn thuốc đã bán";
+            this.label20.Text = "Số đơn thuốc đã bán";
             // 
             // label23
             // 
@@ -1250,7 +1224,7 @@
             this.tabTongDieutri.Padding = new System.Windows.Forms.Padding(3);
             this.tabTongDieutri.Size = new System.Drawing.Size(1194, 642);
             this.tabTongDieutri.TabIndex = 2;
-            this.tabTongDieutri.Text = "Tổng thu điều trị";
+            this.tabTongDieutri.Text = "Tổng tiền điều trị";
             this.tabTongDieutri.UseVisualStyleBackColor = true;
             // 
             // dgvDieutri
@@ -1259,7 +1233,7 @@
             this.dgvDieutri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDieutri.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
-            this.Column11,
+            this.clmNgayDieutri,
             this.Column6,
             this.Column7,
             this.Column8,
@@ -1281,12 +1255,12 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 125;
             // 
-            // Column11
+            // clmNgayDieutri
             // 
-            this.Column11.HeaderText = "Ngày";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 150;
+            this.clmNgayDieutri.HeaderText = "Ngày";
+            this.clmNgayDieutri.MinimumWidth = 6;
+            this.clmNgayDieutri.Name = "clmNgayDieutri";
+            this.clmNgayDieutri.Width = 150;
             // 
             // Column6
             // 
@@ -1325,6 +1299,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cbThongkeDieutri);
             this.panel2.Controls.Add(this.btnLamMoifrm2);
             this.panel2.Controls.Add(this.btnXuatfrm2);
             this.panel2.Controls.Add(this.label4);
@@ -1343,6 +1318,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1188, 166);
             this.panel2.TabIndex = 3;
+            // 
+            // cbThongkeDieutri
+            // 
+            this.cbThongkeDieutri.Location = new System.Drawing.Point(1007, 90);
+            this.cbThongkeDieutri.Name = "cbThongkeDieutri";
+            this.cbThongkeDieutri.Size = new System.Drawing.Size(159, 60);
+            this.cbThongkeDieutri.TabIndex = 18;
+            this.cbThongkeDieutri.Text = "Thống kê theo thủ thuật điều trị";
+            this.cbThongkeDieutri.UseVisualStyleBackColor = true;
+            this.cbThongkeDieutri.CheckedChanged += new System.EventHandler(this.cbThongke_CheckedChanged);
             // 
             // btnLamMoifrm2
             // 
@@ -1478,6 +1463,48 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Tổng doanh thu điều trị";
             // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "STT";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            this.Column13.Width = 125;
+            // 
+            // clmNgayThuoc
+            // 
+            this.clmNgayThuoc.HeaderText = "Ngày";
+            this.clmNgayThuoc.MinimumWidth = 6;
+            this.clmNgayThuoc.Name = "clmNgayThuoc";
+            this.clmNgayThuoc.Width = 150;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "Tên thuốc";
+            this.Column15.MinimumWidth = 6;
+            this.Column15.Name = "Column15";
+            this.Column15.Width = 250;
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "Số lượng";
+            this.Column16.MinimumWidth = 6;
+            this.Column16.Name = "Column16";
+            this.Column16.Width = 125;
+            // 
+            // Column17
+            // 
+            this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column17.HeaderText = "Đơn giá";
+            this.Column17.MinimumWidth = 6;
+            this.Column17.Name = "Column17";
+            // 
+            // Column18
+            // 
+            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column18.HeaderText = "Doanh thu";
+            this.Column18.MinimumWidth = 6;
+            this.Column18.Name = "Column18";
+            // 
             // frmRevenueStatistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1571,12 +1598,6 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TabPage tabTongDonthuoc;
         private System.Windows.Forms.DataGridView dgvTienThuoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton optNamfrm3;
@@ -1627,13 +1648,6 @@
         private System.Windows.Forms.Label lbTiendieutri;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Button btnLammoifrm4;
         private System.Windows.Forms.Button btnLamMoifrm2;
         private System.Windows.Forms.Button btnXuatfrm2;
@@ -1643,5 +1657,20 @@
         private System.Windows.Forms.Button btnXuatfrm3;
         private System.Windows.Forms.Button btnLamMoifrmTong;
         private System.Windows.Forms.Button btnXuatfrmTong;
+        private System.Windows.Forms.CheckBox cbThongkeDieutri;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNgayDieutri;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.CheckBox cbThongkeThuoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNgayThuoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
     }
 }

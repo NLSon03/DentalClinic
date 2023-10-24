@@ -25,7 +25,10 @@ namespace gui.PatientForm
         private void frmNewPatient_Load(object sender, EventArgs e)
         {
             dateTime1stTime.Enabled = false;
+            cbFirstTime.Enabled = false;
             rbFemale.Checked = true;
+            txtPatientName.Focus();
+            dateTimeYOB.Value = DateTime.Now;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -47,6 +50,7 @@ namespace gui.PatientForm
                     errorProvider1.SetError(txtPatientName, "!");
                     throw new Exception("Tên người đến khám trống");
                 }
+                //if()
                 if (txtPhoneNum.Text == "")
                 {
                     errorProvider1.SetError(txtPhoneNum, "!");
@@ -158,6 +162,22 @@ namespace gui.PatientForm
         {
             frmPatient frm = new frmPatient();
             frm.ReloadPatientList();
+        }
+
+        private void txtPatientName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPhoneNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

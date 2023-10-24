@@ -45,9 +45,6 @@
             this.optNhap = new System.Windows.Forms.RadioButton();
             this.btnLamMoifrm1 = new System.Windows.Forms.Button();
             this.btnXuatfrm1 = new System.Windows.Forms.Button();
-            this.lbTongXuat = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.optNamfrm1 = new System.Windows.Forms.RadioButton();
             this.optQuyfrm1 = new System.Windows.Forms.RadioButton();
@@ -55,18 +52,10 @@
             this.datNgayKT1 = new System.Windows.Forms.DateTimePicker();
             this.datNgayBD1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbTongNhap = new System.Windows.Forms.Label();
-            this.lbTongTien = new System.Windows.Forms.Label();
+            this.lbTongXuat = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabDungcu = new System.Windows.Forms.TabPage();
             this.dgvVatlieu = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.optXuatfrm2 = new System.Windows.Forms.RadioButton();
@@ -84,6 +73,15 @@
             this.lbVatlieunhap = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbTongNhap = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabNhapxuat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhapXuat)).BeginInit();
@@ -195,9 +193,6 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnLamMoifrm1);
             this.panel1.Controls.Add(this.btnXuatfrm1);
-            this.panel1.Controls.Add(this.lbTongXuat);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.optNamfrm1);
             this.panel1.Controls.Add(this.optQuyfrm1);
@@ -205,8 +200,8 @@
             this.panel1.Controls.Add(this.datNgayKT1);
             this.panel1.Controls.Add(this.datNgayBD1);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lbTongXuat);
             this.panel1.Controls.Add(this.lbTongNhap);
-            this.panel1.Controls.Add(this.lbTongTien);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -271,35 +266,6 @@
             this.btnXuatfrm1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnXuatfrm1.UseVisualStyleBackColor = true;
             this.btnXuatfrm1.Click += new System.EventHandler(this.btnXuatfrm1_Click);
-            // 
-            // lbTongXuat
-            // 
-            this.lbTongXuat.AutoSize = true;
-            this.lbTongXuat.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTongXuat.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbTongXuat.Location = new System.Drawing.Point(858, 128);
-            this.lbTongXuat.Name = "lbTongXuat";
-            this.lbTongXuat.Size = new System.Drawing.Size(19, 28);
-            this.lbTongXuat.TabIndex = 15;
-            this.lbTongXuat.Text = "-";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(858, 90);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(100, 18);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "Tổng tiền xuất";
-            // 
-            // label9
-            // 
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
-            this.label9.Location = new System.Drawing.Point(849, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(3, 80);
-            this.label9.TabIndex = 13;
             // 
             // label1
             // 
@@ -371,45 +337,25 @@
             this.label2.Size = new System.Drawing.Size(3, 80);
             this.label2.TabIndex = 3;
             // 
-            // lbTongNhap
+            // lbTongXuat
             // 
-            this.lbTongNhap.AutoSize = true;
-            this.lbTongNhap.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTongNhap.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbTongNhap.Location = new System.Drawing.Point(430, 128);
-            this.lbTongNhap.Name = "lbTongNhap";
-            this.lbTongNhap.Size = new System.Drawing.Size(19, 28);
-            this.lbTongNhap.TabIndex = 2;
-            this.lbTongNhap.Text = "-";
-            // 
-            // lbTongTien
-            // 
-            this.lbTongTien.AutoSize = true;
-            this.lbTongTien.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTongTien.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbTongTien.Location = new System.Drawing.Point(8, 128);
-            this.lbTongTien.Name = "lbTongTien";
-            this.lbTongTien.Size = new System.Drawing.Size(19, 28);
-            this.lbTongTien.TabIndex = 1;
-            this.lbTongTien.Text = "-";
+            this.lbTongXuat.AutoSize = true;
+            this.lbTongXuat.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongXuat.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbTongXuat.Location = new System.Drawing.Point(430, 128);
+            this.lbTongXuat.Name = "lbTongXuat";
+            this.lbTongXuat.Size = new System.Drawing.Size(19, 28);
+            this.lbTongXuat.TabIndex = 2;
+            this.lbTongXuat.Text = "-";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(430, 90);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 18);
+            this.label7.Size = new System.Drawing.Size(100, 18);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Tổng tiền nhập";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 90);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 18);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Tổng tiền lời";
+            this.label7.Text = "Tổng tiền xuất";
             // 
             // tabDungcu
             // 
@@ -432,6 +378,7 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
+            this.Column9,
             this.dataGridViewTextBoxColumn6,
             this.Column8});
             this.dgvVatlieu.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -442,48 +389,6 @@
             this.dgvVatlieu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVatlieu.Size = new System.Drawing.Size(1188, 470);
             this.dgvVatlieu.TabIndex = 5;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "STT";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Tên vật liệu";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Số lượng đã nhập";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Số lượng đã xuất";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Số lượng tồn";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Lần update cuối";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 125;
             // 
             // panel3
             // 
@@ -674,6 +579,75 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Tổng vật liệu đã nhập";
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "STT";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Tên vật liệu";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Số lượng đã nhập";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Số lượng đã xuất";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // Column9
+            // 
+            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column9.HeaderText = "Số lượng đã tiêu hao/ đã bán";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Số lượng tồn";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Lần update cuối";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 125;
+            // 
+            // lbTongNhap
+            // 
+            this.lbTongNhap.AutoSize = true;
+            this.lbTongNhap.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongNhap.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbTongNhap.Location = new System.Drawing.Point(8, 128);
+            this.lbTongNhap.Name = "lbTongNhap";
+            this.lbTongNhap.Size = new System.Drawing.Size(19, 28);
+            this.lbTongNhap.TabIndex = 1;
+            this.lbTongNhap.Text = "-";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(105, 18);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Tổng tiền nhập";
+            // 
             // frmInventoryStatistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -709,9 +683,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnLamMoifrm1;
         private System.Windows.Forms.Button btnXuatfrm1;
-        private System.Windows.Forms.Label lbTongXuat;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton optNamfrm1;
         private System.Windows.Forms.RadioButton optQuyfrm1;
@@ -719,10 +690,8 @@
         private System.Windows.Forms.DateTimePicker datNgayKT1;
         private System.Windows.Forms.DateTimePicker datNgayBD1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbTongNhap;
-        private System.Windows.Forms.Label lbTongTien;
+        private System.Windows.Forms.Label lbTongXuat;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dgvNhapXuat;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton optXuat;
@@ -745,12 +714,6 @@
         private System.Windows.Forms.Label lbVatlieunhap;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -758,5 +721,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.Label lbTongNhap;
+        private System.Windows.Forms.Label label8;
     }
 }

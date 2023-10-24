@@ -43,7 +43,6 @@ namespace gui.StatisticForm.InventoryStatisticForm
             }
             lbTongNhap.Text = tongnhap.ToString();
             lbTongXuat.Text = tongxuat.ToString();
-            lbTongTien.Text = (tongxuat - tongnhap).ToString();
         }
 
         private void BindGridVatLieu(List<Inventory> dsvatlieu)
@@ -56,8 +55,9 @@ namespace gui.StatisticForm.InventoryStatisticForm
                 dgvVatlieu.Rows[index].Cells[1].Value = item.ToolName;
                 dgvVatlieu.Rows[index].Cells[2].Value = item.QuantityPurchased;
                 dgvVatlieu.Rows[index].Cells[3].Value = item.QuantitySold;
-                dgvVatlieu.Rows[index].Cells[4].Value = item.RemainingQuantity;
-                dgvVatlieu.Rows[index].Cells[5].Value = item.LastUpdateDate;
+                dgvVatlieu.Rows[index].Cells[4].Value = item.ConsumedQuantity;
+                dgvVatlieu.Rows[index].Cells[5].Value = item.RemainingQuantity;
+                dgvVatlieu.Rows[index].Cells[6].Value = item.LastUpdateDate;
             }
             lbVatlieunhap.Text = dsvatlieu.Count(x => x.QuantityPurchased != 0).ToString();
             lbVatlieuxuat.Text = dsvatlieu.Count(x=> x.QuantitySold != 0).ToString();

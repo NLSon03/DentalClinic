@@ -1,11 +1,13 @@
 ﻿using bus;
 using dal.Entities;
 using DentalClinic;
+using gui.PatientForm.CompletingMedInvoiceForm;
 using gui.PatientForm.MedicExamInforForm;
 using gui.PatientForm.PrescriptionForm;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,8 +15,9 @@ namespace gui.PatientForm
 {
     public partial class frmPatient : Form
     {
-        
+
         PatientInformationService patientInformationService = new PatientInformationService();
+        frmPatient patient;
         public DataGridView dgv;
         //set style cho bảng
         public void setGridViewStyle(DataGridView dataGridView)
@@ -30,6 +33,7 @@ namespace gui.PatientForm
         {
             InitializeComponent();
             dgv = dgvPatient;
+            patient = this;
         }
         private void ReopenMainForm()
         {
@@ -42,14 +46,14 @@ namespace gui.PatientForm
             thread.Start();
             this.Close();
         }
-
         //Nhập thông tin bệnh nhân vào bảng
         private void BindGrid(List<PatientInformation> patients)
         {
             dgvPatient.Rows.Clear();
-            foreach(var item in patients)
+            foreach (var item in patients)
             {
-                dgvPatient.Rows.Add(item.PatientID,item.FullName,item.Gender,"","","","","");
+                dgvPatient.Rows.Add(item.PatientID, item.FullName, item.Gender,item.YearOfBirth, item.PhoneNumber,
+                    item.Address, item.FirstExaminationDate, item.ReasonForExamination);
             }
         }
 
@@ -57,12 +61,14 @@ namespace gui.PatientForm
         {
             try
             {
+                btnCreatingPrescription.Enabled = false;
+                //btnPurchase.Enabled = false;
                 setGridViewStyle(this.dgvPatient);
-                var ListPatient =  patientInformationService.GetAll();
+                var ListPatient = patientInformationService.GetAll();
                 BindGrid(ListPatient);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -84,17 +90,11 @@ namespace gui.PatientForm
         private void OpenPrescriptionForm()
         {
             frmPrescription f = new frmPrescription();
-            foreach(DataGridViewRow r in dgvPatient.Rows )
+            foreach (DataGridViewRow r in dgvPatient.Rows)
             {
                 if (r.Selected)
                 {
                     f.p_id = int.Parse(r.Cells[0].Value.ToString());
-                    if (r.Cells[8].Value == null)
-                    {
-                        f.remainChecked = false;
-                    }
-                    else
-                        f.remainChecked = true;
                 }
             }
             f.ShowDialog();
@@ -103,20 +103,21 @@ namespace gui.PatientForm
         {
             try
             {
-                //  foreach(DataGridViewRow r in dgvPatient.Rows)
-                //  {
-                //      if(row.Selected)
-                //      {
-                //              if (dgvPatient.Rows[r.Index].Cells[8].Value == null)
-                                    OpenPrescriptionForm();
-                // 
-                //              else
-                //              {
-                //                  string s = string.Format("Bệnh nhân đã có đơn thuốc.\n Vui lòng chọn bệnh nhân khác");
-                //                  throw new Exception(s);
-                //              }
-                //      }
-                //  }
+                foreach (DataGridViewRow r in dgvPatient.Rows)
+                {
+                    if (r.Selected)
+                    {
+                        if (dgvPatient.Rows[r.Index].Cells[8].Value == null)
+                        {
+                            OpenPrescriptionForm();
+                        }    
+                        else
+                        {
+                            string s = string.Format("Bệnh nhân đã có đơn thuốc.\n Vui lòng chọn bệnh nhân khác");
+                            throw new Exception(s);
+                        }
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -152,7 +153,17 @@ namespace gui.PatientForm
         {
             //Nút xem thông tin khám bệnh chỉ enable khi có một bệnh nhân được chọn
             if (dgvPatient.SelectedRows.Count > 0)
+            {
                 btnMedicExamInfor.Enabled = true;
+                btnCreatingPrescription.Enabled = true;
+                foreach(DataGridViewRow r in dgvPatient.Rows)
+                {
+                    if (Convert.ToBoolean(r.Cells[8].Value))
+                    {
+                        btnPurchase.Enabled = true;
+                    }
+                }
+            }
         }
         public void ReloadPatientList()
         {
@@ -167,9 +178,9 @@ namespace gui.PatientForm
 
         private void dgvPatient_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            foreach(DataGridViewRow row in dgvPatient.Rows)
+            foreach (DataGridViewRow row in dgvPatient.Rows)
             {
-                if(row.Selected) 
+                if (row.Selected)
                 {
                     frmAnnoucement annouce = new frmAnnoucement();
                     annouce.ShowDialog();
@@ -180,8 +191,7 @@ namespace gui.PatientForm
                         frmEdit.txt2.Text = dgvPatient.Rows[row.Index].Cells[4].Value.ToString();
                         frmEdit.txt3.Text = dgvPatient.Rows[row.Index].Cells[5].Value.ToString();
                         frmEdit.txt4.Text = dgvPatient.Rows[row.Index].Cells[7].Value.ToString();
-                        frmEdit.datetime1.Value = DateTime.ParseExact(dgvPatient.Rows[row.Index].Cells[3].Value.ToString(),
-                            "dd--MM--yyyy",System.Globalization.CultureInfo.InvariantCulture);
+                        frmEdit.datetime1.Value = DateTime.Parse(dgvPatient.Rows[row.Index].Cells[3].Value.ToString());
                         if ((bool)dgvPatient.Rows[row.Index].Cells[2].Value == false)
                         {
                             frmEdit.rb1.Checked = false;
@@ -192,17 +202,81 @@ namespace gui.PatientForm
                             frmEdit.rb1.Checked = true;
                             frmEdit.rb2.Checked = false;
                         }
-                        if(dgvPatient.Rows[row.Index].Cells[6].Value != null)
+                        if (dgvPatient.Rows[row.Index].Cells[6].Value != null)
                         {
                             frmEdit.chk1.Checked = true;
-                            frmEdit.datetime1.Value = DateTime.ParseExact(dgvPatient.Rows[row.Index].Cells[6].Value.ToString(),
-                            "dd--MM--yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                            frmEdit.datetime2.Value = DateTime.Parse(dgvPatient.Rows[row.Index].Cells[6].Value.ToString());
                         }
                         else if (dgvPatient.Rows[row.Index].Cells[6].Value == null)
                         {
                             frmEdit.chk1.Checked = false;
                         }
                         frmEdit.ShowDialog();
+                    }
+                }
+            }
+        }
+
+        private void btnEditing_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvPatient.Rows)
+            {
+                if (row.Selected)
+                {
+                    frmEditInfo frmEdit = new frmEditInfo();
+                    frmEdit.txt1.Text = dgvPatient.Rows[row.Index].Cells[1].Value.ToString();
+                    frmEdit.txt2.Text = dgvPatient.Rows[row.Index].Cells[4].Value.ToString();
+                    frmEdit.txt3.Text = dgvPatient.Rows[row.Index].Cells[5].Value.ToString();
+                    frmEdit.txt4.Text = dgvPatient.Rows[row.Index].Cells[7].Value.ToString();
+                    frmEdit.datetime1.Value = DateTime.ParseExact(dgvPatient.Rows[row.Index].Cells[3].Value.ToString(),
+                        "dd--MM--yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    if ((bool)dgvPatient.Rows[row.Index].Cells[2].Value == false)
+                    {
+                        frmEdit.rb1.Checked = false;
+                        frmEdit.rb2.Checked = true;
+                    }
+                    else if ((bool)dgvPatient.Rows[row.Index].Cells[2].Value == true)
+                    {
+                        frmEdit.rb1.Checked = true;
+                        frmEdit.rb2.Checked = false;
+                    }
+                    if (dgvPatient.Rows[row.Index].Cells[6].Value != null)
+                    {
+                        frmEdit.chk1.Checked = true;
+                        frmEdit.datetime1.Value = DateTime.ParseExact(dgvPatient.Rows[row.Index].Cells[6].Value.ToString(),
+                        "dd--MM--yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                    else if (dgvPatient.Rows[row.Index].Cells[6].Value == null)
+                    {
+                        frmEdit.chk1.Checked = false;
+                    }
+                    frmEdit.ShowDialog();
+                }
+            }
+        }
+
+        private void dgvPatient_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.dgvPatient.RefreshEdit();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            btnAddNewPatient_Click(sender, e);
+        }
+
+        private void btnPurchase_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow r in dgvPatient.Rows)
+            {
+                if (r.Selected)
+                {
+                    if (Convert.ToBoolean(r.Cells[8].Value) ==false)
+                   {
+                        btnPurchase.Enabled=true;
+                        frmPurchase purchase = new frmPurchase();
+                        purchase.ID_p = int.Parse(r.Cells[0].Value.ToString());
+                        purchase.ShowDialog();
                     }
                 }
             }

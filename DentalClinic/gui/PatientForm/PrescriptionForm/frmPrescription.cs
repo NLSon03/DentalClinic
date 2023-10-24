@@ -21,7 +21,9 @@ namespace gui.PatientForm.PrescriptionForm
         DentalModel dentalModel;
         public int p_id;
         public bool remainChecked;
+        DentalModel model;
         private readonly MedicineService medicineService = new MedicineService();
+        private readonly PatientInformationService patient = new PatientInformationService();
         List<Unit> units;
         public frmPrescription()
         {
@@ -70,7 +72,8 @@ namespace gui.PatientForm.PrescriptionForm
                 FillMedicineComboBox(medicine);
                 InstantiateMyNumericUpDown();
                 FillUnitCombobox(unit);
-                lblID.Text = p_id.ToString();
+                string s = string.Format("ID bệnh nhân: {0}\n\nTên bệnh nhân: {1}", GetPatientID(), patient.GetByID(GetPatientID().ToString()).FullName);
+                lblID.Text = s;
             }
             catch (Exception ex)
             {
@@ -229,7 +232,7 @@ namespace gui.PatientForm.PrescriptionForm
         {
             try
             {
-                frmMedInvoice medInvoice = new frmMedInvoice();
+                frmMedDetail medInvoice = new frmMedDetail();
                 if (dgvMedicine.Rows.Count <= 0)
                     throw new Exception("Danh sách trống");
                 foreach (DataGridViewRow r in dgvMedicine.Rows)
@@ -257,6 +260,7 @@ namespace gui.PatientForm.PrescriptionForm
         {
 
         }
+
     }
     public class Unit
     {

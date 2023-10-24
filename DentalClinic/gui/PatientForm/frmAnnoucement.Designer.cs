@@ -76,6 +76,7 @@
             this.Name = "frmAnnoucement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chỉnh sửa";
+            this.Load += new System.EventHandler(this.frmAnnoucement_Load);
             this.ResumeLayout(false);
 
         }
