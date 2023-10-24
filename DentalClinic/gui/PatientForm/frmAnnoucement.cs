@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -39,18 +40,25 @@ namespace gui.PatientForm
                 MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK);
             }
         }
-        public bool isClicked= false;
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void OpenEdit()
         {
             frmEditInfo editInfo = new frmEditInfo();
-            isClicked = true;
             editInfo.ShowDialog();
+        }
+        public bool isClicked = false; 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            isClicked = true;
             this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void frmAnnoucement_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

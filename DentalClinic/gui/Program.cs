@@ -1,5 +1,6 @@
 ﻿using DentalClinic;
 using gui.PatientForm;
+using gui.PatientForm.CompletingMedInvoiceForm;
 using gui.PatientForm.PrescriptionForm;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace gui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm.LoginForm());
+            Application.Run(new MainForm());
         }
     }
 }

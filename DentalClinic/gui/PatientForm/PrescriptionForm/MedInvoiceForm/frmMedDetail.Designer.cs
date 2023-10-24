@@ -1,6 +1,6 @@
 ﻿namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
 {
-    partial class frmMedInvoice
+    partial class frmMedDetail
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,6 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblIDMed = new System.Windows.Forms.Label();
-            this.btnPrintInvoice = new System.Windows.Forms.Button();
             this.btnSaveDetails = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -97,22 +96,13 @@
             this.lblIDMed.Size = new System.Drawing.Size(0, 19);
             this.lblIDMed.TabIndex = 39;
             // 
-            // btnPrintInvoice
-            // 
-            this.btnPrintInvoice.Location = new System.Drawing.Point(112, 453);
-            this.btnPrintInvoice.Name = "btnPrintInvoice";
-            this.btnPrintInvoice.Size = new System.Drawing.Size(107, 43);
-            this.btnPrintInvoice.TabIndex = 38;
-            this.btnPrintInvoice.Text = "In hóa đơn";
-            this.btnPrintInvoice.UseVisualStyleBackColor = true;
-            // 
             // btnSaveDetails
             // 
-            this.btnSaveDetails.Location = new System.Drawing.Point(112, 394);
+            this.btnSaveDetails.Location = new System.Drawing.Point(208, 404);
             this.btnSaveDetails.Name = "btnSaveDetails";
             this.btnSaveDetails.Size = new System.Drawing.Size(107, 43);
             this.btnSaveDetails.TabIndex = 37;
-            this.btnSaveDetails.Text = "Lưu hóa đơn";
+            this.btnSaveDetails.Text = "Lưu đơn thuốc";
             this.btnSaveDetails.UseVisualStyleBackColor = true;
             this.btnSaveDetails.Click += new System.EventHandler(this.btnSaveDetails_Click);
             // 
@@ -141,7 +131,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 539);
             this.Controls.Add(this.lblIDMed);
-            this.Controls.Add(this.btnPrintInvoice);
             this.Controls.Add(this.btnSaveDetails);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label4);
@@ -164,7 +153,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label lblIDMed;
-        private System.Windows.Forms.Button btnPrintInvoice;
         private System.Windows.Forms.Button btnSaveDetails;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label4;

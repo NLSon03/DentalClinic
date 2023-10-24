@@ -58,6 +58,7 @@
             this.colFirstTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHavePrescription = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnPurchase = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
@@ -71,7 +72,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1211, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1303, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -123,6 +124,7 @@
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(239, 26);
             this.btnAddNew.Text = "Thêm mới       &F1";
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // toolStripSeparator5
             // 
@@ -148,11 +150,12 @@
             this.btnEditing,
             this.toolStripSeparator3,
             this.btnCreatingPrescription,
+            this.btnPurchase,
             this.toolStripSeparator4,
             this.btnMedicExamInfor});
             this.toolStrip1.Location = new System.Drawing.Point(0, 29);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1211, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1303, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -190,6 +193,7 @@
             this.btnEditing.Name = "btnEditing";
             this.btnEditing.Size = new System.Drawing.Size(92, 24);
             this.btnEditing.Text = "Cập nhật";
+            this.btnEditing.Click += new System.EventHandler(this.btnEditing_Click);
             // 
             // toolStripSeparator3
             // 
@@ -223,6 +227,7 @@
             // dgvPatient
             // 
             this.dgvPatient.AllowUserToAddRows = false;
+            this.dgvPatient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatientID,
@@ -234,14 +239,16 @@
             this.colFirstTime,
             this.colReason,
             this.colHavePrescription});
-            this.dgvPatient.Location = new System.Drawing.Point(29, 70);
+            this.dgvPatient.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvPatient.Location = new System.Drawing.Point(0, 83);
             this.dgvPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvPatient.Name = "dgvPatient";
             this.dgvPatient.RowHeadersWidth = 51;
             this.dgvPatient.RowTemplate.Height = 24;
-            this.dgvPatient.Size = new System.Drawing.Size(1148, 591);
+            this.dgvPatient.Size = new System.Drawing.Size(1303, 591);
             this.dgvPatient.TabIndex = 3;
             this.dgvPatient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellClick);
+            this.dgvPatient.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellContentClick);
             this.dgvPatient.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellDoubleClick);
             // 
             // colPatientID
@@ -249,69 +256,69 @@
             this.colPatientID.HeaderText = "Mã bệnh nhân";
             this.colPatientID.MinimumWidth = 6;
             this.colPatientID.Name = "colPatientID";
-            this.colPatientID.Width = 125;
             // 
             // colName
             // 
             this.colName.HeaderText = "Họ tên bệnh nhân";
             this.colName.MinimumWidth = 6;
             this.colName.Name = "colName";
-            this.colName.Width = 125;
             // 
             // colGender
             // 
             this.colGender.HeaderText = "Giới tính";
             this.colGender.MinimumWidth = 6;
             this.colGender.Name = "colGender";
-            this.colGender.Width = 75;
             // 
             // colYOB
             // 
             this.colYOB.HeaderText = "Ngày sinh";
             this.colYOB.MinimumWidth = 6;
             this.colYOB.Name = "colYOB";
-            this.colYOB.Width = 125;
             // 
             // colPhoneNumber
             // 
             this.colPhoneNumber.HeaderText = "Số điện thoại";
             this.colPhoneNumber.MinimumWidth = 6;
             this.colPhoneNumber.Name = "colPhoneNumber";
-            this.colPhoneNumber.Width = 125;
             // 
             // colAddress
             // 
             this.colAddress.HeaderText = "Địa chỉ";
             this.colAddress.MinimumWidth = 6;
             this.colAddress.Name = "colAddress";
-            this.colAddress.Width = 125;
             // 
             // colFirstTime
             // 
             this.colFirstTime.HeaderText = "Lần đầu khám";
             this.colFirstTime.MinimumWidth = 6;
             this.colFirstTime.Name = "colFirstTime";
-            this.colFirstTime.Width = 125;
             // 
             // colReason
             // 
             this.colReason.HeaderText = "Lý do khám";
             this.colReason.MinimumWidth = 6;
             this.colReason.Name = "colReason";
-            this.colReason.Width = 125;
             // 
             // colHavePrescription
             // 
             this.colHavePrescription.HeaderText = "Đã có đơn thuốc?";
             this.colHavePrescription.MinimumWidth = 6;
             this.colHavePrescription.Name = "colHavePrescription";
-            this.colHavePrescription.Width = 125;
+            // 
+            // btnPurchase
+            // 
+            this.btnPurchase.Image = ((System.Drawing.Image)(resources.GetObject("btnPurchase.Image")));
+            this.btnPurchase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPurchase.Name = "btnPurchase";
+            this.btnPurchase.Size = new System.Drawing.Size(178, 24);
+            this.btnPurchase.Text = "Thanh toán đơn thuốc";
+            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
             // 
             // frmPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1211, 674);
+            this.ClientSize = new System.Drawing.Size(1303, 674);
             this.Controls.Add(this.dgvPatient);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -364,5 +371,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colFirstTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReason;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colHavePrescription;
+        private System.Windows.Forms.ToolStripButton btnPurchase;
     }
 }

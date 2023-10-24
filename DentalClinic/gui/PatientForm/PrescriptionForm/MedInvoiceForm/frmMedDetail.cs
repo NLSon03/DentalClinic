@@ -14,14 +14,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
 {
-    public partial class frmMedInvoice : Form
+    public partial class frmMedDetail : Form
     {
         public int PatientID;
+        private readonly MedicineService med = new MedicineService();
         private readonly PrescriptionService prescription = new PrescriptionService();
         private readonly MedicineInvoiceService  medInvoice = new MedicineInvoiceService();
         private readonly MedicineInvoiceDetailService medInvoiceDetails = new MedicineInvoiceDetailService();
 
-        public frmMedInvoice()
+        public frmMedDetail()
         {
             InitializeComponent();
         }
@@ -49,13 +50,7 @@ namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
         }
         private int GetID(string name)
         {
-            using (var model = new DentalModel())
-            {
-                var a = (from b in model.Medicines
-                         where b.MedicineName == name
-                         select b.MedicineID).FirstOrDefault();
-                return a;
-            }
+            return med.GetIDByName(name).MedicineID;
         }
         private decimal Total()
         {
@@ -94,27 +89,15 @@ namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
                             Quantity = int.Parse(lv.SubItems[4].Text),
                             TotalAmount = decimal.Parse(Total().ToString())
                         };
-                        model.Prescriptions.Add(item1);
+                        prescription.InsertNew(item1);
                     }
-                    model.SaveChanges();
-                    /*var item2 = new MedicineInvoice()
-                    {
-                        Date = DateTime.Now,
-                        TotalAmount = decimal.Parse(Total().ToString())
-                    };
-                    medInvoice.InsertNew(item2);
-
-                    var item3 = new MedicineInvoiceDetail()
-                    {
-
-                    };
-                    medInvoiceDetails.InsertNew(item3);*/
                     MessageBox.Show("Done!","Annoucement!",MessageBoxButtons.OK);
                 }
+                this.Close();
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
     }

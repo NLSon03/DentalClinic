@@ -14,5 +14,11 @@ namespace bus
             DentalModel context = new DentalModel();
             return context.Medicines.ToList();
         }
+
+        public Medicine GetIDByName(string name)
+        {
+            DentalModel context = new DentalModel();
+            return context.Medicines.FirstOrDefault(p => p.MedicineName.ToString() == name);
+        }
     }
 }
