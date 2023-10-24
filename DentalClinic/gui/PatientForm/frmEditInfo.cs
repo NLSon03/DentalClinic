@@ -24,6 +24,7 @@ namespace gui.PatientForm
         public RadioButton rb1;
         public RadioButton rb2;
         public CheckBox chk1;
+        public frmPatient frm;
         private readonly PatientInformationService patientService = new PatientInformationService();
         public frmEditInfo()
         {
@@ -63,7 +64,7 @@ namespace gui.PatientForm
             {
                 using (var model = new DentalModel())
                 {
-                    frmPatient frm = new frmPatient();
+
                     foreach (DataGridViewRow row in frm.dgv.Rows)
                     {
                         if (row.Selected)

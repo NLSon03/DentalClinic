@@ -14,7 +14,73 @@ namespace bus
             DentalModel model = new DentalModel();
             return model.Prescriptions.ToList();
         }
+        public Prescription GetPrescriptionsID(string id)
+        {
+            DentalModel model = new DentalModel();
+            return model.Prescriptions.FirstOrDefault(i=>i.ID.ToString() == id);
+        }
+        public List<Prescription> GetIDByPatientID(int id)
+        {
+            DentalModel model = new DentalModel();
+            return model.Prescriptions.Where(p=>p.Patient_ID == id).ToList();
+        }
+        public List<int?> GetQuantitiesByIds(List<int?> ids)
+        {
+            using (var model = new DentalModel())
+            {
+                return ids.Select(id =>
+                {
+                    var info = model.Prescriptions.FirstOrDefault(i => i.ID == id);
+                    return info?.Quantity;
+                }).ToList();
+            }
+        }
+        public List<string> GetUnit(List<int?> unit)
+        {
+            using (var model = new DentalModel()) 
+            {
+                return unit.Select(u=>
+                {
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    return unitName.Medicine.Unit;
+                }).ToList();
+            }
+        }
+        public List<decimal?> GetTotal(List<int?> total) 
+        {
+            using (var model = new DentalModel())
+            {
+                return total.Select(u =>
+                {
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    return unitName?.TotalAmount;
+                }).ToList();
+            }
+        }
+        public List<decimal?> GetPrice(List<int?> price)
+        {
+            using (var model = new DentalModel())
+            {
+                return price.Select(u =>
+                {
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    return unitName.Medicine.UnitPrice;
+                }).ToList();
 
+            }
+        }
+        public List<string> GetDosage(List<int?> dosage)
+        {
+            using (var model = new DentalModel())
+            {
+                return dosage.Select(u =>
+                {
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    return unitName.Medicine.Dosage;
+                }).ToList();
+
+            }
+        }
         public string GetMedicineName(int id)
         {
             DentalModel model = new DentalModel();
@@ -53,6 +119,27 @@ namespace bus
             var totalQuantity = model.Prescriptions.AsEnumerable().Where(x => x.MedicineID == id && GetMedicineInvoiceDate(x.ID) >= startDate && GetMedicineInvoiceDate(x.ID) <= endDate)
                                                    .Sum(x => x.Quantity);
             return totalQuantity;
+        }
+        public List<string> GetMedName(List<int?> ids)
+        {
+            using (var model = new DentalModel())
+            {
+                return ids.Select(id =>
+                {
+                    var info = model.Prescriptions.FirstOrDefault(i => i.ID == id);
+                    return info?.Medicine.MedicineName;
+                }).ToList();
+            }
+        }
+        public List<int?> GetPrescriptionIdsByInvoiceId(int invoiceId)
+        {
+            using (var model = new DentalModel())
+            {
+                return model.MedicineInvoiceDetails
+                    .Where(detail => detail.InvoiceID == invoiceId)
+                    .Select(detail => detail.Prescription_ID)
+                    .ToList();
+            }
         }
     }
 }

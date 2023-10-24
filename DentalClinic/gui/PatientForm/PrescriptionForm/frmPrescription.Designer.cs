@@ -95,7 +95,7 @@
             // 
             // btnDeleteMedicine
             // 
-            this.btnDeleteMedicine.Location = new System.Drawing.Point(47, 498);
+            this.btnDeleteMedicine.Location = new System.Drawing.Point(49, 513);
             this.btnDeleteMedicine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteMedicine.Name = "btnDeleteMedicine";
             this.btnDeleteMedicine.Size = new System.Drawing.Size(105, 49);
@@ -106,18 +106,18 @@
             // 
             // btnPrintMedicinePrescription
             // 
-            this.btnPrintMedicinePrescription.Location = new System.Drawing.Point(178, 442);
+            this.btnPrintMedicinePrescription.Location = new System.Drawing.Point(180, 457);
             this.btnPrintMedicinePrescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrintMedicinePrescription.Name = "btnPrintMedicinePrescription";
             this.btnPrintMedicinePrescription.Size = new System.Drawing.Size(145, 49);
             this.btnPrintMedicinePrescription.TabIndex = 13;
-            this.btnPrintMedicinePrescription.Text = "In hóa đơn";
+            this.btnPrintMedicinePrescription.Text = "Lưu đơn thuốc";
             this.btnPrintMedicinePrescription.UseVisualStyleBackColor = true;
             this.btnPrintMedicinePrescription.Click += new System.EventHandler(this.btnPrintMedicinePrescription_Click);
             // 
             // btnAddMedicine
             // 
-            this.btnAddMedicine.Location = new System.Drawing.Point(47, 387);
+            this.btnAddMedicine.Location = new System.Drawing.Point(49, 402);
             this.btnAddMedicine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddMedicine.Name = "btnAddMedicine";
             this.btnAddMedicine.Size = new System.Drawing.Size(105, 49);
@@ -147,7 +147,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(47, 442);
+            this.btnUpdate.Location = new System.Drawing.Point(49, 457);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(105, 49);
@@ -175,7 +175,7 @@
             this.groupBox1.Size = new System.Drawing.Size(332, 319);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thêm thuốc";
+            this.groupBox1.Text = "Thông tin thuốc";
             // 
             // label7
             // 
@@ -215,7 +215,7 @@
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(164, 387);
+            this.label5.Location = new System.Drawing.Point(166, 402);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(1, 159);
             this.label5.TabIndex = 21;
@@ -234,13 +234,13 @@
             this.colPrice,
             this.colTotalPerSe});
             this.dgvMedicine.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dgvMedicine.Location = new System.Drawing.Point(359, 0);
+            this.dgvMedicine.Location = new System.Drawing.Point(394, 0);
             this.dgvMedicine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvMedicine.Name = "dgvMedicine";
             this.dgvMedicine.RowHeadersWidth = 51;
             this.dgvMedicine.RowTemplate.Height = 24;
             this.dgvMedicine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMedicine.Size = new System.Drawing.Size(832, 750);
+            this.dgvMedicine.Size = new System.Drawing.Size(832, 588);
             this.dgvMedicine.TabIndex = 22;
             this.dgvMedicine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMedicine_CellClick);
             this.dgvMedicine.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvMedicine_RowPostPaint);
@@ -290,18 +290,17 @@
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(28, 22);
+            this.lblID.Location = new System.Drawing.Point(28, 9);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(25, 16);
             this.lblID.TabIndex = 23;
             this.lblID.Text = "      ";
-            this.lblID.Click += new System.EventHandler(this.lblID_Click);
             // 
             // frmPrescription
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 750);
+            this.ClientSize = new System.Drawing.Size(1226, 588);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.dgvMedicine);
             this.Controls.Add(this.label5);
