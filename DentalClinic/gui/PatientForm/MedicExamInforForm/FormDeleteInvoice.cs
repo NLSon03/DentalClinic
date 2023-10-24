@@ -3,6 +3,7 @@ using dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace gui.PatientForm.MedicExamInforForm
@@ -30,10 +31,23 @@ namespace gui.PatientForm.MedicExamInforForm
                     MessageBox.Show("Không có hóa đơn nào được chọn.", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 else
                 {
+                    MessageBox.Show("Xóa các hóa đơn được chọn thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PreForm.frmMedicExamInfor_Load(sender, e);
                     this.FormDeleteInvoice_Load(sender, e);
                 }
             }
+        }
+
+        private string GetInvoicesPath()
+        {
+            string invoicesPath = @"Invoices";
+            Directory.CreateDirectory(invoicesPath);
+            return Path.GetFullPath(invoicesPath);
+        }
+
+        private string GetPdfPath(string id)
+        {
+            return Path.Combine(GetInvoicesPath(), $"{id}.pdf");
         }
 
         private bool DeleteSelectedInvoices()
@@ -43,8 +57,22 @@ namespace gui.PatientForm.MedicExamInforForm
             {
                 if (Convert.ToBoolean(row.Cells["ColumnDrop"].Value))
                 {
+                    string id = row.Cells["Id"].Value.ToString();
                     treatmentInvoiceService.DeleteInvoiceByID(row.Cells["Id"].Value.ToString());
-                    isInvoiceDeleted = true;
+                    string invoicePath = GetPdfPath(id);
+                    try
+                    {
+                        if (System.IO.File.Exists(invoicePath))
+                        {
+                            System.IO.File.Delete(invoicePath);
+                        }
+                        isInvoiceDeleted = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle or log the exception as appropriate for your application
+                        throw;
+                    }
                 }
             }
             return isInvoiceDeleted;
@@ -70,9 +98,7 @@ namespace gui.PatientForm.MedicExamInforForm
         private void SetDataForLabelName()
         {
             var patient = patientInformationService.GetByID(_PatientID);
-            int id = patient.PatientID;
-            string name = patient.FullName;
-            lblPatient.Text = id + " | " + name;
+            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
         }
 
         private void setGridViewStyle(DataGridView dataGridView)
@@ -97,13 +123,14 @@ namespace gui.PatientForm.MedicExamInforForm
             dgvInvoice.Rows.Clear();
 
             string client = CheckNull(patientInformationService.GetByID(_PatientID)?.FullName);
+            TimeSpan threeDays = TimeSpan.FromDays(3);
 
             foreach (var item in list)
             {
                 string date = CheckNull(item.Date.Value.ToString());
                 string type = "Hóa đơn dịch vụ";
-                string totalAmount = item.TotalAmount.ToString();
-                string status = DateTime.Now.Subtract(item.Date.Value) <= TimeSpan.FromDays(3) ? "Có thể hủy" : "Không thể hủy";
+                string totalAmount = Convert.ToDecimal(CheckNull(item.TotalAmount)).ToString("N0");
+                string status = DateTime.Now.Subtract(item.Date.Value) <= threeDays ? "Có thể hủy" : "Không thể hủy";
                 string id = CheckNull(item.ID.ToString());
 
                 dgvInvoice.Rows.Add(date, client, type, totalAmount, status, id, false);
@@ -148,6 +175,25 @@ namespace gui.PatientForm.MedicExamInforForm
         private void FormDeleteInvoice_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void dgvInvoice_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvInvoice.Columns[e.ColumnIndex].Name == "ColumnDeteleInvoice")
+            {
+                string status = (string)e.Value;
+
+                // Nếu hóa đơn có thể hủy, đặt màu chữ là xanh
+                if (status == "Có thể hủy")
+                {
+                    dgvInvoice.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Green;
+                }
+                // Nếu hóa đơn không thể hủy, đặt màu chữ là đỏ
+                else if (status == "Không thể hủy")
+                {
+                    dgvInvoice.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Red;
+                }
+            }
         }
     }
 }

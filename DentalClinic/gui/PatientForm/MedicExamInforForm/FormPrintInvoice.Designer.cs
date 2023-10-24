@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrintInvoice));
             this.lblPatient = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkCheckAll = new System.Windows.Forms.CheckBox();
+            this.txtTotalAmount = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblRedLine = new System.Windows.Forms.Label();
             this.dgvClinicalInfor = new System.Windows.Forms.DataGridView();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,8 +49,6 @@
             this.ColumnInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClinicalInfor)).BeginInit();
             this.SuspendLayout();
@@ -54,35 +56,65 @@
             // lblPatient
             // 
             this.lblPatient.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblPatient.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.lblPatient.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblPatient.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblPatient.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lblPatient.Location = new System.Drawing.Point(0, 0);
             this.lblPatient.Name = "lblPatient";
-            this.lblPatient.Size = new System.Drawing.Size(1248, 45);
+            this.lblPatient.Size = new System.Drawing.Size(1248, 52);
             this.lblPatient.TabIndex = 3;
             this.lblPatient.Text = "ID | Name";
             this.lblPatient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkCheckAll);
             this.groupBox1.Controls.Add(this.txtTotalAmount);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblRedLine);
             this.groupBox1.Controls.Add(this.dgvClinicalInfor);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 66);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 55);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1226, 287);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách điều trị";
             // 
+            // chkCheckAll
+            // 
+            this.chkCheckAll.AutoSize = true;
+            this.chkCheckAll.Location = new System.Drawing.Point(779, 251);
+            this.chkCheckAll.Name = "chkCheckAll";
+            this.chkCheckAll.Size = new System.Drawing.Size(107, 25);
+            this.chkCheckAll.TabIndex = 5;
+            this.chkCheckAll.Text = "Chọn tất cả";
+            this.chkCheckAll.UseVisualStyleBackColor = true;
+            this.chkCheckAll.CheckedChanged += new System.EventHandler(this.chkCheckAll_CheckedChanged);
+            // 
+            // txtTotalAmount
+            // 
+            this.txtTotalAmount.Enabled = false;
+            this.txtTotalAmount.Location = new System.Drawing.Point(1032, 249);
+            this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.Size = new System.Drawing.Size(170, 29);
+            this.txtTotalAmount.TabIndex = 4;
+            this.txtTotalAmount.Text = "0.00";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(915, 252);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 21);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Tổng hóa đơn:";
+            // 
             // lblRedLine
             // 
             this.lblRedLine.AutoSize = true;
             this.lblRedLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRedLine.ForeColor = System.Drawing.Color.Red;
-            this.lblRedLine.Location = new System.Drawing.Point(20, 266);
+            this.lblRedLine.Location = new System.Drawing.Point(20, 244);
             this.lblRedLine.Name = "lblRedLine";
             this.lblRedLine.Size = new System.Drawing.Size(183, 13);
             this.lblRedLine.TabIndex = 2;
@@ -189,7 +221,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(458, 359);
+            this.btnExit.Location = new System.Drawing.Point(472, 348);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(111, 28);
             this.btnExit.TabIndex = 5;
@@ -200,7 +232,7 @@
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(620, 359);
+            this.btnPrint.Location = new System.Drawing.Point(670, 348);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(111, 28);
             this.btnPrint.TabIndex = 5;
@@ -208,33 +240,16 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(915, 252);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Tổng hóa đơn:";
-            // 
-            // txtTotalAmount
-            // 
-            this.txtTotalAmount.Enabled = false;
-            this.txtTotalAmount.Location = new System.Drawing.Point(1032, 249);
-            this.txtTotalAmount.Name = "txtTotalAmount";
-            this.txtTotalAmount.Size = new System.Drawing.Size(170, 26);
-            this.txtTotalAmount.TabIndex = 4;
-            this.txtTotalAmount.Text = "0.00";
-            // 
             // FormPrintInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 399);
+            this.ClientSize = new System.Drawing.Size(1248, 387);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblPatient);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormPrintInvoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -269,5 +284,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtTotalAmount;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkCheckAll;
     }
 }

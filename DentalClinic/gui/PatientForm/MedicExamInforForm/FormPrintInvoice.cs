@@ -1,6 +1,5 @@
 ﻿using bus;
 using dal.Entities;
-using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
@@ -8,17 +7,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
-using Rectangle = iTextSharp.text.Rectangle;
 
 namespace gui.PatientForm.MedicExamInforForm
 {
     public partial class FormPrintInvoice : Form
     {
-        private Thread viewerThread;
-
         public frmMedicExamInfor mainForm;
         public string _PatientID;
 
@@ -69,8 +63,8 @@ namespace gui.PatientForm.MedicExamInforForm
             CheckNull(item.Treatment.TreatmentMethodName.Name),
             CheckNull(item.Treatment.Unit),
             CheckNull(item.Quantity),
-            CheckNull(item.Treatment.UnitPrice),
-            CheckNull(item.TotalAmount),
+            Convert.ToDecimal(CheckNull(item.Treatment.UnitPrice)).ToString("N0"),
+            Convert.ToDecimal(CheckNull(item.TotalAmount)).ToString("N0"),
             CheckNull(item.Diagnosi.ExaminationTime),
             false.ToString()};
                 dgvClinicalInfor.Rows.Add(rowValues);
@@ -185,15 +179,6 @@ namespace gui.PatientForm.MedicExamInforForm
             btnExit_Click(sender, e);
             mainForm.frmMedicExamInfor_Load(sender, e);
         }
-
-        private void dgvClinicalInfor_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvClinicalInfor.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex != -1)
-            {
-                txtTotalAmount.Text = CalculateTotalAmount().ToString();
-            }
-        }
-
         private void CreateInvoicePdf(string invoiceId)
         {
             string templatePath = GetTemplatePath();
@@ -216,7 +201,7 @@ namespace gui.PatientForm.MedicExamInforForm
 
                     AcroFields fields = stamper.AcroFields;
 
-                    string fontPath = @"Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf"; 
+                    string fontPath = @"Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf";
                     BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                     iTextSharp.text.Font times = new iTextSharp.text.Font(bf);
 
@@ -297,7 +282,7 @@ namespace gui.PatientForm.MedicExamInforForm
         }
         private void dgvClinicalInfor_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvClinicalInfor.CurrentCell.GetType() == typeof(DataGridViewCheckBoxCell) && dgvClinicalInfor.CurrentCell.IsInEditMode && dgvClinicalInfor.IsCurrentCellDirty)
+            if (dgvClinicalInfor.CurrentCell.GetType() == typeof(DataGridViewCheckBoxCell) && dgvClinicalInfor.CurrentCell.IsInEditMode && dgvClinicalInfor.IsCurrentCellDirty && dgvClinicalInfor.Rows.Count > 0)
             {
                 dgvClinicalInfor.EndEdit();
             }
@@ -305,7 +290,7 @@ namespace gui.PatientForm.MedicExamInforForm
         private void SetDataForLabelName()
         {
             var patient = patientInformationService.GetByID(_PatientID);
-            lblPatient.Text = $"{patient.PatientID} | {patient.FullName}";
+            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -316,6 +301,31 @@ namespace gui.PatientForm.MedicExamInforForm
         private void FormPrintInvoice_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void chkCheckAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCheckAll.Checked)
+            {
+                foreach (DataGridViewRow row in dgvClinicalInfor.Rows)
+                {
+                    row.Cells["ColumnInvoice"].Value = true;
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvClinicalInfor.Rows)
+                {
+                    row.Cells["ColumnInvoice"].Value = false;
+                }
+            }
+        }
+        private void dgvClinicalInfor_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvClinicalInfor.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex != -1)
+            {
+                txtTotalAmount.Text = CalculateTotalAmount().ToString("N0");
+            }
         }
     }
 }

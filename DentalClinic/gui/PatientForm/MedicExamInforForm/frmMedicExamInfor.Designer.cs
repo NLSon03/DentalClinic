@@ -51,20 +51,24 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblBloodPressure = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnUpdateSubClinicInf = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chứcNăngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chỉnhSửaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBtnEditSubClinicInf = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuBtnEditClinicInfor = new System.Windows.Forms.ToolStripMenuItem();
             this.thêmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinLâmSàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBtnDeleteClinicInf = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.xuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hóaĐơnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPrintInvoice = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBtnPrintInvoice = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuBtnExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnUpdateSubClinicInf = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.menu2BtnAdd = new System.Windows.Forms.ToolStripButton();
@@ -72,8 +76,9 @@
             this.menu2BtnEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.menu2BtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.menu2Invoice = new System.Windows.Forms.ToolStripButton();
             this.menu2BtnDeleteInvoice = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.menu2Invoice = new System.Windows.Forms.ToolStripButton();
             this.dgvClinicalInfor = new System.Windows.Forms.DataGridView();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIDClinicInf = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,12 +91,12 @@
             this.ColumnTotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblPatient = new System.Windows.Forms.Label();
             this.grbSubExamInfor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picXray)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClinicalInfor)).BeginInit();
@@ -99,6 +104,7 @@
             // 
             // grbSubExamInfor
             // 
+            this.grbSubExamInfor.BackColor = System.Drawing.Color.White;
             this.grbSubExamInfor.Controls.Add(this.lblOther);
             this.grbSubExamInfor.Controls.Add(this.picXray);
             this.grbSubExamInfor.Controls.Add(this.groupBox1);
@@ -116,21 +122,22 @@
             this.grbSubExamInfor.Controls.Add(this.label11);
             this.grbSubExamInfor.Controls.Add(this.lblBloodPressure);
             this.grbSubExamInfor.Controls.Add(this.label1);
-            this.grbSubExamInfor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbSubExamInfor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.grbSubExamInfor.Location = new System.Drawing.Point(19, 51);
+            this.grbSubExamInfor.Controls.Add(this.toolStrip1);
+            this.grbSubExamInfor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbSubExamInfor.ForeColor = System.Drawing.Color.Black;
+            this.grbSubExamInfor.Location = new System.Drawing.Point(19, 70);
             this.grbSubExamInfor.Name = "grbSubExamInfor";
-            this.grbSubExamInfor.Size = new System.Drawing.Size(1225, 187);
+            this.grbSubExamInfor.Size = new System.Drawing.Size(1225, 198);
             this.grbSubExamInfor.TabIndex = 0;
             this.grbSubExamInfor.TabStop = false;
-            this.grbSubExamInfor.Text = "-:-";
+            this.grbSubExamInfor.Text = "Thông tin cận lâm sàng";
             // 
             // lblOther
             // 
             this.lblOther.AutoSize = true;
             this.lblOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOther.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblOther.Location = new System.Drawing.Point(260, 92);
+            this.lblOther.Location = new System.Drawing.Point(739, 140);
             this.lblOther.MaximumSize = new System.Drawing.Size(259, 86);
             this.lblOther.Name = "lblOther";
             this.lblOther.Size = new System.Drawing.Size(11, 16);
@@ -139,9 +146,9 @@
             // 
             // picXray
             // 
-            this.picXray.Location = new System.Drawing.Point(105, 92);
+            this.picXray.Location = new System.Drawing.Point(544, 73);
             this.picXray.Name = "picXray";
-            this.picXray.Size = new System.Drawing.Size(93, 86);
+            this.picXray.Size = new System.Drawing.Size(115, 108);
             this.picXray.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picXray.TabIndex = 2;
             this.picXray.TabStop = false;
@@ -153,9 +160,9 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(603, 18);
+            this.groupBox1.Location = new System.Drawing.Point(678, 61);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(588, 62);
+            this.groupBox1.Size = new System.Drawing.Size(521, 62);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bảo hành";
@@ -165,7 +172,7 @@
             this.lblLaboName.AutoSize = true;
             this.lblLaboName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLaboName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblLaboName.Location = new System.Drawing.Point(475, 27);
+            this.lblLaboName.Location = new System.Drawing.Point(388, 27);
             this.lblLaboName.Name = "lblLaboName";
             this.lblLaboName.Size = new System.Drawing.Size(11, 16);
             this.lblLaboName.TabIndex = 1;
@@ -176,7 +183,7 @@
             this.lblWarrantyID.AutoSize = true;
             this.lblWarrantyID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWarrantyID.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblWarrantyID.Location = new System.Drawing.Point(143, 27);
+            this.lblWarrantyID.Location = new System.Drawing.Point(135, 27);
             this.lblWarrantyID.MaximumSize = new System.Drawing.Size(140, 16);
             this.lblWarrantyID.Name = "lblWarrantyID";
             this.lblWarrantyID.Size = new System.Drawing.Size(11, 16);
@@ -188,7 +195,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(31, 27);
+            this.label9.Location = new System.Drawing.Point(23, 27);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(106, 16);
             this.label9.TabIndex = 0;
@@ -199,7 +206,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(318, 27);
+            this.label10.Location = new System.Drawing.Point(254, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(127, 16);
             this.label10.TabIndex = 0;
@@ -210,7 +217,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(19, 92);
+            this.label8.Location = new System.Drawing.Point(459, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 16);
             this.label8.TabIndex = 0;
@@ -221,7 +228,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(391, 64);
+            this.label6.Location = new System.Drawing.Point(19, 165);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 16);
             this.label6.TabIndex = 0;
@@ -232,7 +239,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(214, 92);
+            this.label5.Location = new System.Drawing.Point(693, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 16);
             this.label5.TabIndex = 0;
@@ -243,7 +250,7 @@
             this.lblBloodCoagulation.AutoSize = true;
             this.lblBloodCoagulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBloodCoagulation.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBloodCoagulation.Location = new System.Drawing.Point(120, 64);
+            this.lblBloodCoagulation.Location = new System.Drawing.Point(120, 118);
             this.lblBloodCoagulation.Name = "lblBloodCoagulation";
             this.lblBloodCoagulation.Size = new System.Drawing.Size(11, 16);
             this.lblBloodCoagulation.TabIndex = 0;
@@ -254,7 +261,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(19, 64);
+            this.label4.Location = new System.Drawing.Point(19, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 16);
             this.label4.TabIndex = 0;
@@ -265,7 +272,7 @@
             this.lblIntellectualDisability.AutoSize = true;
             this.lblIntellectualDisability.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIntellectualDisability.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblIntellectualDisability.Location = new System.Drawing.Point(522, 64);
+            this.lblIntellectualDisability.Location = new System.Drawing.Point(150, 165);
             this.lblIntellectualDisability.Name = "lblIntellectualDisability";
             this.lblIntellectualDisability.Size = new System.Drawing.Size(11, 16);
             this.lblIntellectualDisability.TabIndex = 0;
@@ -276,7 +283,7 @@
             this.lblCongenitalHeartDisease.AutoSize = true;
             this.lblCongenitalHeartDisease.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCongenitalHeartDisease.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCongenitalHeartDisease.Location = new System.Drawing.Point(316, 64);
+            this.lblCongenitalHeartDisease.Location = new System.Drawing.Point(398, 118);
             this.lblCongenitalHeartDisease.Name = "lblCongenitalHeartDisease";
             this.lblCongenitalHeartDisease.Size = new System.Drawing.Size(11, 16);
             this.lblCongenitalHeartDisease.TabIndex = 0;
@@ -287,7 +294,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(192, 64);
+            this.label3.Location = new System.Drawing.Point(274, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 16);
             this.label3.TabIndex = 0;
@@ -298,7 +305,7 @@
             this.lblBloodSugarLevel.AutoSize = true;
             this.lblBloodSugarLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBloodSugarLevel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBloodSugarLevel.Location = new System.Drawing.Point(492, 36);
+            this.lblBloodSugarLevel.Location = new System.Drawing.Point(375, 70);
             this.lblBloodSugarLevel.Name = "lblBloodSugarLevel";
             this.lblBloodSugarLevel.Size = new System.Drawing.Size(11, 16);
             this.lblBloodSugarLevel.TabIndex = 0;
@@ -309,7 +316,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(391, 36);
+            this.label2.Location = new System.Drawing.Point(274, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 16);
             this.label2.TabIndex = 0;
@@ -320,7 +327,7 @@
             this.lblPulseRate.AutoSize = true;
             this.lblPulseRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPulseRate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPulseRate.Location = new System.Drawing.Point(241, 36);
+            this.lblPulseRate.Location = new System.Drawing.Point(209, 70);
             this.lblPulseRate.Name = "lblPulseRate";
             this.lblPulseRate.Size = new System.Drawing.Size(11, 16);
             this.lblPulseRate.TabIndex = 0;
@@ -331,7 +338,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(192, 36);
+            this.label11.Location = new System.Drawing.Point(160, 70);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(43, 16);
             this.label11.TabIndex = 0;
@@ -342,7 +349,7 @@
             this.lblBloodPressure.AutoSize = true;
             this.lblBloodPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBloodPressure.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBloodPressure.Location = new System.Drawing.Point(89, 36);
+            this.lblBloodPressure.Location = new System.Drawing.Point(89, 70);
             this.lblBloodPressure.Name = "lblBloodPressure";
             this.lblBloodPressure.Size = new System.Drawing.Size(11, 16);
             this.lblBloodPressure.TabIndex = 0;
@@ -353,20 +360,48 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(19, 36);
+            this.label1.Location = new System.Drawing.Point(19, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Huyết áp:";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnUpdateSubClinicInf,
+            this.toolStripSeparator1});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 25);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1219, 25);
+            this.toolStrip1.TabIndex = 4;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnUpdateSubClinicInf
+            // 
+            this.btnUpdateSubClinicInf.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnUpdateSubClinicInf.Image = global::gui.Properties.Resources.edit1;
+            this.btnUpdateSubClinicInf.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdateSubClinicInf.Name = "btnUpdateSubClinicInf";
+            this.btnUpdateSubClinicInf.Size = new System.Drawing.Size(46, 22);
+            this.btnUpdateSubClinicInf.Text = "Sửa";
+            this.btnUpdateSubClinicInf.Click += new System.EventHandler(this.btnUpdateSubClinicInf_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.BackColor = System.Drawing.Color.Silver;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chứcNăngToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1264, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -375,113 +410,122 @@
             this.chứcNăngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chỉnhSửaToolStripMenuItem,
             this.thêmToolStripMenuItem,
+            this.xóaToolStripMenuItem,
             this.toolStripSeparator3,
-            this.xuấtToolStripMenuItem,
+            this.menuPrintInvoice,
             this.toolStripSeparator4,
             this.menuBtnExit});
             this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
-            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(96, 25);
+            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(82, 21);
             this.chứcNăngToolStripMenuItem.Text = "Chức năng";
             // 
             // chỉnhSửaToolStripMenuItem
             // 
             this.chỉnhSửaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuBtnEditSubClinicInf});
+            this.menuBtnEditSubClinicInf,
+            this.toolStripSeparator6,
+            this.menuBtnEditClinicInfor});
             this.chỉnhSửaToolStripMenuItem.Name = "chỉnhSửaToolStripMenuItem";
-            this.chỉnhSửaToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.chỉnhSửaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.chỉnhSửaToolStripMenuItem.Text = "Chỉnh sửa";
             // 
             // menuBtnEditSubClinicInf
             // 
             this.menuBtnEditSubClinicInf.Name = "menuBtnEditSubClinicInf";
-            this.menuBtnEditSubClinicInf.Size = new System.Drawing.Size(241, 26);
+            this.menuBtnEditSubClinicInf.Size = new System.Drawing.Size(212, 22);
             this.menuBtnEditSubClinicInf.Text = "Thông tin cận lâm sàng";
             this.menuBtnEditSubClinicInf.Click += new System.EventHandler(this.menuBtnEditSubClinicInf_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(209, 6);
+            // 
+            // menuBtnEditClinicInfor
+            // 
+            this.menuBtnEditClinicInfor.Enabled = false;
+            this.menuBtnEditClinicInfor.Name = "menuBtnEditClinicInfor";
+            this.menuBtnEditClinicInfor.Size = new System.Drawing.Size(212, 22);
+            this.menuBtnEditClinicInfor.Text = "Thông tin lâm sàng";
+            this.menuBtnEditClinicInfor.Click += new System.EventHandler(this.menuBtnEditClinicInfor_Click);
             // 
             // thêmToolStripMenuItem
             // 
             this.thêmToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.thôngTinLâmSàngToolStripMenuItem});
             this.thêmToolStripMenuItem.Name = "thêmToolStripMenuItem";
-            this.thêmToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.thêmToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.thêmToolStripMenuItem.Text = "Thêm";
             // 
             // thôngTinLâmSàngToolStripMenuItem
             // 
             this.thôngTinLâmSàngToolStripMenuItem.Name = "thôngTinLâmSàngToolStripMenuItem";
-            this.thôngTinLâmSàngToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            this.thôngTinLâmSàngToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.thôngTinLâmSàngToolStripMenuItem.Text = "Thông tin lâm sàng";
+            // 
+            // xóaToolStripMenuItem
+            // 
+            this.xóaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuBtnDeleteClinicInf});
+            this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.xóaToolStripMenuItem.Text = "Xóa";
+            // 
+            // menuBtnDeleteClinicInf
+            // 
+            this.menuBtnDeleteClinicInf.Enabled = false;
+            this.menuBtnDeleteClinicInf.Name = "menuBtnDeleteClinicInf";
+            this.menuBtnDeleteClinicInf.Size = new System.Drawing.Size(188, 22);
+            this.menuBtnDeleteClinicInf.Text = "Thông tin lâm sàng";
+            this.menuBtnDeleteClinicInf.Click += new System.EventHandler(this.menuBtnDeleteClinicInf_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(146, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(130, 6);
             // 
-            // xuấtToolStripMenuItem
+            // menuPrintInvoice
             // 
-            this.xuấtToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hóaĐơnToolStripMenuItem});
-            this.xuấtToolStripMenuItem.Name = "xuấtToolStripMenuItem";
-            this.xuấtToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
-            this.xuấtToolStripMenuItem.Text = "Xuất";
+            this.menuPrintInvoice.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuBtnPrintInvoice});
+            this.menuPrintInvoice.Name = "menuPrintInvoice";
+            this.menuPrintInvoice.Size = new System.Drawing.Size(133, 22);
+            this.menuPrintInvoice.Text = "Xuất";
             // 
-            // hóaĐơnToolStripMenuItem
+            // menuBtnPrintInvoice
             // 
-            this.hóaĐơnToolStripMenuItem.Name = "hóaĐơnToolStripMenuItem";
-            this.hóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
-            this.hóaĐơnToolStripMenuItem.Text = "Hóa đơn";
+            this.menuBtnPrintInvoice.Name = "menuBtnPrintInvoice";
+            this.menuBtnPrintInvoice.Size = new System.Drawing.Size(127, 22);
+            this.menuBtnPrintInvoice.Text = "Hóa đơn";
+            this.menuBtnPrintInvoice.Click += new System.EventHandler(this.menuBtnPrintInvoice_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(146, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(130, 6);
             // 
             // menuBtnExit
             // 
             this.menuBtnExit.Name = "menuBtnExit";
-            this.menuBtnExit.Size = new System.Drawing.Size(149, 26);
+            this.menuBtnExit.Size = new System.Drawing.Size(133, 22);
             this.menuBtnExit.Text = "Trở về";
             this.menuBtnExit.Click += new System.EventHandler(this.menuBtnExit_Click);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnUpdateSubClinicInf,
-            this.toolStripSeparator1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 29);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1264, 25);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnUpdateSubClinicInf
-            // 
-            this.btnUpdateSubClinicInf.Image = global::gui.Properties.Resources.edit1;
-            this.btnUpdateSubClinicInf.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUpdateSubClinicInf.Name = "btnUpdateSubClinicInf";
-            this.btnUpdateSubClinicInf.Size = new System.Drawing.Size(151, 22);
-            this.btnUpdateSubClinicInf.Text = "Thông tin cận lâm sàng";
-            this.btnUpdateSubClinicInf.Click += new System.EventHandler(this.btnUpdateSubClinicInf_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.toolStrip2);
             this.groupBox2.Controls.Add(this.dgvClinicalInfor);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(19, 244);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.groupBox2.Location = new System.Drawing.Point(19, 274);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1225, 425);
+            this.groupBox2.Size = new System.Drawing.Size(1225, 390);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Lâm Sàng";
             // 
             // toolStrip2
             // 
+            this.toolStrip2.BackColor = System.Drawing.Color.White;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu2BtnAdd,
             this.toolStripSeparator2,
@@ -491,7 +535,7 @@
             this.menu2BtnDeleteInvoice,
             this.toolStripSeparator7,
             this.menu2Invoice});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 22);
+            this.toolStrip2.Location = new System.Drawing.Point(3, 25);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(1219, 25);
             this.toolStrip2.TabIndex = 1;
@@ -499,6 +543,7 @@
             // 
             // menu2BtnAdd
             // 
+            this.menu2BtnAdd.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menu2BtnAdd.Image = global::gui.Properties.Resources.add;
             this.menu2BtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.menu2BtnAdd.Name = "menu2BtnAdd";
@@ -513,6 +558,7 @@
             // 
             // menu2BtnEdit
             // 
+            this.menu2BtnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menu2BtnEdit.Enabled = false;
             this.menu2BtnEdit.Image = global::gui.Properties.Resources.edit;
             this.menu2BtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -528,33 +574,41 @@
             // 
             // menu2BtnDelete
             // 
+            this.menu2BtnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menu2BtnDelete.Enabled = false;
-            this.menu2BtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("menu2BtnDelete.Image")));
+            this.menu2BtnDelete.Image = global::gui.Properties.Resources.remove;
             this.menu2BtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.menu2BtnDelete.Name = "menu2BtnDelete";
             this.menu2BtnDelete.Size = new System.Drawing.Size(47, 22);
             this.menu2BtnDelete.Text = "Xóa";
             this.menu2BtnDelete.Click += new System.EventHandler(this.menu2BtnDelete_Click);
             // 
+            // menu2BtnDeleteInvoice
+            // 
+            this.menu2BtnDeleteInvoice.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.menu2BtnDeleteInvoice.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.menu2BtnDeleteInvoice.Image = global::gui.Properties.Resources.bill;
+            this.menu2BtnDeleteInvoice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.menu2BtnDeleteInvoice.Name = "menu2BtnDeleteInvoice";
+            this.menu2BtnDeleteInvoice.Size = new System.Drawing.Size(96, 22);
+            this.menu2BtnDeleteInvoice.Text = "Hủy hóa đơn";
+            this.menu2BtnDeleteInvoice.Click += new System.EventHandler(this.menu2BtnDeleteInvoice_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
             // menu2Invoice
             // 
             this.menu2Invoice.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.menu2Invoice.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menu2Invoice.Image = global::gui.Properties.Resources.invoice;
             this.menu2Invoice.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.menu2Invoice.Name = "menu2Invoice";
             this.menu2Invoice.Size = new System.Drawing.Size(98, 22);
             this.menu2Invoice.Text = "Xuất hóa đơn";
             this.menu2Invoice.Click += new System.EventHandler(this.menu2Invoice_Click);
-            // 
-            // menu2BtnDeleteInvoice
-            // 
-            this.menu2BtnDeleteInvoice.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.menu2BtnDeleteInvoice.Image = ((System.Drawing.Image)(resources.GetObject("menu2BtnDeleteInvoice.Image")));
-            this.menu2BtnDeleteInvoice.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.menu2BtnDeleteInvoice.Name = "menu2BtnDeleteInvoice";
-            this.menu2BtnDeleteInvoice.Size = new System.Drawing.Size(96, 22);
-            this.menu2BtnDeleteInvoice.Text = "Hủy hóa đơn";
-            this.menu2BtnDeleteInvoice.Click += new System.EventHandler(this.menu2BtnDeleteInvoice_Click);
             // 
             // dgvClinicalInfor
             // 
@@ -576,7 +630,7 @@
             this.dgvClinicalInfor.Location = new System.Drawing.Point(22, 50);
             this.dgvClinicalInfor.Name = "dgvClinicalInfor";
             this.dgvClinicalInfor.ReadOnly = true;
-            this.dgvClinicalInfor.Size = new System.Drawing.Size(1179, 356);
+            this.dgvClinicalInfor.Size = new System.Drawing.Size(1179, 320);
             this.dgvClinicalInfor.TabIndex = 0;
             this.dgvClinicalInfor.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClinicalInfor_CellClick);
             // 
@@ -656,23 +710,36 @@
             this.ColumnInvoice.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnInvoice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // toolStripSeparator7
+            // lblPatient
             // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            this.lblPatient.BackColor = System.Drawing.Color.White;
+            this.lblPatient.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblPatient.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblPatient.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblPatient.Location = new System.Drawing.Point(0, 25);
+            this.lblPatient.Name = "lblPatient";
+            this.lblPatient.Size = new System.Drawing.Size(1264, 42);
+            this.lblPatient.TabIndex = 4;
+            this.lblPatient.Text = "ID | Name";
+            this.lblPatient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMedicExamInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.lblPatient);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grbSubExamInfor);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "frmMedicExamInfor";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thông tin khám bệnh";
             this.Load += new System.EventHandler(this.frmMedicExamInfor_Load);
@@ -681,10 +748,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picXray)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
@@ -710,9 +777,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnUpdateSubClinicInf;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Label lblBloodPressure;
         private System.Windows.Forms.Label lblBloodCoagulation;
         private System.Windows.Forms.Label lblCongenitalHeartDisease;
@@ -747,13 +811,21 @@
         private System.Windows.Forms.ToolStripMenuItem thêmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thôngTinLâmSàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem xuấtToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hóaĐơnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuPrintInvoice;
+        private System.Windows.Forms.ToolStripMenuItem menuBtnPrintInvoice;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton menu2Invoice;
         private System.Windows.Forms.ToolStripButton menu2BtnDelete;
         private System.Windows.Forms.ToolStripButton menu2BtnDeleteInvoice;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.Label lblPatient;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnUpdateSubClinicInf;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem menuBtnEditClinicInfor;
+        private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuBtnDeleteClinicInf;
     }
 }

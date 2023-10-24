@@ -183,6 +183,7 @@
   <ItemGroup>
     <Content Include="Resources\128x128.png" />
     <None Include="Resources\add.png" />
+    <None Include="Resources\bill.png" />
     <Content Include="Resources\clipboard.png" />
     <Content Include="Resources\dentist.ico" />
     <Content Include="Resources\dentist.png" />
@@ -192,6 +193,7 @@
     <Content Include="Resources\exit.png" />
     <None Include="Resources\invoice.png" />
     <Content Include="Resources\patientManager.png" />
+    <None Include="Resources\remove.png" />
     <Content Include="Resources\Tool.png" />
     <Content Include="Resources\Tool1.png" />
   </ItemGroup>

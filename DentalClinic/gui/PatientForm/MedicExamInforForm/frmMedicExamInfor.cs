@@ -54,12 +54,10 @@ namespace gui.PatientForm.MedicExamInforForm
                 if (SubCliInf == null)
                 {
                     subClinicalInformationService.Insert(_PatientID);
-                    frmMedicExamInfor_Load(sender, e);
+                    SubCliInf = subClinicalInformationService.GetById(_PatientID);
                 }
-                if (SubCliInf != null)
-                {
-                    FillSubClinicalInformation(SubCliInf);
-                }
+                FillSubClinicalInformation(SubCliInf);
+
                 //Điền thông tin lâm sàng
                 var ClinInf = clinicalInformationService.GetByID(_PatientID);
                 if (ClinInf != null)
@@ -86,56 +84,48 @@ namespace gui.PatientForm.MedicExamInforForm
                 string treatmentMethod = "";
                 string unitPrice = "";
                 string unit = "";
+                string quantity = ChangeNull(item.Quantity.ToString());
+                string totalAmount = Convert.ToDecimal(ChangeNull(item.TotalAmount)).ToString("N0");
+                string date = ChangeNull(item.Diagnosi.ExaminationTime.ToString());
+                bool hasInvoice = treatmentInvoiceDetailService.GetByClinicInforID(id) != null;
+
                 if (item.Treatment != null)
                 {
                     treatment = ChangeNull(item.Treatment.TreatmentName.Name);
                     treatmentMethod = ChangeNull(item.Treatment.TreatmentMethodName.Name);
                     unit = ChangeNull(item.Treatment.Unit);
-                    unitPrice = ChangeNull(item.Treatment.UnitPrice.ToString());
+                    unitPrice = Convert.ToDecimal(ChangeNull(item.Treatment.UnitPrice)).ToString("N0");
                 }
-                string quantity = ChangeNull(item.Quantity.ToString());
 
-                string totalAmount = ChangeNull(item.TotalAmount.ToString());
-                string date = ChangeNull(item.Diagnosi.ExaminationTime.ToString());
-                bool hasInvoice = treatmentInvoiceDetailService.GetByClinicInforID(item.ID.ToString()) == null ? false : true;
-                dgvClinicalInfor.Rows.Add(index, id, diag, treatment, treatmentMethod, unit, quantity, unitPrice, totalAmount, date, hasInvoice);
-                index++;
+                dgvClinicalInfor.Rows.Add(index++, id, diag, treatment, treatmentMethod, unit, quantity, unitPrice, totalAmount, date, hasInvoice);
             }
         }
 
         //Điền thông tin bệnh nhân vào form
         private void FillSubClinicalInformation(SubClinicalInformation SubCliInf)
         {
-            grbSubExamInfor.Text = _PatientID + "|" + patientInformationService.GetByID(_PatientID).FullName;
+            var patient = patientInformationService.GetByID(_PatientID);
+            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
+
             lblBloodPressure.Text = ChangeNull(SubCliInf.BloodPressure);
             lblPulseRate.Text = ChangeNull(SubCliInf.PulseRate);
             lblBloodSugarLevel.Text = ChangeNull(SubCliInf.BloodSugarLevel);
 
-            if (ChangeNull(SubCliInf.BloodCoagulation) != "TS" || ChangeNull(SubCliInf.BloodCoagulation) != "TC")
-                lblBloodCoagulation.Text = "Không";
-            else
-                lblBloodCoagulation.Text = ChangeNull(SubCliInf.BloodCoagulation);
-            if (SubCliInf.CongenitalHeartDisease == null)
-                lblCongenitalHeartDisease.Text = "Không";
-            else
-                lblCongenitalHeartDisease.Text = ChangeNull((bool)(SubCliInf.CongenitalHeartDisease) ? "Có" : "Không");
-            if (SubCliInf.IntellectualDisability == null)
-                lblIntellectualDisability.Text = "Không";
-            else
-                lblIntellectualDisability.Text = ChangeNull((bool)SubCliInf.IntellectualDisability ? "Có" : "Không");
-            lblWarrantyID.Text = ChangeNull(SubCliInf.WarrantyID);
+            lblBloodCoagulation.Text = (ChangeNull(SubCliInf.BloodCoagulation) != "TS" && ChangeNull(SubCliInf.BloodCoagulation) != "TC") ? "Không" : ChangeNull(SubCliInf.BloodCoagulation);
+
+            lblCongenitalHeartDisease.Text = SubCliInf.CongenitalHeartDisease == null ? "Không" : (bool)SubCliInf.CongenitalHeartDisease ? "Có" : "Không";
+            lblIntellectualDisability.Text = SubCliInf.IntellectualDisability == null ? "Không" : (bool)SubCliInf.IntellectualDisability ? "Có" : "Không";
+
+            lblWarrantyID.Text = FixWarrantyID(SubCliInf.WarrantyID);
             lblLaboName.Text = ChangeNull(SubCliInf.LaboName);
             lblOther.Text = ChangeNull(SubCliInf.Other);
 
-            if (SubCliInf.XRayFilm == null)
-                picXray.Image = null;
-            else
-            {
-                using (var ms = new MemoryStream(SubCliInf.XRayFilm))
-                {
-                    picXray.Image = Image.FromStream(ms);
-                }
-            }
+            picXray.Image = SubCliInf.XRayFilm == null ? null : Image.FromStream(new MemoryStream(SubCliInf.XRayFilm));
+        }
+
+        private string FixWarrantyID(string warrantyID)
+        {
+            return warrantyID?.Replace(" ", "") ?? "";
         }
 
         private void btnUpdateSubClinicInf_Click(object sender, EventArgs e)
@@ -173,11 +163,15 @@ namespace gui.PatientForm.MedicExamInforForm
             {
                 menu2BtnEdit.Enabled = true;
                 menu2BtnDelete.Enabled = true;
+                menuBtnEditClinicInfor.Enabled = true;
+                menuBtnDeleteClinicInf.Enabled = true;
             }
             else if (dgvClinicalInfor.SelectedRows.Count > 0 && Convert.ToBoolean(dgvClinicalInfor.SelectedRows[0].Cells["ColumnInvoice"].Value))
             {
                 menu2BtnEdit.Enabled = false;
                 menu2BtnDelete.Enabled = false;
+                menuBtnEditClinicInfor.Enabled = false;
+                menuBtnEditClinicInfor.Enabled = false;
             }
         }
 
@@ -228,6 +222,10 @@ namespace gui.PatientForm.MedicExamInforForm
                             frmMedicExamInfor_Load(sender, e);
                         }
                     }
+                    else
+                    {
+                        ShowMessage("Không thể xóa thông tin lâm sàng vì đã có hóa đơn.");
+                    }
                 }
             }
             catch (Exception ex)
@@ -242,6 +240,21 @@ namespace gui.PatientForm.MedicExamInforForm
             form._PatientID = this._PatientID;
             form.PreForm = this;
             form.ShowDialog();
+        }
+
+        private void menuBtnEditClinicInfor_Click(object sender, EventArgs e)
+        {
+            menu2BtnEdit_Click(sender, e);
+        }
+
+        private void menuBtnDeleteClinicInf_Click(object sender, EventArgs e)
+        {
+            menu2BtnDelete_Click(sender, e);
+        }
+
+        private void menuBtnPrintInvoice_Click(object sender, EventArgs e)
+        {
+            menu2Invoice_Click(sender, e);
         }
     }
 }

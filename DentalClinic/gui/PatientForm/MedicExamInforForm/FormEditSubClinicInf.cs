@@ -29,43 +29,64 @@ namespace gui.PatientForm.MedicExamInforForm
         //Nếu các dữ liệu là null thì gán các dữ liệu trong textbox = ""
         private static string ChangeNull(object param)
         {
-            return (param == null || param.ToString() == "null" || param.ToString() == "") ? "" : param.ToString();
+            return string.IsNullOrEmpty(param?.ToString()) ? "" : param.ToString();
         }
 
+        private void SetDataForLabelName()
+        {
+            var patient = patientInformationService.GetByID(_PatientID);
+            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
+        }
+
+        private void SetRadioButton(RadioButton radioButton, bool condition)
+        {
+            radioButton.Checked = condition;
+        }
+        private void LoadXrayImage(byte[] xrayData)
+        {
+            if (xrayData != null)
+                using (var ms = new MemoryStream(xrayData))
+                {
+                    picXray.Image = Image.FromStream(ms);
+                }
+        }
+
+        private string FixWarrantyID(string warrantyID)
+        {
+            if (warrantyID == null)
+                return "";
+            string fixedID = warrantyID.Replace(" ","");
+            return fixedID == "" ? "" : fixedID;
+        }
 
         //Truyền dữ liệu đã có sẵn/mặc định của bệnh nhân vào form
         private void AddDataWhenFormLoad(SubClinicalInformation Patient)
         {
             //Lable ID_Name bệnh nhân
-            string PatientID = Patient.PatientID.ToString();
-            string PatientName = Patient.PatientInformation.FullName.ToString();
-            lblPatient.Text = ChangeNull(PatientID) + " | " + ChangeNull(PatientName);
+            SetDataForLabelName();
             //Các textbox huyết áp, mạch, đường huyết
             txtBloodPressure.Text = ChangeNull(Patient.BloodPressure);
             txtPulseRate.Text = ChangeNull(Patient.PulseRate);
             txtBloodSugarLevel.Text = ChangeNull(Patient.BloodSugarLevel);
             //Radio button máu khó đông
-            if (Patient.BloodCoagulation == "TS")
-                radTS.Checked = true;
-            else if (Patient.BloodCoagulation == "TC")
-                radTC.Checked = true;
-            else
-                radBC_No.Checked = true;
+            SetRadioButton(radTS, Patient.BloodCoagulation == "TS");
+            SetRadioButton(radTC, Patient.BloodCoagulation == "TC");
+            SetRadioButton(radBC_No, Patient.BloodCoagulation != "TS" && Patient.BloodCoagulation != "TC");
             //Radio button thiểu năng trí tuệ
-            _ = Patient.IntellectualDisability.ToString() == "1" ? radID_Yes.Checked = true : radID_No.Checked = true;
+            bool? isID = Patient.IntellectualDisability;
+            SetRadioButton(radID_Yes, isID == true);
+            SetRadioButton(radID_No, isID != true);
             //Radio button tim bẩm sinh
-            _ = Patient.CongenitalHeartDisease.ToString() == "1" ? radCHD_Yes.Checked = true : radCHD_No.Checked = true;
+            bool?isCHD = Patient.CongenitalHeartDisease;
+            SetRadioButton(radCHD_Yes,isCHD == true);
+            SetRadioButton(radCHD_No, isCHD!= true);
             //Thông tin bảo hành
-            txtWarrantyID.Text = ChangeNull(Patient.WarrantyID);
+            txtWarrantyID.Text = FixWarrantyID(Patient.WarrantyID);
             txtLaboName.Text = ChangeNull(Patient.LaboName);
             //Khác
             txtOther.Text = ChangeNull(Patient.Other);
             //Xray Film
-            if(xrayData!=null)
-            using (var ms = new MemoryStream(xrayData))
-            {
-                picXray.Image = Image.FromStream(ms);
-            }
+            LoadXrayImage(xrayData);
         }
         //Event Load Form
         private void FormEditSubClinicInf_Load(object sender, EventArgs e)

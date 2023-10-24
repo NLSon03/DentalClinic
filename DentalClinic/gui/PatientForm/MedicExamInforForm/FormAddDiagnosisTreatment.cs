@@ -15,7 +15,6 @@ namespace gui.PatientForm.MedicExamInforForm
         public bool isEdit = false;
         public int? _ClinicInf = null;
 
-        private TreatmentInvoiceDetailsService treatmentInvoiceDetailsService = new TreatmentInvoiceDetailsService();
         private PatientInformationService patientInformationService = new PatientInformationService();
         private ClinicalInformationService clinicalInformationService = new ClinicalInformationService();
         private TreatmentService treatmentService = new TreatmentService();
@@ -60,54 +59,43 @@ namespace gui.PatientForm.MedicExamInforForm
             var clinicInfor = clinicalInformationService.GetByClinicID(_ClinicInf.ToString());
 
             //label tên bệnh nhân
-            lblPatient.Text = _PatientID + "|" + patientInformationService.GetByID(_PatientID).FullName;
+            SetDataForLabelName();
             //Combobox điều trị
             var ListTreatment = treatmentNameService.GetAll();
             FillComboBoxTreatment(ListTreatment);
-
-            bool isNullTreatment = (clinicInfor.Treatment_ID == null) ? true : false;
-
-            string treatment = "";
-            if (!isNullTreatment)
-                treatment = clinicInfor.Treatment.TreatmentName.Name;
-            else
-                treatment = null;
+            string treatment = clinicInfor.Treatment.TreatmentName.Name;
             cmbTreatment.Text = treatment;
             //Combobox phương pháp điều trị
-            if (!isNullTreatment)
-                cmbTreatmentMethod.Text = clinicInfor.Treatment.TreatmentMethodName.Name;
+            cmbTreatmentMethod.Text = clinicInfor.Treatment.TreatmentMethodName.Name;
             //Các textbox khác
-            txtDiagnosis.Text = clinicInfor.Diagnosi.Diagnosis==null?"": clinicInfor.Diagnosi.Diagnosis;
-            numQuantity.Value = clinicInfor.Quantity<1?1: clinicInfor.Quantity;
+            txtDiagnosis.Text = clinicInfor.Diagnosi.Diagnosis == null ? "" : clinicInfor.Diagnosi.Diagnosis;
+            numQuantity.Value = clinicInfor.Quantity < 1 ? 1 : clinicInfor.Quantity;
+        }
+
+        private void SetDataForLabelName()
+        {
+            var patient = patientInformationService.GetByID(_PatientID);
+            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
         }
 
         private void FormAddDiagnosisTreatment_Load(object sender, EventArgs e)
         {
-            //ADD
-            if (!isEdit)
+            try
             {
-                try
+                if (!isEdit)
                 {
-                    lblPatient.Text = _PatientID + "|" + patientInformationService.GetByID(_PatientID).FullName;
+                    SetDataForLabelName();
                     var ListTreatment = treatmentNameService.GetAll();
                     FillComboBoxTreatment(ListTreatment);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            //Edit
-            else
-            {
-                try
+                else
                 {
                     FillDataWhenLoadUpdate();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -166,95 +154,40 @@ namespace gui.PatientForm.MedicExamInforForm
             this.Dispose();
         }
 
-        private bool isNullDiagAndTreatment()
+        private bool isNullTreatment()
         {
-            if ((txtDiagnosis.Text == "" || txtDiagnosis.Text == null) && (cmbTreatment.Text == "" || cmbTreatment.Text == null))
-                return true;
-            return false;
+            return (string.IsNullOrEmpty(cmbTreatment.Text));
         }
 
-        //private bool isHasInvoice()
-        //{
-        //    return treatmentInvoiceDetailsService.GetByClinicInforID(_ClinicInf.ToString()) == null ? false : true;
-        //}
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!isEdit)
+            try
             {
-                try
+                if (isNullTreatment())
+                    throw new Exception("Không được để trống Điều trị.");
+
+                int patientID = Convert.ToInt32(_PatientID);
+                string diag = txtDiagnosis.Text ?? "";
+                int diagID = diagnosisService.AddDiagnosisAndReturnID(diag);
+
+                bool isTreatmentEmpty = string.IsNullOrEmpty(cmbTreatment.Text);
+                int? treatID = isTreatmentEmpty ? (int?)null : treatmentService.GetID(cmbTreatment.SelectedValue.ToString(), cmbTreatmentMethod.SelectedValue.ToString());
+                int quantity = isTreatmentEmpty ? 0 : Convert.ToInt32(numQuantity.Value);
+                decimal? totalAmount = isTreatmentEmpty ? (decimal?)null : Convert.ToDecimal(txtTotalAmount.Text);
+
+                if (!isEdit)
                 {
-                    if (isNullDiagAndTreatment())
-                        throw new Exception("Không được đồng thời để trống Chẩn đoán và Điều trị.");
-
-                    //Table ClinicalInfor gồm các cột:
-                    //[ID],
-                    //[Patient_ID][int?],
-                    //[Diagnosis_ID][int?],
-                    //[Treatment_ID][int?],
-                    //[Quantity][int],
-                    //[TotalAmount][int?]
-
-                    //[Patient_ID][int?]
-                    int patientID = Convert.ToInt32(_PatientID);
-
-                    //[Diagnosis_ID][int?],
-                    string diag = (txtDiagnosis.Text != null || txtDiagnosis.Text != "") ? txtDiagnosis.Text : "";
-                    int diagID = diagnosisService.AddDiagnosisAndReturnID(diag);
-
-                    //[Treatment_ID][int?]
-                    int? treatID;
-                    if (cmbTreatment.Text == "" || cmbTreatment.Text == null)
-                        treatID = null;
-                    else
-                        treatID = treatmentService.GetID(cmbTreatment.SelectedValue.ToString(), cmbTreatmentMethod.SelectedValue.ToString());
-                    //[Quantity][int]
-                    int quantity = (cmbTreatment.Text == "" || cmbTreatment.Text == null)?0:(Convert.ToInt32(numQuantity.Value));
-                    //[TotalAmount][int?]
-                    decimal? totalAmount;
-                    if (cmbTreatment.Text == "" || cmbTreatment.Text == null)
-                        totalAmount = null;
-                    else
-                        totalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-                    //Insert new Clinic Infor
                     clinicalInformationService.Insert(patientID, diagID, treatID, quantity, totalAmount);
-                    MainForm.frmMedicExamInfor_Load(sender,e);
-                    throw new Exception("Thêm thành công.");
+                    MessageBox.Show("Thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message,"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                try
-                {
-                    if (isNullDiagAndTreatment())
-                        throw new Exception("Không được đồng thời để trống Chẩn đoán và Điều trị.");
                     var clinicInfor = clinicalInformationService.GetByClinicID(_ClinicInf.ToString());
+                    Diagnosi diagn = new Diagnosi { ID = clinicInfor.Diagnosi.ID, Diagnosis = diag };
+                    diagnosisService.Update(diagn);
 
-                    int patientID = Convert.ToInt32(_PatientID);
-
-                    int diagID = clinicInfor.Diagnosi.ID;
-                    string diag = (txtDiagnosis.Text != null || txtDiagnosis.Text != "") ? txtDiagnosis.Text : "";
-                    Diagnosi diagn = new Diagnosi {ID = diagID,Diagnosis = diag};
-                    diagnosisService.Update(diagn) ;
-
-                    int? treatID;
-                    if (cmbTreatment.Text == "" || cmbTreatment.Text == null)
-                        treatID = null;
-                    else
-                        treatID = treatmentService.GetID(cmbTreatment.SelectedValue.ToString(), cmbTreatmentMethod.SelectedValue.ToString());
-
-                    int quantity = (cmbTreatment.Text == "" || cmbTreatment.Text == null) ? 0 : (Convert.ToInt32(numQuantity.Value));
-
-                    decimal? totalAmount;
-                    if (cmbTreatment.Text == "" || cmbTreatment.Text == null)
-                        totalAmount = null;
-                    else
-                        totalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-
-                    var updateClinicInf = new ClinicalInformation {
+                    var updateClinicInf = new ClinicalInformation
+                    {
                         ID = clinicInfor.ID,
                         Patient_ID = clinicInfor.Patient_ID,
                         Diagnosis_ID = diagID,
@@ -264,13 +197,14 @@ namespace gui.PatientForm.MedicExamInforForm
                     };
 
                     clinicalInformationService.Update(updateClinicInf);
-                    MainForm.frmMedicExamInfor_Load(sender, e);
-                    throw new Exception("Sửa thành công.");
+                    MessageBox.Show("Sửa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+
+                MainForm.frmMedicExamInfor_Load(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
