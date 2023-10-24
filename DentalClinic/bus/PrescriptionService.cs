@@ -38,5 +38,13 @@ namespace bus
             DentalModel model = new DentalModel() ;
             return model.Prescriptions.AsEnumerable().Where(t=>GetMedicineInvoiceDate(t.ID) >= startDate && GetMedicineInvoiceDate(t.ID)<=endDate).ToList();
         }
+        public void InsertNew(Prescription prescription)
+        {
+            using (DentalModel model = new DentalModel())
+            {
+                model.Prescriptions.Add(prescription);
+                model.SaveChanges();
+            }
+        }
     }
 }

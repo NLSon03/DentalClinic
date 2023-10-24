@@ -36,18 +36,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -83,11 +89,35 @@
     <Compile Include="DentalForm\frmDentalToolMain.Designer.cs">
       <DependentUpon>frmDentalToolMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\frmAnnoucement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\frmAnnoucement.Designer.cs">
+      <DependentUpon>frmAnnoucement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\frmEditInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\frmEditInfo.Designer.cs">
+      <DependentUpon>frmEditInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\frmNewPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\frmNewPatient.Designer.cs">
+      <DependentUpon>frmNewPatient.cs</DependentUpon>
     </Compile>
     <Compile Include="PatientForm\frmPatient.cs">
       <SubType>Form</SubType>
@@ -107,6 +137,12 @@
     <Compile Include="PatientForm\PrescriptionForm\frmPrescription.Designer.cs">
       <DependentUpon>frmPrescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatientForm\PrescriptionForm\MedInvoiceForm\frmMedInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\PrescriptionForm\MedInvoiceForm\frmMedInvoice.Designer.cs">
+      <DependentUpon>frmMedInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DentalForm\frmDentalMaterials.resx">
@@ -121,6 +157,15 @@
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\frmAnnoucement.resx">
+      <DependentUpon>frmAnnoucement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\frmEditInfo.resx">
+      <DependentUpon>frmEditInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\frmNewPatient.resx">
+      <DependentUpon>frmNewPatient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\frmPatient.resx">
       <DependentUpon>frmPatient.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\PrescriptionForm\frmPrescription.resx">
       <DependentUpon>frmPrescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\PrescriptionForm\MedInvoiceForm\frmMedInvoice.resx">
+      <DependentUpon>frmMedInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

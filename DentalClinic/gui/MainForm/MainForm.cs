@@ -1,4 +1,5 @@
-﻿using gui.DentalForm;
+﻿using gui.LoginForm;
+using gui.DentalForm;
 using gui.PatientForm;
 using System;
 using System.Threading;
@@ -28,7 +29,13 @@ namespace DentalClinic
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
+            DialogResult dr = MessageBox.Show("Bạn sẽ được trở về màn hình đăng nhập", 
+                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (dr == DialogResult.OK)
+            {
+                LoginForm lf = new LoginForm();
+                lf.ShowDialog();
+            }
         }
 
         /*private void btnStatistics_Click(object sender, EventArgs e)

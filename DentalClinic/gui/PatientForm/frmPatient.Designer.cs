@@ -70,8 +70,8 @@
             this.btnFunction});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(908, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1211, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -85,7 +85,7 @@
             this.btnFunction.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFunction.Image = ((System.Drawing.Image)(resources.GetObject("btnFunction.Image")));
             this.btnFunction.Name = "btnFunction";
-            this.btnFunction.Size = new System.Drawing.Size(118, 24);
+            this.btnFunction.Size = new System.Drawing.Size(139, 25);
             this.btnFunction.Text = "Chức năng";
             // 
             // hiểnThịToolStripMenuItem
@@ -96,44 +96,44 @@
             this.đãTáiKhámToolStripMenuItem});
             this.hiểnThịToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("hiểnThịToolStripMenuItem.Image")));
             this.hiểnThịToolStripMenuItem.Name = "hiểnThịToolStripMenuItem";
-            this.hiểnThịToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.hiểnThịToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
             this.hiểnThịToolStripMenuItem.Text = "Hiển thị";
             // 
             // toànBộToolStripMenuItem
             // 
             this.toànBộToolStripMenuItem.Name = "toànBộToolStripMenuItem";
-            this.toànBộToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.toànBộToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.toànBộToolStripMenuItem.Text = "Toàn bộ";
             // 
             // đãCóĐơnThuốcToolStripMenuItem
             // 
             this.đãCóĐơnThuốcToolStripMenuItem.Name = "đãCóĐơnThuốcToolStripMenuItem";
-            this.đãCóĐơnThuốcToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.đãCóĐơnThuốcToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.đãCóĐơnThuốcToolStripMenuItem.Text = "Đã có đơn thuốc";
             // 
             // đãTáiKhámToolStripMenuItem
             // 
             this.đãTáiKhámToolStripMenuItem.Name = "đãTáiKhámToolStripMenuItem";
-            this.đãTáiKhámToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.đãTáiKhámToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.đãTáiKhámToolStripMenuItem.Text = "Đã tái khám";
             // 
             // btnAddNew
             // 
             this.btnAddNew.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNew.Image")));
             this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(194, 22);
+            this.btnAddNew.Size = new System.Drawing.Size(239, 26);
             this.btnAddNew.Text = "Thêm mới       &F1";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(236, 6);
             // 
             // btnQuit
             // 
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(194, 22);
+            this.btnQuit.Size = new System.Drawing.Size(239, 26);
             this.btnQuit.Text = "Thoát               &F6";
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
@@ -150,9 +150,9 @@
             this.btnCreatingPrescription,
             this.toolStripSeparator4,
             this.btnMedicExamInfor});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 29);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(908, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1211, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -161,8 +161,9 @@
             this.btnAddNewPatient.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNewPatient.Image")));
             this.btnAddNewPatient.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddNewPatient.Name = "btnAddNewPatient";
-            this.btnAddNewPatient.Size = new System.Drawing.Size(85, 24);
+            this.btnAddNewPatient.Size = new System.Drawing.Size(100, 24);
             this.btnAddNewPatient.Text = "Thêm mới";
+            this.btnAddNewPatient.Click += new System.EventHandler(this.btnAddNewPatient_Click);
             // 
             // toolStripSeparator1
             // 
@@ -174,7 +175,7 @@
             this.btnSearching.Image = ((System.Drawing.Image)(resources.GetObject("btnSearching.Image")));
             this.btnSearching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSearching.Name = "btnSearching";
-            this.btnSearching.Size = new System.Drawing.Size(80, 24);
+            this.btnSearching.Size = new System.Drawing.Size(94, 24);
             this.btnSearching.Text = "Tìm kiếm";
             // 
             // toolStripSeparator2
@@ -187,7 +188,7 @@
             this.btnEditing.Image = ((System.Drawing.Image)(resources.GetObject("btnEditing.Image")));
             this.btnEditing.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditing.Name = "btnEditing";
-            this.btnEditing.Size = new System.Drawing.Size(79, 24);
+            this.btnEditing.Size = new System.Drawing.Size(92, 24);
             this.btnEditing.Text = "Cập nhật";
             // 
             // toolStripSeparator3
@@ -200,7 +201,7 @@
             this.btnCreatingPrescription.Image = ((System.Drawing.Image)(resources.GetObject("btnCreatingPrescription.Image")));
             this.btnCreatingPrescription.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCreatingPrescription.Name = "btnCreatingPrescription";
-            this.btnCreatingPrescription.Size = new System.Drawing.Size(108, 24);
+            this.btnCreatingPrescription.Size = new System.Drawing.Size(129, 24);
             this.btnCreatingPrescription.Text = "Tạo đơn thuốc";
             this.btnCreatingPrescription.Click += new System.EventHandler(this.btnCreatingPrescription_Click);
             // 
@@ -215,7 +216,7 @@
             this.btnMedicExamInfor.Image = global::gui.Properties.Resources.examination;
             this.btnMedicExamInfor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMedicExamInfor.Name = "btnMedicExamInfor";
-            this.btnMedicExamInfor.Size = new System.Drawing.Size(145, 24);
+            this.btnMedicExamInfor.Size = new System.Drawing.Size(173, 24);
             this.btnMedicExamInfor.Text = "Thông tin khám bệnh";
             this.btnMedicExamInfor.Click += new System.EventHandler(this.btnMedicExamInfor_Click);
             // 
@@ -233,20 +234,22 @@
             this.colFirstTime,
             this.colReason,
             this.colHavePrescription});
-            this.dgvPatient.Location = new System.Drawing.Point(22, 57);
-            this.dgvPatient.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvPatient.Location = new System.Drawing.Point(29, 70);
+            this.dgvPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvPatient.Name = "dgvPatient";
             this.dgvPatient.RowHeadersWidth = 51;
             this.dgvPatient.RowTemplate.Height = 24;
-            this.dgvPatient.Size = new System.Drawing.Size(861, 480);
+            this.dgvPatient.Size = new System.Drawing.Size(1148, 591);
             this.dgvPatient.TabIndex = 3;
             this.dgvPatient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellClick);
+            this.dgvPatient.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellDoubleClick);
             // 
             // colPatientID
             // 
             this.colPatientID.HeaderText = "Mã bệnh nhân";
             this.colPatientID.MinimumWidth = 6;
             this.colPatientID.Name = "colPatientID";
+            this.colPatientID.Width = 125;
             // 
             // colName
             // 
@@ -306,14 +309,14 @@
             // 
             // frmPatient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 548);
+            this.ClientSize = new System.Drawing.Size(1211, 674);
             this.Controls.Add(this.dgvPatient);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmPatient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPatient";
