@@ -9,7 +9,6 @@ namespace bus
 {
     public class MedicineInvoiceService
     { 
-    {
         public List<MedicineInvoice> GetAll()
         {
             DentalModel model = new DentalModel();
