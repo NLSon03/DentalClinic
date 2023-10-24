@@ -64,6 +64,7 @@ namespace DentalClinic
             this.btnDentalMaterial.Text = "QUẢN LÝ VẬT LIỆU, DỤNG CỤ NHA KHOA";
             this.btnDentalMaterial.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnDentalMaterial.UseVisualStyleBackColor = true;
+            this.btnDentalMaterial.Click += new System.EventHandler(this.btnDentalMaterial_Click);
             // 
             // btnStatistics
             // 
@@ -77,7 +78,7 @@ namespace DentalClinic
             this.btnStatistics.Text = "THỐNG KÊ";
             this.btnStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnStatistics.UseVisualStyleBackColor = true;
-            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            /*this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);*/
             // 
             // btnPatientManager
             // 

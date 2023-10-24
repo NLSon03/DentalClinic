@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\ClinicalInformation.cs" />
     <Compile Include="Entities\ConsumableTool.cs" />
@@ -76,6 +75,7 @@
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="Entities\Revenue.cs" />
     <Compile Include="Entities\SubClinicalInformation.cs" />
+    <Compile Include="Entities\sysdiagram.cs" />
     <Compile Include="Entities\Treatment.cs" />
     <Compile Include="Entities\TreatmentInvoice.cs" />
     <Compile Include="Entities\TreatmentInvoiceDetail.cs" />
