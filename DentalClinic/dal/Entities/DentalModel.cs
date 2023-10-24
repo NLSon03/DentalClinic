@@ -8,7 +8,7 @@ namespace dal.Entities
     public partial class DentalModel : DbContext
     {
         public DentalModel()
-            : base("name=DentalModel1")
+            : base("name=DentalModel")
         {
         }
 
