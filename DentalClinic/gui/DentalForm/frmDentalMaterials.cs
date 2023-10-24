@@ -4,16 +4,9 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace gui.DentalForm
 {
@@ -48,11 +41,11 @@ namespace gui.DentalForm
             txtDonViTinh.Text = "";
         }
 
-        
+
 
         private void checkValid()
         {
-            if ( txtSoLuong.Text == "" || txtDonGia.Text == "" )
+            if (txtSoLuong.Text == "" || txtDonGia.Text == "")
                 throw new Exception("Vui lòng nhập đầy đủ thông tin");
         }
 
@@ -91,7 +84,7 @@ namespace gui.DentalForm
         }
 
 
-        
+
 
         private void dgvDungCu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -104,9 +97,9 @@ namespace gui.DentalForm
             txtSoLuong.Text = row.Cells[3].Value.ToString();
             txtDonGia.Text = row.Cells[4].Value.ToString();
             txtThanhTien.Text = row.Cells[5].Value.ToString();
-        }   
+        }
 
-       
+
 
         private void cmbDungCu_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -227,7 +220,7 @@ namespace gui.DentalForm
             }
         }
 
-       
+
 
         private void khoHàngToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -302,7 +295,7 @@ namespace gui.DentalForm
                         }
                     }
                 }
-            }   
+            }
             else
             {
                 MessageBox.Show("Không tìm thấy file", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

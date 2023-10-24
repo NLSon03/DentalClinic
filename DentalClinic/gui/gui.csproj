@@ -296,11 +296,10 @@
     <Content Include="Resources\Tool1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Invoices\" />
     <Folder Include="MedicineInvoice\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Invoices\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

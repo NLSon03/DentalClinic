@@ -1,16 +1,7 @@
-﻿using dal.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using bus;
 using dal.Entities;
-using bus;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System;
+using System.Windows.Forms;
 
 namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
 {
@@ -19,7 +10,7 @@ namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
         public int PatientID;
         private readonly MedicineService med = new MedicineService();
         private readonly PrescriptionService prescription = new PrescriptionService();
-        private readonly MedicineInvoiceService  medInvoice = new MedicineInvoiceService();
+        private readonly MedicineInvoiceService medInvoice = new MedicineInvoiceService();
         private readonly MedicineInvoiceDetailService medInvoiceDetails = new MedicineInvoiceDetailService();
 
         public frmMedDetail()
@@ -91,7 +82,7 @@ namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
                         };
                         prescription.InsertNew(item1);
                     }
-                    MessageBox.Show("Done!","Annoucement!",MessageBoxButtons.OK);
+                    MessageBox.Show("Done!", "Annoucement!", MessageBoxButtons.OK);
                 }
                 this.Close();
             }
