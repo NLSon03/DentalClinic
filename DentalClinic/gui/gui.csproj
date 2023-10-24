@@ -52,6 +52,9 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
@@ -113,6 +116,31 @@
     <Compile Include="PatientForm\frmPatient.Designer.cs">
       <DependentUpon>frmPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\CheckValidData.cs" />
+    <Compile Include="PatientForm\MedicExamInforForm\FormAddDiagnosisTreatment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormAddDiagnosisTreatment.Designer.cs">
+      <DependentUpon>FormAddDiagnosisTreatment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormDeleteInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormDeleteInvoice.Designer.cs">
+      <DependentUpon>FormDeleteInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormEditSubClinicInf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormEditSubClinicInf.Designer.cs">
+      <DependentUpon>FormEditSubClinicInf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormPrintInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientForm\MedicExamInforForm\FormPrintInvoice.Designer.cs">
+      <DependentUpon>FormPrintInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="PatientForm\MedicExamInforForm\frmMedicExamInfor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +200,18 @@
     <EmbeddedResource Include="PatientForm\frmPatient.resx">
       <DependentUpon>frmPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\MedicExamInforForm\FormAddDiagnosisTreatment.resx">
+      <DependentUpon>FormAddDiagnosisTreatment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\MedicExamInforForm\FormDeleteInvoice.resx">
+      <DependentUpon>FormDeleteInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\MedicExamInforForm\FormEditSubClinicInf.resx">
+      <DependentUpon>FormEditSubClinicInf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\MedicExamInforForm\FormPrintInvoice.resx">
+      <DependentUpon>FormPrintInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\MedicExamInforForm\frmMedicExamInfor.resx">
       <DependentUpon>frmMedicExamInfor.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +252,12 @@
     </Compile>
     <None Include="Resources\cach_at_ten_cac_thanh_phan_trong_winform.docx" />
     <None Include="Resources\MedInvoice\MedInvoice.pdf" />
+    <None Include="Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Templates\Template.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -228,18 +274,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\128x128.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\bill.png" />
     <Content Include="Resources\clipboard.png" />
     <Content Include="Resources\dentist.ico" />
     <Content Include="Resources\dentist.png" />
     <None Include="Resources\examination.png" />
     <None Include="Resources\edit.png" />
+    <None Include="Resources\edit1.png" />
     <Content Include="Resources\exit.png" />
+    <None Include="Resources\invoice.png" />
     <Content Include="Resources\patientManager.png" />
+    <None Include="Resources\remove.png" />
     <Content Include="Resources\Tool.png" />
     <Content Include="Resources\Tool1.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MedicineInvoice\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Invoices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

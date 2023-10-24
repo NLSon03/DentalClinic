@@ -11,7 +11,10 @@ namespace dal.Entities
         public string ToolName { get; set; }
         public int QuantitySold { get; set; }
         public int QuantityPurchased { get; set; }
+        public int ConsumedQuantity { get; set; }
+
         public int RemainingQuantity { get; set; }
+
         public DateTime? LastUpdateDate { get; set; }
 
     }

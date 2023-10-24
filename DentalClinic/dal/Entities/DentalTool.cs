@@ -11,6 +11,7 @@ namespace dal.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DentalTool()
         {
+            ConsumableTools = new HashSet<ConsumableTool>();
             DentalToolTransactionsDetails = new HashSet<DentalToolTransactionsDetail>();
         }
 
@@ -26,9 +27,20 @@ namespace dal.Entities
         [StringLength(50)]
         public string Unit { get; set; }
 
+        public decimal PurchasedPrice { get; set; }
+
+        public decimal SellingPrice { get; set; }
+
         public int Quantity { get; set; }
+
+        public bool Type { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConsumableTool> ConsumableTools { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DentalToolTransactionsDetail> DentalToolTransactionsDetails { get; set; }
+
+        public virtual Medicine Medicine { get; set; }
     }
 }

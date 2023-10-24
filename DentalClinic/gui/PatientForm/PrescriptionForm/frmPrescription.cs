@@ -77,7 +77,7 @@ namespace gui.PatientForm.PrescriptionForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to load data into controls needed", "Annoucement", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Annoucement", MessageBoxButtons.OK);
             }
         }
 

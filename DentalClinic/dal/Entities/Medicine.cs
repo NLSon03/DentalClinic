@@ -30,6 +30,8 @@ namespace dal.Entities
         [StringLength(255)]
         public string Dosage { get; set; }
 
+        public virtual DentalTool DentalTool { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription> Prescriptions { get; set; }
     }

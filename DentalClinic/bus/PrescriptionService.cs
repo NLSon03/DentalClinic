@@ -112,6 +112,14 @@ namespace bus
                 model.SaveChanges();
             }
         }
+
+        public int GetMedicineQuantity(int id, DateTime startDate, DateTime endDate)
+        {
+            DentalModel model = new DentalModel();
+            var totalQuantity = model.Prescriptions.AsEnumerable().Where(x => x.MedicineID == id && GetMedicineInvoiceDate(x.ID) >= startDate && GetMedicineInvoiceDate(x.ID) <= endDate)
+                                                   .Sum(x => x.Quantity);
+            return totalQuantity;
+        }
         public List<string> GetMedName(List<int?> ids)
         {
             using (var model = new DentalModel())
