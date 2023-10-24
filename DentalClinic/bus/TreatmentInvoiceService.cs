@@ -74,5 +74,10 @@ namespace bus
                 return totalAmount.ToString("N0");
             }
         }
+        public List<TreatmentInvoice> GetAll()
+        {
+            DentalModel model = new DentalModel();
+            return model.TreatmentInvoices.ToList();
+        }
     }
 }

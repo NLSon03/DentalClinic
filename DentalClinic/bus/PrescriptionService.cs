@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dal.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,50 @@ namespace bus
 {
     public class PrescriptionService
     {
+        public List<Prescription> GetAll()
+        {
+            DentalModel model = new DentalModel();
+            return model.Prescriptions.ToList();
+        }
+
+        public string GetMedicineName(int id)
+        {
+            DentalModel model = new DentalModel();
+            var medicinename = model.Prescriptions.Where(p => p.ID == id)
+                                                  .Select(p => p.Medicine.MedicineName)
+                                                  .FirstOrDefault();
+            return medicinename;
+        }
+
+        public DateTime GetMedicineInvoiceDate(int id)
+        {
+            DentalModel model = new DentalModel();
+            var date = model.MedicineInvoiceDetails.Where(p => p.Prescription_ID == id)
+                                                   .Select(p=>p.MedicineInvoice.Date)
+                                                   .FirstOrDefault() ;
+            return (DateTime)date;
+        }
+
+        public List<Prescription> GetAllBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            DentalModel model = new DentalModel() ;
+            return model.Prescriptions.AsEnumerable().Where(t=>GetMedicineInvoiceDate(t.ID) >= startDate && GetMedicineInvoiceDate(t.ID)<=endDate).ToList();
+        }
+        public void InsertNew(Prescription prescription)
+        {
+            using (DentalModel model = new DentalModel())
+            {
+                model.Prescriptions.Add(prescription);
+                model.SaveChanges();
+            }
+        }
+
+        public int GetMedicineQuantity(int id, DateTime startDate, DateTime endDate)
+        {
+            DentalModel model = new DentalModel();
+            var totalQuantity = model.Prescriptions.AsEnumerable().Where(x => x.MedicineID == id && GetMedicineInvoiceDate(x.ID) >= startDate && GetMedicineInvoiceDate(x.ID) <= endDate)
+                                                   .Sum(x => x.Quantity);
+            return totalQuantity;
+        }
     }
 }

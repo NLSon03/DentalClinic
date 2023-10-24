@@ -50,6 +50,7 @@ namespace DentalClinic
             this.btnExit.Text = "THOÁT";
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnDentalMaterial
             // 
@@ -76,6 +77,7 @@ namespace DentalClinic
             this.btnStatistics.Text = "THỐNG KÊ";
             this.btnStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
             // btnPatientManager
             // 

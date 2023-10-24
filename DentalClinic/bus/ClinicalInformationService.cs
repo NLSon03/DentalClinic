@@ -1,6 +1,10 @@
 ﻿using dal.Entities;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace bus
 {
@@ -118,6 +122,51 @@ namespace bus
                     .Select(detail => detail.ClinicInfor_ID)
                     .ToList();
             }
+        }
+
+        public string GetTreatmentName(int ID)
+        {
+            DentalModel model = new DentalModel();
+            var treatmentName = model.ClinicalInformations
+                                  .Where(t => t.ID == ID)
+                                  .Select(t => t.Treatment.TreatmentName.Name)
+                                  .FirstOrDefault();
+            return treatmentName;
+        }
+
+        public string GetTreatmentMethodName(int ID)
+        {
+            DentalModel model = new DentalModel();
+            var treatmentMethodName = model.ClinicalInformations.Where(t => t.ID == ID)
+                                                                .Select(t => t.Treatment.TreatmentMethodName.Name)
+                                                                .FirstOrDefault();
+            return treatmentMethodName;
+        }
+
+        public DateTime GetTreatmentInvoiceDate(int ID)
+        {
+            DentalModel model = new DentalModel();
+            var treatmentInvoiceDate = model.TreatmentInvoiceDetails
+                                           .Where(t => t.ClinicInfor_ID == ID)
+                                           .Select(t => t.TreatmentInvoice.Date)
+                                           .FirstOrDefault();
+
+            return (DateTime)treatmentInvoiceDate;
+        }
+
+        public List<ClinicalInformation> GetAllBetweenDates(DateTime date1, DateTime date2)
+        {
+            DentalModel model = new DentalModel();
+            return model.ClinicalInformations.AsEnumerable()
+                                .Where(t => GetTreatmentInvoiceDate(t.ID) >= date1 && GetTreatmentInvoiceDate(t.ID) <= date2)
+                                .ToList();
+        }
+        public int GetTreatmentQuantity(int treatmentID, DateTime startDate, DateTime endDate)
+        {
+            DentalModel model = new DentalModel();
+            var totalQuantity = model.ClinicalInformations.AsEnumerable().Where(x => x.Treatment_ID == treatmentID && GetTreatmentInvoiceDate(x.ID) >= startDate && GetTreatmentInvoiceDate(x.ID) <= endDate)
+                                                          .Sum(x => x.Quantity);
+            return totalQuantity;
         }
     }
 }

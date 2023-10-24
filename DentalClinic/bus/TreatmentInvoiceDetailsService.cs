@@ -1,4 +1,6 @@
 ﻿using dal.Entities;
+using System;
+using dal.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +8,11 @@ namespace bus
 {
     public class TreatmentInvoiceDetailsService
     {
+        public List<TreatmentInvoiceDetail> GetAll()
+        {
+            DentalModel model = new DentalModel();
+            return model.TreatmentInvoiceDetails.ToList();
+        }
         public TreatmentInvoiceDetail GetByClinicInforID(string ClinicID)
         {
             var context = new DentalModel();
