@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using UnidecodeSharpFork;
 
 namespace gui.DentalForm
 {
@@ -234,75 +235,75 @@ namespace gui.DentalForm
             return dgvDungCu.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToBoolean(row.Cells["colMedInvoice"].Value));
         }
 
-        private void btnXuatHoaDon_Click(object sender, EventArgs e)
+        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel)
         {
-            if (dgvDungCu.Rows.Count > 0)
-
+            Microsoft.Office.Interop.Excel.Application excel;
+            Microsoft.Office.Interop.Excel.Workbook workbook;
+            Microsoft.Office.Interop.Excel.Worksheet worksheet;
+            try
             {
+                // Tạo đối tượng COM.
+                excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = false;
+                excel.DisplayAlerts = false;
+                // Tạo mới một Workbooks bằng phương thức add()
+                workbook = excel.Workbooks.Add(Type.Missing);
+                worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets["Sheet1"];
+                // Đặt tên cho sheet
+                worksheet.Name = tenexcel;
 
-                SaveFileDialog save = new SaveFileDialog();
+                // Chèn dòng đầu tiên vào tệp Excel
+                Microsoft.Office.Interop.Excel.Range headerRange = (Microsoft.Office.Interop.Excel.Range)worksheet.Rows[1];
+                headerRange.Insert(Microsoft.Office.Interop.Excel.XlInsertShiftDirection.xlShiftDown);
 
-                save.Filter = "PDF (.pdf)|.pdf";
+                // Gán giá trị cho Loại giao dịch: Nhập vào dòng đầu tiên
+                worksheet.Cells[1, 1] = "HÓA ĐƠN HÀNG";
+                worksheet.Cells[2, 1] = "Loại giao dịch:";
+                worksheet.Cells[2, 2] = (optNhap.Checked) ? "Nhập" : "Xuất";
 
-                save.FileName = "Result.pdf";
 
-                bool ErrorMessage = false;
-
-                if (save.ShowDialog() == DialogResult.OK)
+                // Export header trong DataGridView
+                for (int i = 0; i < dataGrid.ColumnCount; i++)
                 {
-                    if (File.Exists(save.FileName))
+                    worksheet.Cells[3, i + 1] = dataGrid.Columns[i].HeaderText;
+                }
+                // Export nội dung trong DataGridView
+                for (int i = 0; i < dataGrid.RowCount; i++)
+                {
+                    for (int j = 0; j < dataGrid.ColumnCount; j++)
                     {
-                        try
-                        {
-                            File.Delete(save.FileName);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorMessage = true;
-                            MessageBox.Show("Không thể ghi dữ liệu vào đĩa" + ex.Message);
-                        }
-                    }
-                    if (!ErrorMessage)
-                    {
-                        try
-                        {
-                            PdfPTable pTable = new PdfPTable(dgvDungCu.Columns.Count);
-                            pTable.DefaultCell.Padding = 2;
-                            pTable.WidthPercentage = 100;
-                            pTable.HorizontalAlignment = Element.ALIGN_LEFT;
-                            foreach (DataGridViewColumn col in dgvDungCu.Columns)
-                            {
-                                PdfPCell pCell = new PdfPCell(new Phrase(col.HeaderText));
-                                pTable.AddCell(pCell);
-                            }
-                            foreach (DataGridViewRow viewRow in dgvDungCu.Rows)
-                            {
-                                foreach (DataGridViewCell dcell in viewRow.Cells)
-                                {
-                                    pTable.AddCell(dcell.Value.ToString());
-                                }
-                            }
-                            using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
-                            {
-                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
-                                PdfWriter.GetInstance(document, fileStream);
-                                document.Open();
-                                document.Add(pTable);
-                                document.Close();
-                                fileStream.Close();
-                            }
-                            MessageBox.Show("In hóa đơn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Lỗi khi xuất hóa đơn" + ex.Message);
-                        }
+                            // Giữ nguyên giá trị của các cột khác
+                            worksheet.Cells[i + 3, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
                     }
                 }
+
+                // Sử dụng phương thức SaveAs() để lưu workbook với filename
+                workbook.SaveAs(fileName);
+                // Đóng workbook
+                workbook.Close();
+                excel.Quit();
+                MessageBox.Show("Xuất dữ liệu ra Excel thành công!");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không tìm thấy file", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                workbook = null;
+                worksheet = null;
+            }
+        }
+
+        private void btnXuatHoaDon_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ToExcel(dgvDungCu, saveFileDialog.FileName, "Hóa đơn");
             }
         }
 

@@ -189,7 +189,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
 
 
-        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel)
+        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel, string tencotngay, string noidung)
         {
             Microsoft.Office.Interop.Excel.Application excel;
             Microsoft.Office.Interop.Excel.Workbook workbook;
@@ -205,26 +205,35 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets["Sheet1"];
                 //đặt tên cho sheet
                 worksheet.Name = tenexcel;
+                Microsoft.Office.Interop.Excel.Range mergeRange = worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[1, dataGrid.Columns.Count]];
+                mergeRange.Merge();
+                worksheet.Cells[1, 1] = noidung;
+                Microsoft.Office.Interop.Excel.Range cellRange = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[1, 1];
+                cellRange.Font.Bold = true;
+                cellRange.Font.Color = Color.Red;
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
                 // export header trong DataGridView
                 for (int i = 0; i < dataGrid.ColumnCount; i++)
                 {
-                    worksheet.Cells[1, i + 1] = dataGrid.Columns[i].HeaderText;
+                    worksheet.Cells[3, i + 1] = dataGrid.Columns[i].HeaderText;
                 }
                 // export nội dung trong DataGridView
                 for (int i = 0; i < dataGrid.RowCount; i++)
                 {
                     for (int j = 0; j < dataGrid.ColumnCount; j++)
                     {
-                        if (dataGrid.Columns[j].HeaderText.Unidecode().ToLower().Contains("ngay"))
+                        if (dataGrid.Columns[j].HeaderText.Unidecode().ToLower().Contains(tencotngay))
                         {
-                            // Định dạng ngày thành MM/dd/yyyy
-                            worksheet.Cells[i + 2, j + 1] = DateTime.Parse(dataGrid.Rows[i].Cells[j].Value.ToString()).ToString("MM/dd/yyyy");
+                            if (dataGrid.Rows[i].Cells[j].Value != null)
+                                // Định dạng ngày thành MM/dd/yyyy
+                                worksheet.Cells[i + 4, j + 1] = DateTime.Parse(dataGrid.Rows[i].Cells[j].Value.ToString()).ToString("MM/dd/yyyy");
                         }
                         else
                         {
+                            if (dataGrid.Rows[i].Cells[j].Value!= null)
                             // Giữ nguyên giá trị của các cột khác
-                            worksheet.Cells[i + 2, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                                worksheet.Cells[i + 4, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
                         }
                     }
                 }
@@ -473,7 +482,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvTongDoanhThu, saveFileDialog.FileName, "Thống kê doanh thu");
+                ToExcel(dgvTongDoanhThu, saveFileDialog.FileName, "Thống kê doanh thu","Ngay", "THỐNG KÊ DOANH THU");
             }
         }
 
@@ -596,7 +605,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvDieutri, saveFileDialog.FileName, "Thống kê tiền điều trị");
+                ToExcel(dgvDieutri, saveFileDialog.FileName, "Thống kê tiền điều trị","Ngay", "THỐNG KÊ DOANH THU ĐIỀU TRỊ");
             }
         }
 
@@ -739,7 +748,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc");
+                ToExcel(dgvThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc", "Ngay", "THỐNG KÊ DOANH THU THUỐC");
             }
         }
 
@@ -873,7 +882,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvXuat, saveFileDialog.FileName, "Thống kê tiền xuất vật liệu");
+                ToExcel(dgvXuat, saveFileDialog.FileName, "Thống kê tiền xuất vật liệu","Ngay", "THỐNG KÊ DOANH THU XUẤT HÀNG");
             }
         }
 
@@ -986,7 +995,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvNhap, saveFileDialog.FileName, "Thống kê tiền nhập vật liệu");
+                ToExcel(dgvNhap, saveFileDialog.FileName, "Thống kê tiền nhập vật liệu","Ngay","THỐNG KÊ TIỀN NHẬP HÀNG");
             }
         }
 
