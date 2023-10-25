@@ -44,20 +44,22 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 int index = dgvTongDoanhThu.Rows.Add();
                 dgvTongDoanhThu.Rows[index].Cells[0].Value = index + 1;
                 dgvTongDoanhThu.Rows[index].Cells[1].Value = item.Ngay;
-                dgvTongDoanhThu.Rows[index].Cells[2].Value = item.TienThu;
-                dgvTongDoanhThu.Rows[index].Cells[3].Value = item.TienChi;
-                dgvTongDoanhThu.Rows[index].Cells[4].Value = item.Tong;
+                dgvTongDoanhThu.Rows[index].Cells[2].Value = (long)item.TienThu;
+                dgvTongDoanhThu.Rows[index].Cells[3].Value = (long)item.TienChi;
+                dgvTongDoanhThu.Rows[index].Cells[4].Value = (long)item.Tong;
                 tongtien += (decimal)item.Tong;
                 tongthu += (decimal)item.TienThu;
                 tongchi += (decimal)item.TienChi;
             }
-            lbTongDT.Text = tongtien.ToString("0.00");
-            lbTongThu.Text = tongthu.ToString("0.00");
-            lbTongChi.Text = tongchi.ToString("0.00");
+            lbTongDT.Text = tongtien.ToString("0");
+            lbTongThu.Text = tongthu.ToString("0");
+            lbTongChi.Text = tongchi.ToString("0");
         }
         private void BindGridDieutri(List<ClinicalInformation> dsdieutri) 
         {
+            dgvDieutri.Columns["clmNgayDieutri"].Visible = true;
             dgvDieutri.Rows.Clear();
+            dgvDieutri.Columns["clmSoluong"].HeaderText = "Số lượng";
             decimal tongtien = 0;
             foreach(var item in dsdieutri)
             {
@@ -67,68 +69,125 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 dgvDieutri.Rows[index].Cells[2].Value = clinicalInformationService.GetTreatmentName(item.ID);
                 dgvDieutri.Rows[index].Cells[3].Value = clinicalInformationService.GetTreatmentMethodName(item.ID);
                 dgvDieutri.Rows[index].Cells[4].Value = item.Quantity;
-                dgvDieutri.Rows[index].Cells[5].Value = item.Treatment.UnitPrice;
-                dgvDieutri.Rows[index].Cells[6].Value = item.TotalAmount;
+                dgvDieutri.Rows[index].Cells[5].Value = (long)item.Treatment.UnitPrice;
+                dgvDieutri.Rows[index].Cells[6].Value = (long)item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTiendieutri.Text = tongtien.ToString("0.00");
+            lbTiendieutri.Text = tongtien.ToString("0");
             lbTongcadieutri.Text = (dgvDieutri.Rows.Count).ToString();
 
         }
         private void BindGridThuoc(List<Prescription> dsdonthuoc)
         {
-            dgvTienThuoc.Rows.Clear();
+            label20.Text = "Số đơn thuốc đã bán";
+            dgvThuoc.Columns["clmNgayThuoc"].Visible = true;
+            dgvThuoc.Columns["clmSoluongthuoc"].HeaderText = "Số lượng";
+            dgvThuoc.Rows.Clear();
             decimal tongtien = 0;
             foreach(var item in  dsdonthuoc)
             {
-                int index = dgvTienThuoc.Rows.Add();
-                dgvTienThuoc.Rows[index].Cells[0].Value = index + 1;
-                dgvTienThuoc.Rows[index].Cells[1].Value = prescriptionService.GetMedicineInvoiceDate(item.ID).ToString();
-                dgvTienThuoc.Rows[index].Cells[2].Value = prescriptionService.GetMedicineName(item.ID);
-                dgvTienThuoc.Rows[index].Cells[3].Value = item.Quantity;
-                dgvTienThuoc.Rows[index].Cells[4].Value = item.Medicine.UnitPrice.ToString();
-                dgvTienThuoc.Rows[index].Cells[5].Value = item.TotalAmount.ToString();
+                int index = dgvThuoc.Rows.Add();
+                dgvThuoc.Rows[index].Cells[0].Value = index + 1;
+                dgvThuoc.Rows[index].Cells[1].Value = prescriptionService.GetMedicineInvoiceDate(item.ID).ToString();
+                dgvThuoc.Rows[index].Cells[2].Value = prescriptionService.GetMedicineName(item.ID);
+                dgvThuoc.Rows[index].Cells[3].Value = item.Quantity;
+                dgvThuoc.Rows[index].Cells[4].Value = (long)item.Medicine.UnitPrice;
+                dgvThuoc.Rows[index].Cells[5].Value = (long)item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTongtienthuoc.Text = tongtien.ToString("0.00");
-            lbTongthuoc.Text = dgvTienThuoc.Rows.Count.ToString();
+            lbTongtienthuoc.Text = tongtien.ToString("0");
+            lbTongthuoc.Text = dgvThuoc.Rows.Count.ToString();
         }
         private void BindGridTienNhap(List<DentalToolTransactionsDetail> dsnhap) 
         {
-            dgvTienNhap.Rows.Clear();
+            dgvNhap.Rows.Clear();
             decimal tongtien = 0;
             foreach (var item in dsnhap)
             {
-                int index = dgvTienNhap.Rows.Add();
-                dgvTienNhap.Rows[index].Cells[0].Value = index + 1;
-                dgvTienNhap.Rows[index].Cells[1].Value = item.DentalToolTransaction.TransactionDate.ToString();
-                dgvTienNhap.Rows[index].Cells[2].Value = item.DentalTool.ToolName.ToString();
-                dgvTienNhap.Rows[index].Cells[3].Value = item.Quantity;
-                dgvTienNhap.Rows[index].Cells[4].Value = item.UnitPrice;
-                dgvTienNhap.Rows[index].Cells[5].Value = item.TotalAmount;
+                int index = dgvNhap.Rows.Add();
+                dgvNhap.Rows[index].Cells[0].Value = index + 1;
+                dgvNhap.Rows[index].Cells[1].Value = item.DentalToolTransaction.TransactionDate.ToString();
+                dgvNhap.Rows[index].Cells[2].Value = item.DentalTool.ToolName.ToString();
+                dgvNhap.Rows[index].Cells[3].Value = item.Quantity;
+                dgvNhap.Rows[index].Cells[4].Value = (long)item.UnitPrice;
+                dgvNhap.Rows[index].Cells[5].Value = (long)item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTienNhap.Text = tongtien.ToString("0.00");
-            lbTongnhap.Text = dgvTienNhap.Rows.Count.ToString();
+            lbTienNhap.Text = tongtien.ToString("0");
+            lbTongnhap.Text = dgvNhap.Rows.Count.ToString();
         }
         private void BindGridTienXuat(List<DentalToolTransactionsDetail> dsxuat) 
         {
-            dgvTienXuat.Rows.Clear();
+            dgvXuat.Rows.Clear();
             decimal tongtien = 0;
             foreach(var item in dsxuat)
             {
-                int index = dgvTienXuat.Rows.Add();
-                dgvTienXuat.Rows[index].Cells[0].Value = index + 1;
-                dgvTienXuat.Rows[index].Cells[1].Value = item.DentalToolTransaction.TransactionDate.ToString();
-                dgvTienXuat.Rows[index].Cells[2].Value = item.DentalTool.ToolName.ToString();
-                dgvTienXuat.Rows[index].Cells[3].Value = item.Quantity;
-                dgvTienXuat.Rows[index].Cells[4].Value = item.UnitPrice;
-                dgvTienXuat.Rows[index].Cells[5].Value = item.TotalAmount;
+                int index = dgvXuat.Rows.Add();
+                dgvXuat.Rows[index].Cells[0].Value = index + 1;
+                dgvXuat.Rows[index].Cells[1].Value = item.DentalToolTransaction.TransactionDate.ToString();
+                dgvXuat.Rows[index].Cells[2].Value = item.DentalTool.ToolName.ToString();
+                dgvXuat.Rows[index].Cells[3].Value = item.Quantity;
+                dgvXuat.Rows[index].Cells[4].Value = (long)item.UnitPrice;
+                dgvXuat.Rows[index].Cells[5].Value = (long)item.TotalAmount;
                 tongtien += (decimal)item.TotalAmount;
             }
-            lbTienXuat.Text = tongtien.ToString("0.00");
-            lbTongXuat.Text = dgvTienXuat.Rows.Count.ToString();
+            lbTienXuat.Text = tongtien.ToString("0");
+            lbTongXuat.Text = dgvXuat.Rows.Count.ToString();
         }
+
+        private void BindGridTreatment(List<Treatment> ds, DateTime startDate, DateTime endDate)
+        {
+            dgvDieutri.Columns["clmNgayDieutri"].Visible = false;
+            dgvDieutri.Rows.Clear();
+            dgvDieutri.Columns["clmSoluong"].HeaderText = "Số ca thực hiện";
+            decimal tongtien = 0;
+            int tongsl = 0;
+
+            foreach (var item in ds)
+            {
+                int i = dgvDieutri.Rows.Add();
+                dgvDieutri.Rows[i].Cells[0].Value = i + 1;
+                dgvDieutri.Rows[i].Cells[2].Value = item.TreatmentName.Name;
+                dgvDieutri.Rows[i].Cells[3].Value = item.TreatmentMethodName.Name;
+
+                int quantity = clinicalInformationService.GetTreatmentQuantity(item.ID, startDate, endDate);
+                dgvDieutri.Rows[i].Cells[4].Value = quantity;
+
+                dgvDieutri.Rows[i].Cells[5].Value = (long)item.UnitPrice;
+                dgvDieutri.Rows[i].Cells[6].Value = (long)item.UnitPrice * quantity;
+
+                tongtien += (decimal)item.UnitPrice * quantity;
+                tongsl += quantity;
+            }
+            lbTiendieutri.Text = tongtien.ToString("0");
+            lbTongcadieutri.Text = tongsl.ToString();
+        }
+
+        private void BindGridMedicine(List<Medicine> ds, DateTime date1, DateTime date2)
+        {
+            dgvThuoc.Columns["clmNgayThuoc"].Visible = false;
+            dgvThuoc.Columns["clmSoluongthuoc"].HeaderText = "Số lượng đã bán";
+            label20.Text = "Số lượng thuốc đã bán";
+            dgvThuoc.Rows.Clear();
+            decimal tongtien = 0;
+            int slban = 0;
+            foreach (var item in ds)
+            {
+                int index = dgvThuoc.Rows.Add();
+                dgvThuoc.Rows[index].Cells[0].Value = index + 1;
+                dgvThuoc.Rows[index].Cells[2].Value = item.MedicineName;
+                int sl = prescriptionService.GetMedicineQuantity(item.MedicineID, date1, date2);
+                dgvThuoc.Rows[index].Cells[3].Value = sl;
+                dgvThuoc.Rows[index].Cells[4].Value = (long)item.UnitPrice;
+                dgvThuoc.Rows[index].Cells[5].Value = (long)item.UnitPrice * sl;
+                tongtien += (decimal)item.UnitPrice * sl;
+                slban += sl;
+            }
+            lbTongtienthuoc.Text = tongtien.ToString("0");
+            lbTongthuoc.Text = slban.ToString();
+        }
+
+
 
         private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel)
         {
@@ -561,7 +620,6 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 optNamfrm2.Checked = false;
                 optThangfrm2.Checked = false;
                 optQuyfrm2.Checked = false;
-                dgvDieutri.Columns["clmNgayDieutri"].Visible = false;
                 var ds = treatmentService.GetAll();
                 BindGridTreatment(ds, DateTime.MinValue, DateTime.MaxValue);
             }
@@ -570,37 +628,11 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 optNamfrm3.Checked = false;
                 optThangfrm3.Checked = false;
                 optQuyfrm3.Checked = false;
-                dgvDieutri.Columns["clmNgayDieutri"].Visible = true;
                 var ds = clinicalInformationService.GetAll();
                 BindGridDieutri(ds);
             }
         }
 
-        private void BindGridTreatment(List<Treatment> ds, DateTime startDate, DateTime endDate)
-        {
-            dgvDieutri.Rows.Clear();
-            decimal tongtien = 0;
-            int tongsl = 0;
-
-            foreach (var item in ds)
-            {
-                int i = dgvDieutri.Rows.Add();
-                dgvDieutri.Rows[i].Cells[0].Value = i + 1;
-                dgvDieutri.Rows[i].Cells[2].Value = item.TreatmentName.Name;
-                dgvDieutri.Rows[i].Cells[3].Value = item.TreatmentMethodName.Name;
-
-                int quantity = clinicalInformationService.GetTreatmentQuantity(item.ID, startDate, endDate);
-                dgvDieutri.Rows[i].Cells[4].Value = quantity;
-
-                dgvDieutri.Rows[i].Cells[5].Value = item.UnitPrice;
-                dgvDieutri.Rows[i].Cells[6].Value = item.UnitPrice * quantity;
-
-                tongtien += (decimal)item.UnitPrice * quantity;
-                tongsl += quantity;
-            }
-            lbTiendieutri.Text = tongtien.ToString("0.00");
-            lbTongcadieutri.Text = tongsl.ToString();
-        }
 
         //FORM TONG DON THUOC
         private void optThangfrm3_CheckedChanged(object sender, EventArgs e)
@@ -698,26 +730,6 @@ namespace gui.StatisticForm.RevenueStatisticForm
             }
         }
 
-        private void BindGridMedicine(List<Medicine> ds, DateTime date1, DateTime date2)
-        {
-            dgvTienThuoc.Rows.Clear();
-            decimal tongtien = 0;
-            int slban = 0;
-            foreach (var item in ds)
-            {
-                int index = dgvTienThuoc.Rows.Add();
-                dgvTienThuoc.Rows[index].Cells[0].Value = index + 1;
-                dgvTienThuoc.Rows[index].Cells[2].Value = item.MedicineName;
-                int sl = prescriptionService.GetMedicineQuantity(item.MedicineID, date1, date2);
-                dgvTienThuoc.Rows[index].Cells[3].Value = sl;
-                dgvTienThuoc.Rows[index].Cells[4].Value = item.UnitPrice.ToString();
-                dgvTienThuoc.Rows[index].Cells[5].Value = item.UnitPrice * sl ;
-                tongtien += (decimal)item.UnitPrice * sl;
-                slban += sl;
-            }
-            lbTongtienthuoc.Text = tongtien.ToString("0.00");
-            lbTongthuoc.Text = slban.ToString();
-        }
 
         private void btnXuatfrm3_Click(object sender, EventArgs e)
         {
@@ -727,7 +739,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvTienThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc");
+                ToExcel(dgvThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc");
             }
         }
 
@@ -753,8 +765,6 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 optNamfrm3.Checked = false;
                 optThangfrm3.Checked = false;
                 optQuyfrm3.Checked = false;
-                dgvTienThuoc.Columns["clmNgayThuoc"].Visible = false;
-                label20.Text = "Số lượng thuốc đã bán";
                 var ds = medicineService.GetAllMedicine();
                 BindGridMedicine(ds, DateTime.MinValue, DateTime.MaxValue);
             }
@@ -763,8 +773,6 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 optNamfrm3.Checked = false;
                 optThangfrm3.Checked = false;
                 optQuyfrm3.Checked = false;
-                label20.Text = "Số đơn thuốc đã bán";
-                dgvTienThuoc.Columns["clmNgayThuoc"].Visible = true;
                 var ds = prescriptionService.GetAll();
                 BindGridThuoc(ds);
             }
@@ -865,7 +873,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvTienXuat, saveFileDialog.FileName, "Thống kê tiền xuất vật liệu");
+                ToExcel(dgvXuat, saveFileDialog.FileName, "Thống kê tiền xuất vật liệu");
             }
         }
 
@@ -978,7 +986,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvTienNhap, saveFileDialog.FileName, "Thống kê tiền nhập vật liệu");
+                ToExcel(dgvNhap, saveFileDialog.FileName, "Thống kê tiền nhập vật liệu");
             }
         }
 
