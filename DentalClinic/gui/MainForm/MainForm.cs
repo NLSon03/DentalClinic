@@ -40,8 +40,8 @@ namespace DentalClinic
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            frmStatistic frmStatistic = new frmStatistic();
-            frmStatistic.ShowDialog();
+            frmStatistic form = new frmStatistic();
+            form.ShowDialog();
         }
 
         private void btnDentalMaterial_Click(object sender, EventArgs e)
