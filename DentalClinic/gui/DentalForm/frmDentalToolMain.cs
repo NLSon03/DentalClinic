@@ -2,12 +2,7 @@
 using dal.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gui.DentalForm
@@ -46,7 +41,7 @@ namespace gui.DentalForm
             }
         }
 
-        
+
 
 
         private void BindGrid(List<DentalToolTransactionsDetail> listDentalToolTranscationDetail)
@@ -105,6 +100,11 @@ namespace gui.DentalForm
         private void thoátToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmDentalToolMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

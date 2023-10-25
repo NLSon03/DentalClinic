@@ -1,14 +1,11 @@
 ﻿using bus;
 using dal.Entities;
-using DentalClinic;
 using gui.PatientForm.CompletingMedInvoiceForm;
 using gui.PatientForm.MedicExamInforForm;
 using gui.PatientForm.PrescriptionForm;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace gui.PatientForm
@@ -96,7 +93,7 @@ namespace gui.PatientForm
             {
                 this.Close();
             }
-            if(e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.F1)
             {
                 btnAddNewPatient.PerformClick();
             }
@@ -229,9 +226,9 @@ namespace gui.PatientForm
                     {
                         try
                         {
-                            DialogResult d = MessageBox.Show("Bạn có muốn xóa bệnh nhân này?","Thông báo",
-                                MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                            if(d == DialogResult.Yes)
+                            DialogResult d = MessageBox.Show("Bạn có muốn xóa bệnh nhân này?", "Thông báo",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (d == DialogResult.Yes)
                             {
                                 patientInformationService.DeletePatient(dgvPatient.Rows[row.Index].Cells[0].Value.ToString());
                                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);

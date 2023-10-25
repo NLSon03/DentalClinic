@@ -2,14 +2,6 @@
 using dal.Entities;
 using DentalClinic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gui.LoginForm
@@ -21,39 +13,60 @@ namespace gui.LoginForm
         {
             InitializeComponent();
         }
+
+        private void ResetData()
+        {
+            txtLogin.Text = "";
+            txtPassword.Text = "";
+            cbShowPW.Checked = false;
+        }
+
         private void OpenForm()
         {
+            ResetData();
+            this.Hide();
             MainForm mf = new MainForm();
             mf.ShowDialog();
+            this.Show();
         }
+
+        private bool ValidateLogin(string acc, string password)
+        {
+            if (string.IsNullOrEmpty(acc) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                return false;
+            }
+
+            Account account = accountService.findByID(acc, password);
+
+            if (account != null)
+            {
+                MessageBox.Show("Đăng nhập thành công");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Đăng nhập thất bại");
+                return false;
+            }
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            try
             {
-                try
-                {
-                    if (string.IsNullOrEmpty(txtLogin.Text) || string.IsNullOrEmpty(txtPassword.Text))
-                    {
-                        throw new Exception("Vui lòng nhập đầy đủ thông tin");
-                    }
-                    string tk = txtLogin.Text;
-                    string mk = txtPassword.Text;
+                string acc = txtLogin.Text;
+                string password = txtPassword.Text;
 
-                    Account account = accountService.findByID(tk, mk);
-
-                    if (account != null)
-                    {
-                        MessageBox.Show("Đăng nhập thành công");
-                        OpenForm();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đăng nhập thất bại");
-                    }
-                }
-                catch (Exception ex)
+                if (ValidateLogin(acc, password))
                 {
-                    MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                    OpenForm();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
             }
         }
 
@@ -72,6 +85,11 @@ namespace gui.LoginForm
             DialogResult dg = MessageBox.Show("Bạn có muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes)
                 Application.Exit();
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
