@@ -256,5 +256,10 @@ namespace gui.PatientForm.MedicExamInforForm
         {
             menu2Invoice_Click(sender, e);
         }
+
+        private void menuBtnAddClinicInf_Click(object sender, EventArgs e)
+        {
+            menu2BtnAdd_Click(sender,e);
+        }
     }
 }

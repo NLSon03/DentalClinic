@@ -65,7 +65,7 @@
             this.groupBox1.Controls.Add(this.dgvInvoice);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 48);
+            this.groupBox1.Location = new System.Drawing.Point(12, 47);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(775, 208);
             this.groupBox1.TabIndex = 5;
@@ -196,9 +196,10 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblPatient);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "FormDeleteInvoice";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hủy Hóa Đơn";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormDeleteInvoice_FormClosed);

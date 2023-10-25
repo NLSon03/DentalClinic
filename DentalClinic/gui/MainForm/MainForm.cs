@@ -22,9 +22,7 @@ namespace DentalClinic
 
         private void btnPatientManager_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(OpenPatientForm));
-            thread.Start();
-            this.Close();
+            OpenPatientForm();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -47,9 +45,7 @@ namespace DentalClinic
         private void btnDentalMaterial_Click(object sender, EventArgs e)
         {
             frmDentalToolMain fr = new frmDentalToolMain();
-            this.Hide();
             fr.ShowDialog();
-            this.Show();
         }
     }
 }
