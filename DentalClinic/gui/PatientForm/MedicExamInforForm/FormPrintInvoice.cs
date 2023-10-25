@@ -37,6 +37,9 @@ namespace gui.PatientForm.MedicExamInforForm
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.BackgroundColor = Color.White;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            dataGridView.DefaultCellStyle.ForeColor = Color.Black;
             foreach (DataGridViewColumn column in dgvClinicalInfor.Columns)
             {
                 column.ReadOnly = true;
@@ -86,7 +89,6 @@ namespace gui.PatientForm.MedicExamInforForm
         {
             try
             {
-                SetDataForLabelName();
                 setGridViewStyle(dgvClinicalInfor);
 
                 var list = clinicalInformationService.GetByID(_PatientID);
@@ -286,11 +288,6 @@ namespace gui.PatientForm.MedicExamInforForm
             {
                 dgvClinicalInfor.EndEdit();
             }
-        }
-        private void SetDataForLabelName()
-        {
-            var patient = patientInformationService.GetByID(_PatientID);
-            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
         }
 
         private void btnExit_Click(object sender, EventArgs e)

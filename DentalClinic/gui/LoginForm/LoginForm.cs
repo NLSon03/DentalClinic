@@ -2,6 +2,7 @@
 using dal.Entities;
 using DentalClinic;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gui.LoginForm
@@ -18,6 +19,9 @@ namespace gui.LoginForm
         {
             txtLogin.Text = "";
             txtPassword.Text = "";
+            lblInfo.Text = "";
+            prgLogin.Value = 0;
+            txtLogin.Text = ""; 
             cbShowPW.Checked = false;
         }
 
@@ -30,11 +34,42 @@ namespace gui.LoginForm
             this.Show();
         }
 
-        private bool ValidateLogin(string acc, string password)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                prgLogin.Value = 0;
+                lblInfo.Text = "Đang khởi tạo.";
+                string acc = txtLogin.Text;
+                string password = txtPassword.Text;
+
+                if (await ValidateLoginAsync(acc, password))
+                {
+                    lblInfo.Text = "Kết nối thành công. Đang vào";
+                    await Task.Delay(1000);
+                    prgLogin.Value = 100;
+                    OpenForm();
+                }
+                else
+                {
+                    prgLogin.Value = 0;
+                    lblInfo.Text = "Đăng nhập thất bại";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblLogin.Text = "Lỗi kết nối";
+            }
+        }
+
+        private async Task<bool> ValidateLoginAsync(string acc, string password)
+        {
+            lblInfo.Text = "Đang kết nối cơ sở dữ liệu.";
+            prgLogin.Value = 50;
+            await Task.Delay(500);
             if (string.IsNullOrEmpty(acc) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                lblLogin.Text="Vui lòng nhập đầy đủ thông tin";
                 return false;
             }
 
@@ -42,31 +77,13 @@ namespace gui.LoginForm
 
             if (account != null)
             {
-                MessageBox.Show("Đăng nhập thành công");
+                lblLogin.Text = "Đăng nhập thành công";
                 return true;
             }
             else
             {
-                MessageBox.Show("Đăng nhập thất bại");
+                lblLogin.Text = "Sai tên đăng nhập hoặc mật khẩu.";
                 return false;
-            }
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string acc = txtLogin.Text;
-                string password = txtPassword.Text;
-
-                if (ValidateLogin(acc, password))
-                {
-                    OpenForm();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
             }
         }
 
@@ -90,6 +107,18 @@ namespace gui.LoginForm
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            lblLogin.Text = "";
+            lblInfo.Text = "";
+        }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+            lblLogin.Text = "";
+            lblInfo.Text = "";
         }
     }
 }

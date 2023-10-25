@@ -35,8 +35,8 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhoneNum = new System.Windows.Forms.TextBox();
             this.dateTime1stTime = new System.Windows.Forms.DateTimePicker();
-            this.cbFirstTime = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.rbMale = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
@@ -54,6 +54,7 @@
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnReturn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
@@ -70,7 +71,7 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Aqua;
-            this.label1.Location = new System.Drawing.Point(286, 23);
+            this.label1.Location = new System.Drawing.Point(286, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(183, 24);
@@ -82,56 +83,45 @@
             // 
             this.txtPatientName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPatientName.Location = new System.Drawing.Point(115, 35);
-            this.txtPatientName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPatientName.Margin = new System.Windows.Forms.Padding(2);
             this.txtPatientName.Name = "txtPatientName";
             this.txtPatientName.Size = new System.Drawing.Size(195, 27);
-            this.txtPatientName.TabIndex = 1;
+            this.txtPatientName.TabIndex = 0;
             this.txtPatientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPatientName_KeyPress);
             // 
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(482, 133);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(222, 72);
-            this.txtAddress.TabIndex = 1;
+            this.txtAddress.TabIndex = 6;
             // 
             // txtPhoneNum
             // 
             this.txtPhoneNum.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhoneNum.Location = new System.Drawing.Point(115, 137);
-            this.txtPhoneNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPhoneNum.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhoneNum.Name = "txtPhoneNum";
             this.txtPhoneNum.Size = new System.Drawing.Size(195, 27);
-            this.txtPhoneNum.TabIndex = 1;
+            this.txtPhoneNum.TabIndex = 3;
             this.txtPhoneNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhoneNum_KeyPress);
             // 
             // dateTime1stTime
             // 
+            this.dateTime1stTime.Enabled = false;
             this.dateTime1stTime.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime1stTime.Location = new System.Drawing.Point(484, 34);
-            this.dateTime1stTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTime1stTime.Margin = new System.Windows.Forms.Padding(2);
             this.dateTime1stTime.Name = "dateTime1stTime";
             this.dateTime1stTime.Size = new System.Drawing.Size(220, 27);
             this.dateTime1stTime.TabIndex = 2;
             // 
-            // cbFirstTime
-            // 
-            this.cbFirstTime.AutoSize = true;
-            this.cbFirstTime.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFirstTime.Location = new System.Drawing.Point(342, 34);
-            this.cbFirstTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cbFirstTime.Name = "cbFirstTime";
-            this.cbFirstTime.Size = new System.Drawing.Size(123, 24);
-            this.cbFirstTime.TabIndex = 3;
-            this.cbFirstTime.Text = "Lần đầu khám:";
-            this.cbFirstTime.UseVisualStyleBackColor = true;
-            this.cbFirstTime.CheckedChanged += new System.EventHandler(this.cbFirstTime_CheckedChanged);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.rbFemale);
             this.groupBox1.Controls.Add(this.rbMale);
             this.groupBox1.Controls.Add(this.label9);
@@ -142,30 +132,39 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dateTimeYOB);
             this.groupBox1.Controls.Add(this.dateTime1stTime);
-            this.groupBox1.Controls.Add(this.cbFirstTime);
             this.groupBox1.Controls.Add(this.txtReason);
             this.groupBox1.Controls.Add(this.txtPatientName);
             this.groupBox1.Controls.Add(this.txtAddress);
             this.groupBox1.Controls.Add(this.txtPhoneNum);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(9, 74);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(9, 35);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(725, 224);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label4.Location = new System.Drawing.Point(356, 39);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Lần đầu khám:";
             // 
             // rbFemale
             // 
             this.rbFemale.AutoSize = true;
             this.rbFemale.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbFemale.Location = new System.Drawing.Point(178, 84);
-            this.rbFemale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbFemale.Margin = new System.Windows.Forms.Padding(2);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(47, 24);
-            this.rbFemale.TabIndex = 5;
+            this.rbFemale.TabIndex = 2;
             this.rbFemale.TabStop = true;
             this.rbFemale.Text = "Nữ";
             this.rbFemale.UseVisualStyleBackColor = true;
@@ -175,10 +174,10 @@
             this.rbMale.AutoSize = true;
             this.rbMale.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMale.Location = new System.Drawing.Point(115, 84);
-            this.rbMale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbMale.Margin = new System.Windows.Forms.Padding(2);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(59, 24);
-            this.rbMale.TabIndex = 5;
+            this.rbMale.TabIndex = 1;
             this.rbMale.TabStop = true;
             this.rbMale.Text = "Nam";
             this.rbMale.UseVisualStyleBackColor = true;
@@ -253,28 +252,28 @@
             // 
             this.dateTimeYOB.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimeYOB.Location = new System.Drawing.Point(115, 180);
-            this.dateTimeYOB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimeYOB.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimeYOB.Name = "dateTimeYOB";
             this.dateTimeYOB.Size = new System.Drawing.Size(195, 27);
-            this.dateTimeYOB.TabIndex = 2;
+            this.dateTimeYOB.TabIndex = 4;
             // 
             // txtReason
             // 
             this.txtReason.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReason.Location = new System.Drawing.Point(482, 86);
-            this.txtReason.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtReason.Margin = new System.Windows.Forms.Padding(2);
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(222, 27);
-            this.txtReason.TabIndex = 1;
+            this.txtReason.TabIndex = 5;
             // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(310, 311);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Location = new System.Drawing.Point(407, 266);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(128, 29);
-            this.btnAdd.TabIndex = 5;
+            this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -303,17 +302,30 @@
             // 
             this.errorProvider6.ContainerControl = this;
             // 
+            // btnReturn
+            // 
+            this.btnReturn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Location = new System.Drawing.Point(215, 266);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(128, 29);
+            this.btnReturn.TabIndex = 1;
+            this.btnReturn.Text = "Quay lại";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
             // frmNewPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 353);
+            this.ClientSize = new System.Drawing.Size(747, 300);
+            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmNewPatient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -340,7 +352,6 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPhoneNum;
         private System.Windows.Forms.DateTimePicker dateTime1stTime;
-        private System.Windows.Forms.CheckBox cbFirstTime;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbFemale;
         private System.Windows.Forms.RadioButton rbMale;
@@ -359,5 +370,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider4;
         private System.Windows.Forms.ErrorProvider errorProvider5;
         private System.Windows.Forms.ErrorProvider errorProvider6;
+        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.Label label4;
     }
 }
