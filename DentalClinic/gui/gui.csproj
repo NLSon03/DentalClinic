@@ -206,6 +206,9 @@
     <EmbeddedResource Include="DentalForm\frmDentalToolMain.resx">
       <DependentUpon>frmDentalToolMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
