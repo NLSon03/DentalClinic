@@ -23,41 +23,41 @@ namespace gui.StatisticForm.InventoryStatisticForm
 
         private void BindGridNhapXuat(List<DentalToolTransactionsDetail> dsnhapxuat)
         {
-            dgvNhapXuat.Rows.Clear();
+            dgvHoaDon.Rows.Clear();
             decimal tongnhap = 0;
             decimal tongxuat = 0;
             foreach(var item in dsnhapxuat)
             {
-                int index = dgvNhapXuat.Rows.Add();
-                dgvNhapXuat.Rows[index].Cells[0].Value = index + 1;
-                dgvNhapXuat.Rows[index].Cells[1].Value = (item.DentalToolTransaction.TransactionType == true) ? "Xuất" : "Nhập";
-                dgvNhapXuat.Rows[index].Cells[2].Value = item.DentalTool.ToolName.ToString();
-                dgvNhapXuat.Rows[index].Cells[3].Value = item.Quantity;
-                dgvNhapXuat.Rows[index].Cells[4].Value = item.UnitPrice;
-                dgvNhapXuat.Rows[index].Cells[5].Value = item.TotalAmount;
-                dgvNhapXuat.Rows[index].Cells[6].Value = item.DentalToolTransaction.TransactionDate;
+                int index = dgvHoaDon.Rows.Add();
+                dgvHoaDon.Rows[index].Cells[0].Value = index + 1;
+                dgvHoaDon.Rows[index].Cells[1].Value = (item.DentalToolTransaction.TransactionType == true) ? "Xuất" : "Nhập";
+                dgvHoaDon.Rows[index].Cells[2].Value = item.DentalTool.ToolName.ToString();
+                dgvHoaDon.Rows[index].Cells[3].Value = item.Quantity;
+                dgvHoaDon.Rows[index].Cells[4].Value = (long)item.UnitPrice;
+                dgvHoaDon.Rows[index].Cells[5].Value = (long)item.TotalAmount;
+                dgvHoaDon.Rows[index].Cells[6].Value = item.DentalToolTransaction.TransactionDate;
                 if (item.DentalToolTransaction.TransactionType == true)
                     tongxuat += (decimal)item.TotalAmount;
                 else
                     tongnhap += (decimal)item.TotalAmount;
             }
-            lbTongNhap.Text = tongnhap.ToString();
-            lbTongXuat.Text = tongxuat.ToString();
+            lbTongNhap.Text = tongnhap.ToString("0");
+            lbTongXuat.Text = tongxuat.ToString("0");
         }
 
         private void BindGridVatLieu(List<Inventory> dsvatlieu)
         {
-            dgvVatlieu.Rows.Clear();
+            dgvVatLieu.Rows.Clear();
             foreach(var item in dsvatlieu)
             {
-                int index = dgvVatlieu.Rows.Add();
-                dgvVatlieu.Rows[index].Cells[0].Value = index + 1;
-                dgvVatlieu.Rows[index].Cells[1].Value = item.ToolName;
-                dgvVatlieu.Rows[index].Cells[2].Value = item.QuantityPurchased;
-                dgvVatlieu.Rows[index].Cells[3].Value = item.QuantitySold;
-                dgvVatlieu.Rows[index].Cells[4].Value = item.ConsumedQuantity;
-                dgvVatlieu.Rows[index].Cells[5].Value = item.RemainingQuantity;
-                dgvVatlieu.Rows[index].Cells[6].Value = item.LastUpdateDate;
+                int index = dgvVatLieu.Rows.Add();
+                dgvVatLieu.Rows[index].Cells[0].Value = index + 1;
+                dgvVatLieu.Rows[index].Cells[1].Value = item.ToolName;
+                dgvVatLieu.Rows[index].Cells[2].Value = item.QuantityPurchased;
+                dgvVatLieu.Rows[index].Cells[3].Value = item.QuantitySold;
+                dgvVatLieu.Rows[index].Cells[4].Value = item.ConsumedQuantity;
+                dgvVatLieu.Rows[index].Cells[5].Value = item.RemainingQuantity;
+                dgvVatLieu.Rows[index].Cells[6].Value = item.LastUpdateDate;
             }
             lbVatlieunhap.Text = dsvatlieu.Count(x => x.QuantityPurchased != 0).ToString();
             lbVatlieuxuat.Text = dsvatlieu.Count(x=> x.QuantitySold != 0).ToString();
@@ -377,7 +377,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvNhapXuat, saveFileDialog.FileName, "Thống kê nhập xuất","ngay");
+                ToExcel(dgvHoaDon, saveFileDialog.FileName, "Thống kê nhập xuất","ngay");
             }
         }
 
@@ -566,7 +566,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvVatlieu, saveFileDialog.FileName, "Thống kê dụng cụ", "lan update cuoi");
+                ToExcel(dgvVatLieu, saveFileDialog.FileName, "Thống kê dụng cụ", "lan update cuoi");
             }
         }
 

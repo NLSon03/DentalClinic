@@ -24,8 +24,8 @@ namespace gui.PatientForm
 
         private void frmNewPatient_Load(object sender, EventArgs e)
         {
-            dateTime1stTime.Enabled = false;
-            cbFirstTime.Enabled = false;
+            dateTime1stTime.Enabled = true;
+            cbFirstTime.Checked = true;
             rbFemale.Checked = true;
             txtPatientName.Focus();
             dateTimeYOB.Value = DateTime.Now;
@@ -48,27 +48,48 @@ namespace gui.PatientForm
                 if (txtPatientName.Text == "")
                 {
                     errorProvider1.SetError(txtPatientName, "!");
+                    errorProvider2.SetError(txtPhoneNum, "");
+                    errorProvider3.SetError(txtAddress, "");
+                    errorProvider4.SetError(txtReason, "");
+                    errorProvider5.SetError(dateTimeYOB, "");
                     throw new Exception("Tên người đến khám trống");
                 }
                 //if()
                 if (txtPhoneNum.Text == "")
                 {
-                    errorProvider1.SetError(txtPhoneNum, "!");
+                    errorProvider1.SetError(txtPatientName, ""); 
+                    errorProvider2.SetError(txtPhoneNum, "!");
+                    errorProvider3.SetError(txtAddress, "!");
+                    errorProvider4.SetError(txtReason, "!");
+                    errorProvider5.SetError(dateTimeYOB, "!");
                     throw new Exception("Số điện thoại của người đến khám trống");
                 }
                 if (txtAddress.Text == "")
                 {
                     errorProvider1.SetError(txtAddress, "!");
+                    errorProvider2.SetError(txtPhoneNum, "!");
+                    errorProvider3.SetError(txtPatientName, "!");
+                    errorProvider4.SetError(txtReason, "!");
+                    errorProvider5.SetError(dateTimeYOB, "!");
                     throw new Exception("Địa chỉ người đến khám trống");
                 }
                 if (txtReason.Text == "")
                 {
-                    errorProvider1.SetError(txtReason, "!");
+
+                    errorProvider1.SetError(txtReason, "");
+                    errorProvider2.SetError(txtPhoneNum, "");
+                    errorProvider3.SetError(txtAddress, "");
+                    errorProvider4.SetError(txtReason, "!");
+                    errorProvider5.SetError(dateTimeYOB, "");
                     throw new Exception("Lý do đến khám trống");
                 }
                 if (dateTimeYOB.Value == DateTime.Today && (DateTime.Now.Year - dateTimeYOB.Value.Year) <= 5)
                 {
                     errorProvider1.SetError(dateTimeYOB, "!");
+                    errorProvider2.SetError(txtPhoneNum, "");
+                    errorProvider3.SetError(txtAddress, "");
+                    errorProvider4.SetError(txtReason, "");
+                    errorProvider5.SetError(txtPatientName, "");
                     throw new Exception("Tuổi phải lớn hơn 5");
                 }
                 bool check = false;
@@ -152,10 +173,12 @@ namespace gui.PatientForm
 
         private void cbFirstTime_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFirstTime.Checked)
+            if (cbFirstTime.Checked == false)
             {
                 dateTime1stTime.Enabled = true;
             }
+            else
+                dateTime1stTime.Enabled = false;
         }
 
         private void frmNewPatient_FormClosed(object sender, FormClosedEventArgs e)
