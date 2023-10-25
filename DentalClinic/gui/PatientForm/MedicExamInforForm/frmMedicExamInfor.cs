@@ -3,8 +3,11 @@ using dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
+using static iTextSharp.text.TabStop;
+using static System.Net.WebRequestMethods;
 
 namespace gui.PatientForm.MedicExamInforForm
 {
@@ -23,7 +26,13 @@ namespace gui.PatientForm.MedicExamInforForm
 
         private static string ChangeNull(object param)
         {
-            return (param == null || param.ToString() == "null" || param.ToString() == "") ? "" : param.ToString();
+            if (param == null)
+            {
+                return "";
+            }
+
+            string paramString = param.ToString();
+            return (paramString == "null" || paramString == "") ? "" : paramString;
         }
         public void setGridViewStyle(DataGridView dataGridView)
         {
@@ -32,6 +41,9 @@ namespace gui.PatientForm.MedicExamInforForm
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.BackgroundColor = Color.White;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            dataGridView.DefaultCellStyle.ForeColor = Color.Black;
         }
         private void ShowMessage(string message)
         {
@@ -69,6 +81,22 @@ namespace gui.PatientForm.MedicExamInforForm
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private string FixWarrantyID(object param)
+        {
+            if (param == null)
+            {
+                return "";
+            }
+
+            string paramString = param.ToString();
+            if (paramString.Contains("null") || paramString == "" || paramString.Contains(" "))
+            {
+                return paramString.Replace(" ", "").Replace("null", "");
+            }
+
+            return paramString;
         }
 
         //Điền thông tin lâm sàng vào bảng
@@ -123,17 +151,14 @@ namespace gui.PatientForm.MedicExamInforForm
             picXray.Image = SubCliInf.XRayFilm == null ? null : Image.FromStream(new MemoryStream(SubCliInf.XRayFilm));
         }
 
-        private string FixWarrantyID(string warrantyID)
-        {
-            return warrantyID?.Replace(" ", "") ?? "";
-        }
-
         private void btnUpdateSubClinicInf_Click(object sender, EventArgs e)
         {
-            FormEditSubClinicInf formEditSubClinicInf = new FormEditSubClinicInf();
-            formEditSubClinicInf._PatientID = this._PatientID;
-            formEditSubClinicInf.PreForm = this;
-            formEditSubClinicInf.ShowDialog();
+            using (FormEditSubClinicInf formEditSubClinicInf = new FormEditSubClinicInf())
+            {
+                formEditSubClinicInf._PatientID = this._PatientID;
+                formEditSubClinicInf.PreForm = this;
+                formEditSubClinicInf.ShowDialog(this);
+            }
         }
 
         private void menuBtnEditSubClinicInf_Click(object sender, EventArgs e)
@@ -259,7 +284,7 @@ namespace gui.PatientForm.MedicExamInforForm
 
         private void menuBtnAddClinicInf_Click(object sender, EventArgs e)
         {
-            menu2BtnAdd_Click(sender,e);
+            menu2BtnAdd_Click(sender, e);
         }
     }
 }

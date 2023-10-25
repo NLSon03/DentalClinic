@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPatient));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnFunction = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +55,8 @@
             this.colFirstTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHavePrescription = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatient)).BeginInit();
@@ -100,6 +104,8 @@
             this.toolStripSeparator1,
             this.btnEditing,
             this.toolStripSeparator3,
+            this.menuBtnDelete,
+            this.toolStripSeparator2,
             this.btnCreatingPrescription,
             this.btnPurchase,
             this.toolStripSeparator4,
@@ -156,7 +162,15 @@
             // dgvPatient
             // 
             this.dgvPatient.AllowUserToAddRows = false;
-            this.dgvPatient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPatient.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatientID,
@@ -168,56 +182,92 @@
             this.colFirstTime,
             this.colReason,
             this.colHavePrescription});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPatient.DefaultCellStyle = dataGridViewCellStyle8;
             resources.ApplyResources(this.dgvPatient, "dgvPatient");
             this.dgvPatient.Name = "dgvPatient";
+            this.dgvPatient.ReadOnly = true;
             this.dgvPatient.RowTemplate.Height = 24;
             this.dgvPatient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellClick);
             this.dgvPatient.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPatient_CellContentClick);
             // 
             // colPatientID
             // 
+            this.colPatientID.FillWeight = 50F;
             resources.ApplyResources(this.colPatientID, "colPatientID");
             this.colPatientID.Name = "colPatientID";
+            this.colPatientID.ReadOnly = true;
             // 
             // colName
             // 
+            this.colName.FillWeight = 67.30413F;
             resources.ApplyResources(this.colName, "colName");
             this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
             // 
             // colGender
             // 
+            this.colGender.FillWeight = 67.30413F;
             resources.ApplyResources(this.colGender, "colGender");
             this.colGender.Name = "colGender";
+            this.colGender.ReadOnly = true;
             // 
             // colYOB
             // 
+            this.colYOB.FillWeight = 67.30413F;
             resources.ApplyResources(this.colYOB, "colYOB");
             this.colYOB.Name = "colYOB";
+            this.colYOB.ReadOnly = true;
             // 
             // colPhoneNumber
             // 
             resources.ApplyResources(this.colPhoneNumber, "colPhoneNumber");
             this.colPhoneNumber.Name = "colPhoneNumber";
+            this.colPhoneNumber.ReadOnly = true;
             // 
             // colAddress
             // 
+            this.colAddress.FillWeight = 200F;
             resources.ApplyResources(this.colAddress, "colAddress");
             this.colAddress.Name = "colAddress";
+            this.colAddress.ReadOnly = true;
             // 
             // colFirstTime
             // 
             resources.ApplyResources(this.colFirstTime, "colFirstTime");
             this.colFirstTime.Name = "colFirstTime";
+            this.colFirstTime.ReadOnly = true;
             // 
             // colReason
             // 
             resources.ApplyResources(this.colReason, "colReason");
             this.colReason.Name = "colReason";
+            this.colReason.ReadOnly = true;
             // 
             // colHavePrescription
             // 
+            this.colHavePrescription.FillWeight = 67.30413F;
             resources.ApplyResources(this.colHavePrescription, "colHavePrescription");
             this.colHavePrescription.Name = "colHavePrescription";
+            this.colHavePrescription.ReadOnly = true;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // menuBtnDelete
+            // 
+            resources.ApplyResources(this.menuBtnDelete, "menuBtnDelete");
+            this.menuBtnDelete.Image = global::gui.Properties.Resources.remove;
+            this.menuBtnDelete.Name = "menuBtnDelete";
+            this.menuBtnDelete.Click += new System.EventHandler(this.menuBtnDelete_Click);
             // 
             // frmPatient
             // 
@@ -228,7 +278,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "frmPatient";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPatient_FormClosed);
             this.Load += new System.EventHandler(this.frmPatient_Load);
@@ -259,6 +309,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnQuit;
         private System.Windows.Forms.DataGridView dgvPatient;
         private System.Windows.Forms.ToolStripButton btnMedicExamInfor;
+        private System.Windows.Forms.ToolStripButton btnPurchase;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatientID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGender;
@@ -268,6 +319,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colFirstTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colReason;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colHavePrescription;
-        private System.Windows.Forms.ToolStripButton btnPurchase;
+        private System.Windows.Forms.ToolStripButton menuBtnDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

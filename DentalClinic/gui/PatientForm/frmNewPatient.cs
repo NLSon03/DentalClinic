@@ -1,21 +1,13 @@
 ﻿using bus;
 using dal.Entities;
-using Microsoft.Office.Interop.Excel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gui.PatientForm
 {
     public partial class frmNewPatient : Form
     {
+        public frmPatient mainForm;
         private readonly PatientInformationService patient = new PatientInformationService();
         public frmNewPatient()
         {
@@ -24,8 +16,6 @@ namespace gui.PatientForm
 
         private void frmNewPatient_Load(object sender, EventArgs e)
         {
-            dateTime1stTime.Enabled = true;
-            cbFirstTime.Checked = true;
             rbFemale.Checked = true;
             txtPatientName.Focus();
             dateTimeYOB.Value = DateTime.Now;
@@ -35,156 +25,45 @@ namespace gui.PatientForm
         {
             try
             {
-                if (txtPatientName.Text == "" || txtPhoneNum.Text == "" || txtAddress.Text == "" ||
-                txtReason.Text == "" || dateTimeYOB.Value == DateTime.Now)
-                {
-                    errorProvider1.SetError(txtPatientName, "!");
-                    errorProvider2.SetError(txtPhoneNum, "!");
-                    errorProvider3.SetError(txtAddress, "!");
-                    errorProvider4.SetError(txtReason, "!");
-                    errorProvider5.SetError(dateTimeYOB, "!");
-                    throw new Exception("Phiếu thêm bệnh nhân trống");
-                }
-                if (txtPatientName.Text == "")
-                {
-                    errorProvider1.SetError(txtPatientName, "!");
-                    errorProvider2.SetError(txtPhoneNum, "");
-                    errorProvider3.SetError(txtAddress, "");
-                    errorProvider4.SetError(txtReason, "");
-                    errorProvider5.SetError(dateTimeYOB, "");
-                    throw new Exception("Tên người đến khám trống");
-                }
-                //if()
-                if (txtPhoneNum.Text == "")
-                {
-                    errorProvider1.SetError(txtPatientName, ""); 
-                    errorProvider2.SetError(txtPhoneNum, "!");
-                    errorProvider3.SetError(txtAddress, "!");
-                    errorProvider4.SetError(txtReason, "!");
-                    errorProvider5.SetError(dateTimeYOB, "!");
-                    throw new Exception("Số điện thoại của người đến khám trống");
-                }
-                if (txtAddress.Text == "")
-                {
-                    errorProvider1.SetError(txtAddress, "!");
-                    errorProvider2.SetError(txtPhoneNum, "!");
-                    errorProvider3.SetError(txtPatientName, "!");
-                    errorProvider4.SetError(txtReason, "!");
-                    errorProvider5.SetError(dateTimeYOB, "!");
-                    throw new Exception("Địa chỉ người đến khám trống");
-                }
-                if (txtReason.Text == "")
-                {
+                // Kiểm tra các trường dữ liệu
+                if (string.IsNullOrEmpty(txtPatientName.Text)) throw new Exception("Tên người đến khám trống");
+                if (string.IsNullOrEmpty(txtPhoneNum.Text)) throw new Exception("Số điện thoại của người đến khám trống");
+                if (string.IsNullOrEmpty(txtAddress.Text)) throw new Exception("Địa chỉ người đến khám trống");
+                if (string.IsNullOrEmpty(txtReason.Text)) throw new Exception("Lý do đến khám trống");
+                if (dateTimeYOB.Value == DateTime.Today && (DateTime.Now.Year - dateTimeYOB.Value.Year) <= 5) throw new Exception("Tuổi phải lớn hơn 5");
 
-                    errorProvider1.SetError(txtReason, "");
-                    errorProvider2.SetError(txtPhoneNum, "");
-                    errorProvider3.SetError(txtAddress, "");
-                    errorProvider4.SetError(txtReason, "!");
-                    errorProvider5.SetError(dateTimeYOB, "");
-                    throw new Exception("Lý do đến khám trống");
-                }
-                if (dateTimeYOB.Value == DateTime.Today && (DateTime.Now.Year - dateTimeYOB.Value.Year) <= 5)
+                // Tạo thông tin bệnh nhân mới
+                var newPatient = new PatientInformation()
                 {
-                    errorProvider1.SetError(dateTimeYOB, "!");
-                    errorProvider2.SetError(txtPhoneNum, "");
-                    errorProvider3.SetError(txtAddress, "");
-                    errorProvider4.SetError(txtReason, "");
-                    errorProvider5.SetError(txtPatientName, "");
-                    throw new Exception("Tuổi phải lớn hơn 5");
-                }
-                bool check = false;
-                //int  id,string name,bool gender, DateTime birthday,string phoneNo,string address,DateTime firstTime,string reason
-                if (cbFirstTime.Checked == true)
-                {
-                    if (rbMale.Checked == true)
-                    {
-                        check = true;
-                        var newPatient = new PatientInformation()
-                        {
-                            FullName = txtPatientName.Text,
-                            Gender = check,
-                            YearOfBirth = DateTime.Parse(dateTimeYOB.Value.ToString("dd-MM-yyyy")),
-                            PhoneNumber = txtPhoneNum.Text,
-                            Address = txtAddress.Text,
-                            FirstExaminationDate = DateTime.Parse(dateTime1stTime.Value.ToString("dd-MM-yyyy")),
-                            ReasonForExamination = txtReason.Text
-                        };
-                        patient.InsertNew(newPatient);
-                    }
-                    else if (rbMale.Checked == true)
-                    {
-                        var newPatient = new PatientInformation()
-                        {
-                            FullName = txtPatientName.Text,
-                            Gender = check,
-                            YearOfBirth = DateTime.Parse(dateTimeYOB.Value.ToString("dd-MM-yyyy")),
-                            PhoneNumber = txtPhoneNum.Text,
-                            Address = txtAddress.Text,
-                            FirstExaminationDate = DateTime.Parse(dateTime1stTime.Value.ToString("dd-MM-yyyy")),
-                            ReasonForExamination = txtReason.Text
-                        };
-                        patient.InsertNew(newPatient);
-                    }
-                }
-                else if (cbFirstTime.Checked == false)
-                {
-                    if (rbMale.Checked == true)
-                    {
-                        check = true;
-                        var newPatient = new PatientInformation()
-                        {
-                            FullName = txtPatientName.Text,
-                            Gender = check,
-                            YearOfBirth = DateTime.Parse(dateTimeYOB.Value.ToString("dd-MM-yyyy")),
-                            PhoneNumber = txtPhoneNum.Text,
-                            Address = txtAddress.Text,
-                            FirstExaminationDate = null,
-                            ReasonForExamination = txtReason.Text
-                        };
-                        patient.InsertNew(newPatient);
-                    }
-                    else if (rbMale.Checked == true)
-                    {
-                        var newPatient = new PatientInformation()
-                        {
-                            FullName = txtPatientName.Text,
-                            Gender = check,
-                            YearOfBirth = DateTime.Parse(dateTimeYOB.Value.ToString("dd-MM-yyyy")),
-                            PhoneNumber = txtPhoneNum.Text,
-                            Address = txtAddress.Text,
-                            FirstExaminationDate = null,
-                            ReasonForExamination = txtReason.Text
-                        };
-                        patient.InsertNew(newPatient);
-                    }
-                }
+                    FullName = txtPatientName.Text,
+                    Gender = rbMale.Checked,
+                    YearOfBirth = dateTimeYOB.Value,
+                    PhoneNumber = txtPhoneNum.Text,
+                    Address = txtAddress.Text,
+                    FirstExaminationDate = dateTime1stTime.Value,
+                    ReasonForExamination = txtReason.Text
+                };
+
+                // Thêm bệnh nhân mới
+                patient.InsertNew(newPatient);
+
+                // Hiển thị thông báo thành công và đóng form
                 DialogResult d = MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK);
-                if(d == DialogResult.OK)
+                mainForm.frmPatient_Load(sender, e);
+                if (d == DialogResult.OK)
                 {
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
+                // Hiển thị thông báo lỗi
                 MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK);
             }
-
         }
-
-        private void cbFirstTime_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbFirstTime.Checked == false)
-            {
-                dateTime1stTime.Enabled = true;
-            }
-            else
-                dateTime1stTime.Enabled = false;
-        }
-
         private void frmNewPatient_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmPatient frm = new frmPatient();
-            frm.ReloadPatientList();
+            this.Dispose();
         }
 
         private void txtPatientName_KeyPress(object sender, KeyPressEventArgs e)
@@ -201,6 +80,11 @@ namespace gui.PatientForm
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

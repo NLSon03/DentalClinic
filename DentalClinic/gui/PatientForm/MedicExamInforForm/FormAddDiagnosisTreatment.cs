@@ -57,9 +57,6 @@ namespace gui.PatientForm.MedicExamInforForm
         private void FillDataWhenLoadUpdate()
         {
             var clinicInfor = clinicalInformationService.GetByClinicID(_ClinicInf.ToString());
-
-            //label tên bệnh nhân
-            SetDataForLabelName();
             //Combobox điều trị
             var ListTreatment = treatmentNameService.GetAll();
             FillComboBoxTreatment(ListTreatment);
@@ -72,19 +69,12 @@ namespace gui.PatientForm.MedicExamInforForm
             numQuantity.Value = clinicInfor.Quantity < 1 ? 1 : clinicInfor.Quantity;
         }
 
-        private void SetDataForLabelName()
-        {
-            var patient = patientInformationService.GetByID(_PatientID);
-            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
-        }
-
         private void FormAddDiagnosisTreatment_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!isEdit)
                 {
-                    SetDataForLabelName();
                     var ListTreatment = treatmentNameService.GetAll();
                     FillComboBoxTreatment(ListTreatment);
                 }

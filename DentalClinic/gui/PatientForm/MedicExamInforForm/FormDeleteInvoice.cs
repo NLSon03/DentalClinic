@@ -82,7 +82,6 @@ namespace gui.PatientForm.MedicExamInforForm
         {
             try
             {
-                SetDataForLabelName();
                 setGridViewStyle(this.dgvInvoice);
 
                 var list = treatmentInvoiceService.GetAllByPatientID(_PatientID);
@@ -95,12 +94,6 @@ namespace gui.PatientForm.MedicExamInforForm
             }
         }
 
-        private void SetDataForLabelName()
-        {
-            var patient = patientInformationService.GetByID(_PatientID);
-            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
-        }
-
         private void setGridViewStyle(DataGridView dataGridView)
         {
             dataGridView.BorderStyle = BorderStyle.None;
@@ -108,7 +101,9 @@ namespace gui.PatientForm.MedicExamInforForm
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.BackgroundColor = Color.White;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            dataGridView.DefaultCellStyle.ForeColor = Color.Black;
             foreach (DataGridViewColumn column in dgvInvoice.Columns)
             {
                 column.ReadOnly = true;
@@ -133,7 +128,7 @@ namespace gui.PatientForm.MedicExamInforForm
                 string status = DateTime.Now.Subtract(item.Date.Value) <= threeDays ? "Có thể hủy" : "Không thể hủy";
                 string id = CheckNull(item.ID.ToString());
 
-                dgvInvoice.Rows.Add(date, client, type, totalAmount, status, id, false);
+                dgvInvoice.Rows.Add(date,id ,client, type, totalAmount, status, false);
             }
         }
 

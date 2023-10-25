@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrintInvoice));
-            this.lblPatient = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkCheckAll = new System.Windows.Forms.CheckBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
@@ -54,18 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClinicalInfor)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblPatient
-            // 
-            this.lblPatient.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblPatient.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPatient.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblPatient.Location = new System.Drawing.Point(0, 0);
-            this.lblPatient.Name = "lblPatient";
-            this.lblPatient.Size = new System.Drawing.Size(1248, 52);
-            this.lblPatient.TabIndex = 3;
-            this.lblPatient.Text = "ID | Name";
-            this.lblPatient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkCheckAll);
@@ -74,9 +60,9 @@
             this.groupBox1.Controls.Add(this.lblRedLine);
             this.groupBox1.Controls.Add(this.dgvClinicalInfor);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 55);
+            this.groupBox1.Location = new System.Drawing.Point(12, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1226, 287);
+            this.groupBox1.Size = new System.Drawing.Size(1202, 278);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách điều trị";
@@ -85,7 +71,7 @@
             // 
             this.chkCheckAll.AutoSize = true;
             this.chkCheckAll.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCheckAll.Location = new System.Drawing.Point(779, 251);
+            this.chkCheckAll.Location = new System.Drawing.Point(769, 241);
             this.chkCheckAll.Name = "chkCheckAll";
             this.chkCheckAll.Size = new System.Drawing.Size(107, 25);
             this.chkCheckAll.TabIndex = 5;
@@ -97,7 +83,7 @@
             // 
             this.txtTotalAmount.Enabled = false;
             this.txtTotalAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalAmount.Location = new System.Drawing.Point(1032, 249);
+            this.txtTotalAmount.Location = new System.Drawing.Point(1022, 239);
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.Size = new System.Drawing.Size(170, 29);
             this.txtTotalAmount.TabIndex = 4;
@@ -107,7 +93,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(915, 252);
+            this.label1.Location = new System.Drawing.Point(905, 242);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 21);
             this.label1.TabIndex = 3;
@@ -141,15 +127,7 @@
             this.ColumnTotalAmount,
             this.ColumnDate,
             this.ColumnInvoice});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvClinicalInfor.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvClinicalInfor.Location = new System.Drawing.Point(23, 37);
+            this.dgvClinicalInfor.Location = new System.Drawing.Point(14, 28);
             this.dgvClinicalInfor.Name = "dgvClinicalInfor";
             this.dgvClinicalInfor.Size = new System.Drawing.Size(1179, 204);
             this.dgvClinicalInfor.TabIndex = 1;
@@ -233,7 +211,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(472, 348);
+            this.btnExit.Location = new System.Drawing.Point(459, 292);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(111, 28);
             this.btnExit.TabIndex = 5;
@@ -244,7 +222,7 @@
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(670, 348);
+            this.btnPrint.Location = new System.Drawing.Point(657, 292);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(111, 28);
             this.btnPrint.TabIndex = 5;
@@ -256,12 +234,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 387);
+            this.ClientSize = new System.Drawing.Size(1225, 328);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblPatient);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPrintInvoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -276,8 +253,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblPatient;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvClinicalInfor;
         private System.Windows.Forms.Label lblRedLine;

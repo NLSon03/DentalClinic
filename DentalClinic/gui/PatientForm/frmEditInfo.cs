@@ -1,43 +1,19 @@
-﻿using dal.Entities;
+﻿using bus;
+using dal.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using bus;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace gui.PatientForm
 {
     public partial class frmEditInfo : Form
     {
-        public TextBox txt1;
-        public TextBox txt2;
-        public TextBox txt3;
-        public TextBox txt4;
-        public DateTimePicker datetime1;
-        public DateTimePicker datetime2;
-        public RadioButton rb1;
-        public RadioButton rb2;
-        public CheckBox chk1;
-        public frmPatient frm;
+        public string PatientID;
+        private PatientInformation patient;
+        public frmPatient MainForm;
         private readonly PatientInformationService patientService = new PatientInformationService();
         public frmEditInfo()
         {
             InitializeComponent();
-            txt1 = txtPatientName;
-            txt2 = txtPhoneNum;
-            txt3 = txtAddress;
-            txt4 = txtReason;
-            datetime1 = dateTimeYOB;
-            datetime2 = dateTime1stTime;
-            rb1 = rbMale;
-            rb2 = rbFemale;
-            chk1 = cbFirstTime;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -45,70 +21,75 @@ namespace gui.PatientForm
             this.Dispose();
         }
 
-        private void cbFirstTime_CheckedChanged(object sender, EventArgs e)
+        private static string ChangeNull(object param)
         {
-            if(cbFirstTime.Checked)
+            if (param == null)
             {
-                dateTime1stTime.Enabled = true;
+                return "";
             }
+
+            string paramString = param.ToString();
+            return (paramString == "null" || paramString == "") ? "" : paramString;
+        }
+
+        private void AddData(PatientInformation patient)
+        {
+            txtPatientName.Text = ChangeNull(patient.FullName);
+            if (patient.Gender)
+            {
+                rbMale.Checked = true;
+                rbFemale.Checked = false;
+            }
+            else
+            {
+                rbMale.Checked = false;
+                rbFemale.Checked = true;
+            }
+            txtPhoneNum.Text = ChangeNull(patient.PhoneNumber);
+            txtAddress.Text = ChangeNull(patient.Address);
+            txtReason.Text = ChangeNull(patient.ReasonForExamination);
+            dateTime1stTime.Text = patient.FirstExaminationDate.ToString();
+            dateTimeYOB.Text = patient.YearOfBirth.ToString();
         }
 
         private void frmEditInfo_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                patient = patientService.GetByID(PatientID);
+                AddData(patient);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnDoneEditing_Click(object sender, EventArgs e)
         {
             try
             {
-                using (var model = new DentalModel())
+                // Kiểm tra các trường dữ liệu
+                if (string.IsNullOrEmpty(txtPatientName.Text)) throw new Exception("Tên người đến khám trống");
+                if (string.IsNullOrEmpty(txtPhoneNum.Text)) throw new Exception("Số điện thoại của người đến khám trống");
+                if (string.IsNullOrEmpty(txtAddress.Text)) throw new Exception("Địa chỉ người đến khám trống");
+                if (string.IsNullOrEmpty(txtReason.Text)) throw new Exception("Lý do đến khám trống");
+                if (dateTimeYOB.Value == DateTime.Today && (DateTime.Now.Year - dateTimeYOB.Value.Year) <= 5) throw new Exception("Tuổi phải lớn hơn 5");
+                var newPatient = new PatientInformation()
                 {
+                    PatientID = Convert.ToInt32(PatientID),
+                    FullName = txtPatientName.Text,
+                    Gender = rbMale.Checked,
+                    YearOfBirth = dateTimeYOB.Value,
+                    PhoneNumber = txtPhoneNum.Text,
+                    Address = txtAddress.Text,
+                    FirstExaminationDate = dateTime1stTime.Value,
+                    ReasonForExamination = txtReason.Text
+                };
 
-                    foreach (DataGridViewRow row in frm.dgv.Rows)
-                    {
-                        if (row.Selected)
-                        {
-                            PatientInformation info = patientService.GetByID(frm.dgv.Rows[row.Index].Cells[0].Value.ToString());
-                            if (info != null)
-                            {
-                                info.FullName = txtPatientName.Text;
-                                if (dateTimeYOB.Value == DateTime.Today && (DateTime.Now.Year - dateTimeYOB.Value.Year) <= 5)
-                                {
-                                    throw new Exception("Tuổi phải lớn hơn 5");
-                                }
-                                else
-                                {
-                                    info.YearOfBirth = DateTime.Parse(dateTimeYOB.Value.ToString("dd-MM-yyyy"));
-                                }
-                                if (rbMale.Checked)
-                                {
-                                    info.Gender = true;
-                                }
-                                else if (rbFemale.Checked)
-                                {
-                                    info.Gender = false;
-                                }
-                                info.PhoneNumber = txtPhoneNum.Text;
-                                info.Address = txtAddress.Text;
-                                if (cbFirstTime.Checked)
-                                {
-                                    info.FirstExaminationDate = DateTime.Parse(dateTime1stTime.Value.ToString("dd-MM-yyyy"));
-                                }
-                                else
-                                {
-                                    info.FirstExaminationDate = null;
-                                }
-                                info.ReasonForExamination = txtReason.Text;
-                                patientService.EditInfo(info);
-                                MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK);
-                            }
-                            else
-                                throw new Exception("Lỗi cập nhật");
-                        }
-                    } 
-                }
-                this.Close();
+                patientService.UpdatePatientInformation(newPatient);
+                MessageBox.Show("Chỉnh sửa thành công.","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MainForm.frmPatient_Load(sender,e);
             }
             catch (Exception ex)
             {
@@ -118,8 +99,7 @@ namespace gui.PatientForm
 
         private void frmEditInfo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmPatient info = new frmPatient();
-            info.ReloadPatientList();
+            this.Dispose();
         }
     }
 }
