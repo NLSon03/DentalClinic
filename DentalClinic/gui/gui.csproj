@@ -221,6 +221,9 @@
     <EmbeddedResource Include="PatientForm\frmNewPatient.resx">
       <DependentUpon>frmNewPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\frmPatient.aa-DJ.resx">
+      <DependentUpon>frmPatient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\frmPatient.resx">
       <DependentUpon>frmPatient.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,10 +278,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\cach_at_ten_cac_thanh_phan_trong_winform.docx" />
-    <None Include="Resources\MedInvoice\MedInvoice.pdf" />
     <None Include="Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Templates\MedInvoice.pdf" />
     <None Include="Resources\Templates\Template.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -301,6 +304,7 @@
     <None Include="Resources\add.png" />
     <None Include="Resources\bill.png" />
     <Content Include="Resources\clipboard.png" />
+    <Content Include="Resources\crowd_patient_patients_icon_140420.ico" />
     <Content Include="Resources\dentist.ico" />
     <Content Include="Resources\dentist.png" />
     <None Include="Resources\examination.png" />
@@ -310,6 +314,7 @@
     <None Include="Resources\invoice.png" />
     <Content Include="Resources\patientManager.png" />
     <None Include="Resources\remove.png" />
+    <Content Include="Resources\receipt.ico" />
     <Content Include="Resources\Tool.png" />
     <Content Include="Resources\Tool1.png" />
   </ItemGroup>

@@ -23,22 +23,7 @@ namespace gui.PatientForm
         private readonly PatientInformationService patientService = new PatientInformationService();
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                frmPatient patient = new frmPatient();
-                foreach (DataGridViewRow row in patient.dgv.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        patientService.DeletePatient(patient.dgv.Rows[row.Index].Cells[0].Value.ToString());
-                        MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK);
-            }
+            isClicked = false;
         }
         private void OpenEdit()
         {

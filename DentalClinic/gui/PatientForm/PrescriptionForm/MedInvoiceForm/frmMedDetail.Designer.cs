@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMedDetail));
             this.lvMedInvoice = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -35,7 +36,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblIDMed = new System.Windows.Forms.Label();
             this.btnSaveDetails = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,9 +51,9 @@
             this.columnHeader5,
             this.columnHeader6});
             this.lvMedInvoice.HideSelection = false;
-            this.lvMedInvoice.Location = new System.Drawing.Point(112, 118);
+            this.lvMedInvoice.Location = new System.Drawing.Point(12, 28);
             this.lvMedInvoice.Name = "lvMedInvoice";
-            this.lvMedInvoice.Size = new System.Drawing.Size(740, 235);
+            this.lvMedInvoice.Size = new System.Drawing.Size(957, 235);
             this.lvMedInvoice.TabIndex = 34;
             this.lvMedInvoice.UseCompatibleStateImageBehavior = false;
             this.lvMedInvoice.View = System.Windows.Forms.View.Details;
@@ -66,12 +66,12 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Tên thuốc";
-            this.columnHeader2.Width = 150;
+            this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Liều lượng";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 200;
             // 
             // columnHeader4
             // 
@@ -87,18 +87,9 @@
             this.columnHeader6.Text = "Thành tiền";
             this.columnHeader6.Width = 125;
             // 
-            // lblIDMed
-            // 
-            this.lblIDMed.AutoSize = true;
-            this.lblIDMed.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDMed.Location = new System.Drawing.Point(47, 35);
-            this.lblIDMed.Name = "lblIDMed";
-            this.lblIDMed.Size = new System.Drawing.Size(0, 19);
-            this.lblIDMed.TabIndex = 39;
-            // 
             // btnSaveDetails
             // 
-            this.btnSaveDetails.Location = new System.Drawing.Point(208, 404);
+            this.btnSaveDetails.Location = new System.Drawing.Point(63, 308);
             this.btnSaveDetails.Name = "btnSaveDetails";
             this.btnSaveDetails.Size = new System.Drawing.Size(107, 43);
             this.btnSaveDetails.TabIndex = 37;
@@ -109,7 +100,7 @@
             // txtTotal
             // 
             this.txtTotal.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(664, 410);
+            this.txtTotal.Location = new System.Drawing.Point(515, 324);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(188, 27);
@@ -119,24 +110,27 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(588, 415);
+            this.label4.Location = new System.Drawing.Point(439, 329);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 22);
             this.label4.TabIndex = 35;
             this.label4.Text = "Tổng tiền";
             // 
-            // frmMedInvoice
+            // frmMedDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 539);
-            this.Controls.Add(this.lblIDMed);
+            this.ClientSize = new System.Drawing.Size(990, 419);
             this.Controls.Add(this.btnSaveDetails);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lvMedInvoice);
-            this.Name = "frmMedInvoice";
-            this.Text = "frmMedInvoice";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "frmMedDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Đơn thuốc";
             this.Load += new System.EventHandler(this.frmMedInvoice_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,7 +146,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Label lblIDMed;
         private System.Windows.Forms.Button btnSaveDetails;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label4;
