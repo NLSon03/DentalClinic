@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrescription));
             this.numQuantity = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -141,7 +142,7 @@
             this.cmbMedicine.Location = new System.Drawing.Point(99, 27);
             this.cmbMedicine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbMedicine.Name = "cmbMedicine";
-            this.cmbMedicine.Size = new System.Drawing.Size(217, 24);
+            this.cmbMedicine.Size = new System.Drawing.Size(271, 24);
             this.cmbMedicine.TabIndex = 9;
             this.cmbMedicine.SelectedIndexChanged += new System.EventHandler(this.cmbMedicine_SelectedIndexChanged);
             // 
@@ -172,7 +173,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(332, 319);
+            this.groupBox1.Size = new System.Drawing.Size(376, 319);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin thuốc";
@@ -309,8 +310,12 @@
             this.Controls.Add(this.btnPrintMedicinePrescription);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAddMedicine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "frmPrescription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đơn thuốc";
             this.Load += new System.EventHandler(this.frmPrescription_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();

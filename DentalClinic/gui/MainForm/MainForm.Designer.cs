@@ -78,7 +78,7 @@ namespace DentalClinic
             this.btnStatistics.Text = "THỐNG KÊ";
             this.btnStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnStatistics.UseVisualStyleBackColor = true;
-            /*this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);*/
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
             // btnPatientManager
             // 
@@ -101,6 +101,7 @@ namespace DentalClinic
             this.Controls.Add(this.btnDentalMaterial);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnPatientManager);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";

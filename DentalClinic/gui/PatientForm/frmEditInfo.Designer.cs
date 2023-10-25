@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditInfo));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.rbMale = new System.Windows.Forms.RadioButton();
@@ -100,20 +101,20 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(427, 185);
+            this.label9.Location = new System.Drawing.Point(397, 185);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 22);
+            this.label9.Size = new System.Drawing.Size(89, 22);
             this.label9.TabIndex = 4;
-            this.label9.Text = "Lý do khám: ";
+            this.label9.Text = "Lý do khám:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(457, 46);
+            this.label5.Location = new System.Drawing.Point(427, 47);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 22);
+            this.label5.Size = new System.Drawing.Size(59, 22);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Địa chỉ: ";
+            this.label5.Text = "Địa chỉ:";
             // 
             // label7
             // 
@@ -127,11 +128,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 180);
+            this.label3.Location = new System.Drawing.Point(2, 180);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 22);
+            this.label3.Size = new System.Drawing.Size(99, 22);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Số điện thoại";
+            this.label3.Text = "Số điện thoại:";
             // 
             // label8
             // 
@@ -145,11 +146,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 47);
+            this.label2.Location = new System.Drawing.Point(18, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 22);
+            this.label2.Size = new System.Drawing.Size(75, 22);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Họ và tên: ";
+            this.label2.Text = "Họ và tên:";
             // 
             // dateTimeYOB
             // 
@@ -249,9 +250,10 @@
             this.Controls.Add(this.btnDoneEditing);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEditInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmEditInfo";
+            this.Text = "Chỉnh sửa thông tin bệnh nhân";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEditInfo_FormClosed);
             this.Load += new System.EventHandler(this.frmEditInfo_Load);
             this.groupBox1.ResumeLayout(false);

@@ -177,6 +177,24 @@
     <Compile Include="PatientForm\PrescriptionForm\MedInvoiceForm\frmMedDetail.Designer.cs">
       <DependentUpon>frmMedDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatisticForm\InventoryStatisticForm\frmInventoryStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm\InventoryStatisticForm\frmInventoryStatistic.Designer.cs">
+      <DependentUpon>frmInventoryStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticForm\RevenueStatisticForm\frmRevenueStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm\RevenueStatisticForm\frmRevenueStatistic.Designer.cs">
+      <DependentUpon>frmRevenueStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticForm\frmStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm\frmStatistic.Designer.cs">
+      <DependentUpon>frmStatistic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DentalForm\frmDentalMaterials.resx">
@@ -187,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DentalForm\frmDentalToolMain.resx">
       <DependentUpon>frmDentalToolMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -202,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\frmNewPatient.resx">
       <DependentUpon>frmNewPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientForm\frmPatient.aa-DJ.resx">
+      <DependentUpon>frmPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatientForm\frmPatient.resx">
       <DependentUpon>frmPatient.cs</DependentUpon>
@@ -257,10 +281,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\cach_at_ten_cac_thanh_phan_trong_winform.docx" />
-    <None Include="Resources\MedInvoice\MedInvoice.pdf" />
     <None Include="Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Templates\MedInvoice.pdf" />
     <None Include="Resources\Templates\Template.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -283,6 +307,7 @@
     <None Include="Resources\add.png" />
     <None Include="Resources\bill.png" />
     <Content Include="Resources\clipboard.png" />
+    <Content Include="Resources\crowd_patient_patients_icon_140420.ico" />
     <Content Include="Resources\dentist.ico" />
     <Content Include="Resources\dentist.png" />
     <None Include="Resources\examination.png" />
@@ -292,6 +317,7 @@
     <None Include="Resources\invoice.png" />
     <Content Include="Resources\patientManager.png" />
     <None Include="Resources\remove.png" />
+    <Content Include="Resources\receipt.ico" />
     <Content Include="Resources\Tool.png" />
     <Content Include="Resources\Tool1.png" />
   </ItemGroup>

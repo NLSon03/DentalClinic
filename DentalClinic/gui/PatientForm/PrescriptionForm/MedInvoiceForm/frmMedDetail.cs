@@ -21,9 +21,6 @@ namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
         private void frmMedInvoice_Load(object sender, EventArgs e)
         {
             txtTotal.Text = Total().ToString();
-            string s = string.Format("Mã DT:   {0}", GeneratePrescriptionID());
-            lblIDMed.Text = s;
-
         }
         public void AddItemsToList(ListViewItem lvi)
         {
