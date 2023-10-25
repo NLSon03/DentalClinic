@@ -35,11 +35,6 @@ namespace gui.PatientForm
             dgv = dgvPatient;
             patient = this;
         }
-        private void ReopenMainForm()
-        {
-            MainForm main = new MainForm();
-            main.ShowDialog();
-        }
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -99,8 +94,6 @@ namespace gui.PatientForm
         {
             if (e.KeyCode == Keys.F6)
             {
-                Thread t = new Thread(start: new ThreadStart(ReopenMainForm));
-                t.Start();
                 this.Close();
             }
             if(e.KeyCode == Keys.F1)
@@ -149,9 +142,7 @@ namespace gui.PatientForm
 
         private void frmPatient_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(ReopenMainForm));
-            thread.Start();
-            this.Close();
+            this.Dispose();
         }
 
         //Mở Form thông tin khám bệnh
