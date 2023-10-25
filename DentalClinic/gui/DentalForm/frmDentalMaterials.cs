@@ -258,9 +258,13 @@ namespace gui.DentalForm
 
                 // Gán giá trị cho Loại giao dịch: Nhập vào dòng đầu tiên
                 worksheet.Cells[1, 1] = "HÓA ĐƠN HÀNG";
-                worksheet.Cells[2, 1] = "Loại giao dịch:";
-                worksheet.Cells[2, 2] = (optNhap.Checked) ? "Nhập" : "Xuất";
-
+                worksheet.Cells[2, 1] = "Loại giao dịch:" + ((optNhap.Checked) ? "Nhập" : "Xuất");
+                Microsoft.Office.Interop.Excel.Range mergeRange = worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[1, dataGrid.Columns.Count]];
+                mergeRange.Merge();
+                Microsoft.Office.Interop.Excel.Range cellRange = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[1, 1];
+                cellRange.Font.Bold = true;
+                cellRange.Font.Color = Color.Red;
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
                 // Export header trong DataGridView
                 for (int i = 0; i < dataGrid.ColumnCount; i++)
@@ -273,7 +277,7 @@ namespace gui.DentalForm
                     for (int j = 0; j < dataGrid.ColumnCount; j++)
                     {
                             // Giữ nguyên giá trị của các cột khác
-                            worksheet.Cells[i + 3, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                            worksheet.Cells[i + 4, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
                     }
                 }
 

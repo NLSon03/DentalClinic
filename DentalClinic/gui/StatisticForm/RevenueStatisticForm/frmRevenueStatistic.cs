@@ -189,7 +189,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
 
 
-        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel, string tencotngay, string noidung)
+        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel, string noidung)
         {
             Microsoft.Office.Interop.Excel.Application excel;
             Microsoft.Office.Interop.Excel.Workbook workbook;
@@ -216,14 +216,15 @@ namespace gui.StatisticForm.RevenueStatisticForm
                 // export header trong DataGridView
                 for (int i = 0; i < dataGrid.ColumnCount; i++)
                 {
-                    worksheet.Cells[3, i + 1] = dataGrid.Columns[i].HeaderText;
+                    if (dataGrid.Columns[i].Visible == true)
+                        worksheet.Cells[3, i + 1] = dataGrid.Columns[i].HeaderText;
                 }
                 // export nội dung trong DataGridView
                 for (int i = 0; i < dataGrid.RowCount; i++)
                 {
                     for (int j = 0; j < dataGrid.ColumnCount; j++)
                     {
-                        if (dataGrid.Columns[j].HeaderText.Unidecode().ToLower().Contains(tencotngay))
+                        if (dataGrid.Columns[j].HeaderText.Unidecode().ToLower().Contains("ngay"))
                         {
                             if (dataGrid.Rows[i].Cells[j].Value != null)
                                 // Định dạng ngày thành MM/dd/yyyy
@@ -482,7 +483,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvTongDoanhThu, saveFileDialog.FileName, "Thống kê doanh thu","Ngay", "THỐNG KÊ DOANH THU");
+                ToExcel(dgvTongDoanhThu, saveFileDialog.FileName, "Thống kê doanh thu", "THỐNG KÊ DOANH THU");
             }
         }
 
@@ -605,7 +606,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvDieutri, saveFileDialog.FileName, "Thống kê tiền điều trị","Ngay", "THỐNG KÊ DOANH THU ĐIỀU TRỊ");
+                ToExcel(dgvDieutri, saveFileDialog.FileName, "Thống kê tiền điều trị", "THỐNG KÊ DOANH THU ĐIỀU TRỊ");
             }
         }
 
@@ -748,7 +749,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc", "Ngay", "THỐNG KÊ DOANH THU THUỐC");
+                ToExcel(dgvThuoc, saveFileDialog.FileName, "Thống kê tiền thuốc", "THỐNG KÊ DOANH THU THUỐC");
             }
         }
 
@@ -882,7 +883,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvXuat, saveFileDialog.FileName, "Thống kê tiền xuất vật liệu","Ngay", "THỐNG KÊ DOANH THU XUẤT HÀNG");
+                ToExcel(dgvXuat, saveFileDialog.FileName, "Thống kê tiền xuất vật liệu", "THỐNG KÊ DOANH THU XUẤT HÀNG");
             }
         }
 
@@ -995,7 +996,7 @@ namespace gui.StatisticForm.RevenueStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvNhap, saveFileDialog.FileName, "Thống kê tiền nhập vật liệu","Ngay","THỐNG KÊ TIỀN NHẬP HÀNG");
+                ToExcel(dgvNhap, saveFileDialog.FileName, "Thống kê tiền nhập vật liệu","THỐNG KÊ TIỀN NHẬP HÀNG");
             }
         }
 
