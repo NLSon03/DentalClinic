@@ -1,4 +1,5 @@
-﻿using dal.Entities;
+﻿using bus;
+using dal.Entities;
 using DentalClinic;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace gui.LoginForm
 {
     public partial class LoginForm : Form
     {
+        private readonly AccountService accountService = new AccountService();
         public LoginForm()
         {
             InitializeComponent();
@@ -26,7 +28,6 @@ namespace gui.LoginForm
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            using (var context = new DentalModel())
             {
                 try
                 {
@@ -34,15 +35,15 @@ namespace gui.LoginForm
                     {
                         throw new Exception("Vui lòng nhập đầy đủ thông tin");
                     }
-
                     string tk = txtLogin.Text;
                     string mk = txtPassword.Text;
 
-                    var account = context.Accounts.FirstOrDefault(a => a.AccountName == tk && a.Password == mk);
+                    Account account = accountService.findByID(tk, mk);
 
                     if (account != null)
                     {
                         MessageBox.Show("Đăng nhập thành công");
+                        OpenForm();
                     }
                     else
                     {
