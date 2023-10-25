@@ -1,22 +1,13 @@
 ﻿using bus;
 using dal.Entities;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.Threading;
-using System.IO;
-using DentalClinic;
-using Org.BouncyCastle.Utilities;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace gui.PatientForm.CompletingMedInvoiceForm
 {
@@ -34,7 +25,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         }
         private void BindGird(List<Prescription> p)
         {
-            dgvMed.Rows.Clear();       
+            dgvMed.Rows.Clear();
             foreach (var pitem in p)
             {
                 int index = dgvMed.Rows.Add();
@@ -83,10 +74,10 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK);
-            }           
+            }
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -110,13 +101,13 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         }
         private string GetPath()
         {
-            string invoicesPath = @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\MedicineInvoice\";
+            string invoicesPath = @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\MedicineInvoice";
             Directory.CreateDirectory(invoicesPath);
             return Path.GetFullPath(invoicesPath);
         }
         private string GetTemplatePath()
         {
-            return @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\Resources\MedInvoice\MedInvoice.pdf";
+            return @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\Resources\Templates\MedInvoice.pdf";
         }
         private void CopyFile(string sourcePath, string destinationPath)
         {
@@ -124,7 +115,6 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         }
         private void CreateInvoicePdf(string invoiceId)
         {
-            // Đường dẫn đến file PDF template
             string templatePath = GetTemplatePath();
             string invoicesPath = GetPath();
 
@@ -132,8 +122,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
             CopyFile(templatePath, newPdfPath);
 
             byte[] pdfContent = File.ReadAllBytes(templatePath);
-            // Đợi cho đến khi thread hoàn thành
-            // Mở file PDF mới để chỉnh sửa
+
             using (MemoryStream memory = new MemoryStream(pdfContent))
             {
                 PdfReader reader = null;
@@ -144,18 +133,18 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
                     stamper = new PdfStamper(reader, new FileStream(newPdfPath, FileMode.Create, FileAccess.Write));
 
                     AcroFields fields = stamper.AcroFields;
-                    //string fontPath = @"Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf";
-                   /* BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    string fontPath = @"Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf";
+                    BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                     iTextSharp.text.Font times = new iTextSharp.text.Font(bf);
 
                     // Sử dụng font mới cho tất cả các trường trong PDF
                     foreach (string key in fields.Fields.Keys)
                     {
                         fields.SetFieldProperty(key, "textfont", times.BaseFont, null);
-                    }*/
+                    }
                     FillMedInvoice(fields, invoiceId);
                 }
-                finally 
+                finally
                 {
                     if (stamper != null)
                     {
@@ -166,7 +155,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
                         reader.Close();
                     }
                 }
-            };   
+            };
         }
         private void FillMedInvoice(AcroFields fields, string invoiceId)
         {
@@ -178,7 +167,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
             var unit = prescriptionService.GetUnit(listPrescriptionIds);
             var dosage = prescriptionService.GetDosage(listPrescriptionIds);
             var unitprice = prescriptionService.GetPrice(listPrescriptionIds);
-            var total = prescriptionService.GetTotal(listPrescriptionIds);
+            var total = prescriptionService.GetTotal(Convert.ToInt32(invoiceId));
             // Điền các trường với dữ liệu đơn
             //fields.SetField("InvoiceId", invoiceId);
             fields.SetField("CustomerName", patient.GetByID(ID_p.ToString()).FullName);
@@ -193,9 +182,9 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
                 fields.SetField($"Unit{i + 1}", unit[i]);
                 fields.SetField($"quantity{i + 1}", quantities[i].ToString());
                 fields.SetField($"price{i + 1}", unitprice[i].ToString());
-                fields.SetField($"sum{i + 1}", (quantities[i] * unitprice[i]).ToString());
+                fields.SetField($"sum{i + 1}", ((decimal)(quantities[i] * unitprice[i])).ToString("N0"));
             }
-            fields.SetField($"total", total.ToString());
+            fields.SetField($"total", total);
         }
         private int SaveInvoice(List<Prescription> list)
         {
@@ -216,7 +205,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         {
             CreateInvoicePdf(invoiceId);
 
-            string pdfPath = Path.GetFullPath($"MedicineInvoice\\{invoiceId}.pdf");
+            string pdfPath = Path.GetFullPath($"C:\\Users\\ADmin\\source\\repos\\DentalClinic\\DentalClinic\\gui\\MedicineInvoice\\{invoiceId}.pdf");
             if (!File.Exists(pdfPath))
                 throw new FileNotFoundException($"Không tìm thấy tệp {pdfPath}");
 
@@ -255,25 +244,15 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         {
             if (dgvMed.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex != -1)
             {
-               // txtTotalAmount.Text = CalculateTotalAmount().ToString("N0");
+                // txtTotalAmount.Text = CalculateTotalAmount().ToString("N0");
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void dgvMed_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(checkBox1.Checked)
+            if (dgvMed.CurrentCell.GetType() == typeof(DataGridViewCheckBoxCell) && dgvMed.CurrentCell.IsInEditMode && dgvMed.IsCurrentCellDirty && dgvMed.Rows.Count > 0)
             {
-                foreach(DataGridViewRow row in dgvMed.Rows)
-                {
-                    row.Cells["colMedInvoice"].Value = true;
-                }
-            }
-            else
-            {
-                foreach (DataGridViewRow row in dgvMed.Rows)
-                {
-                    row.Cells["colMedInvoice"].Value = true;
-                }
+                dgvMed.EndEdit();
             }
         }
     }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace gui.DentalForm
@@ -227,6 +228,10 @@ namespace gui.DentalForm
             this.Hide();
             fr.ShowDialog();
             this.Show();
+        }
+        private bool IsInvoiceCheckboxChecked()
+        {
+            return dgvDungCu.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToBoolean(row.Cells["colMedInvoice"].Value));
         }
 
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
