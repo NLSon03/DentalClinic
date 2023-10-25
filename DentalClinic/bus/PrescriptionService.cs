@@ -41,20 +41,17 @@ namespace bus
             {
                 return unit.Select(u=>
                 {
-                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == u);
                     return unitName.Medicine.Unit;
                 }).ToList();
             }
         }
-        public List<decimal?> GetTotal(List<int?> total) 
+        public string GetTotal(int id) 
         {
-            using (var model = new DentalModel())
+            using (var context = new DentalModel())
             {
-                return total.Select(u =>
-                {
-                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
-                    return unitName?.TotalAmount;
-                }).ToList();
+                decimal totalAmount = context.Prescriptions.FirstOrDefault(p => p.ID == id).TotalAmount;
+                return totalAmount.ToString("N0");
             }
         }
         public List<decimal?> GetPrice(List<int?> price)
@@ -63,7 +60,7 @@ namespace bus
             {
                 return price.Select(u =>
                 {
-                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID ==u);
                     return unitName.Medicine.UnitPrice;
                 }).ToList();
 
@@ -75,12 +72,13 @@ namespace bus
             {
                 return dosage.Select(u =>
                 {
-                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == Convert.ToInt32(u));
+                    var unitName = model.Prescriptions.FirstOrDefault(i => i.ID == u);
                     return unitName.Medicine.Dosage;
                 }).ToList();
 
             }
         }
+
         public string GetMedicineName(int id)
         {
             DentalModel model = new DentalModel();

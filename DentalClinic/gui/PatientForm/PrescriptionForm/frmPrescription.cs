@@ -161,7 +161,7 @@ namespace gui.PatientForm.PrescriptionForm
                         c1 = Convert.ToDecimal(dgvMedicine.Rows[i].Cells[4].Value.ToString());
                         c2 = Convert.ToDecimal(dgvMedicine.Rows[i].Cells[5].Value.ToString());
                         total = c1 * c2;
-                        dgvMedicine.Rows[i].Cells[6].Value = total.ToString();
+                        dgvMedicine.Rows[i].Cells[6].Value = total.ToString("N0");
                     }
                     RefreshGB();
                 }
@@ -190,7 +190,7 @@ namespace gui.PatientForm.PrescriptionForm
                         c1 = Convert.ToDecimal(dgvMedicine.Rows[row.Index].Cells[4].Value.ToString());
                         c2 = Convert.ToDecimal(dgvMedicine.Rows[row.Index].Cells[5].Value.ToString());
                         total = c1 * c2;
-                        dgvMedicine.Rows[row.Index].Cells[6].Value = total.ToString();
+                        dgvMedicine.Rows[row.Index].Cells[6].Value = total.ToString("N0");
                         MessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK);
                     }
                     RefreshGB();
@@ -255,12 +255,6 @@ namespace gui.PatientForm.PrescriptionForm
                 MessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK);
             }
         }
-
-        private void lblID_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
     public class Unit
     {
