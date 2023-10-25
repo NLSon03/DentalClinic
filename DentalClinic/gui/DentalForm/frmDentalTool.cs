@@ -50,7 +50,10 @@ namespace gui.DentalForm
                     dgvDentalTool.Rows[index].Cells[0].Value = item.ToolID;
                     dgvDentalTool.Rows[index].Cells[1].Value = item.ToolName;
                     dgvDentalTool.Rows[index].Cells[2].Value = item.Unit;
-                    dgvDentalTool.Rows[index].Cells[3].Value = item.Quantity;                  
+                    dgvDentalTool.Rows[index].Cells[3].Value = item.Quantity;
+                    dgvDentalTool.Rows[index].Cells[4].Value = (long)item.PurchasedPrice;
+                    dgvDentalTool.Rows[index].Cells[5].Value = (long)item.SellingPrice;
+
                 }
             }
         }

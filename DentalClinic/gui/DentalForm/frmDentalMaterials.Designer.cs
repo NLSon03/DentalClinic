@@ -62,6 +62,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.optNhap = new System.Windows.Forms.RadioButton();
+            this.optXuat = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDungCu)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -251,6 +253,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.optXuat);
+            this.groupBox1.Controls.Add(this.optNhap);
             this.groupBox1.Controls.Add(this.cmbDungCu);
             this.groupBox1.Controls.Add(this.txtDonGia);
             this.groupBox1.Controls.Add(this.txtThanhTien);
@@ -285,6 +289,7 @@
             // 
             // txtDonGia
             // 
+            this.txtDonGia.Enabled = false;
             this.txtDonGia.Location = new System.Drawing.Point(728, 37);
             this.txtDonGia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDonGia.Name = "txtDonGia";
@@ -294,6 +299,7 @@
             // 
             // txtThanhTien
             // 
+            this.txtThanhTien.Enabled = false;
             this.txtThanhTien.Location = new System.Drawing.Point(728, 109);
             this.txtThanhTien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtThanhTien.Name = "txtThanhTien";
@@ -311,6 +317,7 @@
             // 
             // txtDonViTinh
             // 
+            this.txtDonViTinh.Enabled = false;
             this.txtDonViTinh.Location = new System.Drawing.Point(410, 37);
             this.txtDonViTinh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDonViTinh.Name = "txtDonViTinh";
@@ -324,6 +331,7 @@
             this.txtMaGiaoDich.Name = "txtMaGiaoDich";
             this.txtMaGiaoDich.Size = new System.Drawing.Size(138, 25);
             this.txtMaGiaoDich.TabIndex = 1;
+            this.txtMaGiaoDich.Leave += new System.EventHandler(this.txtMaGiaoDich_Leave);
             // 
             // label5
             // 
@@ -391,6 +399,28 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã hóa đơn:";
             // 
+            // optNhap
+            // 
+            this.optNhap.AutoSize = true;
+            this.optNhap.Location = new System.Drawing.Point(38, 194);
+            this.optNhap.Name = "optNhap";
+            this.optNhap.Size = new System.Drawing.Size(73, 24);
+            this.optNhap.TabIndex = 3;
+            this.optNhap.TabStop = true;
+            this.optNhap.Text = "Nhập";
+            this.optNhap.UseVisualStyleBackColor = true;
+            // 
+            // optXuat
+            // 
+            this.optXuat.AutoSize = true;
+            this.optXuat.Location = new System.Drawing.Point(247, 194);
+            this.optXuat.Name = "optXuat";
+            this.optXuat.Size = new System.Drawing.Size(68, 24);
+            this.optXuat.TabIndex = 3;
+            this.optXuat.TabStop = true;
+            this.optXuat.Text = "Xuất";
+            this.optXuat.UseVisualStyleBackColor = true;
+            // 
             // frmDentalMaterials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,6 +484,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.RadioButton optXuat;
+        private System.Windows.Forms.RadioButton optNhap;
     }
 }
 

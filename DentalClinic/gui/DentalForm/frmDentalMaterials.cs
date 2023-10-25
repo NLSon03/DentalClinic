@@ -35,7 +35,6 @@ namespace gui.DentalForm
             {
                 MessageBox.Show(ex.Message);
             }
-
             txtDonGia.Text = "";
             txtSoLuong.Text = "";
             txtThanhTien.Text = "";
@@ -131,7 +130,7 @@ namespace gui.DentalForm
                     hoadon = new DentalToolTransaction()
                     {
                         TransactionID = int.Parse(txtMaGiaoDich.Text),
-                        TransactionType = false,
+                        TransactionType = (optNhap.Checked) ? false : true,
                         TransactionDate = DateTime.Now,
                         TotalAmount = 0,
                     };
@@ -168,7 +167,7 @@ namespace gui.DentalForm
                     hoadon = new DentalToolTransaction()
                     {
                         TransactionID = int.Parse(txtMaGiaoDich.Text),
-                        TransactionType = false,
+                        TransactionType = (optNhap.Checked) ? false : true,
                         TransactionDate = DateTime.Now,
                         TotalAmount = 0,
                     };
@@ -318,6 +317,7 @@ namespace gui.DentalForm
             {
                 DentalTool a = cmbDungCu.SelectedItem as DentalTool;
                 txtDonViTinh.Text = a.Unit;
+                txtDonGia.Text = (optXuat.Checked) ? a.SellingPrice.ToString("0") : a.PurchasedPrice.ToString("0");
             }
         }
 
@@ -368,6 +368,27 @@ namespace gui.DentalForm
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtMaGiaoDich_Leave(object sender, EventArgs e)
+        {
+            DentalToolTransaction hoadon = dentalToolTransactionService.GetAllDentalToolTransaction(int.Parse(txtMaGiaoDich.Text));
+            if (hoadon != null)
+            {
+                optNhap.Enabled = false;
+                optXuat.Enabled = false;
+                optNhap.Checked = (hoadon.TransactionType == true) ? true : false;
+                optXuat.Checked = (hoadon.TransactionType == true) ? false : true;
+                var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
+                BindGrid(ds);
+            }
+            else
+            {
+                optNhap.Enabled = true;
+                optXuat.Enabled = true;
+            }
+
+
         }
     }
 }
