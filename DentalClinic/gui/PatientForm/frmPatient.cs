@@ -42,8 +42,6 @@ namespace gui.PatientForm
         }
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread(new ThreadStart(ReopenMainForm));
-            thread.Start();
             this.Close();
         }
         //Nhập thông tin bệnh nhân vào bảng
