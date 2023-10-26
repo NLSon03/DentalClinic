@@ -63,7 +63,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
             lbVatlieuxuat.Text = dsvatlieu.Count(x=> x.QuantitySold != 0).ToString();
         }
 
-        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel,string tencotngay)
+        private void ToExcel(DataGridView dataGrid, string fileName, string tenexcel,string tencotngay, string noidung)
         {
             Microsoft.Office.Interop.Excel.Application excel;
             Microsoft.Office.Interop.Excel.Workbook workbook;
@@ -79,11 +79,18 @@ namespace gui.StatisticForm.InventoryStatisticForm
                 worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets["Sheet1"];
                 //đặt tên cho sheet
                 worksheet.Name = tenexcel;
+                Microsoft.Office.Interop.Excel.Range mergeRange = worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[1, dataGrid.Columns.Count]];
+                mergeRange.Merge();
+                worksheet.Cells[1, 1] = noidung;
+                Microsoft.Office.Interop.Excel.Range cellRange = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[1, 1];
+                cellRange.Font.Bold = true;
+                cellRange.Font.Color = Color.Red;
+                cellRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
                 // export header trong DataGridView
                 for (int i = 0; i < dataGrid.ColumnCount; i++)
                 {
-                    worksheet.Cells[1, i + 1] = dataGrid.Columns[i].HeaderText;
+                    worksheet.Cells[3, i + 1] = dataGrid.Columns[i].HeaderText;
                 }
                 // export nội dung trong DataGridView
                 for (int i = 0; i < dataGrid.RowCount; i++)
@@ -94,12 +101,14 @@ namespace gui.StatisticForm.InventoryStatisticForm
                         {
                             if (dataGrid.Rows[i].Cells[j].Value != null)
                             // Định dạng ngày thành MM/dd/yyyy
-                            worksheet.Cells[i + 2, j + 1] = DateTime.Parse(dataGrid.Rows[i].Cells[j].Value.ToString()).ToString("MM/dd/yyyy");
+                            worksheet.Cells[i + 4, j + 1] = DateTime.Parse(dataGrid.Rows[i].Cells[j].Value.ToString()).ToString("MM/dd/yyyy");
                         }
                         else
                         {
-                            // Giữ nguyên giá trị của các cột khác
-                            worksheet.Cells[i + 2, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
+                            if (dataGrid.Rows[i].Cells[j].Value != null)
+
+                                // Giữ nguyên giá trị của các cột khác
+                                worksheet.Cells[i + 4, j + 1] = dataGrid.Rows[i].Cells[j].Value.ToString();
                         }
                     }
                 }
@@ -377,7 +386,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvHoaDon, saveFileDialog.FileName, "Thống kê nhập xuất","ngay");
+                ToExcel(dgvHoaDon, saveFileDialog.FileName, "Thống kê nhập xuất","ngay","THỐNG KÊ HÓA ĐƠN NHẬP XUẤT");
             }
         }
 
@@ -566,7 +575,7 @@ namespace gui.StatisticForm.InventoryStatisticForm
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ToExcel(dgvVatLieu, saveFileDialog.FileName, "Thống kê dụng cụ", "lan update cuoi");
+                ToExcel(dgvVatLieu, saveFileDialog.FileName, "Thống kê dụng cụ", "lan update cuoi","THỐNG KÊ VẬT LIỆU KHO");
             }
         }
 

@@ -101,13 +101,13 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         }
         private string GetPath()
         {
-            string invoicesPath = @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\MedicineInvoice";
+            string invoicesPath = @"Invoices\MedicInvoice";
             Directory.CreateDirectory(invoicesPath);
             return Path.GetFullPath(invoicesPath);
         }
         private string GetTemplatePath()
         {
-            return @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\Resources\Templates\MedInvoice.pdf";
+            return @"Resources\Templates\MedInvoice.pdf";
         }
         private void CopyFile(string sourcePath, string destinationPath)
         {
@@ -205,7 +205,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         {
             CreateInvoicePdf(invoiceId);
 
-            string pdfPath = Path.GetFullPath($"C:\\Users\\ADmin\\source\\repos\\DentalClinic\\DentalClinic\\gui\\MedicineInvoice\\{invoiceId}.pdf");
+            string pdfPath = Path.GetFullPath($"Invoices\\MedicInvoice\\{invoiceId}.pdf");
             if (!File.Exists(pdfPath))
                 throw new FileNotFoundException($"Không tìm thấy tệp {pdfPath}");
 

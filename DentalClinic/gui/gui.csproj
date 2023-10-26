@@ -58,6 +58,7 @@
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -206,6 +207,9 @@
     <EmbeddedResource Include="DentalForm\frmDentalToolMain.resx">
       <DependentUpon>frmDentalToolMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,7 +285,9 @@
     <None Include="Resources\Fonts\OpenSans-VariableFont_wdth,wght.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Templates\MedInvoice.pdf" />
+    <None Include="Resources\Templates\MedInvoice.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Templates\Template.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -312,6 +318,7 @@
     <None Include="Resources\edit1.png" />
     <Content Include="Resources\exit.png" />
     <None Include="Resources\invoice.png" />
+    <None Include="Resources\more.png" />
     <Content Include="Resources\patientManager.png" />
     <None Include="Resources\remove.png" />
     <Content Include="Resources\receipt.ico" />

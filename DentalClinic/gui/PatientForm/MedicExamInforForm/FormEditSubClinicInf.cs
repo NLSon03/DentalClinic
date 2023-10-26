@@ -29,13 +29,13 @@ namespace gui.PatientForm.MedicExamInforForm
         //Nếu các dữ liệu là null thì gán các dữ liệu trong textbox = ""
         private static string ChangeNull(object param)
         {
-            return string.IsNullOrEmpty(param?.ToString()) ? "" : param.ToString();
-        }
+            if (param == null)
+            {
+                return "";
+            }
 
-        private void SetDataForLabelName()
-        {
-            var patient = patientInformationService.GetByID(_PatientID);
-            lblPatient.Text = $"Mã số: {patient.PatientID} - Tên: {patient.FullName}";
+            string paramString = param.ToString();
+            return (paramString == "null" || paramString == "") ? "" : paramString;
         }
 
         private void SetRadioButton(RadioButton radioButton, bool condition)
@@ -51,19 +51,25 @@ namespace gui.PatientForm.MedicExamInforForm
                 }
         }
 
-        private string FixWarrantyID(string warrantyID)
+        private string FixWarrantyID(object param)
         {
-            if (warrantyID == null)
+            if (param == null)
+            {
                 return "";
-            string fixedID = warrantyID.Replace(" ","");
-            return fixedID == "" ? "" : fixedID;
+            }
+
+            string paramString = param.ToString();
+            if (paramString.Contains("null") || paramString == "" || paramString.Contains(" "))
+            {
+                return paramString.Replace(" ", "").Replace("null", "");
+            }
+
+            return paramString;
         }
 
         //Truyền dữ liệu đã có sẵn/mặc định của bệnh nhân vào form
         private void AddDataWhenFormLoad(SubClinicalInformation Patient)
         {
-            //Lable ID_Name bệnh nhân
-            SetDataForLabelName();
             //Các textbox huyết áp, mạch, đường huyết
             txtBloodPressure.Text = ChangeNull(Patient.BloodPressure);
             txtPulseRate.Text = ChangeNull(Patient.PulseRate);

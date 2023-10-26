@@ -1,14 +1,11 @@
 ﻿using bus;
 using dal.Entities;
-using DentalClinic;
 using gui.PatientForm.CompletingMedInvoiceForm;
 using gui.PatientForm.MedicExamInforForm;
 using gui.PatientForm.PrescriptionForm;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace gui.PatientForm
@@ -27,6 +24,9 @@ namespace gui.PatientForm
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.BackgroundColor = Color.White;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            dataGridView.DefaultCellStyle.ForeColor = Color.Black;
         }
 
         public frmPatient()
@@ -48,32 +48,17 @@ namespace gui.PatientForm
                 int index = dgvPatient.Rows.Add();
                 dgvPatient.Rows[index].Cells[0].Value = item.PatientID;
                 dgvPatient.Rows[index].Cells[1].Value = item.FullName;
-                if (item.Gender == true)
-                {
-                    dgvPatient.Rows[index].Cells[2].Value = "Nam";
-                }
-                else if (item.Gender == false)
-                {
-                    dgvPatient.Rows[index].Cells[2].Value = "Nữ";
-                }
-
-                dgvPatient.Rows[index].Cells[3].Value = item.YearOfBirth;
+                dgvPatient.Rows[index].Cells[2].Value = item.Gender ? "Nam" : "Nữ";
+                dgvPatient.Rows[index].Cells[3].Value = item.YearOfBirth.ToString("dd-MM-yyyy") ?? "";
                 dgvPatient.Rows[index].Cells[4].Value = item.PhoneNumber;
                 dgvPatient.Rows[index].Cells[5].Value = item.Address;
-                if (item.FirstExaminationDate == null)
-                {
-                    dgvPatient.Rows[index].Cells[6].Value = "";
-                }
-                else
-                    dgvPatient.Rows[index].Cells[6].Value = item.FirstExaminationDate;
+                dgvPatient.Rows[index].Cells[6].Value = item.FirstExaminationDate?.ToString("dd-MM-yyyy") ?? "";
                 dgvPatient.Rows[index].Cells[7].Value = item.ReasonForExamination;
-
-                /*dgvPatient.Rows.Add(item.PatientID, item.FullName, item.Gender,item.YearOfBirth, item.PhoneNumber,
-                    item.Address, item.FirstExaminationDate, item.ReasonForExamination);*/
             }
         }
 
-        private void frmPatient_Load(object sender, EventArgs e)
+
+        public void frmPatient_Load(object sender, EventArgs e)
         {
             try
             {
@@ -96,21 +81,29 @@ namespace gui.PatientForm
             {
                 this.Close();
             }
-            if(e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.F1)
             {
                 btnAddNewPatient.PerformClick();
             }
         }
         private void OpenPrescriptionForm()
         {
-            frmPrescription f = new frmPrescription();
-            foreach (DataGridViewRow r in dgvPatient.Rows)
+            // Kiểm tra xem có hàng nào được chọn không
+            var selectedRows = dgvPatient.SelectedRows;
+            if (selectedRows.Count == 0)
             {
-                if (r.Selected)
-                {
-                    f.p_id = int.Parse(r.Cells[0].Value.ToString());
-                }
+                MessageBox.Show("Vui lòng chọn một bệnh nhân từ danh sách", "Thông báo", MessageBoxButtons.OK);
+                return;
             }
+
+            // Lấy ID của bệnh nhân từ hàng được chọn
+            int patientId = int.Parse(selectedRows[0].Cells[0].Value.ToString());
+
+            // Tạo và hiển thị form kê đơn
+            frmPrescription f = new frmPrescription
+            {
+                p_id = patientId
+            };
             f.ShowDialog();
         }
         private void btnCreatingPrescription_Click(object sender, EventArgs e)
@@ -166,6 +159,8 @@ namespace gui.PatientForm
             //Nút xem thông tin khám bệnh chỉ enable khi có một bệnh nhân được chọn
             if (dgvPatient.SelectedRows.Count > 0)
             {
+                btnEditing.Enabled = true;
+                menuBtnDelete.Enabled = true;
                 btnMedicExamInfor.Enabled = true;
                 btnCreatingPrescription.Enabled = true;
                 foreach (DataGridViewRow r in dgvPatient.Rows)
@@ -185,66 +180,23 @@ namespace gui.PatientForm
         private void btnAddNewPatient_Click(object sender, EventArgs e)
         {
             frmNewPatient newPatient = new frmNewPatient();
+            newPatient.mainForm = this;
             newPatient.ShowDialog();
         }
 
         private void btnEditing_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvPatient.Rows)
+            if (dgvPatient.SelectedRows.Count > 0)
             {
-                if (row.Selected)
-                {
-                    frmAnnoucement annouce = new frmAnnoucement();
-                    annouce.ShowDialog();
-                    if (annouce.isClicked == true)
-                    {
-                        frmEditInfo frmEdit = new frmEditInfo();
-                        frmEdit.txt1.Text = dgvPatient.Rows[row.Index].Cells[1].Value.ToString();
-                        frmEdit.txt2.Text = dgvPatient.Rows[row.Index].Cells[4].Value.ToString();
-                        frmEdit.txt3.Text = dgvPatient.Rows[row.Index].Cells[5].Value.ToString();
-                        frmEdit.txt4.Text = dgvPatient.Rows[row.Index].Cells[7].Value.ToString();
-                        frmEdit.datetime1.Value = DateTime.Parse(dgvPatient.Rows[row.Index].Cells[3].Value.ToString());
-                        if (dgvPatient.Rows[row.Index].Cells[2].Value.ToString() == "Nữ")
-                        {
-                            frmEdit.rb1.Checked = false;
-                            frmEdit.rb2.Checked = true;
-                        }
-                        else if (dgvPatient.Rows[row.Index].Cells[2].Value.ToString() == "Nam")
-                        {
-                            frmEdit.rb1.Checked = true;
-                            frmEdit.rb2.Checked = false;
-                        }
-                        if (dgvPatient.Rows[row.Index].Cells[6].Value != null)
-                        {
-                            frmEdit.chk1.Checked = true;
-                            frmEdit.datetime2.Value = DateTime.Parse(dgvPatient.Rows[row.Index].Cells[6].Value.ToString());
-                        }
-                        else if (dgvPatient.Rows[row.Index].Cells[6].Value == null)
-                        {
-                            frmEdit.chk1.Checked = false;
-                        }
-                        frmEdit.ShowDialog();
-                    }
-                    else if (annouce.isClicked == false)
-                    {
-                        try
-                        {
-                            DialogResult d = MessageBox.Show("Bạn có muốn xóa bệnh nhân này?","Thông báo",
-                                MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                            if(d == DialogResult.Yes)
-                            {
-                                patientInformationService.DeletePatient(dgvPatient.Rows[row.Index].Cells[0].Value.ToString());
-                                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
-
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK);
-                        }
-                    }
-                }
+                var row = dgvPatient.SelectedRows[0];
+                var patientID = row.Cells["colPatientID"].Value.ToString();
+                frmEditInfo frmEditInfo = new frmEditInfo();
+                frmEditInfo.PatientID = patientID;
+                frmEditInfo.MainForm = this;
+                frmEditInfo.ShowDialog();
             }
+            else
+                MessageBox.Show("Vui lòng chọn một bệnh nhân trước.");
         }
 
         private void dgvPatient_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -273,5 +225,35 @@ namespace gui.PatientForm
                 }
             }
         }
+
+        private void menuBtnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvPatient.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một bệnh nhân trước.");
+                return;
+            }
+
+            var row = dgvPatient.SelectedRows[0];
+            var patientID = row.Cells["colPatientID"].Value.ToString();
+
+            try
+            {
+                if (!patientInformationService.IsAbleToDelete(patientID))
+                {
+                    MessageBox.Show("Bệnh nhân đã có đơn thuốc/ điều trị.\nKhông thể xóa.");
+                    return;
+                }
+
+                patientInformationService.DeletePatient(patientID);
+                MessageBox.Show("Xóa thành công");
+                frmPatient_Load(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra khi xóa bệnh nhân: {ex.Message}");
+            }
+        }
+
     }
 }

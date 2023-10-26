@@ -59,7 +59,8 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1210, 35);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(908, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -69,40 +70,43 @@
             this.thêmHóaĐơnToolStripMenuItem,
             this.thoátToolStripMenuItem,
             this.thoátToolStripMenuItem1});
-            this.chứcNăngToolStripMenuItem.Font = new System.Drawing.Font("Arial Black", 11F, System.Drawing.FontStyle.Bold);
+            this.chứcNăngToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chứcNăngToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chứcNăngToolStripMenuItem.Image")));
             this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
-            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(157, 31);
+            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(115, 24);
             this.chứcNăngToolStripMenuItem.Text = "Chức năng";
             // 
             // thêmHóaĐơnToolStripMenuItem
             // 
+            this.thêmHóaĐơnToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thêmHóaĐơnToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thêmHóaĐơnToolStripMenuItem.Image")));
             this.thêmHóaĐơnToolStripMenuItem.Name = "thêmHóaĐơnToolStripMenuItem";
-            this.thêmHóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(247, 32);
+            this.thêmHóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.thêmHóaĐơnToolStripMenuItem.Text = "Thêm hóa đơn";
             this.thêmHóaĐơnToolStripMenuItem.Click += new System.EventHandler(this.thêmHóaĐơnToolStripMenuItem_Click);
             // 
             // thoátToolStripMenuItem
             // 
+            this.thoátToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoátToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thoátToolStripMenuItem.Image")));
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(247, 32);
+            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.thoátToolStripMenuItem.Text = "Kho hàng";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
             // thoátToolStripMenuItem1
             // 
+            this.thoátToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoátToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("thoátToolStripMenuItem1.Image")));
             this.thoátToolStripMenuItem1.Name = "thoátToolStripMenuItem1";
-            this.thoátToolStripMenuItem1.Size = new System.Drawing.Size(247, 32);
+            this.thoátToolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
             this.thoátToolStripMenuItem1.Text = "Thoát";
             this.thoátToolStripMenuItem1.Click += new System.EventHandler(this.thoátToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(14, 31);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 24);
             // 
             // toolStrip1
             // 
@@ -111,32 +115,34 @@
             this.btnAddBillDentalTool,
             this.toolStripSeparator1,
             this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 35);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1210, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(908, 28);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnAddBillDentalTool
             // 
+            this.btnAddBillDentalTool.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnAddBillDentalTool.Image = ((System.Drawing.Image)(resources.GetObject("btnAddBillDentalTool.Image")));
             this.btnAddBillDentalTool.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddBillDentalTool.Name = "btnAddBillDentalTool";
-            this.btnAddBillDentalTool.Size = new System.Drawing.Size(129, 24);
+            this.btnAddBillDentalTool.Size = new System.Drawing.Size(144, 25);
             this.btnAddBillDentalTool.Text = "Thêm hóa đơn";
             this.btnAddBillDentalTool.Click += new System.EventHandler(this.btnAddBillDentalTool_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(96, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(107, 25);
             this.toolStripButton1.Text = "Kho hàng";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -151,11 +157,12 @@
             this.Column4,
             this.Column6,
             this.Column5});
-            this.dgvListBillDentalTool.Location = new System.Drawing.Point(12, 74);
+            this.dgvListBillDentalTool.Location = new System.Drawing.Point(9, 60);
+            this.dgvListBillDentalTool.Margin = new System.Windows.Forms.Padding(2);
             this.dgvListBillDentalTool.Name = "dgvListBillDentalTool";
             this.dgvListBillDentalTool.RowHeadersWidth = 51;
             this.dgvListBillDentalTool.RowTemplate.Height = 24;
-            this.dgvListBillDentalTool.Size = new System.Drawing.Size(1178, 580);
+            this.dgvListBillDentalTool.Size = new System.Drawing.Size(884, 471);
             this.dgvListBillDentalTool.TabIndex = 2;
             // 
             // Column1
@@ -202,16 +209,21 @@
             // 
             // frmDentalToolMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1210, 683);
+            this.ClientSize = new System.Drawing.Size(908, 555);
             this.Controls.Add(this.dgvListBillDentalTool);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "frmDentalToolMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmDentalToolMain";
+            this.Text = "Quản lí vật liệu dụng cụ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDentalToolMain_FormClosed);
             this.Load += new System.EventHandler(this.frmDentalToolMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -51,7 +51,6 @@
             this.txtBloodSugarLevel = new System.Windows.Forms.TextBox();
             this.txtPulseRate = new System.Windows.Forms.TextBox();
             this.txtBloodPressure = new System.Windows.Forms.TextBox();
-            this.picXray = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,9 +59,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblPatient = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.picXray = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -93,7 +92,7 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 49);
+            this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(790, 277);
             this.groupBox1.TabIndex = 0;
@@ -315,15 +314,6 @@
             this.txtBloodPressure.Size = new System.Drawing.Size(142, 27);
             this.txtBloodPressure.TabIndex = 0;
             // 
-            // picXray
-            // 
-            this.picXray.Location = new System.Drawing.Point(180, 177);
-            this.picXray.Name = "picXray";
-            this.picXray.Size = new System.Drawing.Size(93, 86);
-            this.picXray.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picXray.TabIndex = 18;
-            this.picXray.TabStop = false;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -412,24 +402,12 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Huyết áp:";
             // 
-            // lblPatient
-            // 
-            this.lblPatient.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblPatient.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPatient.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblPatient.Location = new System.Drawing.Point(0, 0);
-            this.lblPatient.Name = "lblPatient";
-            this.lblPatient.Size = new System.Drawing.Size(814, 45);
-            this.lblPatient.TabIndex = 1;
-            this.lblPatient.Text = "ID | Name";
-            this.lblPatient.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(270, 332);
+            this.btnCancel.Location = new System.Drawing.Point(270, 289);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(102, 32);
+            this.btnCancel.Size = new System.Drawing.Size(102, 28);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -438,29 +416,38 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(447, 332);
+            this.btnSave.Location = new System.Drawing.Point(447, 289);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(102, 32);
+            this.btnSave.Size = new System.Drawing.Size(102, 28);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // picXray
+            // 
+            this.picXray.Location = new System.Drawing.Point(180, 177);
+            this.picXray.Name = "picXray";
+            this.picXray.Size = new System.Drawing.Size(93, 86);
+            this.picXray.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picXray.TabIndex = 18;
+            this.picXray.TabStop = false;
+            // 
             // FormEditSubClinicInf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 369);
+            this.ClientSize = new System.Drawing.Size(814, 322);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.lblPatient);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormEditSubClinicInf";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thông tin cận lâm sàng";
+            this.Text = "Chỉnh sửa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormEditSubClinicInf_FormClosed);
             this.Load += new System.EventHandler(this.FormEditSubClinicInf_Load);
             this.groupBox1.ResumeLayout(false);
@@ -481,7 +468,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblPatient;
         private System.Windows.Forms.PictureBox picXray;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;

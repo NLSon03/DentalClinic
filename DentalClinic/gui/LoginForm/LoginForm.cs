@@ -1,13 +1,7 @@
-﻿using dal.Entities;
+﻿using bus;
+using dal.Entities;
 using DentalClinic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,44 +9,81 @@ namespace gui.LoginForm
 {
     public partial class LoginForm : Form
     {
+        private readonly AccountService accountService = new AccountService();
         public LoginForm()
         {
             InitializeComponent();
         }
+
+        private void ResetData()
+        {
+            txtLogin.Text = "";
+            txtPassword.Text = "";
+            lblInfo.Text = "";
+            prgLogin.Value = 0;
+            txtLogin.Text = ""; 
+            cbShowPW.Checked = false;
+        }
+
         private void OpenForm()
         {
+            ResetData();
+            this.Hide();
             MainForm mf = new MainForm();
             mf.ShowDialog();
+            this.Show();
         }
-        private void btnLogin_Click(object sender, EventArgs e)
+
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            using (var context = new DentalModel())
+            try
             {
-                try
+                prgLogin.Value = 0;
+                lblInfo.Text = "Đang khởi tạo.";
+                string acc = txtLogin.Text;
+                string password = txtPassword.Text;
+
+                if (await ValidateLoginAsync(acc, password))
                 {
-                    if (string.IsNullOrEmpty(txtLogin.Text) || string.IsNullOrEmpty(txtPassword.Text))
-                    {
-                        throw new Exception("Vui lòng nhập đầy đủ thông tin");
-                    }
-
-                    string tk = txtLogin.Text;
-                    string mk = txtPassword.Text;
-
-                    var account = context.Accounts.FirstOrDefault(a => a.AccountName == tk && a.Password == mk);
-
-                    if (account != null)
-                    {
-                        MessageBox.Show("Đăng nhập thành công");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đăng nhập thất bại");
-                    }
+                    lblInfo.Text = "Kết nối thành công. Đang vào";
+                    await Task.Delay(1000);
+                    prgLogin.Value = 100;
+                    OpenForm();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                    prgLogin.Value = 0;
+                    lblInfo.Text = "Đăng nhập thất bại";
                 }
+            }
+            catch (Exception ex)
+            {
+                lblLogin.Text = "Lỗi kết nối";
+            }
+        }
+
+        private async Task<bool> ValidateLoginAsync(string acc, string password)
+        {
+            lblInfo.Text = "Đang kết nối cơ sở dữ liệu.";
+            prgLogin.Value = 50;
+            await Task.Delay(500);
+            if (string.IsNullOrEmpty(acc) || string.IsNullOrEmpty(password))
+            {
+                lblLogin.Text="Vui lòng nhập đầy đủ thông tin";
+                return false;
+            }
+
+            Account account = accountService.findByID(acc, password);
+
+            if (account != null)
+            {
+                lblLogin.Text = "Đăng nhập thành công";
+                return true;
+            }
+            else
+            {
+                lblLogin.Text = "Sai tên đăng nhập hoặc mật khẩu.";
+                return false;
             }
         }
 
@@ -71,6 +102,23 @@ namespace gui.LoginForm
             DialogResult dg = MessageBox.Show("Bạn có muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes)
                 Application.Exit();
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            lblLogin.Text = "";
+            lblInfo.Text = "";
+        }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+            lblLogin.Text = "";
+            lblInfo.Text = "";
         }
     }
 }
