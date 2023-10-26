@@ -167,7 +167,10 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
             var unit = prescriptionService.GetUnit(listPrescriptionIds);
             var dosage = prescriptionService.GetDosage(listPrescriptionIds);
             var unitprice = prescriptionService.GetPrice(listPrescriptionIds);
-            var total = prescriptionService.GetTotal(Convert.ToInt32(invoiceId));
+            var a = medInvoiceDetails.GetAllByInvoiceID(int.Parse(invoiceId)).ToList();
+            long total = 0;
+            foreach(var item in a)
+                total += long.Parse(prescriptionService.GetTotal((int)item.Prescription_ID));
             // Điền các trường với dữ liệu đơn
             //fields.SetField("InvoiceId", invoiceId);
             fields.SetField("CustomerName", patient.GetByID(ID_p.ToString()).FullName);
@@ -182,9 +185,9 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
                 fields.SetField($"Unit{i + 1}", unit[i]);
                 fields.SetField($"quantity{i + 1}", quantities[i].ToString());
                 fields.SetField($"price{i + 1}", unitprice[i].ToString());
-                fields.SetField($"sum{i + 1}", ((decimal)(quantities[i] * unitprice[i])).ToString("N0"));
+                fields.SetField($"sum{i + 1}", ((decimal)(quantities[i] * unitprice[i])).ToString("0"));
             }
-            fields.SetField($"total", total);
+            fields.SetField($"total", total.ToString());
         }
         private int SaveInvoice(List<Prescription> list)
         {
