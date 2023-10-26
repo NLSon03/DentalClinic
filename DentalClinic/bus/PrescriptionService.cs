@@ -46,12 +46,23 @@ namespace bus
                 }).ToList();
             }
         }
+        public List<decimal> GetTotal(List<int?> total)
+        {
+            using (var model = new DentalModel())
+            {
+                return total.Select(u =>
+                {
+                    var totalAmount = model.Prescriptions.FirstOrDefault(i => i.ID == u);
+                    return totalAmount.TotalAmount;
+                }).ToList();
+            }
+        }
         public string GetTotal(int id) 
         {
             using (var context = new DentalModel())
             {
-                decimal totalAmount = context.Prescriptions.FirstOrDefault(p => p.ID == id).TotalAmount;
-                return totalAmount.ToString("N0");
+                var totalAmount = context.Prescriptions.FirstOrDefault(p => p.ID == id).TotalAmount;
+                return totalAmount.ToString();
             }
         }
         public List<decimal?> GetPrice(List<int?> price)

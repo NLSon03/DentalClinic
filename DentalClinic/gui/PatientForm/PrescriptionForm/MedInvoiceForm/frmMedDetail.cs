@@ -63,7 +63,7 @@ namespace gui.PatientForm.PrescriptionForm.MedInvoiceForm
         }
         private void btnSaveDetails_Click(object sender, EventArgs e)
         {
-            //neu hoa don thuoc ton tai thi ko cho sua, else sua don thuoc
+
             try
             {
                 using (var model = new DentalModel())

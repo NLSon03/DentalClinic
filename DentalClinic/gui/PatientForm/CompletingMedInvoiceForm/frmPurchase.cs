@@ -101,13 +101,13 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         }
         private string GetPath()
         {
-            string invoicesPath = @"Invoices\MedicInvoice";
+            string invoicesPath = @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\MedicineInvoice\";
             Directory.CreateDirectory(invoicesPath);
             return Path.GetFullPath(invoicesPath);
         }
         private string GetTemplatePath()
         {
-            return @"Resources\Templates\MedInvoice.pdf";
+            return @"C:\Users\ADmin\source\repos\DentalClinic\DentalClinic\gui\Resources\Templates\MedInvoice.pdf";
         }
         private void CopyFile(string sourcePath, string destinationPath)
         {
@@ -167,13 +167,13 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
             var unit = prescriptionService.GetUnit(listPrescriptionIds);
             var dosage = prescriptionService.GetDosage(listPrescriptionIds);
             var unitprice = prescriptionService.GetPrice(listPrescriptionIds);
-            var total = prescriptionService.GetTotal(Convert.ToInt32(invoiceId));
+            var total = prescriptionService.GetTotal(listPrescriptionIds);
             // Điền các trường với dữ liệu đơn
             //fields.SetField("InvoiceId", invoiceId);
             fields.SetField("CustomerName", patient.GetByID(ID_p.ToString()).FullName);
             fields.SetField("Date", medInvoice.JustGetDate(Convert.ToInt32(invoiceId)));
             fields.SetField("PhoneNum", patient.GetByID(ID_p.ToString()).PhoneNumber);
-
+            decimal totalMoney = 0;
             // Điền các trường với dữ liệu từ danh sách
             for (int i = 0; i < medName.Count; i++)
             {
@@ -183,8 +183,9 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
                 fields.SetField($"quantity{i + 1}", quantities[i].ToString());
                 fields.SetField($"price{i + 1}", unitprice[i].ToString());
                 fields.SetField($"sum{i + 1}", ((decimal)(quantities[i] * unitprice[i])).ToString("N0"));
+                totalMoney += total[i];
+                fields.SetField($"total", totalMoney.ToString("N0"));
             }
-            fields.SetField($"total", total);
         }
         private int SaveInvoice(List<Prescription> list)
         {
@@ -205,7 +206,7 @@ namespace gui.PatientForm.CompletingMedInvoiceForm
         {
             CreateInvoicePdf(invoiceId);
 
-            string pdfPath = Path.GetFullPath($"Invoices\\MedicInvoice\\{invoiceId}.pdf");
+            string pdfPath = Path.GetFullPath($"C:\\Users\\ADmin\\source\\repos\\DentalClinic\\DentalClinic\\gui\\MedicineInvoice\\{invoiceId}.pdf");
             if (!File.Exists(pdfPath))
                 throw new FileNotFoundException($"Không tìm thấy tệp {pdfPath}");
 
