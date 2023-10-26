@@ -120,6 +120,16 @@ namespace gui.DentalForm
             }
         }
 
+        private void ResetTextbox()
+        {
+            txtDonGia.Text = "";
+            txtMaGiaoDich.Text = "";
+            txtSoLuong.Text = "";
+            txtThanhTien.Text = "";
+            txtDonViTinh.Text = "";
+            txtDonGia.Text = "";
+        }
+
         private void thêmHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -149,7 +159,7 @@ namespace gui.DentalForm
                 var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
                 frmDentalMaterials_Load(sender, e);
                 BindGrid(ds);
-
+                ResetTextbox();
             }
             catch (Exception ex)
             {
@@ -186,7 +196,7 @@ namespace gui.DentalForm
                 var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
                 frmDentalMaterials_Load(sender, e);
                 BindGrid(ds);
-
+                ResetTextbox();
             }
             catch (Exception ex)
             {
@@ -201,7 +211,7 @@ namespace gui.DentalForm
                 DentalToolTransactionsDetail sinhvien = dentalToolTransactionDetailService.findDentalToolTransactionDetails(int.Parse(txtMaGiaoDich.Text), int.Parse(cmbDungCu.SelectedValue.ToString()));
 
                 if (sinhvien == null)
-                    throw new Exception("Không tìm thấy mã sinh viên cần xóa.");
+                    throw new Exception("Không tìm thấy mã giao dịch cần xóa.");
 
 
                 DialogResult result = MessageBox.Show("Bạn có chắn chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -212,6 +222,7 @@ namespace gui.DentalForm
                     var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
                     frmDentalMaterials_Load(sender, e);
                     BindGrid(ds);
+                    ResetTextbox();
                 }
             }
 
@@ -308,6 +319,7 @@ namespace gui.DentalForm
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 ToExcel(dgvDungCu, saveFileDialog.FileName, "Hóa đơn");
+                ResetTextbox();
             }
         }
 
@@ -367,7 +379,7 @@ namespace gui.DentalForm
                 var ds = dentalToolTransactionDetailService.GetAllByid(int.Parse(txtMaGiaoDich.Text));
                 frmDentalMaterials_Load(sender, e);
                 BindGrid(ds);
-
+                ResetTextbox();
             }
             catch (Exception ex)
             {
