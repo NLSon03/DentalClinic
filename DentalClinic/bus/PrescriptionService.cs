@@ -51,7 +51,7 @@ namespace bus
             using (var context = new DentalModel())
             {
                 decimal totalAmount = context.Prescriptions.FirstOrDefault(p => p.ID == id).TotalAmount;
-                return totalAmount.ToString("N0");
+                return totalAmount.ToString("0");
             }
         }
         public List<decimal?> GetPrice(List<int?> price)
@@ -139,5 +139,7 @@ namespace bus
                     .ToList();
             }
         }
+
+
     }
 }
